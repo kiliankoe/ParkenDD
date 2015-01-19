@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		392E9B471A6D3143006C6869 /* ParkplatzTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkplatzTableViewCell.swift */; };
 		39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */; };
 		39F4CFE61A6BBC0200ACFECF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE51A6BBC0200ACFECF /* ViewController.swift */; };
 		39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFE71A6BBC0200ACFECF /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		392E9B461A6D3143006C6869 /* ParkplatzTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkplatzTableViewCell.swift; sourceTree = "<group>"; };
 		39F4CFDE1A6BBC0200ACFECF /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFE21A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */,
 				39F4CFE51A6BBC0200ACFECF /* ViewController.swift */,
 				39F4CFE71A6BBC0200ACFECF /* Main.storyboard */,
+				392E9B461A6D3143006C6869 /* ParkplatzTableViewCell.swift */,
 				39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */,
 				39F4CFEC1A6BBC0200ACFECF /* LaunchScreen.xib */,
 				39F4CFE11A6BBC0200ACFECF /* Supporting Files */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				392E9B471A6D3143006C6869 /* ParkplatzTableViewCell.swift in Sources */,
 				39F4CFE61A6BBC0200ACFECF /* ViewController.swift in Sources */,
 				39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */,
 			);
@@ -405,6 +409,7 @@
 				39F4CFFF1A6BBC0200ACFECF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		39F4D0001A6BBC0200ACFECF /* Build configuration list for PBXNativeTarget "ParkenDDTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +418,7 @@
 				39F4D0021A6BBC0200ACFECF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
