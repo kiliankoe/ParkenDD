@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
     </dependencies>
     <scenes>
-        <!--Parkplätze-->
+        <!--ParkenDD-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="ParkenDD" customModuleProvider="target" sceneMemberID="viewController">
@@ -58,7 +58,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Parkplätze" id="ktr-z8-YRd">
+                    <navigationItem key="navigationItem" title="ParkenDD" id="ktr-z8-YRd">
                         <barButtonItem key="leftBarButtonItem" title="About" id="5ZO-Nw-ttC">
                             <connections>
                                 <action selector="aboutButtonTapped:" destination="vXZ-lx-hvc" id="ey0-9G-AHF"/>
