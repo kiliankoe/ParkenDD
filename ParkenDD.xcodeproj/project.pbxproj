@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		392E9B471A6D3143006C6869 /* ParkplatzTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkplatzTableViewCell.swift */; };
+		39B037501A949CD600C5A273 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0374F1A949CD600C5A273 /* MapViewController.swift */; };
+		39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B037511A94C73E00C5A273 /* AboutViewController.swift */; };
 		39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */; };
 		39F4CFE61A6BBC0200ACFECF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE51A6BBC0200ACFECF /* ViewController.swift */; };
 		39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFE71A6BBC0200ACFECF /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		392E9B461A6D3143006C6869 /* ParkplatzTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkplatzTableViewCell.swift; sourceTree = "<group>"; };
+		39B0374F1A949CD600C5A273 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		39B037511A94C73E00C5A273 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		39F4CFDE1A6BBC0200ACFECF /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFE21A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 			children = (
 				39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */,
 				39F4CFE51A6BBC0200ACFECF /* ViewController.swift */,
+				39B0374F1A949CD600C5A273 /* MapViewController.swift */,
+				39B037511A94C73E00C5A273 /* AboutViewController.swift */,
 				39F4CFE71A6BBC0200ACFECF /* Main.storyboard */,
 				392E9B461A6D3143006C6869 /* ParkplatzTableViewCell.swift */,
 				39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */,
@@ -218,6 +224,8 @@
 				392E9B471A6D3143006C6869 /* ParkplatzTableViewCell.swift in Sources */,
 				39F4CFE61A6BBC0200ACFECF /* ViewController.swift in Sources */,
 				39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */,
+				39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */,
+				39B037501A949CD600C5A273 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
