@@ -12,27 +12,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	@IBOutlet weak var tableView: UITableView!
 
+	let server = ServerController()
+
 	// Store the single parking lots once they're retrieved from the server
 	// a single subarray for each section
 	var parkinglots: [[Parkinglot]] = []
+	var sectionNames: [String] = []
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		tableView.reloadData()
-
-		// some demo content, delete me please
-		var innereAltstadt: [Parkinglot] = []
-		innereAltstadt.append(Parkinglot(section: "Innere Altstadt", name: "Altmarkt", count: 400, free: 367, state: lotstate.many, lat: 51.05031, lon: 13.73754))
-		innereAltstadt.append(Parkinglot(section: "Innere Altstadt", name: "An der Frauenkirche", count: 120, free: 111, state: lotstate.many, lat: 51.05165, lon: 13.7439))
-		parkinglots.append(innereAltstadt)
-
-		var ringWest: [Parkinglot] = []
-		ringWest.append(Parkinglot(section: "Ring West", name: "Kongresszentrum", count: 250, free: 241, state: lotstate.many, lat: 51.05922, lon: 13.7305))
-		parkinglots.append(ringWest)
-
-		var pragerStrasse: [Parkinglot] = []
-		pragerStrasse.append(Parkinglot(section: "Prager Straße", name: "Centrum-Galerie", count: 480, free: 0, state: lotstate.closed, lat: 51.04951, lon: 13.73407))
-		parkinglots.append(pragerStrasse)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -49,8 +37,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 
+	func updateData() {
+		server.sendRequest() {
+			(secNames, plotList) in
+			self.sectionNames = secNames
+			self.parkinglots = plotList
+			self.tableView.reloadData()
+		}
+	}
+
 	@IBAction func refreshButtonTapped(sender: UIBarButtonItem) {
 		// TODO: Replace me with a pull-to-refresh
+		updateData()
 	}
 
 	@IBAction func aboutButtonTapped(sender: UIBarButtonItem) {
@@ -60,6 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// MARK: - UITableViewDataSource
 
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		println(parkinglots.count) // FIXME: WAT?
 		return parkinglots.count
 	}
 
@@ -100,8 +99,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		// TODO: Read these from the API just in case
-		let sectionNames = ["Innere Altstadt", "Ring West", "Prager Straße", "Ring Süd", "Ring Ost", "Neustadt", "Sonstige", "Park + Ride", "Busparkplätze"]
+//		let sectionNames = ["Innere Altstadt", "Ring West", "Prager Straße", "Ring Süd", "Ring Ost", "Neustadt", "Sonstige", "Park + Ride", "Busparkplätze"]
 		return sectionNames[section]
 	}
 

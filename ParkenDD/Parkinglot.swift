@@ -12,8 +12,8 @@ struct Parkinglot {
 	let section: String!
 	let name: String!
 	let count: Int!
-	var free: Int!
-	var state: lotstate
+	let free: Int!
+	let state: lotstate
 	let lat: Double?
 	let lon: Double?
 }
