@@ -1,0 +1,35 @@
+body {
+	background: #F2F2F2;
+	font-family: 'Slabo 27px', serif;
+}
+
+.tagline {
+	font-size: 40px !important;
+	font-weight: bold !important;
+	/* I don't know enough about CSS *cry* */
+}
+
+.text p {
+	font-size: 30px;
+	text-align: center;
+	margin: 0px;
+	color: #393939;
+}
+
+.icon {
+	width: 200px;
+	height: 200px;
+	margin: 100px auto 50px auto;
+	display: block;
+}
+
+.box {
+	margin: auto;
+}
+
+.badge {
+	width: 213px;
+	height: 74px;
+	display: block;
+	margin: 50px auto auto auto;
+}
