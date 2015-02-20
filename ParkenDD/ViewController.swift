@@ -41,8 +41,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		// hand over the selected parkinglot to the MapViewController
-		if segue.identifier == "showParkplatzDetail" {
-
+		if segue.identifier == "showParkinglotDetail" {
+			let mapVC: MapViewController = segue.destinationViewController as! MapViewController
+			let indexPath = tableView.indexPathForSelectedRow()
+			let selectedParkinglot = parkinglots[indexPath!.section][indexPath!.row]
+			mapVC.detailParkinglot = selectedParkinglot
 		}
 	}
 
@@ -57,8 +60,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// MARK: - UITableViewDataSource
 
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		// hardcoded for now
-		// Innere Altstadt, Ring West, Prager Straße, Ring Süd, Ring Ost, Neustadt, Sonstige, Park + Ride, Busparkplätze
 		return parkinglots.count
 	}
 
@@ -99,6 +100,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		// TODO: Read these from the API just in case
 		let sectionNames = ["Innere Altstadt", "Ring West", "Prager Straße", "Ring Süd", "Ring Ost", "Neustadt", "Sonstige", "Park + Ride", "Busparkplätze"]
 		return sectionNames[section]
 	}

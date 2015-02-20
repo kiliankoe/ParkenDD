@@ -11,6 +11,7 @@ import UIKit
 class MapViewController: UIViewController {
 	
 //	@IBOutlet weak var mapView: MKMapView!
+	var detailParkinglot: Parkinglot!
 
     override func viewDidLoad() {
         super.viewDidLoad()
