@@ -72,6 +72,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		cell.parkinglotNameLabel.text = parkinglots[indexPath.section][indexPath.row].name
 		cell.parkinglotLoadLabel.text = "\(parkinglots[indexPath.section][indexPath.row].free)/\(parkinglots[indexPath.section][indexPath.row].count)"
 
+		switch parkinglots[indexPath.section][indexPath.row].state {
+		case lotstate.many:
+			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateMany")
+		case lotstate.few:
+			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateFew")
+		case lotstate.full:
+			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateFull")
+		case lotstate.closed:
+			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateClosed")
+		default:
+			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateNodata")
+		}
+
 		return cell
 	}
 
@@ -86,7 +99,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		let sectionNames = [ "Innere Altstadt", "Ring West", "Prager Straße", "Ring Süd", "Ring Ost", "Neustadt", "Sonstige", "Park + Ride", "Busparkplätze" ]
+		let sectionNames = ["Innere Altstadt", "Ring West", "Prager Straße", "Ring Süd", "Ring Ost", "Neustadt", "Sonstige", "Park + Ride", "Busparkplätze"]
 		return sectionNames[section]
 	}
 
