@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ParkplatzTableViewCell: UITableViewCell {
+class ParkinglotTableViewCell: UITableViewCell {
 
-	@IBOutlet weak var parkplatzNameLabel: UILabel!
-	@IBOutlet weak var parkplatzLoadLabel: UILabel!
-	@IBOutlet weak var parkplatzStateImage: UIImageView!
+	@IBOutlet weak var parkinglotNameLabel: UILabel!
+	@IBOutlet weak var parkinglotLoadLabel: UILabel!
+	@IBOutlet weak var parkinglotStateImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
