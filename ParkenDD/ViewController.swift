@@ -52,15 +52,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		server.sendRequest() {
 			(secNames, plotList, updateError) in
 			if let error = updateError {
+
+				// Give the user a notification that new data can't be fetched
 				var alertController = UIAlertController(title: "Connection Error", message: "Couldn't fetch data from server. Please try again later or reset the server in the system settings if you've changed it.", preferredStyle: UIAlertControllerStyle.Alert)
 				alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
 				self.presentViewController(alertController, animated: true, completion: nil)
+
+				// Stop the UIRefreshControl without updating the date
+				self.refreshControl.endRefreshing()
+
 			} else if let secNames = secNames, plotList = plotList {
 				self.sectionNames = secNames
 				self.parkinglots = plotList
+
+				// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
 				dispatch_async(dispatch_get_main_queue(), { () -> Void in
 					self.tableView.reloadData()
 
+					// Update the displayed "Last update: " time in the UIRefreshControl
 					let formatter = NSDateFormatter()
 					formatter.dateFormat = "HH:mm"
 					let title = "Last update: \(formatter.stringFromDate(NSDate()))"
@@ -68,6 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 					let attributedTitle = NSAttributedString(string: title, attributes: attrsDict)
 					self.refreshControl.attributedTitle = attributedTitle
 
+					// Stop the UIRefreshControl
 					self.refreshControl.endRefreshing()
 				})
 			}
