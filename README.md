@@ -6,4 +6,4 @@ ParkenDD shows you a list of the number of available public parking spots in Dre
 
 #### This is still very much a work in progress. It will be submitted to the App Store when finished.
 
-Check out [jklmnn/ParkenDD-Server](https://github.com/jklmnn/ParkenDD-Server) and [jklmnn/parkplaetzeDD](https://github.com/jklmnn/parkplaetzeDD) for the server files that scrape the official site and offer pretty JSON.
+Check out [jklmnn/ParkenDD-Server](https://github.com/jklmnn/ParkenDD-Server) and [RobTranquillo/parkplaetzeDD](https://github.com/RobTranquillo/parkplaetzeDD) or [jklmnn/parkplaetzeDD](https://github.com/jklmnn/parkplaetzeDD) for the server files that scrape the official site and offer pretty JSON.
