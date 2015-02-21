@@ -21,6 +21,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		// FIXME: For some reason the UI freezes up when it tries to update itself on start with a failing internet connection
+		// Maybe because it tries to fire an alert on a ViewController that isn't ready yet?
+		updateData()
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -41,7 +44,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		server.sendRequest() {
 			(secNames, plotList, updateError) in
 			if let error = updateError {
-				var alertController = UIAlertController(title: "Connection Error", message: "Couldn't fetch data from server. Maybe your connection is wonky? Please try again later or reset the server in the system settings if you've changed that.", preferredStyle: UIAlertControllerStyle.Alert)
+				var alertController = UIAlertController(title: "Connection Error", message: "Couldn't fetch data from server. Please try again later or reset the server in the system settings if you've changed it.", preferredStyle: UIAlertControllerStyle.Alert)
 				alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
 				self.presentViewController(alertController, animated: true, completion: nil)
 			} else if let secNames = secNames, plotList = plotList {
@@ -66,6 +69,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// MARK: - UITableViewDataSource
 
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		if parkinglots.count == 0 {
+			let messageLabel = UILabel(frame: CGRectMake(0, 0, view.bounds.width, view.bounds.height))
+			messageLabel.text = "No data is currently available. Please press update to refresh."
+			messageLabel.textColor = UIColor.blackColor()
+			messageLabel.numberOfLines = 0
+			messageLabel.textAlignment = NSTextAlignment.Center
+			messageLabel.font = UIFont(name: "Palatino-Italic", size: 20)
+			messageLabel.sizeToFit()
+
+			tableView.backgroundView = messageLabel
+			tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+			return 0
+		}
+		// TODO: tableView.backgroundView is still set to messageLabel... Can be seen if dragged down far enough. Damn.
+		tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
 		return parkinglots.count
 	}
 
@@ -106,7 +124,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//		let sectionNames = ["Innere Altstadt", "Ring West", "Prager Straße", "Ring Süd", "Ring Ost", "Neustadt", "Sonstige", "Park + Ride", "Busparkplätze"]
 		return sectionNames[section]
 	}
 
