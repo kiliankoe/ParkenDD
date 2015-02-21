@@ -13,7 +13,8 @@ class ServerController {
 	var sectionNames: [String] = []
 	var parkinglotList: [[Parkinglot]] = []
 
-	func sendRequest(callback: (sectionNames: [String], parkinglotList: [[Parkinglot]]) -> ()) {
+	// FIXME: Yay for the string? error...
+	func sendRequest(callback: (sectionNames: [String]?, parkinglotList: [[Parkinglot]]?, updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		let session = NSURLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
 
@@ -84,13 +85,14 @@ class ServerController {
 							}
 						}
 						// TODO: sectionNames and parkinglotList don't have to be instance variables
-						callback(sectionNames: self.sectionNames, parkinglotList: self.parkinglotList)
+						callback(sectionNames: self.sectionNames, parkinglotList: self.parkinglotList, updateError: nil)
 					}
 				}
 			}
 			else {
 				// Failure
 				println("HTTP Request Failure: %@", error.localizedDescription);
+				callback(sectionNames: nil, parkinglotList: nil, updateError: "updateError")
 			}
 		})
 		task.resume()

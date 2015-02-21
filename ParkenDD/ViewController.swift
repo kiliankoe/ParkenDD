@@ -39,12 +39,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	func updateData() {
 		server.sendRequest() {
-			(secNames, plotList) in
-			self.sectionNames = secNames
-			self.parkinglots = plotList
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				self.tableView.reloadData()
-			})
+			(secNames, plotList, updateError) in
+			if let error = updateError {
+				var alertController = UIAlertController(title: "Connection Error", message: "Couldn't fetch data from server. Maybe your connection is wonky? Please try again later or reset the server in the system settings if you've changed that.", preferredStyle: UIAlertControllerStyle.Alert)
+				alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+				self.presentViewController(alertController, animated: true, completion: nil)
+			} else if let secNames = secNames, plotList = plotList {
+				self.sectionNames = secNames
+				self.parkinglots = plotList
+				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					self.tableView.reloadData()
+				})
+			}
 		}
 	}
 
