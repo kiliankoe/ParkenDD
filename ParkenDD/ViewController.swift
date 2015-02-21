@@ -69,7 +69,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
 
 		cell.parkinglotNameLabel.text = parkinglots[indexPath.section][indexPath.row].name
-		cell.parkinglotLoadLabel.text = "\(parkinglots[indexPath.section][indexPath.row].free)/\(parkinglots[indexPath.section][indexPath.row].count)"
+		cell.parkinglotLoadLabel.text = "\(parkinglots[indexPath.section][indexPath.row].free)"
 
 		switch parkinglots[indexPath.section][indexPath.row].state {
 		case lotstate.many:
