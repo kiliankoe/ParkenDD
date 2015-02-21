@@ -58,7 +58,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// MARK: - UITableViewDataSource
 
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		println(parkinglots.count) // FIXME: WAT?
 		return parkinglots.count
 	}
 

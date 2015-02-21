@@ -78,10 +78,9 @@ class ServerController {
 											let parkingLot = Parkinglot(section: sectionName, name: lotName, count: lotCount, free: lotFree, state: lotState, lat: nil, lon: nil)
 											lotList.append(parkingLot)
 										}
-
-										self.parkinglotList.append(lotList)
 									}
 								}
+								self.parkinglotList.append(lotList)
 							}
 						}
 						// TODO: sectionNames and parkinglotList don't have to be instance variables
