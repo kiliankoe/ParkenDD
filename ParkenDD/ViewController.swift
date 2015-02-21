@@ -42,7 +42,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			(secNames, plotList) in
 			self.sectionNames = secNames
 			self.parkinglots = plotList
-			self.tableView.reloadData()
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				self.tableView.reloadData()
+			})
 		}
 	}
 
