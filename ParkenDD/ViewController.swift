@@ -12,6 +12,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	@IBOutlet weak var tableView: UITableView!
 
+	// FIXME: This is definitely not the right way of doing this...
+	let refreshControl = UIRefreshControl()
+
 	let server = ServerController()
 
 	// Store the single parking lots once they're retrieved from the server
@@ -24,6 +27,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// FIXME: For some reason the UI freezes up when it tries to update itself on start with a failing internet connection
 		// Maybe because it tries to fire an alert on a ViewController that isn't ready yet?
 		updateData()
+
+		refreshControl.backgroundColor = UIColor(hue: 0.58, saturation: 1.0, brightness: 0.43, alpha: 1.0)
+		refreshControl.tintColor = UIColor.whiteColor()
+		refreshControl.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
+		tableView.addSubview(refreshControl)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -52,14 +60,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 				self.parkinglots = plotList
 				dispatch_async(dispatch_get_main_queue(), { () -> Void in
 					self.tableView.reloadData()
+
+					let formatter = NSDateFormatter()
+					formatter.dateFormat = "HH:mm"
+					let title = "Last update: \(formatter.stringFromDate(NSDate()))"
+					let attrsDict: [NSObject: AnyObject] = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+					let attributedTitle = NSAttributedString(string: title, attributes: attrsDict)
+					self.refreshControl.attributedTitle = attributedTitle
+
+					self.refreshControl.endRefreshing()
 				})
 			}
 		}
-	}
-
-	@IBAction func refreshButtonTapped(sender: UIBarButtonItem) {
-		// TODO: Replace me with a pull-to-refresh
-		updateData()
 	}
 
 	@IBAction func aboutButtonTapped(sender: UIBarButtonItem) {
@@ -71,7 +83,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		if parkinglots.count == 0 {
 			let messageLabel = UILabel(frame: CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-			messageLabel.text = "No data is currently available. Please press update to refresh."
+			messageLabel.text = "No data is currently available. Please pull to refresh."
 			messageLabel.textColor = UIColor.blackColor()
 			messageLabel.numberOfLines = 0
 			messageLabel.textAlignment = NSTextAlignment.Center

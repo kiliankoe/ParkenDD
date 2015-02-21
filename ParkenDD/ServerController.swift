@@ -10,9 +10,6 @@ import Foundation
 
 class ServerController {
 
-	var sectionNames: [String] = []
-	var parkinglotList: [[Parkinglot]] = []
-
 	// FIXME: Yay for the string? error...
 	func sendRequest(callback: (sectionNames: [String]?, parkinglotList: [[Parkinglot]]?, updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -32,11 +29,14 @@ class ServerController {
 					// Response consists of an Array of sections, e.g. Innere Altstadt, Ring West, etc.
 					if let sectionList = parsedObject as? NSArray {
 
+						var sectionNames: [String] = []
+						var parkinglotList: [[Parkinglot]] = []
+
 						for section in sectionList {
 							if let sectionName: String = section["name"] as? String, lots = section["lots"] as? NSArray {
 
 								// save the section name
-								self.sectionNames.append(sectionName)
+								sectionNames.append(sectionName)
 
 								// a temporary array for storing the list of processed Parkinglots
 								var lotList: [Parkinglot] = []
@@ -81,11 +81,10 @@ class ServerController {
 										}
 									}
 								}
-								self.parkinglotList.append(lotList)
+								parkinglotList.append(lotList)
 							}
 						}
-						// TODO: sectionNames and parkinglotList don't have to be instance variables
-						callback(sectionNames: self.sectionNames, parkinglotList: self.parkinglotList, updateError: nil)
+						callback(sectionNames: sectionNames, parkinglotList: parkinglotList, updateError: nil)
 					}
 				}
 			}
