@@ -24,6 +24,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		// Call this here to prevent the UIRefreshControl sometimes looking messed up when waking the app
+		self.refreshControl.endRefreshing()
+
 		// FIXME: For some reason the UI freezes up when it tries to update itself on start with a failing internet connection
 		// Maybe because it tries to fire an alert on a ViewController that isn't ready yet?
 		updateData()
@@ -71,7 +75,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 					// Update the displayed "Last update: " time in the UIRefreshControl
 					let formatter = NSDateFormatter()
-					formatter.dateFormat = "HH:mm"
+					formatter.dateFormat = "d. MMM, HH:mm"
 					let title = "Last update: \(formatter.stringFromDate(NSDate()))"
 					let attrsDict: [NSObject: AnyObject] = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 					let attributedTitle = NSAttributedString(string: title, attributes: attrsDict)
