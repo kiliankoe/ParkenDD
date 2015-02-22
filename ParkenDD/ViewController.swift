@@ -16,6 +16,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	let refreshControl = UIRefreshControl()
 
 	let server = ServerController()
+	let kDefaultServerURL = "http://jkliemann.de/offenesdresden.de/json.php"
+
+	// Bool that can be set by the user in the system settings to reset the server URL back to the default
+	var resetServer: Bool!
 
 	// Store the single parking lots once they're retrieved from the server
 	// a single subarray for each section
@@ -52,15 +56,44 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 
+	func refreshUserDefaults() {
+		// Load the NSUserDefaults
+		server.serverURL = NSUserDefaults.standardUserDefaults().stringForKey("ServerURL")!
+		resetServer = NSUserDefaults.standardUserDefaults().boolForKey("ResetServerOnStartup")
+
+		// Reset the server URL if the user wants to
+		if (resetServer == true) {
+			server.serverURL = kDefaultServerURL
+			NSUserDefaults.standardUserDefaults().setObject(kDefaultServerURL, forKey: "ServerURL")
+
+			// Change the bool switch back to being false
+			resetServer = false
+			NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ResetServerOnStartup")
+		}
+	}
+
 	func updateData() {
+		refreshUserDefaults()
 		server.sendRequest() {
 			(secNames, plotList, updateError) in
 			if let error = updateError {
 
-				// Give the user a notification that new data can't be fetched
-				var alertController = UIAlertController(title: "Connection Error", message: "Couldn't fetch data from server. Please try again later or reset the server in the system settings if you've changed it.", preferredStyle: UIAlertControllerStyle.Alert)
-				alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-				self.presentViewController(alertController, animated: true, completion: nil)
+				if error == "requestError" {
+					// Give the user a notification that new data can't be fetched
+					var alertController = UIAlertController(title: "Connection Error", message: "Couldn't fetch data from server. Please try again in a few moments.", preferredStyle: UIAlertControllerStyle.Alert)
+					alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+					self.presentViewController(alertController, animated: true, completion: nil)
+				} else if error == "serverError" {
+					// Give the user a notification that data from the server can't be read
+					var alertController = UIAlertController(title: "Connection Error", message: "Couldn't read data from server. Please try again in a few moments or reset the server if you've changed it.", preferredStyle: UIAlertControllerStyle.Alert)
+					alertController.addAction(UIAlertAction(title: "Reset", style: UIAlertActionStyle.Destructive, handler: {
+						(alert: UIAlertAction!) in
+						self.server.serverURL = self.kDefaultServerURL
+						NSUserDefaults.standardUserDefaults().setObject(self.kDefaultServerURL, forKey: "ServerURL")
+					}))
+					alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+					self.presentViewController(alertController, animated: true, completion: nil)
+				}
 
 				// Stop the UIRefreshControl without updating the date
 				self.refreshControl.endRefreshing()

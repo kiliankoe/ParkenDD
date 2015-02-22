@@ -10,12 +10,14 @@ import Foundation
 
 class ServerController {
 
+	var serverURL: String!
+
 	// FIXME: Yay for the string? error...
 	func sendRequest(callback: (sectionNames: [String]?, parkinglotList: [[Parkinglot]]?, updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		let session = NSURLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
 
-		var URL = NSURL(string: "http://jkliemann.de/offenesdresden.de/json.php")
+		var URL = NSURL(string: serverURL)
 		let request = NSMutableURLRequest(URL: URL!)
 		request.HTTPMethod = "GET"
 
@@ -85,13 +87,17 @@ class ServerController {
 							}
 						}
 						callback(sectionNames: sectionNames, parkinglotList: parkinglotList, updateError: nil)
+					} else {
+						callback(sectionNames: nil, parkinglotList: nil, updateError: "serverError")
 					}
+				} else {
+					callback(sectionNames: nil, parkinglotList: nil, updateError: "serverError")
 				}
 			}
 			else {
 				// Failure
 				println("HTTP Request Failure: %@", error.localizedDescription);
-				callback(sectionNames: nil, parkinglotList: nil, updateError: "updateError")
+				callback(sectionNames: nil, parkinglotList: nil, updateError: "requestError")
 			}
 		})
 		task.resume()
