@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  ParkenDD
+
+  Created by Kilian Költzsch on 22/02/15.
+  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
+*/
+
+REQUEST_ERROR_TITLE = "Connection Error";
+REQUEST_ERROR = "Couldn't fetch data. You appear to be disconnected from the internet.";
+
+SERVER_ERROR_TITLE = "Server Error";
+SERVER_ERROR = "Couldn't read data from server. Please try again in a few moments or reset the server if you've changed it.";
+SERVER_ERROR_RESET = "Reset";
+SERVER_ERROR_CANCEL = "Cancel";
+
+LAST_UPDATE = "Last update:";
+
+NO_DATA = "No data is currently available. Refreshing...";

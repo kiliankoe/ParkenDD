@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  ParkenDD
+
+  Created by Kilian Költzsch on 22/02/15.
+  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
+*/
+
+REQUEST_ERROR_TITLE = "Verbindungsfehler";
+REQUEST_ERROR = "Daten konnten nicht abgerufen werden. Es besteht anscheinend keine Verbindung zum Internet.";
+
+SERVER_ERROR_TITLE = "Serverfehler";
+SERVER_ERROR = "Daten konnten nicht gelesen werden. Bitte aktualisiere erneut oder setze die Serveradresse zurück, falls diese geändert wurde.";
+SERVER_ERROR_RESET = "Zurücksetzen";
+SERVER_ERROR_CANCEL = "Abbrechen";
+
+LAST_UPDATE = "Letzte Aktualisierung:";
+
+NO_DATA = "Es sind keine Daten verfügbar. Aktualisierung läuft...";

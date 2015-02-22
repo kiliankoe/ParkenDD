@@ -96,7 +96,7 @@ class ServerController {
 			}
 			else {
 				// Failure
-				println("HTTP Request Failure: %@", error.localizedDescription);
+				NSLog("HTTP Request Failure: %@", error.localizedDescription)
 				callback(sectionNames: nil, parkinglotList: nil, updateError: "requestError")
 			}
 		})

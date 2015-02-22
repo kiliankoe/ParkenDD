@@ -59,7 +59,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="ParkenDD" id="ktr-z8-YRd">
-                        <barButtonItem key="leftBarButtonItem" title="About" id="5ZO-Nw-ttC">
+                        <barButtonItem key="leftBarButtonItem" title="Über" id="5ZO-Nw-ttC">
                             <connections>
                                 <action selector="aboutButtonTapped:" destination="vXZ-lx-hvc" id="ey0-9G-AHF"/>
                             </connections>
@@ -87,22 +87,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL6-Aw-ZQN">
-                                <rect key="frame" x="0.0" y="131" width="600" height="378"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">http://kilian.io/parkendd
-
-All data supplied without any guarantees!
-
-Data is as current as http://www.dresden.de/freie-parkplaetze/.
-
-Thanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Constantin Müller (@ubahnverleih) for making and providing the API server.
-
-The sourcecode for this application can be viewed at https://github.com/kiliankoe/parkendd and is licensed under the MIT license.</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ParkenDD v1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ind-61-4CD">
                                 <rect key="frame" x="203" y="66" width="195" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
@@ -111,13 +95,29 @@ The sourcecode for this application can be viewed at https://github.com/kilianko
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhg-cQ-5Vb">
                                 <rect key="frame" x="252" y="550" width="96" height="30"/>
-                                <state key="normal" title="Dismiss">
+                                <state key="normal" title="Ausblenden">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="dismissButtonTapped:" destination="yJE-RY-XFc" eventType="touchUpInside" id="gA2-g5-wtp"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL6-Aw-ZQN">
+                                <rect key="frame" x="0.0" y="131" width="600" height="378"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">http://kilian.io/parkendd
+
+Alle Daten ohne Gewähr!
+
+Daten sind auf dem Stand von http://www.dresden.de/freie-parkplaetze/.
+
+Danke an Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) und Constantin Müller (@ubahnverleih) für das Entwickeln und Bereitstellen der API.
+
+Der Quelltext dieser Applikation ist unter https://github.com/kiliankoe/parkendd und der MIT license veröffentlicht.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

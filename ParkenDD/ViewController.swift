@@ -80,18 +80,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 				if error == "requestError" {
 					// Give the user a notification that new data can't be fetched
-					var alertController = UIAlertController(title: "Connection Error", message: "Couldn't fetch data from server. Please try again in a few moments.", preferredStyle: UIAlertControllerStyle.Alert)
+					var alertController = UIAlertController(title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), message: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data from server. Please try again in a few moments."), preferredStyle: UIAlertControllerStyle.Alert)
 					alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
 					self.presentViewController(alertController, animated: true, completion: nil)
 				} else if error == "serverError" {
 					// Give the user a notification that data from the server can't be read
-					var alertController = UIAlertController(title: "Connection Error", message: "Couldn't read data from server. Please try again in a few moments or reset the server if you've changed it.", preferredStyle: UIAlertControllerStyle.Alert)
-					alertController.addAction(UIAlertAction(title: "Reset", style: UIAlertActionStyle.Destructive, handler: {
+					var alertController = UIAlertController(title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), message: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments or reset the server if you've changed it."), preferredStyle: UIAlertControllerStyle.Alert)
+					alertController.addAction(UIAlertAction(title: NSLocalizedString("SERVER_ERROR_RESET", comment: "Reset"), style: UIAlertActionStyle.Destructive, handler: {
 						(alert: UIAlertAction!) in
 						self.server.serverURL = self.kDefaultServerURL
 						NSUserDefaults.standardUserDefaults().setObject(self.kDefaultServerURL, forKey: "ServerURL")
 					}))
-					alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+					alertController.addAction(UIAlertAction(title: NSLocalizedString("SERVER_ERROR_CANCEL", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
 					self.presentViewController(alertController, animated: true, completion: nil)
 				}
 
@@ -108,8 +108,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 					// Update the displayed "Last update: " time in the UIRefreshControl
 					let formatter = NSDateFormatter()
-					formatter.dateFormat = "d. MMM, HH:mm"
-					let title = "Last update: \(formatter.stringFromDate(NSDate()))"
+					formatter.dateFormat = "dd.MM. HH:mm"
+					let updateString = NSLocalizedString("LAST_UPDATE", comment: "Last update:")
+					let title = "\(updateString) \(formatter.stringFromDate(NSDate()))"
 					let attrsDict: [NSObject: AnyObject] = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 					let attributedTitle = NSAttributedString(string: title, attributes: attrsDict)
 					self.refreshControl.attributedTitle = attributedTitle
@@ -130,7 +131,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		if parkinglots.count == 0 {
 			let messageLabel = UILabel(frame: CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-			messageLabel.text = "No data is currently available. Please pull to refresh."
+			messageLabel.text = NSLocalizedString("NO_DATA", comment: "No data is currently available. Refreshing...")
 			messageLabel.textColor = UIColor.blackColor()
 			messageLabel.numberOfLines = 0
 			messageLabel.textAlignment = NSTextAlignment.Center
