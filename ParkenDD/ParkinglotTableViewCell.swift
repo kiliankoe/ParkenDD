@@ -11,7 +11,9 @@ import UIKit
 class ParkinglotTableViewCell: UITableViewCell {
 
 	@IBOutlet weak var parkinglotNameLabel: UILabel!
+	@IBOutlet weak var parkinglotAddressLabel: UILabel!
 	@IBOutlet weak var parkinglotLoadLabel: UILabel!
+	@IBOutlet weak var parkinglotTendencyLabel: UILabel!
 	@IBOutlet weak var parkinglotStateImage: UIImageView!
 
     override func awakeFromNib() {

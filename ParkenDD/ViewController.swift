@@ -160,8 +160,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
 
-		cell.parkinglotNameLabel.text = parkinglots[indexPath.section][indexPath.row].name
-		cell.parkinglotLoadLabel.text = "\(parkinglots[indexPath.section][indexPath.row].free)"
+		let thisLot = parkinglots[indexPath.section][indexPath.row]
+
+		cell.parkinglotNameLabel.text = thisLot.name
+		cell.parkinglotLoadLabel.text = "\(thisLot.free)"
+
+		if let thisLotAddress = parkinglotData[thisLot.name] {
+			cell.parkinglotAddressLabel.text = thisLotAddress
+		} else {
+			cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_ADDRESS", comment: "unknown address")
+		}
+
+		var load: Int = Int(round(100 - (Double(thisLot.free) / Double(thisLot.count) * 100)))
+		if load < 0 {
+			// Apparently there can be 52 empty spots on a 50 spot parking lot...
+			load = 0
+		}
+
+		// Maybe a future version of the scraper will be able to read the tendency as well
+		let localizedOccupied = NSLocalizedString("OCCUPIED", comment: "occupied")
+		cell.parkinglotTendencyLabel.text = "\(load)% \(localizedOccupied)"
 
 		switch parkinglots[indexPath.section][indexPath.row].state {
 		case lotstate.many:

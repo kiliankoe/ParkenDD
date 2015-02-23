@@ -17,3 +17,7 @@ SERVER_ERROR_CANCEL = "Cancel";
 LAST_UPDATE = "Last update:";
 
 NO_DATA = "No data is currently available. Refreshing...";
+
+OCCUPIED = "occupied";
+
+UNKNOWN_ADDRESS = "unknown address";
