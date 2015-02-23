@@ -122,6 +122,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 
+	// MARK: - IBActions
+
+	@IBAction func refreshButtonTapped(sender: UIBarButtonItem) {
+		updateData()
+	}
+
 	@IBAction func aboutButtonTapped(sender: UIBarButtonItem) {
 		performSegueWithIdentifier("showAboutView", sender: self)
 	}

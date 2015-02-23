@@ -64,6 +64,11 @@
                                 <action selector="aboutButtonTapped:" destination="vXZ-lx-hvc" id="ey0-9G-AHF"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="dG4-9h-zKE">
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="vXZ-lx-hvc" id="tKU-jU-SIf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="nvz-kY-7nE" id="nxp-Ed-f4F"/>
