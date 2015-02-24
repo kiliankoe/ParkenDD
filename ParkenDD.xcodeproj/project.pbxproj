@@ -10,6 +10,7 @@
 		392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */; };
 		393F0D381A9737AF00B25B74 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
 		393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D391A97BDBB00B25B74 /* ServerController.swift */; };
+		3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3977CA271A9CC78C00E20014 /* InfoPlist.strings */; };
 		397B92091A9BCE0A000D42CE /* ParkinglotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B92081A9BCE0A000D42CE /* ParkinglotData.swift */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
 		39B037501A949CD600C5A273 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0374F1A949CD600C5A273 /* MapViewController.swift */; };
@@ -34,10 +35,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3904B2761A9CBE4A00663736 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/Main.storyboard; sourceTree = "<group>"; };
 		392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotTableViewCell.swift; sourceTree = "<group>"; };
 		393F0D371A9737AF00B25B74 /* Parkinglot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parkinglot.swift; sourceTree = "<group>"; };
 		393F0D391A97BDBB00B25B74 /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
+		395E0D931A9CD112006F13C1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		3977CA261A9CC78C00E20014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3977CA281A9CC78E00E20014 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		397B92081A9BCE0A000D42CE /* ParkinglotData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotData.swift; sourceTree = "<group>"; };
 		397D7B1A1A9A203E001B5874 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		397D7B1E1A9A2236001B5874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				39F4CFE21A6BBC0200ACFECF /* Info.plist */,
+				3977CA271A9CC78C00E20014 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -223,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */,
+				3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */,
 				39B037541A94DD4500C5A273 /* Settings.bundle in Resources */,
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
 				39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */,
@@ -274,6 +279,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3977CA271A9CC78C00E20014 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3977CA261A9CC78C00E20014 /* Base */,
+				3977CA281A9CC78E00E20014 /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		397D7B1F1A9A2236001B5874 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,7 +301,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				39F4CFE81A6BBC0200ACFECF /* Base */,
-				3904B2761A9CBE4A00663736 /* de */,
+				395E0D931A9CD112006F13C1 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

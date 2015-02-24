@@ -142,7 +142,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL6-Aw-ZQN">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL6-Aw-ZQN">
                                 <rect key="frame" x="0.0" y="131" width="600" height="378"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">http://kilian.io/parkendd
@@ -161,7 +161,7 @@ The sourcecode for this application can be viewed at https://github.com/kilianko
                                     <rect key="frame" x="0.0" y="131" width="400" height="378"/>
                                 </variation>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ParkenDD v1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ind-61-4CD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ParkenDD v1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ind-61-4CD">
                                 <rect key="frame" x="203" y="66" width="195" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,7 +170,7 @@ The sourcecode for this application can be viewed at https://github.com/kilianko
                                     <rect key="frame" x="103" y="59" width="195" height="29"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhg-cQ-5Vb">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhg-cQ-5Vb">
                                 <rect key="frame" x="252" y="550" width="96" height="30"/>
                                 <state key="normal" title="Dismiss">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -184,6 +184,16 @@ The sourcecode for this application can be viewed at https://github.com/kilianko
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="dhg-cQ-5Vb" secondAttribute="centerX" id="39U-dF-b3R"/>
+                            <constraint firstItem="ind-61-4CD" firstAttribute="top" secondItem="mN6-tT-wbW" secondAttribute="bottom" constant="46" id="4aU-nK-VQa"/>
+                            <constraint firstItem="dhg-cQ-5Vb" firstAttribute="top" secondItem="CL6-Aw-ZQN" secondAttribute="bottom" constant="41" id="6sV-Ia-eGX"/>
+                            <constraint firstAttribute="centerX" secondItem="ind-61-4CD" secondAttribute="centerX" id="8fN-ae-dlA"/>
+                            <constraint firstItem="975-XG-YOB" firstAttribute="top" secondItem="dhg-cQ-5Vb" secondAttribute="bottom" constant="20" id="EZG-to-0gV"/>
+                            <constraint firstItem="CL6-Aw-ZQN" firstAttribute="leading" secondItem="OBo-U7-Ppp" secondAttribute="leadingMargin" constant="-16" id="IWA-Ti-6Ci"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CL6-Aw-ZQN" secondAttribute="trailing" constant="-16" id="hHA-dw-6sC"/>
+                            <constraint firstItem="CL6-Aw-ZQN" firstAttribute="top" secondItem="ind-61-4CD" secondAttribute="bottom" constant="36" id="zuf-yN-2rO"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCm-mZ-FHs" userLabel="First Responder" sceneMemberID="firstResponder"/>
