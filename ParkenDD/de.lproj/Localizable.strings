@@ -19,5 +19,7 @@ LAST_UPDATE = "Letzte Aktualisierung:";
 NO_DATA = "Aktualisierung läuft...";
 
 OCCUPIED = "belegt";
+CLOSED = "geschlossen";
 
 UNKNOWN_ADDRESS = "unbekannte Adresse";
+UNKNOWN_LOAD = "unbekannt";

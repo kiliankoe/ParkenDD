@@ -19,5 +19,7 @@ LAST_UPDATE = "Last update:";
 NO_DATA = "Refreshing...";
 
 OCCUPIED = "occupied";
+CLOSED = "closed";
 
 UNKNOWN_ADDRESS = "unknown address";
+UNKNOWN_LOAD = "unknown";

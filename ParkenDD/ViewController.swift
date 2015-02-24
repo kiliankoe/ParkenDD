@@ -179,8 +179,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 
 		// Maybe a future version of the scraper will be able to read the tendency as well
-		let localizedOccupied = NSLocalizedString("OCCUPIED", comment: "occupied")
-		cell.parkinglotTendencyLabel.text = "\(load)% \(localizedOccupied)"
+		if thisLot.state == lotstate.nodata && thisLot.free == 0 {
+			cell.parkinglotTendencyLabel.text = NSLocalizedString("UNKNOWN_LOAD", comment: "unknown")
+		} else if thisLot.state == lotstate.closed {
+			cell.parkinglotTendencyLabel.text = NSLocalizedString("CLOSED", comment: "closed")
+		} else {
+			let localizedOccupied = NSLocalizedString("OCCUPIED", comment: "occupied")
+			cell.parkinglotTendencyLabel.text = "\(load)% \(localizedOccupied)"
+		}
 
 		switch parkinglots[indexPath.section][indexPath.row].state {
 		case lotstate.many:
