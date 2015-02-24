@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
+
+	var locationManager: CLLocationManager?
 
 	var inBackground = false
 
@@ -24,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let resetServer = false
 		let defaults: Dictionary<NSObject, AnyObject> = ["ServerURL": defaultServerURL, "ResetServerOnStartup": resetServer]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
+
+		// Request permission to get the user's location
+		locationManager = CLLocationManager()
+		locationManager?.requestWhenInUseAuthorization()
 
 		return true
 	}

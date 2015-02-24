@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import MapKit
 
-class MapViewController: UIViewController {
-	
-//	@IBOutlet weak var mapView: MKMapView!
+class MapViewController: UIViewController, MKMapViewDelegate {
+
+	@IBOutlet weak var mapView: MKMapView!
+
 	var detailParkinglot: Parkinglot!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        mapView.showsUserLocation = true
     }
 
     override func didReceiveMemoryWarning() {
