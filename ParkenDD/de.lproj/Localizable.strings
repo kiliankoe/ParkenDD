@@ -16,7 +16,7 @@ SERVER_ERROR_CANCEL = "Abbrechen";
 
 LAST_UPDATE = "Letzte Aktualisierung:";
 
-NO_DATA = "Es sind keine Daten verfügbar. Aktualisierung läuft...";
+NO_DATA = "Aktualisierung läuft...";
 
 OCCUPIED = "belegt";
 

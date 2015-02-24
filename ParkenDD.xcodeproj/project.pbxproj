@@ -34,7 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3916C8801A9BE2D4000EC2BD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		3904B2761A9CBE4A00663736 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/Main.storyboard; sourceTree = "<group>"; };
 		392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotTableViewCell.swift; sourceTree = "<group>"; };
 		393F0D371A9737AF00B25B74 /* Parkinglot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parkinglot.swift; sourceTree = "<group>"; };
 		393F0D391A97BDBB00B25B74 /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
@@ -287,7 +287,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				39F4CFE81A6BBC0200ACFECF /* Base */,
-				3916C8801A9BE2D4000EC2BD /* de */,
+				3904B2761A9CBE4A00663736 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

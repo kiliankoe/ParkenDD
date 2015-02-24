@@ -53,6 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			let indexPath = tableView.indexPathForSelectedRow()
 			let selectedParkinglot = parkinglots[indexPath!.section][indexPath!.row]
 			mapVC.detailParkinglot = selectedParkinglot
+			mapVC.allParkinglots = parkinglots
 		}
 	}
 
@@ -137,11 +138,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		if parkinglots.count == 0 {
 			let messageLabel = UILabel(frame: CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-			messageLabel.text = NSLocalizedString("NO_DATA", comment: "No data is currently available. Refreshing...")
+			messageLabel.text = NSLocalizedString("NO_DATA", comment: "Refreshing...")
 			messageLabel.textColor = UIColor.blackColor()
 			messageLabel.numberOfLines = 0
 			messageLabel.textAlignment = NSTextAlignment.Center
-			messageLabel.font = UIFont(name: "Palatino-Italic", size: 20)
+			messageLabel.font = UIFont(name: "HelveticaNeue-LightItalic", size: 20)
 			messageLabel.sizeToFit()
 
 			tableView.backgroundView = messageLabel

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HYE-MB-ofJ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--ParkenDD-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="ParkenDD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nvz-kY-7nE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="parkinglotCell" id="Fc6-sY-y9H" customClass="ParkinglotTableViewCell" customModule="ParkenDD" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fc6-sY-y9H" id="aeK-tz-Dv3">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUh-dH-utI">
+                                                    <rect key="frame" x="8" y="30" width="300" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="159" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBR-31-iII">
+                                                    <rect key="frame" x="457" y="11" width="100" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="245" y="19" width="100" height="21"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="tendency" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63L-uQ-iqV">
+                                                    <rect key="frame" x="374" y="30" width="183" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frauenkirche Neumarkt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Mc-DZC">
+                                                    <rect key="frame" x="8" y="11" width="179" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="15" y="19" width="179" height="21"/>
+                                                    </variation>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AH7-xn-Yi5">
+                                                    <rect key="frame" x="565" y="16" width="27" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="27" id="ptr-ei-DDq"/>
+                                                    </constraints>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="360" y="19" width="20" height="20"/>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="AH7-xn-Yi5" secondAttribute="bottom" constant="8" id="4YY-54-jd5"/>
+                                                <constraint firstItem="gAX-Mc-DZC" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="3" id="6c1-md-9st"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="WBR-31-iII" secondAttribute="bottom" constant="19" id="85e-lx-AQE"/>
+                                                <constraint firstItem="aUh-dH-utI" firstAttribute="bottom" secondItem="aeK-tz-Dv3" secondAttribute="bottomMargin" id="Cud-Va-Jyx"/>
+                                                <constraint firstItem="aUh-dH-utI" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" id="Hcl-KN-cw5"/>
+                                                <constraint firstItem="AH7-xn-Yi5" firstAttribute="leading" secondItem="WBR-31-iII" secondAttribute="trailing" constant="8" id="KGD-x5-ybR"/>
+                                                <constraint firstItem="AH7-xn-Yi5" firstAttribute="leading" secondItem="63L-uQ-iqV" secondAttribute="trailing" constant="8" id="buK-hY-8GU"/>
+                                                <constraint firstItem="aUh-dH-utI" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="22" id="dmO-nb-KHy"/>
+                                                <constraint firstItem="63L-uQ-iqV" firstAttribute="bottom" secondItem="aeK-tz-Dv3" secondAttribute="bottomMargin" id="geK-Ly-CBa"/>
+                                                <constraint firstItem="AH7-xn-Yi5" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="8" id="hjf-Ss-QNs"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="gAX-Mc-DZC" secondAttribute="bottom" constant="19" id="lwb-ML-2tv"/>
+                                                <constraint firstItem="63L-uQ-iqV" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="22" id="tUl-1Y-NY1"/>
+                                                <constraint firstItem="WBR-31-iII" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="3" id="y9a-8K-Eyp"/>
+                                                <constraint firstItem="AH7-xn-Yi5" firstAttribute="trailing" secondItem="aeK-tz-Dv3" secondAttribute="trailingMargin" id="z18-aM-Ya4"/>
+                                                <constraint firstItem="gAX-Mc-DZC" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" id="zpI-UI-ZsY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="parkinglotAddressLabel" destination="aUh-dH-utI" id="97i-IK-5OU"/>
+                                            <outlet property="parkinglotLoadLabel" destination="WBR-31-iII" id="CCM-Tr-lcK"/>
+                                            <outlet property="parkinglotNameLabel" destination="gAX-Mc-DZC" id="pVt-6k-ppC"/>
+                                            <outlet property="parkinglotStateImage" destination="AH7-xn-Yi5" id="kgV-RI-TLV"/>
+                                            <outlet property="parkinglotTendencyLabel" destination="63L-uQ-iqV" id="gcp-9R-Rcr"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="oN4-EW-kZd"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="BTn-xy-pAv"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nvz-kY-7nE" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="2xU-s1-G4K"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nvz-kY-7nE" secondAttribute="trailing" constant="-16" id="CEn-nL-0W0"/>
+                            <constraint firstItem="nvz-kY-7nE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Q3C-oq-PmM"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="nvz-kY-7nE" secondAttribute="bottom" id="wBK-ln-S9L"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="ParkenDD" id="ktr-z8-YRd">
+                        <barButtonItem key="leftBarButtonItem" title="About" id="5ZO-Nw-ttC">
+                            <connections>
+                                <action selector="aboutButtonTapped:" destination="vXZ-lx-hvc" id="ey0-9G-AHF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="dG4-9h-zKE">
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="vXZ-lx-hvc" id="tKU-jU-SIf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="nvz-kY-7nE" id="nxp-Ed-f4F"/>
+                        <segue destination="Mgf-PG-0fv" kind="show" identifier="showParkinglotDetail" id="Xb1-fN-38H"/>
+                        <segue destination="yJE-RY-XFc" kind="presentation" identifier="showAboutView" id="b8g-Lg-KKx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="537"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="6ii-fV-6NZ">
+            <objects>
+                <viewController id="yJE-RY-XFc" customClass="AboutViewController" customModule="ParkenDD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mN6-tT-wbW"/>
+                        <viewControllerLayoutGuide type="bottom" id="975-XG-YOB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OBo-U7-Ppp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL6-Aw-ZQN">
+                                <rect key="frame" x="0.0" y="131" width="600" height="378"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">http://kilian.io/parkendd
+
+All data supplied without any guarantees!
+
+Data is as current as http://www.dresden.de/freie-parkplaetze/.
+
+Thanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Constantin Müller (@ubahnverleih) for making and providing the API server.
+
+The sourcecode for this application can be viewed at https://github.com/kiliankoe/parkendd and is licensed under the MIT license.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="131" width="400" height="378"/>
+                                </variation>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ParkenDD v1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ind-61-4CD">
+                                <rect key="frame" x="203" y="66" width="195" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="103" y="59" width="195" height="29"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhg-cQ-5Vb">
+                                <rect key="frame" x="252" y="550" width="96" height="30"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="152" y="550" width="96" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="dismissButtonTapped:" destination="yJE-RY-XFc" eventType="touchUpInside" id="gA2-g5-wtp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eCm-mZ-FHs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="1258"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="aB5-Mt-BeL">
+            <objects>
+                <viewController id="Mgf-PG-0fv" customClass="MapViewController" customModule="ParkenDD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SgF-Rt-a4Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="r91-eN-oZI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LE8-kn-4T9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ukm-vb-j0z">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Mgf-PG-0fv" id="qj6-2q-yuG"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ukm-vb-j0z" firstAttribute="leading" secondItem="LE8-kn-4T9" secondAttribute="leadingMargin" constant="-16" id="81G-3F-X19"/>
+                            <constraint firstItem="r91-eN-oZI" firstAttribute="top" secondItem="ukm-vb-j0z" secondAttribute="bottom" id="JPA-bt-Kd8"/>
+                            <constraint firstItem="ukm-vb-j0z" firstAttribute="top" secondItem="LE8-kn-4T9" secondAttribute="topMargin" id="OGt-B5-hgI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ukm-vb-j0z" secondAttribute="trailing" constant="-16" id="apX-Bp-GMx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="ukm-vb-j0z" id="UYT-f3-UoN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vbb-kh-Tza" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2091" y="537"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xx3-0L-I2R">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HYE-MB-ofJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6eT-U2-CTZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="pkv-Nt-pDo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UjF-MC-tRx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="645" y="537"/>
+        </scene>
+    </scenes>
+</document>
