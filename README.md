@@ -2,8 +2,6 @@
 
 ![](Resources/screenshot.png)
 
-<img src="Resources/badge.png" alt="App Store Badge" style="width: 100px;"/>
-
 ParkenDD shows you a list of the number of available public parking spots in Dresden, Germany. This information is taken indirectly from the official page at [dresden.de](http://www.dresden.de/freie-parkplaetze/).
 
 If you're using Android have a look at the [original ParkenDD](https://github.com/jklmnn/ParkenDD) from Johannes Kliemann.
