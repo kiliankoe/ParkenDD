@@ -45,6 +45,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 			// Just in case the selected lot comes with no coordinates, show a default view of Dresden
 			let dresdenRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: 51.051660, longitude: 13.739882), 4000, 4000)
 			mapView.setRegion(dresdenRegion, animated: false)
+
+			// Also give the user a notification that this is an unfortunate mishap
+			var alertController = UIAlertController(title: NSLocalizedString("UNKNOWN_COORDINATES_TITLE", comment: "Data Error"), message: NSLocalizedString("UNKNOWN_COORDINATES_ERROR", comment: "Couldn't find coordinates for parking lot."), preferredStyle: UIAlertControllerStyle.Alert)
+			alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+			self.presentViewController(alertController, animated: true, completion: nil)
 		}
     }
 

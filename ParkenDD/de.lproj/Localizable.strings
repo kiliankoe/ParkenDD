@@ -23,3 +23,6 @@ CLOSED = "geschlossen";
 
 UNKNOWN_ADDRESS = "unbekannte Adresse";
 UNKNOWN_LOAD = "unbekannt";
+
+UNKNOWN_COORDINATES_TITLE = "Fehler";
+UNKNOWN_COORDINATES_ERROR = "Konnte keine Ortsdaten für gewählten Parkplatz finden.";

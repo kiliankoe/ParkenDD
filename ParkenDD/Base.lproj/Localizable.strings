@@ -23,3 +23,6 @@ CLOSED = "closed";
 
 UNKNOWN_ADDRESS = "unknown address";
 UNKNOWN_LOAD = "unknown";
+
+UNKNOWN_COORDINATES_TITLE = "Error";
+UNKNOWN_COORDINATES_ERROR = "Couldn't find coordinates for selected parking lot.";
