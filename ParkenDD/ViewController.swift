@@ -91,6 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 						(alert: UIAlertAction!) in
 						self.server.serverURL = self.kDefaultServerURL
 						NSUserDefaults.standardUserDefaults().setObject(self.kDefaultServerURL, forKey: "ServerURL")
+						self.updateData()
 					}))
 					alertController.addAction(UIAlertAction(title: NSLocalizedString("SERVER_ERROR_CANCEL", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
 					self.presentViewController(alertController, animated: true, completion: nil)
