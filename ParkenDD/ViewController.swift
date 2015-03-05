@@ -209,6 +209,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		performSegueWithIdentifier("showParkinglotDetail", sender: self)
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 
 	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
