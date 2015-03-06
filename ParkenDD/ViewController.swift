@@ -189,6 +189,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			cell.parkinglotTendencyLabel.text = "\(load)% \(localizedOccupied)"
 		}
 
+		// Normalize all label colors to black, otherwise weird things happen with placeholder cells
+		cell.parkinglotNameLabel.textColor = UIColor.blackColor()
+		cell.parkinglotAddressLabel.textColor = UIColor.blackColor()
+		cell.parkinglotLoadLabel.textColor = UIColor.blackColor()
+		cell.parkinglotTendencyLabel.textColor = UIColor.blackColor()
+
 		switch parkinglots[indexPath.section][indexPath.row].state {
 		case lotstate.many:
 			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateMany")
@@ -200,6 +206,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateClosed")
 		default:
 			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateNodata")
+			cell.parkinglotNameLabel.textColor = UIColor.grayColor()
+			cell.parkinglotAddressLabel.textColor = UIColor.grayColor()
+			cell.parkinglotLoadLabel.textColor = UIColor.grayColor()
+			cell.parkinglotTendencyLabel.textColor = UIColor.grayColor()
 		}
 
 		return cell
