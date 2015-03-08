@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  LotDetailViewController.swift
 //  ParkenDD
 //
 //  Created by Kilian Költzsch on 18/02/15.
@@ -9,9 +9,11 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class LotDetailViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate {
 
 	@IBOutlet weak var mapView: MKMapView!
+	@IBOutlet weak var titleLabel: UILabel!
+	@IBOutlet weak var tableView: UITableView!
 
 	var detailParkinglot: Parkinglot!
 	var allParkinglots: [[Parkinglot]]!
@@ -63,5 +65,63 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 //	func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
 //		mapView.centerCoordinate = userLocation.location.coordinate
 //	}
+
+	// MARK: - UITableViewDataSource
+
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		// Address, Times, Rate, Contact, Other
+		return 5
+	}
+
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		switch section {
+		case 0:
+			return 1
+		case 1:
+			return 1
+		case 2:
+			return 1
+		case 3:
+			return 4
+		case 4:
+			return 2
+		default:
+			return 0
+		}
+	}
+
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		var cell: DetailInfoCell = tableView.dequeueReusableCellWithIdentifier("detailInfoCell") as! DetailInfoCell
+
+		if let lotData = StaticData[detailParkinglot.name] {
+			// Address, Times, Rate, Contact, Other
+			if indexPath.section == 0 {
+				cell.mainLabel.text = lotData["address"]! as! String
+			}
+		} else {
+			cell.mainLabel.text = "Foobar"
+		}
+
+		return cell
+	}
+
+	// MARK: - UITableViewDelegate
+
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		switch section {
+		case 0:
+			return "Address"
+		case 1:
+			return "Times"
+		case 2:
+			return "Rate"
+		case 3:
+			return "Contact"
+		case 4:
+			return "Other"
+		default:
+			return "nope"
+		}
+	}
 
 }

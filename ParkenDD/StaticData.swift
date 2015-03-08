@@ -12,7 +12,7 @@
 // Altmarktgalerie is declared here for reference. The others are added on the GET request.
 
 let StaticData: [String:[String:AnyObject?]] = [
-	"Altmarktgalerie": [
+	"Altmarkt - Galerie": [
 		"type": "Tiefgarage",
 		"address": "Wilsdruffer Straße, 01067 Dresden",
 		"latitude": 51.0502683537,

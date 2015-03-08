@@ -48,11 +48,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		// hand over the selected parkinglot to the MapViewController
 		if segue.identifier == "showParkinglotDetail" {
-			let mapVC: MapViewController = segue.destinationViewController as! MapViewController
+			let lotDetailVC: LotDetailViewController = segue.destinationViewController as! LotDetailViewController
 			let indexPath = tableView.indexPathForSelectedRow()
 			let selectedParkinglot = parkinglots[indexPath!.section][indexPath!.row]
-			mapVC.detailParkinglot = selectedParkinglot
-			mapVC.allParkinglots = parkinglots
+			lotDetailVC.detailParkinglot = selectedParkinglot
+			lotDetailVC.allParkinglots = parkinglots
 		}
 	}
 

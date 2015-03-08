@@ -20,7 +20,6 @@ class ServerController {
 		let session = NSURLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
 
 		var URL = NSURL(string: parkinglotURL)
-		println(Constants.defaultParkinglotURL)
 		let request = NSMutableURLRequest(URL: URL!)
 		request.HTTPMethod = "GET"
 
