@@ -31,6 +31,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		locationManager = CLLocationManager()
 		locationManager?.requestWhenInUseAuthorization()
 
+		// Update URLs from remote config
+		ServerController.sendConfigDataRequest({
+			(defaultParkinglotURL, staticDataURL, configURL) in
+			if let defaultParkinglotURL = defaultParkinglotURL, staticDataURL = staticDataURL, configURL = configURL {
+				Constants.defaultParkinglotURL = defaultParkinglotURL
+				Constants.staticDataURL = staticDataURL
+				Constants.configURL = configURL
+
+				// update the parking lot url if the user hasn't set his own
+				let userDefaultsParkinglotURL = NSUserDefaults.standardUserDefaults().stringForKey("ServerURL")
+				// TODO: A way to do this... 
+				// An option would be to save a "lastServerURL" in the NSUserDefaults that is only updated here and then compared to the current value
+			}
+		})
+
 		return true
 	}
 

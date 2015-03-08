@@ -20,6 +20,7 @@ class ServerController {
 		let session = NSURLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
 
 		var URL = NSURL(string: parkinglotURL)
+		println(Constants.defaultParkinglotURL)
 		let request = NSMutableURLRequest(URL: URL!)
 		request.HTTPMethod = "GET"
 
@@ -100,6 +101,60 @@ class ServerController {
 				// Failure
 				NSLog("HTTP Request Failure: %@", error.localizedDescription)
 				callback(sectionNames: nil, parkinglotList: nil, updateError: "requestError")
+			}
+		})
+		task.resume()
+	}
+
+	// The static data for the parking lots doesn't come from the same API. Maybe it will one day when the functionality of the scraper is is increased,
+	// but it's a lot easier to pull this from elsewhere that can be changed easily.
+	static func sendStaticDataRequest(callback: (parkinglotData: [String: [String: AnyObject?]]?, updateError: String?) -> ()) {
+		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+		let session = NSURLSession(configuration: sessionConfig)
+
+		var URL = NSURL(string: Constants.configURL)
+		let request = NSMutableURLRequest(URL: URL!)
+		request.HTTPMethod = "GET"
+
+		let task = session.dataTaskWithRequest(request, completionHandler: {
+			(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+			if (error == nil) {
+				// Success
+				if let output = (NSString(data: data, encoding: NSUTF8StringEncoding)) {
+					var parseError: NSError?
+					let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
+
+					// TODO: Do stuff with me
+				}
+			}
+		})
+		task.resume()
+	}
+
+	// Get a JSON file from my server with some config data that can be changed without submitting subsequent builds to Apple
+	// Currently used for changing the default parking lot data URL and the URL for the static data which doesn't come from the same source
+	static func sendConfigDataRequest(callback: (defaultParkinglotURL: String?, staticDataURL: String?, configURL: String?) -> ()) {
+		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+		let session = NSURLSession(configuration: sessionConfig)
+
+		var URL = NSURL(string: Constants.configURL)
+		let request = NSMutableURLRequest(URL: URL!)
+		request.HTTPMethod = "GET"
+
+		let task = session.dataTaskWithRequest(request, completionHandler: {
+			(data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+			if (error == nil) {
+				// Success
+				if let output = (NSString(data: data, encoding: NSUTF8StringEncoding)) {
+					var parseError: NSError?
+					let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
+
+					if let config = parsedObject as? Dictionary<String, String> {
+						if let defaultParkinglotURL = config["defaultParkinglotURL"], staticDataURL = config["staticDataURL"], configURL = config["configURL"] {
+							callback(defaultParkinglotURL: defaultParkinglotURL, staticDataURL: staticDataURL, configURL: configURL)
+						}
+					}
+				}
 			}
 		})
 		task.resume()
