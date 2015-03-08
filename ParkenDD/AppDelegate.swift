@@ -23,9 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// Not sure if this is the best practice spot for NSUserDefaults stuff, but why not
 		// These might also already be registered thanks to settings.bundle, but it can't hurt to be sure
-		let defaultServerURL = "http://jkliemann.de/offenesdresden.de/json.php"
 		let resetServer = false
-		let defaults: Dictionary<NSObject, AnyObject> = ["ServerURL": defaultServerURL, "ResetServerOnStartup": resetServer]
+		let defaults: Dictionary<NSObject, AnyObject> = ["ServerURL": Constants.defaultParkinglotURL, "ResetServerOnStartup": resetServer]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 
 		// Request permission to get the user's location

@@ -16,7 +16,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	let refreshControl = UIRefreshControl()
 
 	let server = ServerController()
-	let kDefaultServerURL = "http://jkliemann.de/offenesdresden.de/json.php"
 
 	// Bool that can be set by the user in the system settings to reset the server URL back to the default
 	var resetServer: Bool!
@@ -59,13 +58,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	func refreshUserDefaults() {
 		// Load the NSUserDefaults
-		server.serverURL = NSUserDefaults.standardUserDefaults().stringForKey("ServerURL")!
+		server.parkinglotURL = NSUserDefaults.standardUserDefaults().stringForKey("ServerURL")!
 		resetServer = NSUserDefaults.standardUserDefaults().boolForKey("ResetServerOnStartup")
 
 		// Reset the server URL if the user wants to
 		if (resetServer == true) {
-			server.serverURL = kDefaultServerURL
-			NSUserDefaults.standardUserDefaults().setObject(kDefaultServerURL, forKey: "ServerURL")
+			server.parkinglotURL = Constants.defaultParkinglotURL
+			NSUserDefaults.standardUserDefaults().setObject(Constants.defaultParkinglotURL, forKey: "ServerURL")
 
 			// Change the bool switch back to being false
 			resetServer = false
@@ -75,7 +74,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	func updateData() {
 		refreshUserDefaults()
-		server.sendRequest() {
+		server.sendParkinglotDataRequest() {
 			(secNames, plotList, updateError) in
 			if let error = updateError {
 
@@ -89,8 +88,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 					var alertController = UIAlertController(title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), message: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments or reset the server if you've changed it."), preferredStyle: UIAlertControllerStyle.Alert)
 					alertController.addAction(UIAlertAction(title: NSLocalizedString("SERVER_ERROR_RESET", comment: "Reset"), style: UIAlertActionStyle.Destructive, handler: {
 						(alert: UIAlertAction!) in
-						self.server.serverURL = self.kDefaultServerURL
-						NSUserDefaults.standardUserDefaults().setObject(self.kDefaultServerURL, forKey: "ServerURL")
+						self.server.parkinglotURL = Constants.defaultParkinglotURL
+						NSUserDefaults.standardUserDefaults().setObject(Constants.defaultParkinglotURL, forKey: "ServerURL")
 						self.updateData()
 					}))
 					alertController.addAction(UIAlertAction(title: NSLocalizedString("SERVER_ERROR_CANCEL", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))

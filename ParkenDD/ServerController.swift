@@ -10,16 +10,16 @@ import Foundation
 
 class ServerController {
 
-	var serverURL: String!
+	var parkinglotURL: String!
 
 	// FIXME: Yay for the string? error...
-	func sendRequest(callback: (sectionNames: [String]?, parkinglotList: [[Parkinglot]]?, updateError: String?) -> ()) {
+	func sendParkinglotDataRequest(callback: (sectionNames: [String]?, parkinglotList: [[Parkinglot]]?, updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		sessionConfig.timeoutIntervalForRequest = 15.0
 		sessionConfig.timeoutIntervalForResource = 20.0
 		let session = NSURLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
 
-		var URL = NSURL(string: serverURL)
+		var URL = NSURL(string: parkinglotURL)
 		let request = NSMutableURLRequest(URL: URL!)
 		request.HTTPMethod = "GET"
 
