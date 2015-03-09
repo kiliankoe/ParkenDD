@@ -143,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL6-Aw-ZQN">
-                                <rect key="frame" x="0.0" y="131" width="600" height="378"/>
+                                <rect key="frame" x="16" y="131" width="568" height="378"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">http://kilian.io/parkendd
 
@@ -187,12 +187,12 @@ The sourcecode for this application can be viewed at https://github.com/kilianko
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="dhg-cQ-5Vb" secondAttribute="centerX" id="39U-dF-b3R"/>
                             <constraint firstItem="ind-61-4CD" firstAttribute="top" secondItem="mN6-tT-wbW" secondAttribute="bottom" constant="46" id="4aU-nK-VQa"/>
-                            <constraint firstItem="dhg-cQ-5Vb" firstAttribute="top" secondItem="CL6-Aw-ZQN" secondAttribute="bottom" constant="41" id="6sV-Ia-eGX"/>
+                            <constraint firstItem="dhg-cQ-5Vb" firstAttribute="top" secondItem="CL6-Aw-ZQN" secondAttribute="bottom" constant="41" id="5v7-A4-Tbe"/>
                             <constraint firstAttribute="centerX" secondItem="ind-61-4CD" secondAttribute="centerX" id="8fN-ae-dlA"/>
                             <constraint firstItem="975-XG-YOB" firstAttribute="top" secondItem="dhg-cQ-5Vb" secondAttribute="bottom" constant="20" id="EZG-to-0gV"/>
-                            <constraint firstItem="CL6-Aw-ZQN" firstAttribute="leading" secondItem="OBo-U7-Ppp" secondAttribute="leadingMargin" constant="-16" id="IWA-Ti-6Ci"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CL6-Aw-ZQN" secondAttribute="trailing" constant="-16" id="hHA-dw-6sC"/>
-                            <constraint firstItem="CL6-Aw-ZQN" firstAttribute="top" secondItem="ind-61-4CD" secondAttribute="bottom" constant="36" id="zuf-yN-2rO"/>
+                            <constraint firstItem="CL6-Aw-ZQN" firstAttribute="top" secondItem="ind-61-4CD" secondAttribute="bottom" constant="36" id="NIJ-sO-Pwj"/>
+                            <constraint firstItem="CL6-Aw-ZQN" firstAttribute="leading" secondItem="OBo-U7-Ppp" secondAttribute="leadingMargin" id="Vhc-Kj-ckx"/>
+                            <constraint firstItem="CL6-Aw-ZQN" firstAttribute="trailing" secondItem="OBo-U7-Ppp" secondAttribute="trailingMargin" id="xax-wh-hYk"/>
                         </constraints>
                     </view>
                 </viewController>
