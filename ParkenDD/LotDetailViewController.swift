@@ -7,12 +7,9 @@
 //
 
 import UIKit
-import MapKit
 
-class LotDetailViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate {
+class LotDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-	@IBOutlet weak var mapView: MKMapView!
-	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var tableView: UITableView!
 
 	var detailParkinglot: Parkinglot!
@@ -26,39 +23,6 @@ class LotDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        mapView.showsUserLocation = true
-
-		// Add annotations for all parking lots to the map
-		for region in allParkinglots {
-			for singleLot in region {
-				var lotAnnotation = MKPointAnnotation()
-				if let currentLat = singleLot.lat, currentLon = singleLot.lon {
-					lotAnnotation.coordinate = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLon)
-					lotAnnotation.title = "\(singleLot.name): \(singleLot.free)"
-					mapView.addAnnotation(lotAnnotation)
-					if singleLot.name == detailParkinglot.name {
-						// Have the selected lot's callout already displayed
-						mapView.selectAnnotation(lotAnnotation, animated: true)
-					}
-				}
-			}
-		}
-
-		// Set the map's region to a 1km region around the selected lot
-		if let currentLat = detailParkinglot.lat, currentLon = detailParkinglot.lon {
-			let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: currentLat, longitude: currentLon), 1000, 1000)
-			mapView.setRegion(parkinglotRegion, animated: false)
-		} else {
-			// Just in case the selected lot comes with no coordinates, show a default view of Dresden
-			let dresdenRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: 51.051660, longitude: 13.739882), 4000, 4000)
-			mapView.setRegion(dresdenRegion, animated: false)
-
-			// Also give the user a notification that this is an unfortunate mishap
-			var alertController = UIAlertController(title: NSLocalizedString("UNKNOWN_COORDINATES_TITLE", comment: "Data Error"), message: NSLocalizedString("UNKNOWN_COORDINATES_ERROR", comment: "Couldn't find coordinates for parking lot."), preferredStyle: UIAlertControllerStyle.Alert)
-			alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-			self.presentViewController(alertController, animated: true, completion: nil)
-		}
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,31 +30,35 @@ class LotDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
 
-	// MARK: - MKMapViewDelegate
-
-//	func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-//		mapView.centerCoordinate = userLocation.location.coordinate
-//	}
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "showParkinglotMap" {
+			let mapVC: MapViewController = segue.destinationViewController as! MapViewController
+			mapVC.detailParkinglot = detailParkinglot
+			mapVC.allParkinglots = allParkinglots
+		}
+	}
 
 	// MARK: - UITableViewDataSource
 
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		// Address, Times, Rate, Contact, Other
-		return 5
+		return 6
 	}
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		switch section {
-		case 0:
+		case Section.Name.rawValue:
 			return 1
-		case 1:
-			return 1
-		case 2:
-			return 1
-		case 3:
-			return 4
-		case 4:
+		case Section.Address.rawValue:
 			return 2
+		case Section.Times.rawValue:
+			return 1
+		case Section.Rate.rawValue:
+			return 1
+		case Section.Contact.rawValue:
+			return 4
+		case Section.Other.rawValue:
+			return 3
 		default:
 			return 0
 		}
@@ -101,12 +69,29 @@ class LotDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
 
 		if let lotData = StaticData[detailParkinglot.name] {
 			// Address, Times, Rate, Contact, Other
-			if indexPath.section == 0 {
-				cell.mainLabel.text = lotData["address"] as? String
-			} else if indexPath.section == 1 {
+			switch indexPath.section {
+			case Section.Name.rawValue:
+				if indexPath.row == 0 {
+					let type = lotData["type"] as! String
+					let name = detailParkinglot.name
+					cell.mainLabel.text = "\(type) \(name)"
+				}
+			case Section.Address.rawValue:
+				if indexPath.row == 0 {
+					cell.mainLabel.text = lotData["address"] as? String
+				} else if indexPath.row == 1 {
+					cell.mainLabel.text = "Show on Map"
+				}
+			case Section.Times.rawValue:
 				cell.mainLabel.text = lotData["times"] as? String
-			} else if indexPath.section == 2 {
+			case Section.Rate.rawValue:
 				cell.mainLabel.text = lotData["rate"] as? String
+			case Section.Contact.rawValue:
+				cell.mainLabel.text = "Contact"
+			case Section.Other.rawValue:
+				cell.mainLabel.text = "Other"
+			default:
+				println("nope")
 			}
 		} else {
 			cell.mainLabel.text = "Foobar"
@@ -119,19 +104,34 @@ class LotDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
 
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		switch section {
-		case 0:
+		case Section.Name.rawValue:
+			return "Name"
+		case Section.Address.rawValue:
 			return "Address"
-		case 1:
+		case Section.Times.rawValue:
 			return "Times"
-		case 2:
+		case Section.Rate.rawValue:
 			return "Rate"
-		case 3:
+		case Section.Contact.rawValue:
 			return "Contact"
-		case 4:
+		case Section.Other.rawValue:
 			return "Other"
 		default:
 			return "nope"
 		}
+	}
+
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		if indexPath.section == Section.Address.rawValue && indexPath.row == 1 {
+			performSegueWithIdentifier("showParkinglotMap", sender: self)
+		}
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	}
+
+	// MARK: - Helpers
+
+	enum Section: Int {
+		case Name, Address, Times, Rate, Contact, Other
 	}
 
 }
