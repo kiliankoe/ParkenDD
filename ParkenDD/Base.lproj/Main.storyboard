@@ -228,13 +228,19 @@ The sourcecode for this application can be viewed at https://github.com/kilianko
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a8p-zG-WWz" id="hJn-s5-2tR">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZM-ua-xE0">
-                                                    <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZM-ua-xE0">
+                                                    <rect key="frame" x="15" y="11" width="569" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rZM-ua-xE0" firstAttribute="top" secondItem="hJn-s5-2tR" secondAttribute="topMargin" constant="3" id="PIp-nK-V61"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="rZM-ua-xE0" secondAttribute="bottom" constant="3" id="WBN-Y3-0l7"/>
+                                                <constraint firstItem="rZM-ua-xE0" firstAttribute="leading" secondItem="hJn-s5-2tR" secondAttribute="leadingMargin" constant="7" id="X9S-bN-RNU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="rZM-ua-xE0" secondAttribute="trailing" constant="8" id="d5g-3L-8PO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="mainLabel" destination="rZM-ua-xE0" id="ytd-aF-qjb"/>

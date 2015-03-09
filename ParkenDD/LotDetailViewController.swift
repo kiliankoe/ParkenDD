@@ -18,6 +18,12 @@ class LotDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
 	var detailParkinglot: Parkinglot!
 	var allParkinglots: [[Parkinglot]]!
 
+	override func viewWillAppear(animated: Bool) {
+		self.tableView.estimatedRowHeight = 44
+		self.tableView.rowHeight = UITableViewAutomaticDimension
+		self.tableView.reloadData()
+	}
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -96,7 +102,11 @@ class LotDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
 		if let lotData = StaticData[detailParkinglot.name] {
 			// Address, Times, Rate, Contact, Other
 			if indexPath.section == 0 {
-				cell.mainLabel.text = lotData["address"]! as! String
+				cell.mainLabel.text = lotData["address"] as? String
+			} else if indexPath.section == 1 {
+				cell.mainLabel.text = lotData["times"] as? String
+			} else if indexPath.section == 2 {
+				cell.mainLabel.text = lotData["rate"] as? String
 			}
 		} else {
 			cell.mainLabel.text = "Foobar"
