@@ -56,7 +56,24 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 		case Section.Rate.rawValue:
 			return 1
 		case Section.Contact.rawValue:
-			return 4
+			var countContactOptions = 0
+			if let lotData = StaticData[detailParkinglot.name] {
+				if let phone: AnyObject? = lotData["phone"] {
+					countContactOptions++
+				}
+				if let email: AnyObject? = lotData["email"] {
+					countContactOptions++
+				}
+				if let website: AnyObject? = lotData["website"] {
+					countContactOptions++
+				}
+				if let reservations: Bool = lotData["reservations"] as? Bool {
+					if reservations {
+						countContactOptions++
+					}
+				}
+			}
+			return countContactOptions
 		case Section.Other.rawValue:
 			return 3
 		default:

@@ -1,5 +1,5 @@
 {
-	"Altmarktgalerie": {
+	"Altmarkt": {
 		"type": "Tiefgarage",
 		"address": "Wilsdruffer Straße, 01067 Dresden",
 		"latitude": 51.0502683537,
@@ -7,9 +7,6 @@
 		"times": "Täglich von 0 bis 24 Uhr",
 		"times_m": "0-24",
 		"rate": "Erste und zweite angefangene Stunde je 1,50 Euro. Dritte angefangene Stunde 2,00 Euro. Jede weitere angefangene Stunde 2,50 Euro. Tageshöchstsatz 17,00 Euro",
-		"phone": null,
-		"email": null,
-		"website": null,
 		"reservations": false,
 		"map": null,
 		"parkleitsystem": true,

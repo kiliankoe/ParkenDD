@@ -9,10 +9,10 @@
 // Due to the nature of how this data is downloaded I don't want to integrate it directly with the parking lots for now.
 // It's better off declared as a separate dictionary, at least for now.
 
-// Altmarktgalerie is declared here for reference. The others are added on the GET request.
+// Altmarkt is declared here for reference. The others are added on the GET request.
 
 let StaticData: [String:[String:AnyObject?]] = [
-	"Altmarkt - Galerie": [
+	"Altmarkt": [
 		"type": "Tiefgarage",
 		"address": "Wilsdruffer Straße, 01067 Dresden",
 		"latitude": 51.0502683537,
@@ -20,9 +20,6 @@ let StaticData: [String:[String:AnyObject?]] = [
 		"times": "Täglich von 0 bis 24 Uhr",
 		"times_m": "0-24",
 		"rate": "Erste und zweite angefangene Stunde je 1,50 Euro. Dritte angefangene Stunde 2,00 Euro. Jede weitere angefangene Stunde 2,50 Euro. Tageshöchstsatz 17,00 Euro",
-		"phone": nil,
-		"email": nil,
-		"website": nil,
 		"reservations": false,
 		"map": nil,
 		"parkleitsystem": true,
