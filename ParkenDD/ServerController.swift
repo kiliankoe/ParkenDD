@@ -130,9 +130,7 @@ class ServerController {
 
 	// Get a JSON file from my server with some config data that can be changed without submitting subsequent builds to Apple
 	// Currently used for changing the default parking lot data URL and the URL for the static data which doesn't come from the same source
-	// TODO: This should however also be saved in NSUserDefaults so that it won't be useless by resetting the application
-	// Or just get rid of this and only update the other two URLs from the remote config... If I ever do migrate my server it's always possible to update the app
-	static func sendConfigDataRequest(callback: (parkinglotURL: String?, staticDataURL: String?, configURL: String?) -> ()) {
+	static func sendConfigDataRequest(callback: (parkinglotURL: String?, staticDataURL: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		let session = NSURLSession(configuration: sessionConfig)
 
@@ -149,8 +147,8 @@ class ServerController {
 					let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
 
 					if let config = parsedObject as? Dictionary<String, String> {
-						if let parkinglotURL = config["parkinglotURL"], staticDataURL = config["staticDataURL"], configURL = config["configURL"] {
-							callback(parkinglotURL: parkinglotURL, staticDataURL: staticDataURL, configURL: configURL)
+						if let parkinglotURL = config["parkinglotURL"], staticDataURL = config["staticDataURL"] {
+							callback(parkinglotURL: parkinglotURL, staticDataURL: staticDataURL)
 						}
 					}
 				}

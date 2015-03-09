@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// Update URLs from remote config
 		ServerController.sendConfigDataRequest({
-			(parkinglotURL, staticDataURL, configURL) in
-			if let parkinglotURL = parkinglotURL, staticDataURL = staticDataURL, configURL = configURL {
+			(parkinglotURL, staticDataURL) in
+			if let parkinglotURL = parkinglotURL, staticDataURL = staticDataURL {
 				Constants.parkinglotURL = parkinglotURL
 				Constants.staticDataURL = staticDataURL
 			}
