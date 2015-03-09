@@ -212,57 +212,53 @@ The sourcecode for this application can be viewed at https://github.com/kilianko
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukm-vb-j0z">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="228"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Mgf-PG-0fv" id="qj6-2q-yuG"/>
-                                </connections>
-                            </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="QxO-a2-vFI">
-                                <rect key="frame" x="0.0" y="228" width="600" height="372"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailInfoCell" id="a8p-zG-WWz" customClass="DetailInfoCell" customModule="ParkenDD" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a8p-zG-WWz" id="hJn-s5-2tR">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZM-ua-xE0">
-                                                    <rect key="frame" x="15" y="11" width="569" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="rZM-ua-xE0" firstAttribute="top" secondItem="hJn-s5-2tR" secondAttribute="topMargin" constant="3" id="PIp-nK-V61"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="rZM-ua-xE0" secondAttribute="bottom" constant="3" id="WBN-Y3-0l7"/>
-                                                <constraint firstItem="rZM-ua-xE0" firstAttribute="leading" secondItem="hJn-s5-2tR" secondAttribute="leadingMargin" constant="7" id="X9S-bN-RNU"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="rZM-ua-xE0" secondAttribute="trailing" constant="8" id="d5g-3L-8PO"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aei-hX-8JE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukm-vb-j0z">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="228"/>
                                         <connections>
-                                            <outlet property="mainLabel" destination="rZM-ua-xE0" id="ytd-aF-qjb"/>
+                                            <outlet property="delegate" destination="Mgf-PG-0fv" id="qj6-2q-yuG"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="Mgf-PG-0fv" id="Bhc-8z-mfq"/>
-                                    <outlet property="delegate" destination="Mgf-PG-0fv" id="WOj-Ma-vmB"/>
-                                </connections>
-                            </tableView>
+                                    </mapView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="QxO-a2-vFI">
+                                        <rect key="frame" x="0.0" y="228" width="600" height="372"/>
+                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailInfoCell" id="a8p-zG-WWz" customClass="DetailInfoCell" customModule="ParkenDD" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a8p-zG-WWz" id="hJn-s5-2tR">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZM-ua-xE0">
+                                                            <rect key="frame" x="15" y="11" width="569" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="rZM-ua-xE0" firstAttribute="top" secondItem="hJn-s5-2tR" secondAttribute="topMargin" constant="3" id="PIp-nK-V61"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="rZM-ua-xE0" secondAttribute="bottom" constant="3" id="WBN-Y3-0l7"/>
+                                                        <constraint firstItem="rZM-ua-xE0" firstAttribute="leading" secondItem="hJn-s5-2tR" secondAttribute="leadingMargin" constant="7" id="X9S-bN-RNU"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="rZM-ua-xE0" secondAttribute="trailing" constant="8" id="d5g-3L-8PO"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="mainLabel" destination="rZM-ua-xE0" id="ytd-aF-qjb"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Mgf-PG-0fv" id="Bhc-8z-mfq"/>
+                                            <outlet property="delegate" destination="Mgf-PG-0fv" id="WOj-Ma-vmB"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="QxO-a2-vFI" firstAttribute="top" secondItem="ukm-vb-j0z" secondAttribute="bottom" id="0Gc-Cw-YAF"/>
-                            <constraint firstItem="ukm-vb-j0z" firstAttribute="top" secondItem="LE8-kn-4T9" secondAttribute="topMargin" id="E2l-SR-2v3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ukm-vb-j0z" secondAttribute="trailing" constant="-16" id="GQw-Md-dxF"/>
-                            <constraint firstItem="r91-eN-oZI" firstAttribute="top" secondItem="QxO-a2-vFI" secondAttribute="bottom" id="Ijm-vm-MWJ"/>
-                            <constraint firstItem="QxO-a2-vFI" firstAttribute="leading" secondItem="LE8-kn-4T9" secondAttribute="leadingMargin" constant="-16" id="QJJ-jy-fKk"/>
-                            <constraint firstItem="ukm-vb-j0z" firstAttribute="leading" secondItem="LE8-kn-4T9" secondAttribute="leadingMargin" constant="-16" id="YM9-YV-YSe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="QxO-a2-vFI" secondAttribute="trailing" constant="-16" id="zul-WG-Sj7"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="ukm-vb-j0z" id="UYT-f3-UoN"/>

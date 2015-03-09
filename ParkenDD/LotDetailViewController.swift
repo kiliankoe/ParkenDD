@@ -35,7 +35,7 @@ class LotDetailViewController: UIViewController, MKMapViewDelegate, UITableViewD
 				var lotAnnotation = MKPointAnnotation()
 				if let currentLat = singleLot.lat, currentLon = singleLot.lon {
 					lotAnnotation.coordinate = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLon)
-					lotAnnotation.title = singleLot.name
+					lotAnnotation.title = "\(singleLot.name): \(singleLot.free)"
 					mapView.addAnnotation(lotAnnotation)
 					if singleLot.name == detailParkinglot.name {
 						// Have the selected lot's callout already displayed
