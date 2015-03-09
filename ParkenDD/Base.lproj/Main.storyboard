@@ -151,7 +151,7 @@ All data supplied without any guarantees!
 
 Data is as current as http://www.dresden.de/freie-parkplaetze/.
 
-Thanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Constantin Müller (@ubahnverleih) for making and providing the API server.
+Thanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Constantin Müller (@ubahnverleih) for creating the API server.
 
 The sourcecode for this application can be viewed at https://github.com/kiliankoe/parkendd and is licensed under the MIT license.</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
