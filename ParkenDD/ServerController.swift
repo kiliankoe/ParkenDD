@@ -10,8 +10,6 @@ import Foundation
 
 class ServerController {
 
-	var parkinglotURL: String!
-
 	// FIXME: Yay for the string? error...
 	func sendParkinglotDataRequest(callback: (sectionNames: [String]?, parkinglotList: [[Parkinglot]]?, updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -19,7 +17,7 @@ class ServerController {
 		sessionConfig.timeoutIntervalForResource = 20.0
 		let session = NSURLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
 
-		var URL = NSURL(string: parkinglotURL)
+		var URL = NSURL(string: Constants.parkinglotURL)
 		let request = NSMutableURLRequest(URL: URL!)
 		request.HTTPMethod = "GET"
 
@@ -132,7 +130,9 @@ class ServerController {
 
 	// Get a JSON file from my server with some config data that can be changed without submitting subsequent builds to Apple
 	// Currently used for changing the default parking lot data URL and the URL for the static data which doesn't come from the same source
-	static func sendConfigDataRequest(callback: (defaultParkinglotURL: String?, staticDataURL: String?, configURL: String?) -> ()) {
+	// TODO: This should however also be saved in NSUserDefaults so that it won't be useless by resetting the application
+	// Or just get rid of this and only update the other two URLs from the remote config... If I ever do migrate my server it's always possible to update the app
+	static func sendConfigDataRequest(callback: (parkinglotURL: String?, staticDataURL: String?, configURL: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		let session = NSURLSession(configuration: sessionConfig)
 
@@ -149,8 +149,8 @@ class ServerController {
 					let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
 
 					if let config = parsedObject as? Dictionary<String, String> {
-						if let defaultParkinglotURL = config["defaultParkinglotURL"], staticDataURL = config["staticDataURL"], configURL = config["configURL"] {
-							callback(defaultParkinglotURL: defaultParkinglotURL, staticDataURL: staticDataURL, configURL: configURL)
+						if let parkinglotURL = config["parkinglotURL"], staticDataURL = config["staticDataURL"], configURL = config["configURL"] {
+							callback(parkinglotURL: parkinglotURL, staticDataURL: staticDataURL, configURL: configURL)
 						}
 					}
 				}

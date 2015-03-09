@@ -18,7 +18,6 @@
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
 		39B037501A949CD600C5A273 /* LotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0374F1A949CD600C5A273 /* LotDetailViewController.swift */; };
 		39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B037511A94C73E00C5A273 /* AboutViewController.swift */; };
-		39B037541A94DD4500C5A273 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 39B037531A94DD4500C5A273 /* Settings.bundle */; };
 		39B953531AA0A59600026EC2 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B953521AA0A59600026EC2 /* NotificationCenter.framework */; };
 		39B953581AA0A59600026EC2 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B953571AA0A59600026EC2 /* TodayViewController.swift */; };
 		39B9535A1AA0A59600026EC2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39B953591AA0A59600026EC2 /* MainInterface.storyboard */; };
@@ -78,7 +77,6 @@
 		397D7B201A9A223A001B5874 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		39B0374F1A949CD600C5A273 /* LotDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotDetailViewController.swift; sourceTree = "<group>"; };
 		39B037511A94C73E00C5A273 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		39B037531A94DD4500C5A273 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		39B953501AA0A59600026EC2 /* ParkenDDWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ParkenDDWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		39B953521AA0A59600026EC2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		39B953561AA0A59600026EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 				39B037511A94C73E00C5A273 /* AboutViewController.swift */,
 				397D7B1F1A9A2236001B5874 /* Localizable.strings */,
 				39F4CFE71A6BBC0200ACFECF /* Main.storyboard */,
-				39B037531A94DD4500C5A273 /* Settings.bundle */,
 				39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */,
 				39F4CFEC1A6BBC0200ACFECF /* LaunchScreen.xib */,
 				39F4CFE11A6BBC0200ACFECF /* Supporting Files */,
@@ -360,7 +357,6 @@
 			files = (
 				397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */,
 				3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */,
-				39B037541A94DD4500C5A273 /* Settings.bundle in Resources */,
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
 				39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */,
 				39F4CFEB1A6BBC0200ACFECF /* Images.xcassets in Resources */,

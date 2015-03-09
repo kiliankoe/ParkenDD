@@ -10,9 +10,7 @@ REQUEST_ERROR_TITLE = "Connection Error";
 REQUEST_ERROR = "Couldn't fetch data. You appear to be disconnected from the internet.";
 
 SERVER_ERROR_TITLE = "Server Error";
-SERVER_ERROR = "Couldn't read data from server. Please try again in a few moments or reset the server if you've changed it.";
-SERVER_ERROR_RESET = "Reset";
-SERVER_ERROR_CANCEL = "Cancel";
+SERVER_ERROR = "Couldn't read data from server. Please try again in a few moments.";
 
 LAST_UPDATE = "Last update:";
 

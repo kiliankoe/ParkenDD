@@ -17,9 +17,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	let server = ServerController()
 
-	// Bool that can be set by the user in the system settings to reset the server URL back to the default
-	var resetServer: Bool!
-
 	// Store the single parking lots once they're retrieved from the server
 	// a single subarray for each section
 	var parkinglots: [[Parkinglot]] = []
@@ -56,24 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 
-	func refreshUserDefaults() {
-		// Load the NSUserDefaults
-		server.parkinglotURL = NSUserDefaults.standardUserDefaults().stringForKey("ServerURL")!
-		resetServer = NSUserDefaults.standardUserDefaults().boolForKey("ResetServerOnStartup")
-
-		// Reset the server URL if the user wants to
-		if (resetServer == true) {
-			server.parkinglotURL = Constants.defaultParkinglotURL
-			NSUserDefaults.standardUserDefaults().setObject(Constants.defaultParkinglotURL, forKey: "ServerURL")
-
-			// Change the bool switch back to being false
-			resetServer = false
-			NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ResetServerOnStartup")
-		}
-	}
-
 	func updateData() {
-		refreshUserDefaults()
 		server.sendParkinglotDataRequest() {
 			(secNames, plotList, updateError) in
 			if let error = updateError {
@@ -90,14 +70,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 					}
 				} else if error == "serverError" {
 					// Give the user a notification that data from the server can't be read
-					var alertController = UIAlertController(title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), message: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments or reset the server if you've changed it."), preferredStyle: UIAlertControllerStyle.Alert)
-					alertController.addAction(UIAlertAction(title: NSLocalizedString("SERVER_ERROR_RESET", comment: "Reset"), style: UIAlertActionStyle.Destructive, handler: {
-						(alert: UIAlertAction!) in
-						self.server.parkinglotURL = Constants.defaultParkinglotURL
-						NSUserDefaults.standardUserDefaults().setObject(Constants.defaultParkinglotURL, forKey: "ServerURL")
-						self.updateData()
-					}))
-					alertController.addAction(UIAlertAction(title: NSLocalizedString("SERVER_ERROR_CANCEL", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+					var alertController = UIAlertController(title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), message: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), preferredStyle: UIAlertControllerStyle.Alert)
+					alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
 					self.presentViewController(alertController, animated: true, completion: nil)
 				}
 
