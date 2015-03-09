@@ -15,8 +15,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// FIXME: This is definitely not the right way of doing this...
 	let refreshControl = UIRefreshControl()
 
-	let server = ServerController()
-
 	// Store the single parking lots once they're retrieved from the server
 	// a single subarray for each section
 	var parkinglots: [[Parkinglot]] = []
@@ -54,7 +52,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
 	func updateData() {
-		server.sendParkinglotDataRequest() {
+		ServerController.sendParkinglotDataRequest() {
 			(secNames, plotList, updateError) in
 			if let error = updateError {
 
