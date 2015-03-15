@@ -21,7 +21,7 @@ let StaticData: [String:[String:AnyObject?]] = [
 		"times_m": "0-24",
 		"rate": "Erste und zweite angefangene Stunde je 1,50 Euro. Dritte angefangene Stunde 2,00 Euro. Jede weitere angefangene Stunde 2,50 Euro. Tageshöchstsatz 17,00 Euro",
 		"reservations": false,
-		"map": nil,
+		"map": "http://stadtplan.dresden.de/?POS-XY=5411635|5657980&POS-OFFSET=300",
 		"parkleitsystem": true,
 		"thumbnail": "http://www.dresden.de/img/parken/standorte/TG16.jpg"
 	]
