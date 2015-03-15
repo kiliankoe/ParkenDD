@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
 //
 
+// Please don't judge me on any of the code in this file. It's all rather... odd. And feels fragile. And stupid.
+
 import UIKit
 
 class LotDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -75,7 +77,7 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 			}
 			return countContactOptions
 		case Section.Other.rawValue:
-			return 3
+			return 2
 		default:
 			return 0
 		}
@@ -106,12 +108,14 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 			case Section.Contact.rawValue:
 				cell.mainLabel.text = "Contact"
 			case Section.Other.rawValue:
-				cell.mainLabel.text = "Other"
+				if indexPath.row == 0 {
+					cell.mainLabel.text = "Link to Citymap"
+				} else if indexPath.row == 1 {
+					cell.mainLabel.text = "Report incorrect data"
+				}
 			default:
 				println("nope")
 			}
-		} else {
-			cell.mainLabel.text = "Foobar"
 		}
 
 		return cell
