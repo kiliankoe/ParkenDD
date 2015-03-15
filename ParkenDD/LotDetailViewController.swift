@@ -146,6 +146,21 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 		if indexPath.section == Section.Address.rawValue && indexPath.row == 1 {
 			performSegueWithIdentifier("showParkinglotMap", sender: self)
 		}
+		if indexPath.section == Section.Other.rawValue && indexPath.row == 0 {
+			if let lotData = StaticData[detailParkinglot.name] {
+				if let urlString = lotData["map"] as? String {
+					var alertController = UIAlertController(title: "Open Safari?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+					alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+					alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+						(alert: UIAlertAction!) in
+						// Fuck this...
+						let conformURLString = urlString.stringByReplacingOccurrencesOfString("|", withString: "%7C", options: NSStringCompareOptions.LiteralSearch, range: nil)
+						UIApplication.sharedApplication().openURL(NSURL(string: conformURLString)!)
+					}))
+					self.presentViewController(alertController, animated: true, completion: nil)
+				}
+			}
+		}
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 
