@@ -9,8 +9,9 @@
 // Please don't judge me on any of the code in this file. It's all rather... odd. And feels fragile. And stupid.
 
 import UIKit
+import MessageUI
 
-class LotDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class LotDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
 
 	@IBOutlet weak var tableView: UITableView!
 
@@ -161,7 +162,25 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 				}
 			}
 		}
+		if indexPath.section == Section.Other.rawValue && indexPath.row == 1 {
+			if MFMailComposeViewController.canSendMail() {
+				let mailVC = MFMailComposeViewController()
+				mailVC.mailComposeDelegate = self
+
+				let version = (NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]) as! String
+				mailVC.setSubject("[ParkenDD v\(version)] Problem mit \(detailParkinglot.name)")
+				mailVC.setToRecipients(["parkendd@kilian.io"])
+
+				self.presentViewController(mailVC, animated: true, completion: nil)
+			}
+		}
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	}
+
+	// MARK: - MFMailComposeController
+
+	func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 	// MARK: - Helpers
