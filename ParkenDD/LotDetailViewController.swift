@@ -76,6 +76,7 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 					}
 				}
 			}
+			// TODO: A single cell with a label stating that no contact options are available is better than no cells at all in this case
 			return countContactOptions
 		case Section.Other.rawValue:
 			return 2
