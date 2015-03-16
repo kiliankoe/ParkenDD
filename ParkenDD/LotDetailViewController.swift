@@ -109,7 +109,7 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 				cell.mainLabel.text = "Contact"
 			case Section.Other.rawValue:
 				if indexPath.row == 0 {
-					cell.mainLabel.text = "Link to Citymap"
+					cell.mainLabel.text = "Open Citymap"
 				} else if indexPath.row == 1 {
 					cell.mainLabel.text = "Report incorrect data"
 				}
