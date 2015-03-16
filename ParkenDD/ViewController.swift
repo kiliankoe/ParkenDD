@@ -182,6 +182,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateClosed")
 		default:
 			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateNodata")
+			cell.parkinglotLoadLabel.text = "?"
 			cell.parkinglotNameLabel.textColor = UIColor.grayColor()
 			cell.parkinglotAddressLabel.textColor = UIColor.grayColor()
 			cell.parkinglotLoadLabel.textColor = UIColor.grayColor()
