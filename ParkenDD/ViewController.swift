@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		refreshControl.backgroundColor = UIColor(hue: 0.58, saturation: 1.0, brightness: 0.43, alpha: 1.0)
 		refreshControl.tintColor = UIColor.whiteColor()
 		refreshControl.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
-		tableView.addSubview(refreshControl)
+		tableView.insertSubview(refreshControl, atIndex: 0)
 	}
 
 	override func didReceiveMemoryWarning() {
