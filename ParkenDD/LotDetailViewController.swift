@@ -2,21 +2,21 @@
 //  LotDetailViewController.swift
 //  ParkenDD
 //
-//  Created by Kilian Költzsch on 18/02/15.
+//  Created by Kilian Költzsch on 17/03/15.
 //  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
 //
-
-// Please don't judge me on any of the code in this file. It's all rather... odd. And feels fragile. And stupid.
 
 import UIKit
 import MessageUI
 
-class LotDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
-
-	@IBOutlet weak var tableView: UITableView!
+class LotDetailViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
 
 	var detailParkinglot: Parkinglot!
 	var allParkinglots: [[Parkinglot]]!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
 	override func viewWillAppear(animated: Bool) {
 		self.tableView.estimatedRowHeight = 44
@@ -24,13 +24,8 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 		self.tableView.reloadData()
 	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -41,114 +36,77 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 		}
 	}
 
-	// MARK: - UITableViewDataSource
+    // MARK: - Table view data source
 
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		// Address, Times, Rate, Contact, Other
-		return 6
-	}
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		// Name, Address, Times, Rate, Contact, Other
+        return 6
+    }
 
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		switch section {
-		case Section.Name.rawValue:
+		case 0:
 			return 1
-		case Section.Address.rawValue:
-			return 2
-		case Section.Times.rawValue:
+		case 1:
 			return 1
-		case Section.Rate.rawValue:
+		case 2:
 			return 1
-		case Section.Contact.rawValue:
-			var countContactOptions = 0
-			if let lotData = StaticData[detailParkinglot.name] {
-				if let phone: AnyObject? = lotData["phone"] {
-					countContactOptions++
-				}
-				if let email: AnyObject? = lotData["email"] {
-					countContactOptions++
-				}
-				if let website: AnyObject? = lotData["website"] {
-					countContactOptions++
-				}
-				if let reservations: Bool = lotData["reservations"] as? Bool {
-					if reservations {
-						countContactOptions++
-					}
-				}
-			}
-			// TODO: A single cell with a label stating that no contact options are available is better than no cells at all in this case
-			return countContactOptions
-		case Section.Other.rawValue:
+		case 3:
+			return 1
+		case 4:
+			return 4
+		case 5:
 			return 2
 		default:
 			return 0
 		}
-	}
+    }
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell: DetailInfoCell = tableView.dequeueReusableCellWithIdentifier("detailInfoCell") as! DetailInfoCell
-
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = UITableViewCell()
 		if let lotData = StaticData[detailParkinglot.name] {
-			// Address, Times, Rate, Contact, Other
+			// Name, Address, Times, Rate, Contact, Other
 			switch indexPath.section {
-			case Section.Name.rawValue:
+			case 0:
 				if indexPath.row == 0 {
 					let type = lotData["type"] as! String
 					let name = detailParkinglot.name
-					cell.mainLabel.text = "\(type) \(name)"
+					cell.textLabel?.text = "\(type) \(name)"
 				}
-			case Section.Address.rawValue:
+			case 1:
 				if indexPath.row == 0 {
-					cell.mainLabel.text = lotData["address"] as? String
+					cell.textLabel?.text = lotData["address"] as? String
 				} else if indexPath.row == 1 {
-					cell.mainLabel.text = "Show on Map"
+					cell.textLabel?.text = "Show on Map"
 				}
-			case Section.Times.rawValue:
-				cell.mainLabel.text = lotData["times"] as? String
-			case Section.Rate.rawValue:
-				cell.mainLabel.text = lotData["rate"] as? String
-			case Section.Contact.rawValue:
-				cell.mainLabel.text = "Contact"
-			case Section.Other.rawValue:
+			case 2:
+				cell.textLabel?.text = lotData["times"] as? String
+			case 3:
+				cell.textLabel?.text = lotData["rate"] as? String
+			case 4:
+				println()
+			case 5:
 				if indexPath.row == 0 {
-					cell.mainLabel.text = "Open Citymap"
+					cell.textLabel?.text = "Open Citymap"
 				} else if indexPath.row == 1 {
-					cell.mainLabel.text = "Report incorrect data"
+					cell.textLabel?.text = "Report incorrect data"
 				}
 			default:
-				println("nope")
+				println(indexPath.section)
 			}
 		}
 
-		return cell
-	}
+        return cell
+    }
 
-	// MARK: - UITableViewDelegate
+	// MARK: - Table View Delegate
 
-	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		switch section {
-		case Section.Name.rawValue:
-			return "Name"
-		case Section.Address.rawValue:
-			return "Address"
-		case Section.Times.rawValue:
-			return "Times"
-		case Section.Rate.rawValue:
-			return "Rate"
-		case Section.Contact.rawValue:
-			return "Contact"
-		case Section.Other.rawValue:
-			return "Other"
-		default:
-			return "nope"
-		}
-	}
-
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		if indexPath.section == Section.Address.rawValue && indexPath.row == 1 {
+	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		// FIXME: This is dirty, I don't like going by section and row :(
+		if indexPath.section == 1 {
 			performSegueWithIdentifier("showParkinglotMap", sender: self)
 		}
-		if indexPath.section == Section.Other.rawValue && indexPath.row == 0 {
+		if indexPath.section == 5 && indexPath.row == 0 {
 			if let lotData = StaticData[detailParkinglot.name] {
 				if let urlString = lotData["map"] as? String {
 					var alertController = UIAlertController(title: "Open Safari?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
@@ -163,7 +121,7 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 				}
 			}
 		}
-		if indexPath.section == Section.Other.rawValue && indexPath.row == 1 {
+		if indexPath.section == 5 && indexPath.row == 1 {
 			if MFMailComposeViewController.canSendMail() {
 				let mailVC = MFMailComposeViewController()
 				mailVC.mailComposeDelegate = self
@@ -182,12 +140,6 @@ class LotDetailViewController: UIViewController, UITableViewDataSource, UITableV
 
 	func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
 		self.dismissViewControllerAnimated(true, completion: nil)
-	}
-
-	// MARK: - Helpers
-
-	enum Section: Int {
-		case Name, Address, Times, Rate, Contact, Other
 	}
 
 }
