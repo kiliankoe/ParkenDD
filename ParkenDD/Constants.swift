@@ -8,6 +8,4 @@
 
 struct Constants {
 	static var parkinglotURL = "http://kilian.io/parkendd/json.php"
-	static var staticDataURL = "http://kilian.io/parkendd/static.json"
-	static var configURL = "http://kilian.io/parkendd/config.json"
 }
