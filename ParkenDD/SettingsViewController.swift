@@ -19,6 +19,10 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+	// MARK: - IBOutlets
+	@IBOutlet weak var defaultSortingCell: UITableViewCell!
+	@IBOutlet weak var userLocationSortingCell: UITableViewCell!
+
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -83,6 +87,14 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 	// MARK: - Table View Delegate
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+		if indexPath.section == 0 && indexPath.row == 0 {
+			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+		}
+
+		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "User Location" {
+			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+		}
 
 		if indexPath.section == 1 && indexPath.row == 0 {
 			performSegueWithIdentifier("showAboutView", sender: self)
