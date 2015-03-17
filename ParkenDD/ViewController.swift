@@ -106,8 +106,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		updateData()
 	}
 
-	@IBAction func aboutButtonTapped(sender: UIBarButtonItem) {
-		performSegueWithIdentifier("showAboutView", sender: self)
+	@IBAction func settingsButtonTapped(sender: UIBarButtonItem) {
+		performSegueWithIdentifier("showSettingsView", sender: self)
 	}
 
 	// MARK: - UITableViewDataSource

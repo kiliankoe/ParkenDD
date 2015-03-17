@@ -23,6 +23,7 @@
 		39B953581AA0A59600026EC2 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B953571AA0A59600026EC2 /* TodayViewController.swift */; };
 		39B9535A1AA0A59600026EC2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39B953591AA0A59600026EC2 /* MainInterface.storyboard */; };
 		39B9535D1AA0A59600026EC2 /* ParkenDDWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39B953501AA0A59600026EC2 /* ParkenDDWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */; };
 		39F4CFE61A6BBC0200ACFECF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE51A6BBC0200ACFECF /* ViewController.swift */; };
 		39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFE71A6BBC0200ACFECF /* Main.storyboard */; };
@@ -84,6 +85,7 @@
 		39B953561AA0A59600026EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39B953571AA0A59600026EC2 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		39B953591AA0A59600026EC2 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		39F4CFDE1A6BBC0200ACFECF /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFE21A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		39F16F801AB828E4006C2CF0 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */,
+			);
+			name = SettingsView;
+			sourceTree = "<group>";
+		};
 		39F4CFD51A6BBC0200ACFECF = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +225,7 @@
 				399C340C1AACCFEA00A2C124 /* ListView */,
 				399C340E1AACD08F00A2C124 /* LotDetailView */,
 				394209B21AADB15900E47539 /* MapView */,
+				39F16F801AB828E4006C2CF0 /* SettingsView */,
 				39B037511A94C73E00C5A273 /* AboutViewController.swift */,
 				397D7B1F1A9A2236001B5874 /* Localizable.strings */,
 				39F4CFE71A6BBC0200ACFECF /* Main.storyboard */,
@@ -406,6 +417,7 @@
 				394209B41AADB17600E47539 /* MapViewController.swift in Sources */,
 				39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */,
 				393F0D381A9737AF00B25B74 /* Parkinglot.swift in Sources */,
+				39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */,
 				39B037501A949CD600C5A273 /* LotDetailViewController.swift in Sources */,
 				3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */,
 			);
