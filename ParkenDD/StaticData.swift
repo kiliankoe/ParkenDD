@@ -11,7 +11,7 @@
 
 // Altmarkt is declared here for reference. The others are added on the GET request.
 
-let StaticData: [String:[String:AnyObject?]] = [
+var StaticData: [String:[String:AnyObject?]] = [
 	"Altmarkt": [
 		"type": "Tiefgarage",
 		"address": "Wilsdruffer Straße, 01067 Dresden",

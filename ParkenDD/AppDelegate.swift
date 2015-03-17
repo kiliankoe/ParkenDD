@@ -34,6 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 		})
 
+		// Update static data from remote data
+		ServerController.sendStaticDataRequest({
+			(updateError) in
+			if let updateError = updateError {
+				// TODO: Decide if and how and static data should be persisted. Storing it via NSUserDefaults is an option...
+				// This is where you'd need it^^
+			} else {
+				// All good, data should already be available to be used.
+			}
+		})
+
 		// we wants a precious light status bar!
 		UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
 

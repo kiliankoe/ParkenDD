@@ -10,6 +10,7 @@ import Foundation
 
 class ServerController {
 
+	// Get the current data for all parkinglots by asking the happy PHP scraper and adding a "Pretty please with sugar on top" to the request
 	// FIXME: Yay for the string? error...
 	static func sendParkinglotDataRequest(callback: (sectionNames: [String]?, parkinglotList: [[Parkinglot]]?, updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -105,11 +106,11 @@ class ServerController {
 
 	// The static data for the parking lots doesn't come from the same API. Maybe it will one day when the functionality of the scraper is is increased,
 	// but it's a lot easier to pull this from elsewhere that can be changed easily.
-	static func sendStaticDataRequest(callback: (parkinglotData: [String: [String: AnyObject?]]?, updateError: String?) -> ()) {
+	static func sendStaticDataRequest(callback: (updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		let session = NSURLSession(configuration: sessionConfig)
 
-		var URL = NSURL(string: Constants.configURL)
+		var URL = NSURL(string: Constants.staticDataURL)
 		let request = NSMutableURLRequest(URL: URL!)
 		request.HTTPMethod = "GET"
 
@@ -119,9 +120,13 @@ class ServerController {
 				// Success
 				if let output = (NSString(data: data, encoding: NSUTF8StringEncoding)) {
 					var parseError: NSError?
-					let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
+					let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &parseError)
 
-					// TODO: Do stuff with me
+					if let parkinglots = parsedObject as? [String:[String:AnyObject]] {
+						for (lotName, lotData) in parkinglots {
+							StaticData[lotName] = lotData
+						}
+					}
 				}
 			}
 		})
