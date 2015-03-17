@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 		})
 
+		// we wants a precious light status bar!
+		UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+
 		return true
 	}
 

@@ -23,6 +23,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		// pretty blue navbar with white buttons
+		let navBar = self.navigationController?.navigationBar
+		navBar!.barTintColor = UIColor(hue: 0.58, saturation: 1.0, brightness: 0.33, alpha: 1.0)
+		navBar!.translucent = true
+		navBar!.tintColor = UIColor.whiteColor()
+
+		// pretty shadowy fat title
+		let shadow = NSShadow()
+		shadow.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+		shadow.shadowOffset = CGSizeMake(0, 1)
+		let color = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
+		let font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 21.0)
+		var attrsDict = [NSObject: AnyObject]()
+		attrsDict[NSForegroundColorAttributeName] = color
+		attrsDict[NSShadowAttributeName] = shadow
+		attrsDict[NSFontAttributeName] = font
+		navBar!.titleTextAttributes = attrsDict
+
 		// Call this here to prevent the UIRefreshControl sometimes looking messed up when waking the app
 		self.refreshControl.endRefreshing()
 
@@ -30,8 +48,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		// Maybe because it tries to fire an alert on a ViewController that isn't ready yet?
 		updateData()
 
-		refreshControl.backgroundColor = UIColor(hue: 0.58, saturation: 1.0, brightness: 0.43, alpha: 1.0)
-		refreshControl.tintColor = UIColor.whiteColor()
 		refreshControl.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
 		tableView.insertSubview(refreshControl, atIndex: 0)
 	}
@@ -89,8 +105,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 					formatter.dateFormat = "dd.MM. HH:mm"
 					let updateString = NSLocalizedString("LAST_UPDATE", comment: "Last update:")
 					let title = "\(updateString) \(formatter.stringFromDate(NSDate()))"
-					let attrsDict: [NSObject: AnyObject] = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-					let attributedTitle = NSAttributedString(string: title, attributes: attrsDict)
+					let attributedTitle = NSAttributedString(string: title, attributes: nil)
 					self.refreshControl.attributedTitle = attributedTitle
 
 					// Stop the UIRefreshControl
