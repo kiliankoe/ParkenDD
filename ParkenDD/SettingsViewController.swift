@@ -89,15 +89,17 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-		if indexPath.section == 0 && indexPath.row == 0 {
+		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "Default" {
 			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+			userLocationSortingCell.accessoryType = UITableViewCellAccessoryType.None
 		}
 
 		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "User Location" {
 			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+			defaultSortingCell.accessoryType = UITableViewCellAccessoryType.None
 		}
 
-		if indexPath.section == 1 && indexPath.row == 0 {
+		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "About" {
 			performSegueWithIdentifier("showAboutView", sender: self)
 		}
 
