@@ -94,7 +94,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 			userLocationSortingCell.accessoryType = UITableViewCellAccessoryType.None
 		}
 
-		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "User Location" {
+		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "Current Location" {
 			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 			defaultSortingCell.accessoryType = UITableViewCellAccessoryType.None
 		}
