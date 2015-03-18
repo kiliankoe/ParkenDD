@@ -94,6 +94,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 				// Stop the UIRefreshControl without updating the date
 				self.refreshControl.endRefreshing()
+				self.showReloadButton()
 
 			} else if let secNames = secNames, plotList = plotList {
 				self.sectionNames = secNames
