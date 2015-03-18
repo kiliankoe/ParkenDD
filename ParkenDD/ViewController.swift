@@ -23,6 +23,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		// display the standard reload button
+		showReloadButton()
+
 		// pretty blue navbar with white buttons
 		let navBar = self.navigationController?.navigationBar
 		navBar!.barTintColor = UIColor(hue: 0.58, saturation: 1.0, brightness: 0.33, alpha: 1.0)
@@ -67,6 +70,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
 	func updateData() {
+		showActivityIndicator()
 		ServerController.sendParkinglotDataRequest() {
 			(secNames, plotList, updateError) in
 			if let error = updateError {
@@ -109,6 +113,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 					// Stop the UIRefreshControl
 					self.refreshControl.endRefreshing()
+					self.showReloadButton()
 				})
 			}
 		}
@@ -116,12 +121,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	// MARK: - IBActions
 
-	@IBAction func refreshButtonTapped(sender: UIBarButtonItem) {
-		updateData()
-	}
-
 	@IBAction func settingsButtonTapped(sender: UIBarButtonItem) {
 		performSegueWithIdentifier("showSettingsView", sender: self)
+	}
+
+	// MARK: - Reload Button Stuff
+
+	func showReloadButton() {
+		let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "updateData")
+		self.navigationItem.rightBarButtonItem = refreshButton
+	}
+
+	func showActivityIndicator() {
+		let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 20, 20))
+		activityIndicator.startAnimating()
+		let activityItem = UIBarButtonItem(customView: activityIndicator)
+		self.navigationItem.rightBarButtonItem = activityItem
 	}
 
 	// MARK: - UITableViewDataSource
