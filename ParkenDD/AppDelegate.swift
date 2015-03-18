@@ -28,6 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// we wants a precious light status bar!
 		UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
 
+		// Initialize User Defaults
+		let defaults: [NSObject:AnyObject] = ["SortingType": "default"]
+		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
+
 		return true
 	}
 

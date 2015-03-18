@@ -15,6 +15,22 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         super.viewDidLoad()
     }
 
+	// FIXME: This doesn't really work anywhere outside of viewDidAppear(), but here it comes with a bit of an awkward loading time...
+	override func viewDidAppear(animated: Bool) {
+		let sortingtype = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
+
+		switch sortingtype! {
+		case "location":
+			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
+		case "alphabetical":
+			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
+		case "free":
+			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
+		default:
+			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
+		}
+	}
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,69 +50,37 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
 		if section == 0 {
-			return 2
+			return 4
 		} else {
 			return 3
 		}
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
 	// MARK: - Table View Delegate
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "Default" {
+		if indexPath.section == 0 {
+			// Unselect all options
+			for row in 0...3 {
+				tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.None
+			}
+			// mark the selected one
 			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
-			userLocationSortingCell.accessoryType = UITableViewCellAccessoryType.None
-		}
 
-		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "Current Location" {
-			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
-			defaultSortingCell.accessoryType = UITableViewCellAccessoryType.None
+			var defaultsValue: String
+			switch indexPath.row {
+			case 1:
+				defaultsValue = "location"
+			case 2:
+				defaultsValue = "alphabetical"
+			case 3:
+				defaultsValue = "free"
+			default:
+				defaultsValue = "default"
+			}
+
+			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: "SortingType")
 		}
 
 		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "About" {
