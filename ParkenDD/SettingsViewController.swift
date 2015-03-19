@@ -90,7 +90,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "Share on Twitter" {
 			if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 				let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-				tweetsheet.setInitialText("Check out #ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. https://itunes.apple.com/de/app/parkendd/id957165041")
+				tweetsheet.setInitialText("Check out #ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://itunes.com/apps/parkendd")
 				self.presentViewController(tweetsheet, animated: true, completion: nil)
 			}
 		}
@@ -98,7 +98,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "Share on Facebook" {
 			if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
 				let fbsheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-				fbsheet.setInitialText("Check out ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. https://itunes.apple.com/de/app/parkendd/id957165041")
+				fbsheet.setInitialText("Check out ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://itunes.com/apps/parkendd")
 				self.presentViewController(fbsheet, animated: true, completion: nil)
 			}
 		}
