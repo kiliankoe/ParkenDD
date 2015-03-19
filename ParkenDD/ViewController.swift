@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// Store the single parking lots once they're retrieved from the server
 	// a single subarray for each section
 	var parkinglots: [Parkinglot] = []
+	var defaultSortedParkinglots: [Parkinglot] = []
 	var sectionNames: [String] = []
 
 	override func viewDidLoad() {
@@ -56,6 +57,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
 	override func viewWillAppear(animated: Bool) {
+		sortLots()
 		tableView.reloadData()
 	}
 
@@ -103,6 +105,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			} else if let secNames = secNames, plotList = plotList {
 				self.sectionNames = secNames
 				self.parkinglots = plotList
+				self.defaultSortedParkinglots = plotList
 				self.sortLots()
 
 				// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
@@ -126,7 +129,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
 	func sortLots() {
-
+		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
+		switch sortingType! {
+		case "location":
+			println("sorting after location")
+		case "alphabetical":
+			parkinglots.sort({
+				$0.name < $1.name
+			})
+		case "free":
+			parkinglots.sort({
+				$0.free > $1.free
+			})
+		default:
+			parkinglots = defaultSortedParkinglots
+		}
 	}
 
 	// MARK: - IBActions
@@ -196,7 +213,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 
 		// Maybe a future version of the scraper will be able to read the tendency as well
-		if thisLot.state == lotstate.nodata && thisLot.free == 0 {
+		if thisLot.state == lotstate.nodata && thisLot.free == -1 {
 			cell.parkinglotTendencyLabel.text = NSLocalizedString("UNKNOWN_LOAD", comment: "unknown")
 		} else if thisLot.state == lotstate.closed {
 			cell.parkinglotTendencyLabel.text = NSLocalizedString("CLOSED", comment: "closed")

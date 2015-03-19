@@ -68,6 +68,7 @@ class ServerController {
 											lotState = lotstate.closed
 										default:
 											lotState = lotstate.nodata
+											lotFree = -1
 										}
 
 										// hehe, lotLat is an awesome name for a variable
