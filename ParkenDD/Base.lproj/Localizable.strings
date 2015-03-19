@@ -6,14 +6,20 @@
   Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
 */
 
+// MARK: Error Messages
+
 REQUEST_ERROR_TITLE = "Connection Error";
 REQUEST_ERROR = "Couldn't fetch data. You appear to be disconnected from the internet.";
 
 SERVER_ERROR_TITLE = "Server Error";
 SERVER_ERROR = "Couldn't read data from server. Please try again in a few moments.";
 
-LAST_UPDATE = "Last update:";
+UNKNOWN_COORDINATES_TITLE = "Error";
+UNKNOWN_COORDINATES_ERROR = "Couldn't find coordinates for selected parking lot.";
 
+// MARK: Labels
+
+LAST_UPDATE = "Last update:";
 NO_DATA = "Refreshing...";
 
 OCCUPIED = "occupied";
@@ -21,6 +27,3 @@ CLOSED = "closed";
 
 UNKNOWN_ADDRESS = "unknown address";
 UNKNOWN_LOAD = "unknown";
-
-UNKNOWN_COORDINATES_TITLE = "Error";
-UNKNOWN_COORDINATES_ERROR = "Couldn't find coordinates for selected parking lot.";

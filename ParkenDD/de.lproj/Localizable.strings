@@ -6,14 +6,20 @@
   Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
 */
 
+// MARK: Error Messages
+
 REQUEST_ERROR_TITLE = "Verbindungsfehler";
 REQUEST_ERROR = "Daten konnten nicht abgerufen werden. Es besteht anscheinend keine Verbindung zum Internet.";
 
 SERVER_ERROR_TITLE = "Serverfehler";
 SERVER_ERROR = "Daten konnten nicht gelesen werden. Bitte aktualisiere in ein paar Momenten erneut.";
 
-LAST_UPDATE = "Letzte Aktualisierung:";
+UNKNOWN_COORDINATES_TITLE = "Fehler";
+UNKNOWN_COORDINATES_ERROR = "Konnte keine Ortsdaten für gewählten Parkplatz finden.";
 
+// MARK: Labels
+
+LAST_UPDATE = "Letzte Aktualisierung:";
 NO_DATA = "Aktualisierung läuft...";
 
 OCCUPIED = "belegt";
@@ -21,6 +27,3 @@ CLOSED = "geschlossen";
 
 UNKNOWN_ADDRESS = "unbekannte Adresse";
 UNKNOWN_LOAD = "unbekannt";
-
-UNKNOWN_COORDINATES_TITLE = "Fehler";
-UNKNOWN_COORDINATES_ERROR = "Konnte keine Ortsdaten für gewählten Parkplatz finden.";
