@@ -6,4 +6,4 @@
   Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
 */
 
-NSLocationWhenInUseUsageDescription = "This information is used to show your own location on the map.";
+NSLocationWhenInUseUsageDescription = "Used to show location on map and for sorting parking lots by distance.";
