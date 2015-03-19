@@ -12,7 +12,7 @@ class ServerController {
 
 	// Get the current data for all parkinglots by asking the happy PHP scraper and adding a "Pretty please with sugar on top" to the request
 	// FIXME: Yay for the string? error...
-	static func sendParkinglotDataRequest(callback: (sectionNames: [String]?, parkinglotList: [[Parkinglot]]?, updateError: String?) -> ()) {
+	static func sendParkinglotDataRequest(callback: (sectionNames: [String]?, parkinglotList: [Parkinglot]?, updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		sessionConfig.timeoutIntervalForRequest = 15.0
 		sessionConfig.timeoutIntervalForResource = 20.0
@@ -33,16 +33,13 @@ class ServerController {
 					if let sectionList = parsedObject as? NSArray {
 
 						var sectionNames: [String] = []
-						var parkinglotList: [[Parkinglot]] = []
+						var parkinglotList: [Parkinglot] = []
 
 						for section in sectionList {
 							if let sectionName: String = section["name"] as? String, lots = section["lots"] as? NSArray {
 
 								// save the section name
 								sectionNames.append(sectionName)
-
-								// a temporary array for storing the list of processed Parkinglots
-								var lotList: [Parkinglot] = []
 
 								for lot in lots {
 
@@ -76,15 +73,14 @@ class ServerController {
 										// hehe, lotLat is an awesome name for a variable
 										if let lotLat = (lot["lat"] as? NSString)?.doubleValue, lotLon = (lot["lon"] as? NSString)?.doubleValue {
 											let parkingLot = Parkinglot(section: sectionName, name: lotName, count: lotCount, free: lotFree, state: lotState, lat: lotLat, lon: lotLon)
-											lotList.append(parkingLot)
+											parkinglotList.append(parkingLot)
 										} else {
 											// apparently this lot doesn't have coordinates, which is also kind of weird
 											let parkingLot = Parkinglot(section: sectionName, name: lotName, count: lotCount, free: lotFree, state: lotState, lat: nil, lon: nil)
-											lotList.append(parkingLot)
+											parkinglotList.append(parkingLot)
 										}
 									}
 								}
-								parkinglotList.append(lotList)
 							}
 						}
 						callback(sectionNames: sectionNames, parkinglotList: parkinglotList, updateError: nil)

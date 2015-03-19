@@ -14,7 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 	@IBOutlet weak var mapView: MKMapView!
 
 	var detailParkinglot: Parkinglot!
-	var allParkinglots: [[Parkinglot]]!
+	var allParkinglots: [Parkinglot]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,23 +22,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		mapView.showsUserLocation = true
 
 		// Add annotations for all parking lots to the map
-		for region in allParkinglots {
-			for singleLot in region {
-				var lotAnnotation = MKPointAnnotation()
-				if let currentLat = singleLot.lat, currentLon = singleLot.lon {
-					lotAnnotation.coordinate = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLon)
+		for singleLot in allParkinglots {
+			var lotAnnotation = MKPointAnnotation()
+			if let currentLat = singleLot.lat, currentLon = singleLot.lon {
+				lotAnnotation.coordinate = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLon)
 
-					if singleLot.state != lotstate.nodata {
-						lotAnnotation.title = "\(singleLot.name): \(singleLot.free)"
-					} else {
-						lotAnnotation.title = "\(singleLot.name): ?"
-					}
+				if singleLot.state != lotstate.nodata {
+					lotAnnotation.title = "\(singleLot.name): \(singleLot.free)"
+				} else {
+					lotAnnotation.title = "\(singleLot.name): ?"
+				}
 
-					mapView.addAnnotation(lotAnnotation)
-					if singleLot.name == detailParkinglot.name {
-						// Have the selected lot's callout already displayed
-						mapView.selectAnnotation(lotAnnotation, animated: true)
-					}
+				mapView.addAnnotation(lotAnnotation)
+				if singleLot.name == detailParkinglot.name {
+					// Have the selected lot's callout already displayed
+					mapView.selectAnnotation(lotAnnotation, animated: true)
 				}
 			}
 		}

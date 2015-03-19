@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	// Store the single parking lots once they're retrieved from the server
 	// a single subarray for each section
-	var parkinglots: [[Parkinglot]] = []
+	var parkinglots: [Parkinglot] = []
 	var sectionNames: [String] = []
 
 	override func viewDidLoad() {
@@ -55,6 +55,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		tableView.insertSubview(refreshControl, atIndex: 0)
 	}
 
+	override func viewWillAppear(animated: Bool) {
+		tableView.reloadData()
+	}
+
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
@@ -62,7 +66,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showParkinglotMap" {
 			let indexPath = tableView.indexPathForSelectedRow()
-			let selectedParkinglot = parkinglots[indexPath!.section][indexPath!.row]
+			let selectedParkinglot = parkinglots[indexPath!.row]
 			let mapVC: MapViewController = segue.destinationViewController as! MapViewController
 			mapVC.detailParkinglot = selectedParkinglot
 			mapVC.allParkinglots = parkinglots
@@ -99,6 +103,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			} else if let secNames = secNames, plotList = plotList {
 				self.sectionNames = secNames
 				self.parkinglots = plotList
+				self.sortLots()
 
 				// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
 				dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -118,6 +123,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 				})
 			}
 		}
+	}
+
+	func sortLots() {
+
 	}
 
 	// MARK: - IBActions
@@ -158,17 +167,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 		// TODO: tableView.backgroundView is still set to messageLabel... Can be seen if dragged down far enough. Damn.
 		tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-		return parkinglots.count
+
+		return 1
 	}
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return parkinglots[section].count
+		return parkinglots.count
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
 
-		let thisLot = parkinglots[indexPath.section][indexPath.row]
+		let thisLot = parkinglots[indexPath.row]
 
 		cell.parkinglotNameLabel.text = thisLot.name
 		cell.parkinglotLoadLabel.text = "\(thisLot.free)"
@@ -201,7 +211,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		cell.parkinglotLoadLabel.textColor = UIColor.blackColor()
 		cell.parkinglotTendencyLabel.textColor = UIColor.blackColor()
 
-		switch parkinglots[indexPath.section][indexPath.row].state {
+		switch parkinglots[indexPath.row].state {
 		case lotstate.many:
 			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateMany")
 		case lotstate.few:
@@ -227,14 +237,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		performSegueWithIdentifier("showParkinglotMap", sender: self)
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
-	}
-
-	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return 25
-	}
-
-	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return sectionNames[section]
 	}
 
 }
