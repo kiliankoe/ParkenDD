@@ -16,6 +16,7 @@ struct Parkinglot {
 	let state: lotstate
 	let lat: Double?
 	let lon: Double?
+	var distance: Double?
 }
 
 enum lotstate {

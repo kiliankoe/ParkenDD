@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
 
 	@IBOutlet weak var tableView: UITableView!
 
 	// FIXME: This is definitely not the right way of doing this...
 	let refreshControl = UIRefreshControl()
+
+	let locationManager = CLLocationManager()
 
 	// Store the single parking lots once they're retrieved from the server
 	// a single subarray for each section
@@ -23,6 +26,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		// set CLLocationManager delegate
+		locationManager.delegate = self
 
 		// display the standard reload button
 		showReloadButton()
@@ -59,6 +65,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	override func viewWillAppear(animated: Bool) {
 		sortLots()
 		tableView.reloadData()
+
+		// Start getting location updates if the user wants lots sorted by distance
+		if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "location" {
+			if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
+				locationManager.startUpdatingLocation()
+			} else {
+				let alertController = UIAlertController(title: "Location Data Error", message: "ParkenDD is unable to get location data. Please allow it to do so in the system settings.", preferredStyle: UIAlertControllerStyle.Alert)
+				alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+				alertController.addAction(UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default, handler: {
+					(action) in
+					UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+				}))
+				presentViewController(alertController, animated: true, completion: nil)
+			}
+		} else {
+			locationManager.stopUpdatingLocation()
+		}
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -132,7 +155,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 		switch sortingType! {
 		case "location":
-			println("sorting after location")
+			parkinglots.sort({
+				(lot1: Parkinglot, lot2: Parkinglot) -> Bool in
+				if let firstDistance = lot1.distance, secondDistance = lot2.distance {
+					return firstDistance < secondDistance
+				}
+				return lot1.name < lot2.name
+			})
 		case "alphabetical":
 			parkinglots.sort({
 				$0.name < $1.name
@@ -201,7 +230,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		cell.parkinglotLoadLabel.text = "\(thisLot.free)"
 
 		if let thisLotAddress = parkinglotData[thisLot.name] {
-			cell.parkinglotAddressLabel.text = thisLotAddress
+			// check if location sorting is enabled, then we're displaying distance instead of address
+			if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "location" {
+				if let distance = thisLot.distance {
+					cell.parkinglotAddressLabel.text = "\((round(distance/100))/10)km"
+				} else {
+					cell.parkinglotAddressLabel.text = "waiting for location"
+				}
+			} else {
+				cell.parkinglotAddressLabel.text = thisLotAddress
+			}
 		} else {
 			cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_ADDRESS", comment: "unknown address")
 		}
@@ -254,6 +292,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		performSegueWithIdentifier("showParkinglotMap", sender: self)
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	}
+
+	// MARK: - CLLocationManagerDelegate
+
+	func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+		let currentLocation: CLLocation = locations.last as! CLLocation
+
+		// Cycle through all lots to assign their respective distances from the user
+		for index in 0..<parkinglots.count {
+			if let lat = parkinglots[index].lat, lon = parkinglots[index].lon {
+				let lotLocation = CLLocation(latitude: lat, longitude: lon)
+				let distance = currentLocation.distanceFromLocation(lotLocation)
+				parkinglots[index].distance = round(distance)
+			}
+		}
+
+		// sort data and reload tableview
+		sortLots()
+		tableView.reloadData()
 	}
 
 }

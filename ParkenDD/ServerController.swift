@@ -73,11 +73,11 @@ class ServerController {
 
 										// hehe, lotLat is an awesome name for a variable
 										if let lotLat = (lot["lat"] as? NSString)?.doubleValue, lotLon = (lot["lon"] as? NSString)?.doubleValue {
-											let parkingLot = Parkinglot(section: sectionName, name: lotName, count: lotCount, free: lotFree, state: lotState, lat: lotLat, lon: lotLon)
+											let parkingLot = Parkinglot(section: sectionName, name: lotName, count: lotCount, free: lotFree, state: lotState, lat: lotLat, lon: lotLon, distance: nil)
 											parkinglotList.append(parkingLot)
 										} else {
 											// apparently this lot doesn't have coordinates, which is also kind of weird
-											let parkingLot = Parkinglot(section: sectionName, name: lotName, count: lotCount, free: lotFree, state: lotState, lat: nil, lon: nil)
+											let parkingLot = Parkinglot(section: sectionName, name: lotName, count: lotCount, free: lotFree, state: lotState, lat: nil, lon: nil, distance: nil)
 											parkinglotList.append(parkingLot)
 										}
 									}
