@@ -98,6 +98,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 
+	/**
+	Call ServerController to update all local data, catch possible errors and handle the UI based on the refresh (e.g. UIRefreshControl and the UIBarButtonItem).
+	*/
 	func updateData() {
 		showActivityIndicator()
 		ServerController.sendParkinglotDataRequest() {
@@ -151,6 +154,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 
+	/**
+	Sort the parkingslots array based on what is currently saved for SortingType in NSUserDefaults.
+	*/
 	func sortLots() {
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 		switch sortingType! {
@@ -183,11 +189,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	// MARK: - Reload Button Stuff
 
+	/**
+	Remove all UI that has to do with refreshing data.
+	*/
+	func stopRefreshUI() {
+		NSLog("stoppingRefreshUI")
+		showReloadButton()
+		refreshControl.endRefreshing()
+	}
+
+	/**
+	Replace the right UIBarButtonItem with the reload button.
+	*/
 	func showReloadButton() {
 		let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "updateData")
 		self.navigationItem.rightBarButtonItem = refreshButton
 	}
 
+	/**
+	Replace the right UIBarButtonItem with a UIActivityIndicatorView.
+	*/
 	func showActivityIndicator() {
 		let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 20, 20))
 		activityIndicator.startAnimating()

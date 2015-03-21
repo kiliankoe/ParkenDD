@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+*  Map single parking lots to their address, which is being displayed on the UITableViewCell.
+*  Maybe this will be incorporated into the scraper at one point
+*/
 let parkinglotData: [String:String] = [
 	"Altmarkt": "Wilsdruffer Straße",
 	"An der Frauenkirche": "An der Frauenkirche 12a",

@@ -10,8 +10,13 @@ import Foundation
 
 class ServerController {
 
-	// Get the current data for all parkinglots by asking the happy PHP scraper and adding a "Pretty please with sugar on top" to the request
-	// FIXME: Yay for the string? error...
+	// FIXME: Stringly typed errors? Is this Python?
+
+	/**
+	Get the current data for all parkingslots by asking the happy PHP scraper and adding a "Pretty please with sugar on top" to the request
+
+	:param: callback (sectionNames: [String]?, parkinglotList: [Parkinglot]?, updateError: String?) -> ()
+	*/
 	static func sendParkinglotDataRequest(callback: (sectionNames: [String]?, parkinglotList: [Parkinglot]?, updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		sessionConfig.timeoutIntervalForRequest = 15.0
