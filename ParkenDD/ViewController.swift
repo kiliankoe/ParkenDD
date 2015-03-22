@@ -105,8 +105,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		showActivityIndicator()
 		ServerController.sendParkinglotDataRequest() {
 			(secNames, plotList, updateError) in
-			if let error = updateError {
 
+			// Reset the UI elements showing a loading refresh
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				self.stopRefreshUI()
+			})
+
+			if let error = updateError {
 				if error == "requestError" {
 					// Give the user a notification that new data can't be fetched
 					var alertController = UIAlertController(title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), message: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), preferredStyle: UIAlertControllerStyle.Alert)
@@ -123,10 +128,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 					alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
 					self.presentViewController(alertController, animated: true, completion: nil)
 				}
-
-				// Stop the UIRefreshControl without updating the date
-				self.refreshControl.endRefreshing()
-				self.showReloadButton()
 
 			} else if let secNames = secNames, plotList = plotList {
 				self.sectionNames = secNames
@@ -145,10 +146,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 					let title = "\(updateString) \(formatter.stringFromDate(NSDate()))"
 					let attributedTitle = NSAttributedString(string: title, attributes: nil)
 					self.refreshControl.attributedTitle = attributedTitle
-
-					// Stop the UIRefreshControl
-					self.refreshControl.endRefreshing()
-					self.showReloadButton()
 				})
 			}
 		}
@@ -193,7 +190,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	Remove all UI that has to do with refreshing data.
 	*/
 	func stopRefreshUI() {
-		NSLog("stoppingRefreshUI")
 		showReloadButton()
 		refreshControl.endRefreshing()
 	}
