@@ -229,22 +229,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	// MARK: - UITableViewDataSource
 
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		if parkinglots.count == 0 {
-			let messageLabel = UILabel(frame: CGRectMake(0, 0, view.bounds.width, view.bounds.height))
-			messageLabel.text = NSLocalizedString("NO_DATA", comment: "Refreshing...")
-			messageLabel.textColor = UIColor.blackColor()
-			messageLabel.numberOfLines = 0
-			messageLabel.textAlignment = NSTextAlignment.Center
-			messageLabel.font = UIFont(name: "HelveticaNeue-LightItalic", size: 20)
-			messageLabel.sizeToFit()
-
-			tableView.backgroundView = messageLabel
-			tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-			return 0
-		}
-		// TODO: tableView.backgroundView is still set to messageLabel... Can be seen if dragged down far enough. Damn.
-		tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-
 		return 1
 	}
 
