@@ -67,7 +67,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		tableView.reloadData()
 
 		// Start getting location updates if the user wants lots sorted by distance
-		if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "location" {
+		if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "distance" {
 			if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
@@ -157,7 +157,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	func sortLots() {
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 		switch sortingType! {
-		case "location":
+		case "distance":
 			parkinglots.sort({
 				(lot1: Parkinglot, lot2: Parkinglot) -> Bool in
 				if let firstDistance = lot1.distance, secondDistance = lot2.distance {
@@ -232,7 +232,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 		if let thisLotAddress = parkinglotData[thisLot.name] {
 			// check if location sorting is enabled, then we're displaying distance instead of address
-			if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "location" {
+			if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "distance" {
 				if let distance = thisLot.distance {
 					cell.parkinglotAddressLabel.text = "\((round(distance/100))/10)km"
 				} else {

@@ -20,7 +20,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		let sortingtype = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 
 		switch sortingtype! {
-		case "location":
+		case "distance":
 			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
 		case "alphabetical":
 			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
@@ -36,10 +36,6 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-	// MARK: - IBOutlets
-	@IBOutlet weak var defaultSortingCell: UITableViewCell!
-	@IBOutlet weak var userLocationSortingCell: UITableViewCell!
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -47,8 +43,6 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
 		if section == 0 {
 			return 4
 		} else {
@@ -71,7 +65,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 			var defaultsValue: String
 			switch indexPath.row {
 			case 1:
-				defaultsValue = "location"
+				defaultsValue = "distance"
 			case 2:
 				defaultsValue = "alphabetical"
 			case 3:

@@ -127,8 +127,6 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="defaultSortingCell" destination="arx-He-yiz" id="oky-n1-dk5"/>
-                        <outlet property="userLocationSortingCell" destination="6gv-Cp-4c8" id="Khz-Ee-kPI"/>
                         <segue destination="yJE-RY-XFc" kind="show" identifier="showAboutView" id="9AS-hM-ET5"/>
                     </connections>
                 </tableViewController>
@@ -271,7 +269,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL6-Aw-ZQN">
                                 <rect key="frame" x="16" y="20" width="568" height="572"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">ParkenDD v1.1
+                                <string key="text">ParkenDD v1.1
 
 http://kilian.io/parkendd
 
@@ -285,7 +283,7 @@ The sourcecode for this application can be viewed at https://github.com/kilianko
 
 Cogwheel icon from http://icons8.com/web-app/364/Settings
 
-Car icon on app icon made by Freepik from http://flaticon.com and is licensed CC BY 3.0</mutableString>
+Car icon on app icon made by Freepik from http://flaticon.com and is licensed CC BY 3.0</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
