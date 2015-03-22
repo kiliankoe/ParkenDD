@@ -22,7 +22,7 @@
 		39B9535D1AA0A59600026EC2 /* ParkenDDWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39B953501AA0A59600026EC2 /* ParkenDDWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */; };
-		39F4CFE61A6BBC0200ACFECF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE51A6BBC0200ACFECF /* ViewController.swift */; };
+		39F4CFE61A6BBC0200ACFECF /* LotlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */; };
 		39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFE71A6BBC0200ACFECF /* Main.storyboard */; };
 		39F4CFEB1A6BBC0200ACFECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */; };
 		39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFEC1A6BBC0200ACFECF /* LaunchScreen.xib */; };
@@ -83,7 +83,7 @@
 		39F4CFDE1A6BBC0200ACFECF /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFE21A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		39F4CFE51A6BBC0200ACFECF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotlistViewController.swift; sourceTree = "<group>"; };
 		39F4CFE81A6BBC0200ACFECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		39F4CFED1A6BBC0200ACFECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -126,13 +126,13 @@
 			name = MapView;
 			sourceTree = "<group>";
 		};
-		399C340C1AACCFEA00A2C124 /* ListView */ = {
+		399C340C1AACCFEA00A2C124 /* LotlistView */ = {
 			isa = PBXGroup;
 			children = (
-				39F4CFE51A6BBC0200ACFECF /* ViewController.swift */,
+				39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */,
 				392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */,
 			);
-			name = ListView;
+			name = LotlistView;
 			sourceTree = "<group>";
 		};
 		399C340D1AACD05400A2C124 /* ParkinglotData */ = {
@@ -214,7 +214,7 @@
 				3926FECC1AAC47AA005B2DF9 /* Constants.swift */,
 				393F0D391A97BDBB00B25B74 /* ServerController.swift */,
 				399C340D1AACD05400A2C124 /* ParkinglotData */,
-				399C340C1AACCFEA00A2C124 /* ListView */,
+				399C340C1AACCFEA00A2C124 /* LotlistView */,
 				394209B21AADB15900E47539 /* MapView */,
 				39F16F801AB828E4006C2CF0 /* SettingsView */,
 				39F16F831AB8EF89006C2CF0 /* AboutView */,
@@ -400,7 +400,7 @@
 			files = (
 				392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */,
 				393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */,
-				39F4CFE61A6BBC0200ACFECF /* ViewController.swift in Sources */,
+				39F4CFE61A6BBC0200ACFECF /* LotlistViewController.swift in Sources */,
 				39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */,
 				397B92091A9BCE0A000D42CE /* ParkinglotData.swift in Sources */,
 				394209B41AADB17600E47539 /* MapViewController.swift in Sources */,

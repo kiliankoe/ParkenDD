@@ -9,12 +9,7 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
-
-	@IBOutlet weak var tableView: UITableView!
-
-	// FIXME: This is definitely not the right way of doing this...
-	let refreshControl = UIRefreshControl()
+class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	let locationManager = CLLocationManager()
 
@@ -26,6 +21,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		self.refreshControl = UIRefreshControl()
 
 		// set CLLocationManager delegate
 		locationManager.delegate = self
@@ -51,15 +48,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		attrsDict[NSFontAttributeName] = font
 		navBar!.titleTextAttributes = attrsDict
 
-		// Call this here to prevent the UIRefreshControl sometimes looking messed up when waking the app
-		self.refreshControl.endRefreshing()
-
 		// FIXME: For some reason the UI freezes up when it tries to update itself on start with a failing internet connection
 		// Maybe because it tries to fire an alert on a ViewController that isn't ready yet?
 		updateData()
 
-		refreshControl.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
-		tableView.insertSubview(refreshControl, atIndex: 0)
+		self.refreshControl!.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
+		tableView.insertSubview(self.refreshControl!, atIndex: 0)
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -145,7 +139,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 					let updateString = NSLocalizedString("LAST_UPDATE", comment: "Last update:")
 					let title = "\(updateString) \(formatter.stringFromDate(NSDate()))"
 					let attributedTitle = NSAttributedString(string: title, attributes: nil)
-					self.refreshControl.attributedTitle = attributedTitle
+					self.refreshControl!.attributedTitle = attributedTitle
 				})
 			}
 		}
@@ -191,7 +185,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 	*/
 	func stopRefreshUI() {
 		showReloadButton()
-		refreshControl.endRefreshing()
+		refreshControl!.endRefreshing()
 	}
 
 	/**
@@ -214,15 +208,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	// MARK: - UITableViewDataSource
 
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
 
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return parkinglots.count
 	}
 
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
 
 		let thisLot = parkinglots[indexPath.row]
@@ -290,7 +284,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	// MARK: - UITableViewDelegate
 
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		performSegueWithIdentifier("showParkinglotMap", sender: self)
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}

@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		if inBackground {
 			// FIXME: Going through childViewControllers like this feels unbelievably prone to errors...
-			let mainVC = self.window?.rootViewController?.childViewControllers[0] as! ViewController
+			let mainVC = self.window?.rootViewController?.childViewControllers[0] as! LotlistViewController
 			mainVC.updateData()
 			inBackground = false
 		}

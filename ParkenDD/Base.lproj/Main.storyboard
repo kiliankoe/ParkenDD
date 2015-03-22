@@ -135,124 +135,107 @@
             <point key="canvasLocation" x="2091" y="-169"/>
         </scene>
         <!--ParkenDD-->
-        <scene sceneID="ufC-wZ-h7g">
+        <scene sceneID="mA1-45-In7">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="ParkenDD" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                <tableViewController title="ParkenDD" id="t3H-oi-vUE" customClass="LotlistViewController" customModule="ParkenDD" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="Sig-Bh-KVE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nvz-kY-7nE">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="parkinglotCell" id="Fc6-sY-y9H" customClass="ParkinglotTableViewCell" customModule="ParkenDD" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fc6-sY-y9H" id="aeK-tz-Dv3">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUh-dH-utI">
-                                                    <rect key="frame" x="8" y="30" width="300" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="159" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBR-31-iII">
-                                                    <rect key="frame" x="457" y="11" width="100" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="245" y="19" width="100" height="21"/>
-                                                    </variation>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="tendency" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63L-uQ-iqV">
-                                                    <rect key="frame" x="374" y="30" width="183" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frauenkirche Neumarkt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Mc-DZC">
-                                                    <rect key="frame" x="8" y="11" width="179" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="15" y="19" width="179" height="21"/>
-                                                    </variation>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AH7-xn-Yi5">
-                                                    <rect key="frame" x="565" y="16" width="27" height="27"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="27" id="ptr-ei-DDq"/>
-                                                    </constraints>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="360" y="19" width="20" height="20"/>
-                                                    </variation>
-                                                </imageView>
-                                            </subviews>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="parkinglotCell" id="Fc6-sY-y9H" customClass="ParkinglotTableViewCell" customModule="ParkenDD" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fc6-sY-y9H" id="aeK-tz-Dv3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUh-dH-utI">
+                                            <rect key="frame" x="8" y="30" width="300" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="159" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBR-31-iII">
+                                            <rect key="frame" x="457" y="11" width="100" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="245" y="19" width="100" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="tendency" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63L-uQ-iqV">
+                                            <rect key="frame" x="374" y="30" width="183" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frauenkirche Neumarkt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Mc-DZC">
+                                            <rect key="frame" x="8" y="11" width="179" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="15" y="19" width="179" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AH7-xn-Yi5">
+                                            <rect key="frame" x="565" y="16" width="27" height="27"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="AH7-xn-Yi5" secondAttribute="bottom" constant="8" id="4YY-54-jd5"/>
-                                                <constraint firstItem="gAX-Mc-DZC" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="3" id="6c1-md-9st"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="WBR-31-iII" secondAttribute="bottom" constant="19" id="85e-lx-AQE"/>
-                                                <constraint firstItem="aUh-dH-utI" firstAttribute="bottom" secondItem="aeK-tz-Dv3" secondAttribute="bottomMargin" id="Cud-Va-Jyx"/>
-                                                <constraint firstItem="aUh-dH-utI" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" id="Hcl-KN-cw5"/>
-                                                <constraint firstItem="AH7-xn-Yi5" firstAttribute="leading" secondItem="WBR-31-iII" secondAttribute="trailing" constant="8" id="KGD-x5-ybR"/>
-                                                <constraint firstItem="AH7-xn-Yi5" firstAttribute="leading" secondItem="63L-uQ-iqV" secondAttribute="trailing" constant="8" id="buK-hY-8GU"/>
-                                                <constraint firstItem="aUh-dH-utI" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="22" id="dmO-nb-KHy"/>
-                                                <constraint firstItem="63L-uQ-iqV" firstAttribute="bottom" secondItem="aeK-tz-Dv3" secondAttribute="bottomMargin" id="geK-Ly-CBa"/>
-                                                <constraint firstItem="AH7-xn-Yi5" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="8" id="hjf-Ss-QNs"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="gAX-Mc-DZC" secondAttribute="bottom" constant="19" id="lwb-ML-2tv"/>
-                                                <constraint firstItem="63L-uQ-iqV" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="22" id="tUl-1Y-NY1"/>
-                                                <constraint firstItem="WBR-31-iII" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="3" id="y9a-8K-Eyp"/>
-                                                <constraint firstItem="AH7-xn-Yi5" firstAttribute="trailing" secondItem="aeK-tz-Dv3" secondAttribute="trailingMargin" id="z18-aM-Ya4"/>
-                                                <constraint firstItem="gAX-Mc-DZC" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" id="zpI-UI-ZsY"/>
+                                                <constraint firstAttribute="width" constant="27" id="ptr-ei-DDq"/>
                                             </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="parkinglotAddressLabel" destination="aUh-dH-utI" id="97i-IK-5OU"/>
-                                            <outlet property="parkinglotLoadLabel" destination="WBR-31-iII" id="CCM-Tr-lcK"/>
-                                            <outlet property="parkinglotNameLabel" destination="gAX-Mc-DZC" id="pVt-6k-ppC"/>
-                                            <outlet property="parkinglotStateImage" destination="AH7-xn-Yi5" id="kgV-RI-TLV"/>
-                                            <outlet property="parkinglotTendencyLabel" destination="63L-uQ-iqV" id="gcp-9R-Rcr"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                            <variation key="widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="360" y="19" width="20" height="20"/>
+                                            </variation>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="AH7-xn-Yi5" secondAttribute="bottom" constant="8" id="4YY-54-jd5"/>
+                                        <constraint firstItem="gAX-Mc-DZC" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="3" id="6c1-md-9st"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="WBR-31-iII" secondAttribute="bottom" constant="19" id="85e-lx-AQE"/>
+                                        <constraint firstItem="aUh-dH-utI" firstAttribute="bottom" secondItem="aeK-tz-Dv3" secondAttribute="bottomMargin" id="Cud-Va-Jyx"/>
+                                        <constraint firstItem="aUh-dH-utI" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" id="Hcl-KN-cw5"/>
+                                        <constraint firstItem="AH7-xn-Yi5" firstAttribute="leading" secondItem="WBR-31-iII" secondAttribute="trailing" constant="8" id="KGD-x5-ybR"/>
+                                        <constraint firstItem="AH7-xn-Yi5" firstAttribute="leading" secondItem="63L-uQ-iqV" secondAttribute="trailing" constant="8" id="buK-hY-8GU"/>
+                                        <constraint firstItem="aUh-dH-utI" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="22" id="dmO-nb-KHy"/>
+                                        <constraint firstItem="63L-uQ-iqV" firstAttribute="bottom" secondItem="aeK-tz-Dv3" secondAttribute="bottomMargin" id="geK-Ly-CBa"/>
+                                        <constraint firstItem="AH7-xn-Yi5" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="8" id="hjf-Ss-QNs"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="gAX-Mc-DZC" secondAttribute="bottom" constant="19" id="lwb-ML-2tv"/>
+                                        <constraint firstItem="63L-uQ-iqV" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="22" id="tUl-1Y-NY1"/>
+                                        <constraint firstItem="WBR-31-iII" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="3" id="y9a-8K-Eyp"/>
+                                        <constraint firstItem="AH7-xn-Yi5" firstAttribute="trailing" secondItem="aeK-tz-Dv3" secondAttribute="trailingMargin" id="z18-aM-Ya4"/>
+                                        <constraint firstItem="gAX-Mc-DZC" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" id="zpI-UI-ZsY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="oN4-EW-kZd"/>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="BTn-xy-pAv"/>
+                                    <outlet property="parkinglotAddressLabel" destination="aUh-dH-utI" id="97i-IK-5OU"/>
+                                    <outlet property="parkinglotLoadLabel" destination="WBR-31-iII" id="CCM-Tr-lcK"/>
+                                    <outlet property="parkinglotNameLabel" destination="gAX-Mc-DZC" id="pVt-6k-ppC"/>
+                                    <outlet property="parkinglotStateImage" destination="AH7-xn-Yi5" id="kgV-RI-TLV"/>
+                                    <outlet property="parkinglotTendencyLabel" destination="63L-uQ-iqV" id="gcp-9R-Rcr"/>
                                 </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="nvz-kY-7nE" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="2xU-s1-G4K"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nvz-kY-7nE" secondAttribute="trailing" constant="-16" id="CEn-nL-0W0"/>
-                            <constraint firstItem="nvz-kY-7nE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Q3C-oq-PmM"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="nvz-kY-7nE" secondAttribute="bottom" id="wBK-ln-S9L"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="ParkenDD" id="ktr-z8-YRd">
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="t3H-oi-vUE" id="n3z-QX-HMx"/>
+                            <outlet property="delegate" destination="t3H-oi-vUE" id="ocG-rJ-y45"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="ParkenDD" id="vzi-sq-g1r">
                         <barButtonItem key="leftBarButtonItem" image="settingsButton" id="5ZO-Nw-ttC">
                             <connections>
-                                <action selector="settingsButtonTapped:" destination="vXZ-lx-hvc" id="FnJ-fB-qVv"/>
+                                <action selector="settingsButtonTapped:" destination="t3H-oi-vUE" id="F2j-C4-xpK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="nvz-kY-7nE" id="nxp-Ed-f4F"/>
-                        <segue destination="xNy-JD-sE7" kind="show" identifier="showSettingsView" id="5dl-jh-Kb7"/>
-                        <segue destination="PlL-UC-K5S" kind="show" identifier="showParkinglotMap" id="h6E-nW-d0O"/>
+                        <segue destination="PlL-UC-K5S" kind="show" identifier="showParkinglotMap" id="Hik-be-W5a"/>
+                        <segue destination="xNy-JD-sE7" kind="show" identifier="showSettingsView" id="91j-Jx-Qz0"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L5s-CW-tOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1376" y="537"/>
+            <point key="canvasLocation" x="1366" y="537"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="6ii-fV-6NZ">
@@ -351,7 +334,7 @@ Car icon on app icon made by Freepik from http://flaticon.com and is licensed CC
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="pkv-Nt-pDo"/>
+                        <segue destination="t3H-oi-vUE" kind="relationship" relationship="rootViewController" id="1kn-T8-8he"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjF-MC-tRx" userLabel="First Responder" sceneMemberID="firstResponder"/>
