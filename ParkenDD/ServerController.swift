@@ -46,6 +46,10 @@ class ServerController {
 								// save the section name
 								sectionNames.append(sectionName)
 
+								if lots.count == 0 {
+									callback(sectionNames: nil, parkinglotList: nil, updateError: "serverError")
+								}
+
 								for lot in lots {
 
 									// check for the main parameters
