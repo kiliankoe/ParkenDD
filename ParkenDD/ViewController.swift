@@ -106,13 +106,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		ServerController.sendParkinglotDataRequest() {
 			(secNames, plotList, updateError) in
 
+			// Reset the UI elements showing a loading refresh
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				self.stopRefreshUI()
+			})
+
 			if let error = updateError {
-
-				// Reset the UI elements showing a loading refresh
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
-					self.stopRefreshUI()
-				})
-
 				if error == "requestError" {
 					// Give the user a notification that new data can't be fetched
 					var alertController = UIAlertController(title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), message: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), preferredStyle: UIAlertControllerStyle.Alert)
@@ -131,14 +130,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 				}
 
 			} else if let secNames = secNames, plotList = plotList {
-
 				self.sectionNames = secNames
 				self.parkinglots = plotList
 				self.defaultSortedParkinglots = plotList
 				self.sortLots()
 
-				// If the sortingtype is set to distance, we don't want to stop the refresh UI and reload the tableview quite yet
-				if let sortingtype = NSUserDefaults.standardUserDefaults().stringForKey("SortingType") where sortingtype == "location" {
+				// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
+				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					self.tableView.reloadData()
+
 					// Update the displayed "Last update: " time in the UIRefreshControl
 					let formatter = NSDateFormatter()
 					formatter.dateFormat = "dd.MM. HH:mm"
@@ -146,21 +146,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 					let title = "\(updateString) \(formatter.stringFromDate(NSDate()))"
 					let attributedTitle = NSAttributedString(string: title, attributes: nil)
 					self.refreshControl.attributedTitle = attributedTitle
-				} else {
-					// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
-					dispatch_async(dispatch_get_main_queue(), { () -> Void in
-						self.tableView.reloadData()
-						self.stopRefreshUI()
-
-						// Update the displayed "Last update: " time in the UIRefreshControl
-						let formatter = NSDateFormatter()
-						formatter.dateFormat = "dd.MM. HH:mm"
-						let updateString = NSLocalizedString("LAST_UPDATE", comment: "Last update:")
-						let title = "\(updateString) \(formatter.stringFromDate(NSDate()))"
-						let attributedTitle = NSAttributedString(string: title, attributes: nil)
-						self.refreshControl.attributedTitle = attributedTitle
-					})
-				}
+				})
 			}
 		}
 	}
