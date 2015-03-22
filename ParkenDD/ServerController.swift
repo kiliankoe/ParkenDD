@@ -13,7 +13,7 @@ class ServerController {
 	// FIXME: Stringly typed errors? Is this Python?
 
 	/**
-	Get the current data for all parkingslots by asking the happy PHP scraper and adding a "Pretty please with sugar on top" to the request
+	Get the current data for all parkinglots by asking the happy PHP scraper and adding a "Pretty please with sugar on top" to the request
 
 	:param: callback (sectionNames: [String]?, parkinglotList: [Parkinglot]?, updateError: String?) -> ()
 	*/
