@@ -47,9 +47,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		attrsDict[NSShadowAttributeName] = shadow
 		attrsDict[NSFontAttributeName] = font
 		navBar!.titleTextAttributes = attrsDict
-
-		self.refreshControl!.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
-		tableView.insertSubview(self.refreshControl!, atIndex: 0)
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -76,6 +73,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	override func viewDidAppear(animated: Bool) {
 		updateData()
+
+		self.refreshControl!.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
+		tableView.insertSubview(self.refreshControl!, atIndex: 0)
 	}
 
 	override func didReceiveMemoryWarning() {
