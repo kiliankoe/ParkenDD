@@ -61,9 +61,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
-				let alertController = UIAlertController(title: "Location Data Error", message: "ParkenDD is unable to get location data. Please allow it to do so in the system settings.", preferredStyle: UIAlertControllerStyle.Alert)
-				alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-				alertController.addAction(UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default, handler: {
+				let alertController = UIAlertController(title: NSLocalizedString("LOCATION_DATA_ERROR_TITLE", comment: "Location Data Error"), message: NSLocalizedString("LOCATION_DATA_ERROR", comment: "Please allow location data..."), preferredStyle: UIAlertControllerStyle.Alert)
+				alertController.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+				alertController.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS", comment: "Settings"), style: UIAlertActionStyle.Default, handler: {
 					(action) in
 					UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
 				}))
@@ -231,7 +231,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				if let distance = thisLot.distance {
 					cell.parkinglotAddressLabel.text = "\((round(distance/100))/10)km"
 				} else {
-					cell.parkinglotAddressLabel.text = "waiting for location"
+					cell.parkinglotAddressLabel.text = NSLocalizedString("WAITING_FOR_LOCATION", comment: "waiting for location")
 				}
 			} else {
 				cell.parkinglotAddressLabel.text = thisLotAddress

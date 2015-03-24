@@ -77,23 +77,25 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: "SortingType")
 		}
 
-		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "About" {
-			performSegueWithIdentifier("showAboutView", sender: self)
-		}
-
-		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "Share on Twitter" {
-			if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
-				let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-				tweetsheet.setInitialText("Check out #ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://itunes.com/apps/parkendd")
-				self.presentViewController(tweetsheet, animated: true, completion: nil)
+		if indexPath.section == 1 {
+			if indexPath.row == 0 {
+				performSegueWithIdentifier("showAboutView", sender: self)
 			}
-		}
 
-		if tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text == "Share on Facebook" {
-			if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
-				let fbsheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-				fbsheet.setInitialText("Check out ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://itunes.com/apps/parkendd")
-				self.presentViewController(fbsheet, animated: true, completion: nil)
+			if indexPath.row == 1 {
+				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+					tweetsheet.setInitialText(NSLocalizedString("TWEET_TEXT", comment: "Check out #ParkenDD..."))
+					self.presentViewController(tweetsheet, animated: true, completion: nil)
+				}
+			}
+
+			if indexPath.row == 2 {
+				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
+					let fbsheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+					fbsheet.setInitialText(NSLocalizedString("FBPOST_TEXT", comment: "Check out ParkenDD..."))
+					self.presentViewController(fbsheet, animated: true, completion: nil)
+				}
 			}
 		}
 

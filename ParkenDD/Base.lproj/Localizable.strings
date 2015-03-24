@@ -6,24 +6,36 @@
   Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
 */
 
-// MARK: Error Messages
-
-REQUEST_ERROR_TITLE = "Connection Error";
-REQUEST_ERROR = "Couldn't fetch data. You appear to be disconnected from the internet.";
-
-SERVER_ERROR_TITLE = "Server Error";
-SERVER_ERROR = "Couldn't read data from server. Please try again in a few moments.";
-
-UNKNOWN_COORDINATES_TITLE = "Error";
-UNKNOWN_COORDINATES_ERROR = "Couldn't find coordinates for selected parking lot.";
-
-// MARK: Labels
-
-LAST_UPDATE = "Last update:";
-NO_DATA = "Refreshing...";
-
-OCCUPIED = "occupied";
-CLOSED = "closed";
-
-UNKNOWN_ADDRESS = "unknown address";
-UNKNOWN_LOAD = "unknown";
+"REQUEST_ERROR_TITLE" = "Connection Error";
+"REQUEST_ERROR" = "Couldn't fetch data. You appear to be disconnected from the internet.";
+"SERVER_ERROR_TITLE" = "Server Error";
+"SERVER_ERROR" = "Couldn't read data from server. Please try again in a few moments. ";
+"UNKNOWN_COORDINATES_TITLE" = "Error";
+"UNKNOWN_COORDINATES_ERROR" = "Couldn't find coordinates for selected parking lot. ";
+"LAST_UPDATE" = "Last update:";
+"NO_DATA" = "Refreshing...";
+"OCCUPIED" = "occupied";
+"CLOSED" = "closed";
+"UNKNOWN_ADDRESS" = "unknown address";
+"UNKNOWN_LOAD" = "unknown";
+"SHARE_ON_FACEBOOK" = "Share on Facebook";
+"OTHER_OPTIONS" = "Other";
+"SORTINGTYPE_LOCATION" = "Distance";
+"ABOUT_TEXT" = "ParkenDD v1.1\n\nhttp://kilian.io/parkendd\n\nAll data supplied without any guarantees!\n\nData is as current as http://www.dresden.de/freie-parkplaetze/.\n\nThanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Constantin Müller (@ubahnverleih) for creating the API server.\n\nThe sourcecode for this application can be viewed at https://github.com/kiliankoe/parkendd and is licensed under the MIT license. Feedback in the form of issues and pull requests is always welcome!\n\nCogwheel icon from http://icons8.com/web-app/364/Settings\n\nCar icon on app icon made by Freepik from http://flaticon.com and is licensed CC BY 3.0";
+"SHARE_ON_TWITTER" = "Share on Twitter";
+"SORTINGTYPE_FREESPOTS" = "Free Spots";
+"SORTING_OPTIONS" = "Sort by";
+"SORTINGTYPE_ALPHABETICAL" = "Alphabetical";
+"ABOUT_BUTTON" = "About";
+"SORTINGTYPE_DEFAULT" = "Default";
+"NSLocationWhenInUseUsageDescription" = "Used to show location on map and for sorting parking lots by distance.";
+"TWEET_TEXT" = "Check out #ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://itunes.com/apps/parkendd";
+"FBPOST_TEXT" = "Check out ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://itunes.com/apps/parkendd";
+"WAITING_FOR_LOCATION" = "waiting for location";
+"APPSTORE_DESCRIPTION" = "ParkenDD shows you a list of the number of available public parking spots in Dresden, Germany. It shows you whether a public parking lot is open or not, how many spots are available and where it is on a map.\n\nThe information displayed is up-to-date according to what is published officially on dresden.de/freie-parkplaetze.\n\nThe source for this application is available on Github. See https://github.com/kiliankoe/parkendd";
+"APPSTORE_TAGS" = "dresden, parking, car, driving, navigation, park, public, parkinglot, lot";
+"APPSTORE_CHANGELOG_V1.1" = "Version 1.1 brings a few great updates to ParkenDD!\n\nFirst of all is a new design, but now you also have the option of sorting the list of parking lots according to the amount of free spots, their distance from your current location or just alphabetically. That way you'll always have the relevant lots right at the top of the list. And of course there's also been a handful of bugfixes.\n\nEnjoy the new version! I'd also be really happy about any positive review here in the app store :)";
+"LOCATION_DATA_ERROR_TITLE" = "Location Data Error";
+"LOCATION_DATA_ERROR" = "ParkenDD is unable to get location data. Please allow it to do so in the system settings.";
+"CANCEL" = "Cancel";
+"SETTINGS" = "Settings";
