@@ -48,7 +48,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		attrsDict[NSFontAttributeName] = font
 		navBar!.titleTextAttributes = attrsDict
 
-		updateData()
+		// Kinda cheating here, but the update should be running called by code in the app delegate
+		showActivityIndicator()
 	}
 
 	override func viewWillAppear(animated: Bool) {
