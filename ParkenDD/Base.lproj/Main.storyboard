@@ -309,10 +309,10 @@ Car icon on app icon made by Freepik from http://flaticon.com and is licensed CC
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Xbf-iT-BnV" firstAttribute="leading" secondItem="xCp-fI-276" secondAttribute="leadingMargin" constant="-16" id="BXA-Ux-A7f"/>
-                            <constraint firstItem="R7B-FA-vTl" firstAttribute="top" secondItem="Xbf-iT-BnV" secondAttribute="bottom" id="NKG-aL-VeU"/>
-                            <constraint firstItem="Xbf-iT-BnV" firstAttribute="top" secondItem="xCp-fI-276" secondAttribute="topMargin" id="S7A-XL-303"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Xbf-iT-BnV" secondAttribute="trailing" constant="-16" id="tdP-es-lRf"/>
+                            <constraint firstItem="Xbf-iT-BnV" firstAttribute="top" secondItem="xCp-fI-276" secondAttribute="top" id="D1Q-NY-6Yw"/>
+                            <constraint firstItem="Xbf-iT-BnV" firstAttribute="leading" secondItem="xCp-fI-276" secondAttribute="leading" id="oaW-cq-FWR"/>
+                            <constraint firstItem="R7B-FA-vTl" firstAttribute="top" secondItem="Xbf-iT-BnV" secondAttribute="bottom" id="saa-yM-MMn"/>
+                            <constraint firstAttribute="trailing" secondItem="Xbf-iT-BnV" secondAttribute="trailing" id="txr-DW-9FY"/>
                         </constraints>
                     </view>
                     <connections>
