@@ -48,10 +48,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		attrsDict[NSFontAttributeName] = font
 		navBar!.titleTextAttributes = attrsDict
 
-		// FIXME: For some reason the UI freezes up when it tries to update itself on start with a failing internet connection
-		// Maybe because it tries to fire an alert on a ViewController that isn't ready yet?
-		updateData()
-
 		self.refreshControl!.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
 		tableView.insertSubview(self.refreshControl!, atIndex: 0)
 	}
@@ -76,6 +72,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		} else {
 			locationManager.stopUpdatingLocation()
 		}
+	}
+
+	override func viewDidAppear(animated: Bool) {
+		updateData()
 	}
 
 	override func didReceiveMemoryWarning() {
