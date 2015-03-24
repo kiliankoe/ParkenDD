@@ -30,6 +30,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		// display the standard reload button
 		showReloadButton()
 
+		refreshControl!.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
+
 		// pretty blue navbar with white buttons
 		let navBar = self.navigationController?.navigationBar
 		navBar!.barTintColor = UIColor(hue: 0.58, saturation: 1.0, brightness: 0.33, alpha: 1.0)
@@ -71,11 +73,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		} else {
 			locationManager.stopUpdatingLocation()
 		}
-	}
-
-	override func viewDidAppear(animated: Bool) {
-		self.refreshControl!.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
-		tableView.insertSubview(self.refreshControl!, atIndex: 0)
 	}
 
 	override func didReceiveMemoryWarning() {
