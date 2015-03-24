@@ -54,7 +54,7 @@
 		39F4CFDE1A6BBC0200ACFECF /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFE21A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotlistViewController.swift; sourceTree = "<group>"; };
+		39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotlistViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		39F4CFE81A6BBC0200ACFECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		39F4CFED1A6BBC0200ACFECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };

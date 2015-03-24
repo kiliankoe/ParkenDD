@@ -228,6 +228,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="c1C-xO-xrW">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshControlValueChanged:" destination="t3H-oi-vUE" eventType="valueChanged" id="fub-Q1-a4E"/>
+                        </connections>
+                    </refreshControl>
                     <connections>
                         <segue destination="PlL-UC-K5S" kind="show" identifier="showParkinglotMap" id="Hik-be-W5a"/>
                         <segue destination="xNy-JD-sE7" kind="show" identifier="showSettingsView" id="91j-Jx-Qz0"/>

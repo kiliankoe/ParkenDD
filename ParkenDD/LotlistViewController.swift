@@ -22,15 +22,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.refreshControl = UIRefreshControl()
-
 		// set CLLocationManager delegate
 		locationManager.delegate = self
 
 		// display the standard reload button
 		showReloadButton()
-
-		refreshControl!.addTarget(self, action: "updateData", forControlEvents: UIControlEvents.ValueChanged)
 
 		// pretty blue navbar with white buttons
 		let navBar = self.navigationController?.navigationBar
@@ -129,14 +125,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
 				dispatch_async(dispatch_get_main_queue(), { () -> Void in
 					self.tableView.reloadData()
-
-					// Update the displayed "Last update: " time in the UIRefreshControl
-					let formatter = NSDateFormatter()
-					formatter.dateFormat = "dd.MM. HH:mm"
-					let updateString = NSLocalizedString("LAST_UPDATE", comment: "Last update:")
-					let title = "\(updateString) \(formatter.stringFromDate(NSDate()))"
-					let attributedTitle = NSAttributedString(string: title, attributes: nil)
-					self.refreshControl!.attributedTitle = attributedTitle
 				})
 			}
 		}
@@ -201,6 +189,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		activityIndicator.startAnimating()
 		let activityItem = UIBarButtonItem(customView: activityIndicator)
 		self.navigationItem.rightBarButtonItem = activityItem
+	}
+
+	@IBAction func refreshControlValueChanged(sender: UIRefreshControl) {
+		updateData()
 	}
 
 	// MARK: - UITableViewDataSource
