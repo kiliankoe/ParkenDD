@@ -32,11 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let defaults: [NSObject:AnyObject] = ["SortingType": "default"]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 
-		// Update at first launch
-		// FIXME: This still feels prone to errors, but I can't call the freakin' updateData() in the viewDidLoad(), viewWillAppear() or I don't know where in the lotListViewController...
-		let mainVC = self.window?.rootViewController?.childViewControllers[0] as! LotlistViewController
-		mainVC.updateData()
-
 		return true
 	}
 
