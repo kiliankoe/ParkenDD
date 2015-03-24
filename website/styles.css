@@ -23,9 +23,8 @@ body {
 	color: #393939;
 }
 
-.icon {
-	width: 200px;
-	height: 200px;
+.screenshot {
+	width: 1000px;
 	margin: 100px auto 50px auto;
 	display: block;
 }
