@@ -17,9 +17,6 @@
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
 		39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B037511A94C73E00C5A273 /* AboutViewController.swift */; };
 		39B953531AA0A59600026EC2 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B953521AA0A59600026EC2 /* NotificationCenter.framework */; };
-		39B953581AA0A59600026EC2 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B953571AA0A59600026EC2 /* TodayViewController.swift */; };
-		39B9535A1AA0A59600026EC2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39B953591AA0A59600026EC2 /* MainInterface.storyboard */; };
-		39B9535D1AA0A59600026EC2 /* ParkenDDWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39B953501AA0A59600026EC2 /* ParkenDDWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */; };
 		39F4CFE61A6BBC0200ACFECF /* LotlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */; };
@@ -30,13 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		39B9535B1AA0A59600026EC2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 39F4CFD61A6BBC0200ACFECF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 39B9534F1AA0A59600026EC2;
-			remoteInfo = ParkenDDWidget;
-		};
 		39F4CFF41A6BBC0200ACFECF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39F4CFD61A6BBC0200ACFECF /* Project object */;
@@ -45,20 +35,6 @@
 			remoteInfo = ParkenDD;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		39B953611AA0A59600026EC2 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				39B9535D1AA0A59600026EC2 /* ParkenDDWidget.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3926FECC1AAC47AA005B2DF9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -76,9 +52,6 @@
 		39B4D3A51ABA487D00B69740 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		39B953501AA0A59600026EC2 /* ParkenDDWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ParkenDDWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		39B953521AA0A59600026EC2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		39B953561AA0A59600026EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		39B953571AA0A59600026EC2 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		39B953591AA0A59600026EC2 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		39F4CFDE1A6BBC0200ACFECF /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFE21A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -152,24 +125,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		39B953541AA0A59600026EC2 /* ParkenDDWidget */ = {
-			isa = PBXGroup;
-			children = (
-				39B953571AA0A59600026EC2 /* TodayViewController.swift */,
-				39B953591AA0A59600026EC2 /* MainInterface.storyboard */,
-				39B953551AA0A59600026EC2 /* Supporting Files */,
-			);
-			path = ParkenDDWidget;
-			sourceTree = "<group>";
-		};
-		39B953551AA0A59600026EC2 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				39B953561AA0A59600026EC2 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		39F16F801AB828E4006C2CF0 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,7 +146,6 @@
 			children = (
 				39F4CFE01A6BBC0200ACFECF /* ParkenDD */,
 				39F4CFF61A6BBC0200ACFECF /* ParkenDDTests */,
-				39B953541AA0A59600026EC2 /* ParkenDDWidget */,
 				39B953511AA0A59600026EC2 /* Frameworks */,
 				39F4CFDF1A6BBC0200ACFECF /* Products */,
 			);
@@ -280,12 +234,10 @@
 				39F4CFDA1A6BBC0200ACFECF /* Sources */,
 				39F4CFDB1A6BBC0200ACFECF /* Frameworks */,
 				39F4CFDC1A6BBC0200ACFECF /* Resources */,
-				39B953611AA0A59600026EC2 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				39B9535C1AA0A59600026EC2 /* PBXTargetDependency */,
 			);
 			name = ParkenDD;
 			productName = ParkenDD;
@@ -360,7 +312,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39B9535A1AA0A59600026EC2 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +341,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39B953581AA0A59600026EC2 /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,11 +372,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		39B9535C1AA0A59600026EC2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 39B9534F1AA0A59600026EC2 /* ParkenDDWidget */;
-			targetProxy = 39B9535B1AA0A59600026EC2 /* PBXContainerItemProxy */;
-		};
 		39F4CFF51A6BBC0200ACFECF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 39F4CFDD1A6BBC0200ACFECF /* ParkenDD */;
@@ -595,7 +540,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ParkenDD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -610,7 +554,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ParkenDD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
