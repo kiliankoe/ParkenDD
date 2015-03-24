@@ -29,8 +29,8 @@
 "ABOUT_BUTTON" = "About";
 "SORTINGTYPE_DEFAULT" = "Default";
 "NSLocationWhenInUseUsageDescription" = "Used to show location on map and for sorting parking lots by distance.";
-"TWEET_TEXT" = "Check out #ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://itunes.com/apps/parkendd";
-"FBPOST_TEXT" = "Check out ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://itunes.com/apps/parkendd";
+"TWEET_TEXT" = "Check out #ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://kilian.io/parkendd";
+"FBPOST_TEXT" = "Check out ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://kilian.io/parkendd";
 "WAITING_FOR_LOCATION" = "waiting for location";
 "APPSTORE_DESCRIPTION" = "ParkenDD shows you a list of the number of available public parking spots in Dresden, Germany. It shows you whether a public parking lot is open or not, how many spots are available and where it is on a map.\n\nThe information displayed is up-to-date according to what is published officially on dresden.de/freie-parkplaetze.\n\nThe source for this application is available on Github. See https://github.com/kiliankoe/parkendd";
 "APPSTORE_TAGS" = "dresden, parking, car, driving, navigation, park, public, parkinglot, lot";
