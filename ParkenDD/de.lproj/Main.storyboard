@@ -264,9 +264,7 @@ Danke an Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) und Const
 
 Der Quelltext dieser Applikation ist unter https://github.com/kiliankoe/parkendd und der MIT Lizenz veröffentlicht. Feedback in Form von Issues und Pullrequests ist immer sehr willkommen!
 
-Zahnradicon http://icons8.com/web-app/364/Settings
-
-Autoicon auf dem Appicon von Freepik http://flaticon.com und lizensiert unter CC BY 3.0</mutableString>
+Autoicon auf dem Appicon und Zahnradicon von Freepik http://flaticon.com und lizensiert unter CC BY 3.0</mutableString>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -343,6 +341,6 @@ Autoicon auf dem Appicon von Freepik http://flaticon.com und lizensiert unter CC
         </scene>
     </scenes>
     <resources>
-        <image name="settingsButton" width="25" height="25"/>
+        <image name="settingsButton" width="22" height="22"/>
     </resources>
 </document>

@@ -21,7 +21,7 @@
 "SHARE_ON_FACEBOOK" = "Auf Facebook teilen";
 "OTHER_OPTIONS" = "Anderes";
 "SORTINGTYPE_LOCATION" = "Entfernung";
-"ABOUT_TEXT" = "ParkenDD v1.1\n\nhttp://kilian.io/parkendd\n\nAlle Daten ohne Gewähr!\n\nDaten sind auf dem Stand von http://www.dresden.de/freie-parkplaetze/.\n\nDanke an Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) und Constantin Müller (@ubahnverleih) für das Entwickeln der API.\n\nDer Quelltext dieser Applikation ist unter https://github.com/kiliankoe/parkendd und der MIT Lizenz veröffentlicht. Feedback in Form von Issues und Pullrequests ist immer sehr willkommen!\n\nZahnradicon http://icons8.com/web-app/364/Settings\n\nAutoicon auf dem Appicon von Freepik http://flaticon.com und lizensiert unter CC BY 3.0";
+"ABOUT_TEXT" = "ParkenDD v1.1\n\nhttp://kilian.io/parkendd\n\nAlle Daten ohne Gewähr!\n\nDaten sind auf dem Stand von http://www.dresden.de/freie-parkplaetze/.\n\nDanke an Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) und Constantin Müller (@ubahnverleih) für das Entwickeln der API.\n\nDer Quelltext dieser Applikation ist unter https://github.com/kiliankoe/parkendd und der MIT Lizenz veröffentlicht. Feedback in Form von Issues und Pullrequests ist immer sehr willkommen!\n\nAutoicon auf dem Appicon und Zahnradicon von Freepik http://flaticon.com und lizensiert unter CC BY 3.0";
 "SHARE_ON_TWITTER" = "Auf Twitter teilen";
 "SORTINGTYPE_FREESPOTS" = "Freie Plätze";
 "SORTING_OPTIONS" = "Sortieren nach";
@@ -34,7 +34,6 @@
 "WAITING_FOR_LOCATION" = "auf Standort warten";
 "APPSTORE_DESCRIPTION" = "ParkenDD zeigt eine Liste der verfügbaren öffentlichen Parkplätze in Dresden. Es zeigt an ob ein öffentlicher Parkplatz geöffnet ist oder nicht, wie viele Plätze aktuell verfügbar sind und wo genau er sich befindet.\n\nDie angezeigten Daten sind so aktuell wie auch unter dresden.de/freie-parkplaetze veröffentlicht.\n\nDer Quelltext dieser Applikation ist auf Github verfügbar. Siehe https://github.com/kiliankoe/parkendd";
 "APPSTORE_TAGS" = "dresden, parken, auto, fahren, navigation, parkplatz, tiefgarage";
-"APPSTORE_CHANGELOG_V1.1" = "Version 1.1 bringt ein paar tolle Updates zu ParkenDD! \n\nNeben einem neuem Design sind auch Sortierungsoptionen in den neuen Einstellungen hinzugekommen. Man hat nun die Möglichkeit die dargestellten Parkplätze alphabetisch, nach der Menge an freien Plätzen oder der Entfernung vom aktuellen Standort zu sortieren. So hat man die relevanten Plätze immer gleich oben in der Liste. Ansonsten gibt's natürlich noch ne handvoll Bugfixes.\n\nViel Spaß mit der neuen Version! Über eine positive Rezension hier im App Store würde ich mich natürlich sehr freuen :)";
 "LOCATION_DATA_ERROR_TITLE" = "Lokalisierungsfehler";
 "LOCATION_DATA_ERROR" = "ParkenDD hat keine Berechtigung sich zu lokalisieren. Bitte erlaube das in den Einstellungen.";
 "CANCEL" = "Abbrechen";
