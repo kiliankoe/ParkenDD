@@ -50,6 +50,48 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		}
     }
 
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if section == 0 {
+			return NSLocalizedString("SORTING_OPTIONS", comment: "Sort by")
+		} else {
+			return NSLocalizedString("OTHER", comment: "Other")
+		}
+	}
+
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell: UITableViewCell = UITableViewCell()
+
+		if indexPath.section == 0 {
+			switch indexPath.row {
+			case 0:
+				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_DEFAULT", comment: "Default")
+			case 1:
+				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_LOCATION", comment: "Distance")
+			case 2:
+				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_ALPHABETICAL", comment: "Alphabetical")
+			case 3:
+				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_FREESPOTS", comment: "Free spots")
+			default:
+				cell.textLabel?.text = "Did you know that switch case statements have to exhaustive?"
+			}
+		} else if indexPath.section == 1 {
+			switch indexPath.row {
+			case 0:
+				cell.textLabel?.text = NSLocalizedString("ABOUT_BUTTON", comment: "About")
+				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+			case 1:
+				cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
+			case 2:
+				cell.textLabel?.text = NSLocalizedString("SHARE_ON_FACEBOOK", comment: "Share on Facebook")
+			default:
+				cell.textLabel?.text = "Did you know that switch case statements have to exhaustive?"
+			}
+		}
+
+		return cell
+
+	}
+
 	// MARK: - Table View Delegate
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

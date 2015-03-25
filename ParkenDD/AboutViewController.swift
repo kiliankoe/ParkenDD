@@ -10,8 +10,12 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
+	@IBOutlet weak var aboutTextView: UITextView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+		aboutTextView.text = NSLocalizedString("ABOUT_TEXT", comment: "about text")
 
         // Do any additional setup after loading the view.
     }

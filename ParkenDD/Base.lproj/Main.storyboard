@@ -287,6 +287,9 @@ Car icon on app icon and settingsicon made by Freepik from http://flaticon.com a
                             <constraint firstItem="CL6-Aw-ZQN" firstAttribute="top" secondItem="OBo-U7-Ppp" secondAttribute="top" constant="20" id="n4E-LW-oGt"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="aboutTextView" destination="CL6-Aw-ZQN" id="pYB-b4-cyF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCm-mZ-FHs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
