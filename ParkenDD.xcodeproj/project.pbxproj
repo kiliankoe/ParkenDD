@@ -23,6 +23,9 @@
 		39F4CFEB1A6BBC0200ACFECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */; };
 		39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFEC1A6BBC0200ACFECF /* LaunchScreen.xib */; };
 		39F4CFFA1A6BBC0200ACFECF /* ParkenDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFF91A6BBC0200ACFECF /* ParkenDDTests.swift */; };
+		39F5CBAE1AC9F9FE00A91879 /* PrognosisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */; };
+		39F5CBB11AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv in Resources */ = {isa = PBXBuildFile; fileRef = 39F5CBB01AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv */; };
+		39F5CBB31AC9FC2F00A91879 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5CBB21AC9FC2F00A91879 /* CSV.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		39F4CFF31A6BBC0200ACFECF /* ParkenDDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParkenDDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFF81A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFF91A6BBC0200ACFECF /* ParkenDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkenDDTests.swift; sourceTree = "<group>"; };
+		39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrognosisViewController.swift; sourceTree = "<group>"; };
+		39F5CBB01AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Centrum-Galerie-Belegung-Vorhersage-2015.csv"; sourceTree = "<group>"; };
+		39F5CBB21AC9FC2F00A91879 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +166,7 @@
 				394209B21AADB15900E47539 /* MapView */,
 				39F16F801AB828E4006C2CF0 /* SettingsView */,
 				39F16F831AB8EF89006C2CF0 /* AboutView */,
+				39F5CBAF1AC9FA0300A91879 /* PrognosisView */,
 				397D7B1F1A9A2236001B5874 /* Localizable.strings */,
 				39F4CFE71A6BBC0200ACFECF /* Main.storyboard */,
 				39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */,
@@ -193,6 +200,16 @@
 				39F4CFF81A6BBC0200ACFECF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		39F5CBAF1AC9FA0300A91879 /* PrognosisView */ = {
+			isa = PBXGroup;
+			children = (
+				39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */,
+				39F5CBB21AC9FC2F00A91879 /* CSV.swift */,
+				39F5CBB01AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv */,
+			);
+			name = PrognosisView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +299,7 @@
 				3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */,
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
 				39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */,
+				39F5CBB11AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv in Resources */,
 				39F4CFEB1A6BBC0200ACFECF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +326,8 @@
 				394209B41AADB17600E47539 /* MapViewController.swift in Sources */,
 				39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */,
 				393F0D381A9737AF00B25B74 /* Parkinglot.swift in Sources */,
+				39F5CBB31AC9FC2F00A91879 /* CSV.swift in Sources */,
+				39F5CBAE1AC9F9FE00A91879 /* PrognosisViewController.swift in Sources */,
 				39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */,
 				3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */,
 			);

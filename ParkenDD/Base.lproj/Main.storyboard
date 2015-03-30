@@ -76,6 +76,20 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Other" id="7b9-oS-kca">
                                 <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="YRB-Db-PO8" style="IBUITableViewCellStyleDefault" id="8ph-hs-2hb">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8ph-hs-2hb" id="7zL-iZ-4Ed">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Experimental: Prognosis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YRB-Db-PO8">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="pEY-PK-ywq" style="IBUITableViewCellStyleDefault" id="hbI-EF-LvS">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hbI-EF-LvS" id="t2u-Lj-QFS">
@@ -128,6 +142,7 @@
                     </tableView>
                     <connections>
                         <segue destination="yJE-RY-XFc" kind="show" identifier="showAboutView" id="9AS-hM-ET5"/>
+                        <segue destination="odi-Ei-a8N" kind="show" identifier="showPrognosisView" id="cYw-iP-GKk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Mn-ie-sd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -170,15 +185,6 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frauenkirche Neumarkt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Mc-DZC">
-                                            <rect key="frame" x="8" y="11" width="179" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="15" y="19" width="179" height="21"/>
-                                            </variation>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AH7-xn-Yi5">
                                             <rect key="frame" x="565" y="16" width="27" height="27"/>
                                             <constraints>
@@ -188,6 +194,15 @@
                                                 <rect key="frame" x="360" y="19" width="20" height="20"/>
                                             </variation>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frauenkirche Neumarkt" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Mc-DZC">
+                                            <rect key="frame" x="8" y="11" width="179" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="15" y="19" width="179" height="21"/>
+                                            </variation>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="AH7-xn-Yi5" secondAttribute="bottom" constant="8" id="4YY-54-jd5"/>
@@ -243,6 +258,94 @@
             </objects>
             <point key="canvasLocation" x="1366" y="537"/>
         </scene>
+        <!--Prognosis View Controller-->
+        <scene sceneID="evU-fM-yuZ">
+            <objects>
+                <viewController id="odi-Ei-a8N" customClass="PrognosisViewController" customModule="ParkenDD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o7M-XL-z2l"/>
+                        <viewControllerLayoutGuide type="bottom" id="Msj-HW-K2g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2JJ-RB-uDI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4o9-09-X3x">
+                                <rect key="frame" x="0.0" y="438" width="600" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="KlH-d8-hP8"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="452124000.98418701">
+                                    <!--2015-04-30 22:00:00 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="452124000">
+                                    <!--2015-04-30 22:00:00 +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="473292000">
+                                    <!--2015-12-31 22:00:00 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="datePickerValueChanged:" destination="odi-Ei-a8N" eventType="valueChanged" id="yA6-D8-cCm"/>
+                                </connections>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Prognosis for Centrum Galerie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvX-gK-Tzm">
+                                <rect key="frame" x="16" y="72" width="568" height="37"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AlN-Pl-2ha">
+                                <rect key="frame" x="156" y="209" width="288" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="mX5-xC-RHd"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="15% occupied" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlB-6T-CmZ">
+                                <rect key="frame" x="16" y="180" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ca. 892/1050 spots available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5Z-Ds-vJS">
+                                <rect key="frame" x="16" y="252" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Msj-HW-K2g" firstAttribute="top" secondItem="4o9-09-X3x" secondAttribute="bottom" id="3Eq-ZK-Zly"/>
+                            <constraint firstItem="lvX-gK-Tzm" firstAttribute="top" secondItem="o7M-XL-z2l" secondAttribute="bottom" constant="8" id="5mI-Ju-2Pj"/>
+                            <constraint firstItem="F5Z-Ds-vJS" firstAttribute="trailing" secondItem="2JJ-RB-uDI" secondAttribute="trailingMargin" id="Kfq-j3-veT"/>
+                            <constraint firstItem="AlN-Pl-2ha" firstAttribute="centerX" secondItem="xlB-6T-CmZ" secondAttribute="centerX" id="Krm-uD-orG"/>
+                            <constraint firstAttribute="trailing" secondItem="4o9-09-X3x" secondAttribute="trailing" id="OGB-xi-lVg"/>
+                            <constraint firstItem="F5Z-Ds-vJS" firstAttribute="leading" secondItem="2JJ-RB-uDI" secondAttribute="leadingMargin" id="Qmc-By-cbb"/>
+                            <constraint firstItem="xlB-6T-CmZ" firstAttribute="top" secondItem="lvX-gK-Tzm" secondAttribute="bottom" constant="71" id="Wtx-bz-NhG"/>
+                            <constraint firstItem="AlN-Pl-2ha" firstAttribute="centerX" secondItem="F5Z-Ds-vJS" secondAttribute="centerX" id="Y5b-HN-jYk"/>
+                            <constraint firstItem="xlB-6T-CmZ" firstAttribute="trailing" secondItem="2JJ-RB-uDI" secondAttribute="trailingMargin" id="Yav-91-2Sj"/>
+                            <constraint firstItem="AlN-Pl-2ha" firstAttribute="top" secondItem="xlB-6T-CmZ" secondAttribute="bottom" constant="8" symbolic="YES" id="a0E-4f-mjh"/>
+                            <constraint firstItem="lvX-gK-Tzm" firstAttribute="leading" secondItem="2JJ-RB-uDI" secondAttribute="leadingMargin" id="g5I-iQ-UAD"/>
+                            <constraint firstItem="AlN-Pl-2ha" firstAttribute="top" secondItem="2JJ-RB-uDI" secondAttribute="top" constant="209" id="iZL-cG-X7n"/>
+                            <constraint firstItem="F5Z-Ds-vJS" firstAttribute="top" secondItem="AlN-Pl-2ha" secondAttribute="bottom" constant="41" id="obk-Wc-g2N"/>
+                            <constraint firstItem="AlN-Pl-2ha" firstAttribute="top" secondItem="xlB-6T-CmZ" secondAttribute="bottom" constant="8" id="poq-If-iXY"/>
+                            <constraint firstItem="4o9-09-X3x" firstAttribute="leading" secondItem="2JJ-RB-uDI" secondAttribute="leading" id="t7j-nQ-AH4"/>
+                            <constraint firstItem="lvX-gK-Tzm" firstAttribute="trailing" secondItem="2JJ-RB-uDI" secondAttribute="trailingMargin" id="tem-Xz-JFM"/>
+                            <constraint firstItem="F5Z-Ds-vJS" firstAttribute="top" secondItem="AlN-Pl-2ha" secondAttribute="bottom" constant="41" id="vSI-yh-TJl"/>
+                            <constraint firstItem="xlB-6T-CmZ" firstAttribute="leading" secondItem="2JJ-RB-uDI" secondAttribute="leadingMargin" id="zg2-mr-Mmi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="percentageLabel" destination="xlB-6T-CmZ" id="Rxe-DX-wFl"/>
+                        <outlet property="progressBar" destination="AlN-Pl-2ha" id="6Q5-X9-m1R"/>
+                        <outlet property="spotsAvailableLabel" destination="F5Z-Ds-vJS" id="Ycq-to-EQo"/>
+                        <outlet property="titleLabel" destination="lvX-gK-Tzm" id="TyA-if-tB4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AxX-Eb-aca" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2812" y="-903"/>
+        </scene>
         <!--About View Controller-->
         <scene sceneID="6ii-fV-6NZ">
             <objects>
@@ -258,7 +361,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL6-Aw-ZQN">
                                 <rect key="frame" x="16" y="20" width="568" height="572"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">ParkenDD v1.1
+                                <string key="text">ParkenDD v1.1
 
 http://kilian.io/parkendd
 
@@ -270,7 +373,7 @@ Thanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Cons
 
 The sourcecode for this application can be viewed at https://github.com/kiliankoe/parkendd and is licensed under the MIT license. Feedback in the form of issues and pull requests is always welcome!
 
-Car icon on app icon and settingsicon made by Freepik from http://flaticon.com and is licensed CC BY 3.0</mutableString>
+Car icon on app icon and settingsicon made by Freepik from http://flaticon.com and is licensed CC BY 3.0</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>

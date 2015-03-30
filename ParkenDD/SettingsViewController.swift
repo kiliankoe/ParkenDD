@@ -46,7 +46,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		if section == 0 {
 			return 4
 		} else {
-			return 3
+			return 4
 		}
     }
 
@@ -77,11 +77,14 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		} else if indexPath.section == 1 {
 			switch indexPath.row {
 			case 0:
-				cell.textLabel?.text = NSLocalizedString("ABOUT_BUTTON", comment: "About")
+				cell.textLabel?.text = "Experimental: Prognosis"
 				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 			case 1:
-				cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
+				cell.textLabel?.text = NSLocalizedString("ABOUT_BUTTON", comment: "About")
+				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 			case 2:
+				cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
+			case 3:
 				cell.textLabel?.text = NSLocalizedString("SHARE_ON_FACEBOOK", comment: "Share on Facebook")
 			default:
 				cell.textLabel?.text = "Did you know that switch case statements have to exhaustive?"
@@ -120,11 +123,16 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		}
 
 		if indexPath.section == 1 {
+
 			if indexPath.row == 0 {
-				performSegueWithIdentifier("showAboutView", sender: self)
+				performSegueWithIdentifier("showPrognosisView", sender: self)
 			}
 
 			if indexPath.row == 1 {
+				performSegueWithIdentifier("showAboutView", sender: self)
+			}
+
+			if indexPath.row == 2 {
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
 					tweetsheet.setInitialText(NSLocalizedString("TWEET_TEXT", comment: "Check out #ParkenDD..."))
@@ -132,7 +140,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 				}
 			}
 
-			if indexPath.row == 2 {
+			if indexPath.row == 3 {
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
 					let fbsheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
 					fbsheet.setInitialText(NSLocalizedString("FBPOST_TEXT", comment: "Check out ParkenDD..."))
