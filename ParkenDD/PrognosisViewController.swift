@@ -22,6 +22,13 @@ class PrognosisViewController: UIViewController {
 
         // Do any additional setup after loading the view.
 
+		titleLabel.text = NSLocalizedString("PROGNOSIS_CENTRUM_GALERIE", comment: "Prognosis for Centrum Galerie")
+		let occupiedString = NSLocalizedString("OCCUPIED", comment: "occupied")
+		percentageLabel.text = "15% \(occupiedString)"
+		let caString = NSLocalizedString("CIRCA", comment: "ca.")
+		let spotsAvailableString = NSLocalizedString("SPOTS_AVAILABLE", comment: "spots available")
+		spotsAvailableLabel.text = "\(caString) 892/1050 \(spotsAvailableString)"
+
 		// Read the CSV data on another thread
 		let csvqueue = dispatch_queue_create("csvqueue", nil)
 		dispatch_async(csvqueue, { () -> Void in
@@ -70,9 +77,12 @@ class PrognosisViewController: UIViewController {
 		}
 
 		progressBar.progress = prognosis
-		percentageLabel.text = "\(Int(round(prognosis*100)))% occupied"
+		let occupiedString = NSLocalizedString("OCCUPIED", comment: "occupied")
+		percentageLabel.text = "\(Int(round(prognosis*100)))% \(occupiedString)"
 
 		let availableSpots = 1050-(1050*prognosis)
-		spotsAvailableLabel.text = "ca. \(Int(round(availableSpots)))/1050 spots available"
+		let caString = NSLocalizedString("CIRCA", comment: "ca.")
+		let spotsAvailableString = NSLocalizedString("SPOTS_AVAILABLE", comment: "spots available")
+		spotsAvailableLabel.text = "\(caString) \(Int(round(availableSpots)))/1050 \(spotsAvailableString)"
 	}
 }

@@ -77,7 +77,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		} else if indexPath.section == 1 {
 			switch indexPath.row {
 			case 0:
-				cell.textLabel?.text = "Experimental: Prognosis"
+				cell.textLabel?.text = NSLocalizedString("EXPERIMENTAL_PROGNOSIS", comment: "Experimental: Prognosis") 
 				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 			case 1:
 				cell.textLabel?.text = NSLocalizedString("ABOUT_BUTTON", comment: "About")
