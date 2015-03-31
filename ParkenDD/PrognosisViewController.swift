@@ -58,8 +58,11 @@ class PrognosisViewController: UIViewController {
 
 	@IBAction func datePickerValueChanged(sender: UIDatePicker) {
 
-		// FIXME: The app crashes if the user changes the date before the CSV is fully parsed. 
-		// This usually takes about a second... But it still shouldn't be happening.
+		// The app crashes if the user changes the date before the CSV is fully parsed.
+		// This takes about a second... So we'll just ignore the case if there's no csv data yet.
+		if csvData.rows.count == 0 {
+			return
+		}
 
 		var prognosis: Float = 0.0
 

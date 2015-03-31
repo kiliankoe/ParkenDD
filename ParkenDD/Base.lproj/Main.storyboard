@@ -294,7 +294,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AlN-Pl-2ha">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.14999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="AlN-Pl-2ha">
                                 <rect key="frame" x="156" y="209" width="288" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="288" id="mX5-xC-RHd"/>
