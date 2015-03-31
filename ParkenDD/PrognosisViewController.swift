@@ -71,11 +71,9 @@ class PrognosisViewController: UIViewController {
 		let currentDateString = dateFormatter.stringFromDate(sender.date)
 
 		for row in csvData.rows {
-			if let rowDate = row["date"] {
-				if rowDate == currentDateString {
-					prognosis = (row["percentage"]! as NSString).floatValue / 100
-					break
-				}
+			if let rowDate = row["date"] where rowDate == currentDateString {
+				prognosis = (row["percentage"]! as NSString).floatValue / 100
+				break
 			}
 		}
 

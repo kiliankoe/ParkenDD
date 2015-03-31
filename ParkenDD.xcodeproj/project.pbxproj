@@ -63,7 +63,7 @@
 		39F4CFF31A6BBC0200ACFECF /* ParkenDDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParkenDDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFF81A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFF91A6BBC0200ACFECF /* ParkenDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkenDDTests.swift; sourceTree = "<group>"; };
-		39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrognosisViewController.swift; sourceTree = "<group>"; };
+		39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrognosisViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
 		39F5CBB01AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Centrum-Galerie-Belegung-Vorhersage-2015.csv"; sourceTree = "<group>"; };
 		39F5CBB21AC9FC2F00A91879 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
