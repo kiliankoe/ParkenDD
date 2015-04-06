@@ -169,6 +169,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	Remove all UI that has to do with refreshing data.
 	*/
 	func stopRefreshUI() {
+		UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 		showReloadButton()
 		refreshControl!.endRefreshing()
 	}
@@ -185,6 +186,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	Replace the right UIBarButtonItem with a UIActivityIndicatorView.
 	*/
 	func showActivityIndicator() {
+		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 20, 20))
 		activityIndicator.startAnimating()
 		let activityItem = UIBarButtonItem(customView: activityIndicator)
