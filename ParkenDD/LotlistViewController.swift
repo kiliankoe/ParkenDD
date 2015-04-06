@@ -305,16 +305,16 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		case lotstate.few:
 			cell.backgroundColor = Colors.orange
 		case lotstate.full:
-			cell.backgroundColor = Colors.pomegranate
+			cell.backgroundColor = Colors.alizarin
 		case lotstate.closed:
-			cell.backgroundColor = Colors.asbestos
+			cell.backgroundColor = UIColor.grayColor()
 		default:
-			cell.backgroundColor = Colors.silver
+			cell.backgroundColor = UIColor.lightGrayColor()
 			cell.parkinglotLoadLabel.text = "?"
-//			cell.parkinglotNameLabel.textColor = UIColor.grayColor()
-//			cell.parkinglotAddressLabel.textColor = UIColor.grayColor()
-//			cell.parkinglotLoadLabel.textColor = UIColor.grayColor()
-//			cell.parkinglotTendencyLabel.textColor = UIColor.grayColor()
+			cell.parkinglotNameLabel.textColor = UIColor.grayColor()
+			cell.parkinglotAddressLabel.textColor = UIColor.grayColor()
+			cell.parkinglotLoadLabel.textColor = UIColor.grayColor()
+			cell.parkinglotTendencyLabel.textColor = UIColor.grayColor()
 		}
 
 		return cell
