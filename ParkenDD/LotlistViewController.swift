@@ -272,7 +272,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_ADDRESS", comment: "unknown address")
 		}
 
-		var load: Int = Int(round((Double(thisLot.free) / Double(thisLot.count) * 100)))
+		var load: Int = Int(round(100 - (Double(thisLot.free) / Double(thisLot.count) * 100)))
 
 		// Some cleanup
 		if load < 0 {
