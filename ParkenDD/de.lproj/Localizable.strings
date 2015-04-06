@@ -21,7 +21,7 @@
 "SHARE_ON_FACEBOOK" = "Auf Facebook teilen";
 "OTHER_OPTIONS" = "Anderes";
 "SORTINGTYPE_LOCATION" = "Entfernung";
-"ABOUT_TEXT" = "ParkenDD v1.1\n\nhttp://kilian.io/parkendd\n\nAlle Daten ohne Gewähr!\n\nDaten sind auf dem Stand von http://www.dresden.de/freie-parkplaetze/.\n\nDanke an Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) und Constantin Müller (@ubahnverleih) für das Entwickeln der API.\n\nDanke an Paul Balzer (@balzer82) für das Erstellen und Bereitstellen der Prognosedaten.\n\nDer Quelltext dieser Applikation ist unter https://github.com/kiliankoe/parkendd und der MIT Lizenz veröffentlicht. Feedback in Form von Issues und Pullrequests ist immer sehr willkommen!\n\nAutoicon auf dem Appicon und Zahnradicon von Freepik http://flaticon.com und lizensiert unter CC BY 3.0";
+"ABOUT_TEXT" = "ParkenDD v1.2\n\nhttp://kilian.io/parkendd\n\nAlle Daten ohne Gewähr!\n\nDaten sind auf dem Stand von http://www.dresden.de/freie-parkplaetze/.\n\nDanke an Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) und Constantin Müller (@ubahnverleih) für das Entwickeln der API.\n\nDanke an Paul Balzer (@balzer82) für das Erstellen und Bereitstellen der Prognosedaten.\n\nDer Quelltext dieser Applikation ist unter https://github.com/kiliankoe/parkendd und der MIT Lizenz veröffentlicht. Feedback in Form von Issues und Pullrequests ist immer sehr willkommen!\n\nAutoicon auf dem Appicon und Zahnradicon von Freepik http://flaticon.com und lizensiert unter CC BY 3.0";
 "SHARE_ON_TWITTER" = "Auf Twitter teilen";
 "SORTINGTYPE_FREESPOTS" = "Freie Plätze";
 "SORTING_OPTIONS" = "Sortieren nach";

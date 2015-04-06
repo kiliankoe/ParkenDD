@@ -21,7 +21,7 @@
 "SHARE_ON_FACEBOOK" = "Share on Facebook";
 "OTHER_OPTIONS" = "Other";
 "SORTINGTYPE_LOCATION" = "Distance";
-"ABOUT_TEXT" = "ParkenDD v1.1\n\nhttp://kilian.io/parkendd\n\nAll data supplied without any guarantees!\n\nData is as current as http://www.dresden.de/freie-parkplaetze/.\n\nThanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Constantin Müller (@ubahnverleih) for creating the API server.\n\nThanks to Paul Balzer (@balzer82) for calculating and supplying the prognosis data.\n\nThe sourcecode for this application can be viewed at https://github.com/kiliankoe/parkendd and is licensed under the MIT license. Feedback in the form of issues and pull requests is always welcome!\n\nCar icon on app icon and settingsicon made by Freepik from http://flaticon.com and is licensed CC BY 3.0";
+"ABOUT_TEXT" = "ParkenDD v1.2\n\nhttp://kilian.io/parkendd\n\nAll data supplied without any guarantees!\n\nData is as current as http://www.dresden.de/freie-parkplaetze/.\n\nThanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Constantin Müller (@ubahnverleih) for creating the API server.\n\nThanks to Paul Balzer (@balzer82) for calculating and supplying the prognosis data.\n\nThe sourcecode for this application can be viewed at https://github.com/kiliankoe/parkendd and is licensed under the MIT license. Feedback in the form of issues and pull requests is always welcome!\n\nCar icon on app icon and settingsicon made by Freepik from http://flaticon.com and is licensed CC BY 3.0";
 "SHARE_ON_TWITTER" = "Share on Twitter";
 "SORTINGTYPE_FREESPOTS" = "Free Spots";
 "SORTING_OPTIONS" = "Sort by";
