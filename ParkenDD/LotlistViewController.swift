@@ -148,7 +148,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 					// Scroll to first row to "hide" the searchcontroller by default
 					// This has to be done at a point where the table view actually contains data
-					self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+//					self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
 				})
 			}
 		}
