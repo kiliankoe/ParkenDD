@@ -123,7 +123,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 					// Give the user a notification that new data can't be fetched
 					dispatch_async(dispatch_get_main_queue(), { () -> Void in
-						TSMessage.showNotificationWithTitle(NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
+						let window = UIApplication.sharedApplication().windows.last as! UIWindow
+						TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
 					})
 
 					if self.parkinglots.isEmpty {
@@ -136,7 +137,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 					// Give the user a notification that data from the server can't be read
 					dispatch_async(dispatch_get_main_queue(), { () -> Void in
-						TSMessage.showNotificationWithTitle(NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), subtitle: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), type: TSMessageNotificationType.Error)
+						let window = UIApplication.sharedApplication().windows.last as! UIWindow
+						TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), subtitle: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), type: TSMessageNotificationType.Error)
 					})
 
 				}
