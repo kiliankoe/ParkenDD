@@ -228,10 +228,14 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_ADDRESS", comment: "unknown address")
 		}
 
-		var load: Int = Int(round(100 - (Double(thisLot.free) / Double(thisLot.count) * 100)))
+		var load: Int = Int(round((Double(thisLot.free) / Double(thisLot.count) * 100)))
+
+		// Some cleanup
 		if load < 0 {
 			// Apparently there can be 52 empty spots on a 50 spot parking lot...
 			load = 0
+		} else if thisLot.state == lotstate.full {
+			load = 100
 		}
 
 		// Maybe a future version of the scraper will be able to read the tendency as well
