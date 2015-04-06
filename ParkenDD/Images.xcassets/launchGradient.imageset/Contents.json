@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Many.png"
+      "filename" : "gradient-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Many@2x.png"
+      "filename" : "gradient.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "Many@3x.png"
+      "filename" : "gradient-2.png"
     }
   ],
   "info" : {
