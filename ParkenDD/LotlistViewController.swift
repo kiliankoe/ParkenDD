@@ -241,10 +241,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
 
 		let thisLot: Parkinglot!
+		let customParkinglotlist: [Parkinglot]!
 		if searchController.active {
 			thisLot = filteredParkinglots[indexPath.row]
+			customParkinglotlist = filteredParkinglots
 		} else {
 			thisLot = parkinglots[indexPath.row]
+			customParkinglotlist = parkinglots
 		}
 
 		cell.parkinglotNameLabel.text = thisLot.name
@@ -291,7 +294,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		cell.parkinglotLoadLabel.textColor = UIColor.blackColor()
 		cell.parkinglotTendencyLabel.textColor = UIColor.blackColor()
 
-		switch parkinglots[indexPath.row].state {
+		switch customParkinglotlist[indexPath.row].state {
 		case lotstate.many:
 			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateMany")
 		case lotstate.few:
