@@ -29,11 +29,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		searchController.searchBar.delegate = self
 		searchController.dimsBackgroundDuringPresentation = false
 		searchController.hidesNavigationBarDuringPresentation = false
-		searchController.searchBar.searchBarStyle = UISearchBarStyle.Minimal
+//		searchController.searchBar.searchBarStyle = UISearchBarStyle.Minimal
 
 		searchController.searchBar.frame = CGRectMake(searchController.searchBar.frame.origin.x, searchController.searchBar.frame.origin.y, searchController.searchBar.frame.size.width, 44.0)
 
-		tableView.tableHeaderView = searchController.searchBar
+//		tableView.tableHeaderView = searchController.searchBar
 
 		// set CLLocationManager delegate
 		locationManager.delegate = self
@@ -43,21 +43,21 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 		// pretty blue navbar with white buttons
 		let navBar = self.navigationController?.navigationBar
-		navBar!.barTintColor = UIColor(hue: 0.58, saturation: 1.0, brightness: 0.33, alpha: 1.0)
-		navBar!.translucent = true
-		navBar!.tintColor = UIColor.whiteColor()
+//		navBar!.barTintColor = Colors.belizeHole
+		navBar!.translucent = false
+//		navBar!.tintColor = UIColor.whiteColor()
 
 		// pretty shadowy fat title
 		let shadow = NSShadow()
 		shadow.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
 		shadow.shadowOffset = CGSizeMake(0, 1)
 		let color = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
-		let font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 21.0)
+		let font = UIFont(name: "AvenirNext-Bold", size: 18.0)
 		var attrsDict = [NSObject: AnyObject]()
 		attrsDict[NSForegroundColorAttributeName] = color
 		attrsDict[NSShadowAttributeName] = shadow
 		attrsDict[NSFontAttributeName] = font
-		navBar!.titleTextAttributes = attrsDict
+//		navBar!.titleTextAttributes = attrsDict
 
 		updateData()
 	}
@@ -216,6 +216,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	func showActivityIndicator() {
 		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 20, 20))
+		activityIndicator.color = UIColor.blackColor()
 		activityIndicator.startAnimating()
 		let activityItem = UIBarButtonItem(customView: activityIndicator)
 		self.navigationItem.rightBarButtonItem = activityItem
@@ -293,27 +294,27 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		}
 
 		// Normalize all label colors to black, otherwise weird things happen with placeholder cells
-		cell.parkinglotNameLabel.textColor = UIColor.blackColor()
-		cell.parkinglotAddressLabel.textColor = UIColor.blackColor()
-		cell.parkinglotLoadLabel.textColor = UIColor.blackColor()
-		cell.parkinglotTendencyLabel.textColor = UIColor.blackColor()
+		cell.parkinglotNameLabel.textColor = UIColor.whiteColor()
+		cell.parkinglotAddressLabel.textColor = UIColor.whiteColor()
+		cell.parkinglotLoadLabel.textColor = UIColor.whiteColor()
+		cell.parkinglotTendencyLabel.textColor = UIColor.whiteColor()
 
 		switch customParkinglotlist[indexPath.row].state {
 		case lotstate.many:
-			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateMany")
+			cell.backgroundColor = Colors.nephritis
 		case lotstate.few:
-			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateFew")
+			cell.backgroundColor = Colors.orange
 		case lotstate.full:
-			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateFull")
+			cell.backgroundColor = Colors.pomegranate
 		case lotstate.closed:
-			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateClosed")
+			cell.backgroundColor = Colors.asbestos
 		default:
-			cell.parkinglotStateImage.image = UIImage(named: "parkinglotStateNodata")
+			cell.backgroundColor = Colors.silver
 			cell.parkinglotLoadLabel.text = "?"
-			cell.parkinglotNameLabel.textColor = UIColor.grayColor()
-			cell.parkinglotAddressLabel.textColor = UIColor.grayColor()
-			cell.parkinglotLoadLabel.textColor = UIColor.grayColor()
-			cell.parkinglotTendencyLabel.textColor = UIColor.grayColor()
+//			cell.parkinglotNameLabel.textColor = UIColor.grayColor()
+//			cell.parkinglotAddressLabel.textColor = UIColor.grayColor()
+//			cell.parkinglotLoadLabel.textColor = UIColor.grayColor()
+//			cell.parkinglotTendencyLabel.textColor = UIColor.grayColor()
 		}
 
 		return cell
