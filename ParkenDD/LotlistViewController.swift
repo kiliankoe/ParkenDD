@@ -9,18 +9,31 @@
 import UIKit
 import CoreLocation
 
-class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
+class LotlistViewController: UITableViewController, CLLocationManagerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
 
 	let locationManager = CLLocationManager()
 
-	// Store the single parking lots once they're retrieved from the server
-	// a single subarray for each section
+	var searchController: UISearchController!
+
 	var parkinglots: [Parkinglot] = []
 	var defaultSortedParkinglots: [Parkinglot] = []
+	var filteredParkinglots: [Parkinglot] = []
 	var sectionNames: [String] = []
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		// Set up the UISearchController
+		searchController = UISearchController(searchResultsController: nil)
+		searchController.searchResultsUpdater = self
+		searchController.searchBar.delegate = self
+		searchController.dimsBackgroundDuringPresentation = false
+		searchController.hidesNavigationBarDuringPresentation = false
+		searchController.searchBar.searchBarStyle = UISearchBarStyle.Minimal
+
+		searchController.searchBar.frame = CGRectMake(searchController.searchBar.frame.origin.x, searchController.searchBar.frame.origin.y, searchController.searchBar.frame.size.width, 44.0)
+
+		tableView.tableHeaderView = searchController.searchBar
 
 		// set CLLocationManager delegate
 		locationManager.delegate = self
@@ -78,7 +91,14 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showParkinglotMap" {
 			let indexPath = tableView.indexPathForSelectedRow()
-			let selectedParkinglot = parkinglots[indexPath!.row]
+
+			let selectedParkinglot: Parkinglot!
+			if searchController.active {
+				selectedParkinglot = filteredParkinglots[indexPath!.row]
+			} else {
+				selectedParkinglot = parkinglots[indexPath!.row]
+			}
+
 			let mapVC: MapViewController = segue.destinationViewController as! MapViewController
 			mapVC.detailParkinglot = selectedParkinglot
 			mapVC.allParkinglots = parkinglots
@@ -157,13 +177,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		}
 	}
 
+	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - IBActions
+	// /////////////////////////////////////////////////////////////////////////
 
 	@IBAction func settingsButtonTapped(sender: UIBarButtonItem) {
 		performSegueWithIdentifier("showSettingsView", sender: self)
 	}
 
+	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - Reload Button Stuff
+	// /////////////////////////////////////////////////////////////////////////
 
 	/**
 	Remove all UI that has to do with refreshing data.
@@ -197,20 +221,31 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		updateData()
 	}
 
+	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - UITableViewDataSource
+	// /////////////////////////////////////////////////////////////////////////
 
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return 1
 	}
 
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return parkinglots.count
+		if searchController.active {
+			return filteredParkinglots.count
+		} else {
+			return parkinglots.count
+		}
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
 
-		let thisLot = parkinglots[indexPath.row]
+		let thisLot: Parkinglot!
+		if searchController.active {
+			thisLot = filteredParkinglots[indexPath.row]
+		} else {
+			thisLot = parkinglots[indexPath.row]
+		}
 
 		cell.parkinglotNameLabel.text = thisLot.name
 		cell.parkinglotLoadLabel.text = "\(thisLot.free)"
@@ -277,14 +312,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		return cell
 	}
 
+	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - UITableViewDelegate
+	// /////////////////////////////////////////////////////////////////////////
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		performSegueWithIdentifier("showParkinglotMap", sender: self)
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 
+	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - CLLocationManagerDelegate
+	// /////////////////////////////////////////////////////////////////////////
 
 	func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
 		let currentLocation: CLLocation = locations.last as! CLLocation
@@ -306,5 +345,32 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		stopRefreshUI()
 	}
 
-}
+	// /////////////////////////////////////////////////////////////////////////
+	// MARK: - UISearchResultsUpdating
+	// /////////////////////////////////////////////////////////////////////////
 
+	func updateSearchResultsForSearchController(searchController: UISearchController) {
+		let searchString = searchController.searchBar.text
+
+		if searchString == "" {
+			filteredParkinglots = parkinglots
+		} else {
+			filterContentForSearch(searchString)
+		}
+
+		tableView.reloadData()
+	}
+
+	/**
+	Filter the content of the parkinglot list according to what the user types in the searchbar
+
+	:param: searchText String to search with
+	*/
+	func filterContentForSearch(searchText: String) {
+		filteredParkinglots = parkinglots.filter({ (parkinglot: Parkinglot) -> Bool in
+			let nameMatch = parkinglot.name.lowercaseString.rangeOfString(searchText.lowercaseString)
+			return nameMatch != nil
+		})
+	}
+
+}
