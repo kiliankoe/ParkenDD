@@ -120,20 +120,25 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 			if let error = updateError {
 				if error == "requestError" {
+
 					// Give the user a notification that new data can't be fetched
-					var alertController = UIAlertController(title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), message: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), preferredStyle: UIAlertControllerStyle.Alert)
-					alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-					self.presentViewController(alertController, animated: true, completion: nil)
+					dispatch_async(dispatch_get_main_queue(), { () -> Void in
+						TSMessage.showNotificationWithTitle(NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
+					})
+
 					if self.parkinglots.isEmpty {
 						// TODO: The app has just tried updating on "an empty stomach"
 						// It is now stuck in a state where it displays "Refreshing..." on the tableview and the pull-to-refresh works awkwardly
 						// Do something about this
 					}
+
 				} else if error == "serverError" {
+
 					// Give the user a notification that data from the server can't be read
-					var alertController = UIAlertController(title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), message: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), preferredStyle: UIAlertControllerStyle.Alert)
-					alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-					self.presentViewController(alertController, animated: true, completion: nil)
+					dispatch_async(dispatch_get_main_queue(), { () -> Void in
+						TSMessage.showNotificationWithTitle(NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), subtitle: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), type: TSMessageNotificationType.Error)
+					})
+
 				}
 
 			} else if let secNames = secNames, plotList = plotList {
