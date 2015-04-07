@@ -122,6 +122,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 			}
 		}
 
+		cell.textLabel?.font = UIFont(name: "AvenirNext-Regular", size: 16.0)
 		return cell
 
 	}
