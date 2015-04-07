@@ -42,7 +42,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		} else if section == 1 {
 			return NSLocalizedString("DISPLAY_OPTIONS", comment: "Display")
 		} else {
-			return NSLocalizedString("OTHER", comment: "Other")
+			return NSLocalizedString("OTHER_OPTIONS", comment: "Other")
 		}
 	}
 
