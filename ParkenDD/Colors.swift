@@ -51,9 +51,9 @@ struct Colors {
 		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
 		if useGrayscale {
 			if emptyLots <= 0 {
-				return UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+				return UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
 			}
-			return UIColor(red: CGFloat(hue+0.2), green: CGFloat(hue+0.2), blue: CGFloat(hue+0.2), alpha: 1.0)
+			return UIColor(red: CGFloat(1 - (hue+0.2)), green: CGFloat(1 - (hue+0.2)), blue: CGFloat(1 - (hue+0.2)), alpha: 1.0)
 		}
 
 		if emptyLots <= 0 {
