@@ -83,7 +83,7 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 
 		// The app crashes if the user changes the date before the CSV is fully parsed.
 		// This takes about a second... So we'll just ignore the case if there's no csv data yet.
-		if csvData.rows.count == 0 {
+		if csvData == nil {
 			return
 		}
 
