@@ -40,11 +40,25 @@ struct Colors {
 	Return a color between green and red based on a percentage value
 
 	:param: percentage value between 0 and 1
+	:param: emptyLots number of empty lots
 
 	:returns: UIColor
 	*/
-	static func colorBasedOnPercentage(percentage: Double) -> UIColor {
-		var hue = 1 - (percentage * 0.3 + 0.7) // I want to limit this to the colors between 0 and 0.3
+	static func colorBasedOnPercentage(percentage: Double, emptyLots: Int) -> UIColor {
+
+		let hue = 1 - (percentage * 0.3 + 0.7) // I want to limit this to the colors between 0 and 0.3
+
+		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
+		if useGrayscale {
+			if emptyLots <= 0 {
+				return UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+			}
+			return UIColor(red: CGFloat(hue+0.2), green: CGFloat(hue+0.2), blue: CGFloat(hue+0.2), alpha: 1.0)
+		}
+
+		if emptyLots <= 0 {
+			return UIColor(hue: CGFloat(hue), saturation: 0.54, brightness: 0.7, alpha: 1.0)
+		}
 		return UIColor(hue: CGFloat(hue), saturation: 0.54, brightness: 0.8, alpha: 1.0)
 	}
 }

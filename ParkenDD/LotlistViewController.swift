@@ -43,7 +43,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 		// pretty navbar with black buttons
 		let navBar = self.navigationController?.navigationBar
-//		navBar!.translucent = false
+		navBar!.translucent = false
 		navBar!.tintColor = UIColor.blackColor()
 
 		// pretty title
@@ -302,10 +302,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		var percentage = 1 - (Double(thisLot.free) / Double(thisLot.count))
 		if percentage < 0.1 {
 			percentage = 0.1
-		} else if percentage > 0.9 {
-			percentage = 0.9
+		} else if percentage > 0.99 {
+			percentage = 0.99
 		}
-		cell.backgroundColor = Colors.colorBasedOnPercentage(percentage)
+		cell.backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: thisLot.free)
 
 		if thisLot.state == lotstate.nodata {
 			cell.parkinglotLoadLabel.text = "?"

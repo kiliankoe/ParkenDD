@@ -30,7 +30,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		if section == 0 {
 			return 4
 		} else if section == 1 {
-			return 1
+			return 2
 		} else {
 			return 4
 		}
@@ -76,7 +76,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
 			default:
-				cell.textLabel?.text = "Did you know that switch case statements have to exhaustive?"
+				break
 			}
 		}
 
@@ -84,10 +84,21 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		// Display Options
 		// /////////////////////////////////
 		else if indexPath.section == 1 {
-			cell.textLabel?.text = NSLocalizedString("HIDE_NODATA_LOTS", comment: "Hide lots without data")
-			let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
-			if doHideLots {
-				cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+			switch indexPath.row {
+			case 0:
+				cell.textLabel?.text = NSLocalizedString("HIDE_NODATA_LOTS", comment: "Hide lots without data")
+				let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
+				if doHideLots {
+					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+				}
+			case 1:
+				cell.textLabel?.text = NSLocalizedString("USE_GRAYSCALE_COLORS", comment: "Use grayscale colors")
+				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
+				if useGrayscale {
+					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+				}
+			default:
+				break
 			}
 		}
 
@@ -107,7 +118,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 			case 3:
 				cell.textLabel?.text = NSLocalizedString("SHARE_ON_FACEBOOK", comment: "Share on Facebook")
 			default:
-				cell.textLabel?.text = "Did you know that switch case statements have to exhaustive?"
+				break
 			}
 		}
 
@@ -149,17 +160,32 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		// Display Options
 		// /////////////////////////////////
 		if indexPath.section == 1 {
-			let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
-			if doHideLots {
-				NSUserDefaults.standardUserDefaults().setBool(false, forKey: "SkipNodataLots")
-				tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
-			} else {
-				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "SkipNodataLots")
-				tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
-			}
+			switch indexPath.row {
+			case 0:
+				let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
+				if doHideLots {
+					NSUserDefaults.standardUserDefaults().setBool(false, forKey: "SkipNodataLots")
+					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+				} else {
+					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "SkipNodataLots")
+					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+				}
 
-			let window = UIApplication.sharedApplication().windows.last as! UIWindow
-			TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("NOTE_TITLE", comment: "Note"), subtitle: NSLocalizedString("LIST_UPDATE_ON_REFRESH", comment: "List will be updated on next refresh"), type: TSMessageNotificationType.Message)
+				let window = UIApplication.sharedApplication().windows.last as! UIWindow
+				TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("NOTE_TITLE", comment: "Note"), subtitle: NSLocalizedString("LIST_UPDATE_ON_REFRESH", comment: "List will be updated on next refresh"), type: TSMessageNotificationType.Message)
+			case 1:
+				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
+				if useGrayscale {
+					NSUserDefaults.standardUserDefaults().setBool(false, forKey: "grayscaleColors")
+					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+				} else {
+					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "grayscaleColors")
+					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+				}
+
+			default:
+				break
+			}
 		}
 
 		// /////////////////////////////////
