@@ -15,22 +15,6 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
         super.viewDidLoad()
     }
 
-	// FIXME: This doesn't really work anywhere outside of viewDidAppear(), but here it comes with a bit of an awkward loading time...
-	override func viewDidAppear(animated: Bool) {
-		let sortingtype = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
-
-		switch sortingtype! {
-		case "distance":
-			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
-		case "alphabetical":
-			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
-		case "free":
-			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
-		default:
-			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.Checkmark
-		}
-	}
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,16 +52,29 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		// /////////////////////////////////
 		// Sorting Options
 		// /////////////////////////////////
+		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 		if indexPath.section == 0 {
 			switch indexPath.row {
 			case 0:
 				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_DEFAULT", comment: "Default")
+				if sortingType == "default" {
+					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+				}
 			case 1:
 				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_LOCATION", comment: "Distance")
+				if sortingType == "distance" {
+					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+				}
 			case 2:
 				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_ALPHABETICAL", comment: "Alphabetical")
+				if sortingType == "alphabetical" {
+					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+				}
 			case 3:
 				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_FREESPOTS", comment: "Free spots")
+				if sortingType == "free" {
+					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+				}
 			default:
 				cell.textLabel?.text = "Did you know that switch case statements have to exhaustive?"
 			}
