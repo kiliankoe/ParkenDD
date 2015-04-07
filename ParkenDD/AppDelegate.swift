@@ -33,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 
+		// apply custom font to UIBarButtonItems (mainly the back button) as well
+		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
+		var attrsDict = [NSObject: AnyObject]()
+		attrsDict[NSFontAttributeName] = font
+		UIBarButtonItem.appearance().setTitleTextAttributes(attrsDict, forState: UIControlState.Normal)
+
 		return true
 	}
 
