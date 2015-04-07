@@ -41,23 +41,16 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		// display the standard reload button
 		showReloadButton()
 
-		// pretty blue navbar with white buttons
+		// pretty navbar with black buttons
 		let navBar = self.navigationController?.navigationBar
-//		navBar!.barTintColor = Colors.belizeHole
-		navBar!.translucent = false
-//		navBar!.tintColor = UIColor.whiteColor()
+//		navBar!.translucent = false
+		navBar!.tintColor = UIColor.blackColor()
 
-		// pretty shadowy fat title
-		let shadow = NSShadow()
-		shadow.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
-		shadow.shadowOffset = CGSizeMake(0, 1)
-		let color = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
-		let font = UIFont(name: "AvenirNext-Bold", size: 18.0)
+		// pretty title
+		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
 		var attrsDict = [NSObject: AnyObject]()
-		attrsDict[NSForegroundColorAttributeName] = color
-		attrsDict[NSShadowAttributeName] = shadow
 		attrsDict[NSFontAttributeName] = font
-//		navBar!.titleTextAttributes = attrsDict
+		navBar!.titleTextAttributes = attrsDict
 
 		updateData()
 	}
@@ -300,28 +293,22 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			cell.parkinglotTendencyLabel.text = "\(load)% \(localizedOccupied)"
 		}
 
-		// Normalize all label colors to black, otherwise weird things happen with placeholder cells
+		// Set all labels to be white, 'cause it looks awesome
 		cell.parkinglotNameLabel.textColor = UIColor.whiteColor()
 		cell.parkinglotAddressLabel.textColor = UIColor.whiteColor()
 		cell.parkinglotLoadLabel.textColor = UIColor.whiteColor()
 		cell.parkinglotTendencyLabel.textColor = UIColor.whiteColor()
 
-		switch customParkinglotlist[indexPath.row].state {
-		case lotstate.many:
-			cell.backgroundColor = Colors.nephritis
-		case lotstate.few:
-			cell.backgroundColor = Colors.orange
-		case lotstate.full:
-			cell.backgroundColor = Colors.alizarin
-		case lotstate.closed:
-			cell.backgroundColor = UIColor.grayColor()
-		default:
-			cell.backgroundColor = UIColor.lightGrayColor()
+		var percentage = 1 - (Double(thisLot.free) / Double(thisLot.count))
+		if percentage < 0.1 {
+			percentage = 0.1
+		} else if percentage > 0.9 {
+			percentage = 0.9
+		}
+		cell.backgroundColor = Colors.colorBasedOnPercentage(percentage)
+
+		if thisLot.state == lotstate.nodata {
 			cell.parkinglotLoadLabel.text = "?"
-			cell.parkinglotNameLabel.textColor = UIColor.grayColor()
-			cell.parkinglotAddressLabel.textColor = UIColor.grayColor()
-			cell.parkinglotLoadLabel.textColor = UIColor.grayColor()
-			cell.parkinglotTendencyLabel.textColor = UIColor.grayColor()
 		}
 
 		return cell

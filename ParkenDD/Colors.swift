@@ -6,11 +6,10 @@
 //  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
 //
 
-// These come from flatuicolors.com, thanks for the site @ahmetsulek!
-
 import UIKit
 
 struct Colors {
+	// These come from flatuicolors.com, thanks for the site @ahmetsulek!
 	static let turquoise = UIColor(red: 26.0/255.0, green: 188.0/255.0, blue: 156.0/255.0, alpha: 1.0)
 	static let greenSea = UIColor(red: 22.0/255.0, green: 160.0/255.0, blue: 133.0/255.0, alpha: 1.0)
 	static let sunFlower = UIColor(red: 241.0/255.0, green: 196.0/255.0, blue: 15.0/255.0, alpha: 1.0)
@@ -31,4 +30,21 @@ struct Colors {
 	static let midnightBlue = UIColor(red: 44.0/255.0, green: 62.0/255.0, blue: 80.0/255.0, alpha: 1.0)
 	static let concrete = UIColor(red: 149.0/255.0, green: 165.0/255.0, blue: 166.0/255.0, alpha: 1.0)
 	static let asbestos = UIColor(red: 127.0/255.0, green: 140.0/255.0, blue: 141.0/255.0, alpha: 1.0)
+
+	// Stolen from the app Departure 2
+	static let flatGreen = UIColor(red: 142.0/255.0, green: 211.0/255.0, blue: 95.0/255.0, alpha: 1.0)
+	static let flatOrange = UIColor(red: 240.0/255.0, green: 168.0/255.0, blue: 83.0/255.0, alpha: 1.0)
+	static let flatRed = UIColor(red: 239.0/255.0, green: 83.0/255.0, blue: 84.0/255.0, alpha: 1.0)
+
+	/**
+	Return a color between green and red based on a percentage value
+
+	:param: percentage value between 0 and 1
+
+	:returns: UIColor
+	*/
+	static func colorBasedOnPercentage(percentage: Double) -> UIColor {
+		var hue = 1 - (percentage * 0.3 + 0.7) // I want to limit this to the colors between 0 and 0.3
+		return UIColor(hue: CGFloat(hue), saturation: 0.54, brightness: 0.8, alpha: 1.0)
+	}
 }
