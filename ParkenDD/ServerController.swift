@@ -78,6 +78,10 @@ class ServerController {
 										default:
 											lotState = lotstate.nodata
 											lotFree = -1
+
+											if NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots") == true {
+												continue
+											}
 										}
 
 										// hehe, lotLat is an awesome name for a variable

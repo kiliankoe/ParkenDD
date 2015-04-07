@@ -39,12 +39,14 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if section == 0 {
 			return 4
+		} else if section == 1 {
+			return 1
 		} else {
 			return 4
 		}
@@ -53,6 +55,8 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if section == 0 {
 			return NSLocalizedString("SORTING_OPTIONS", comment: "Sort by")
+		} else if section == 1 {
+			return NSLocalizedString("DISPLAY_OPTIONS", comment: "Display")
 		} else {
 			return NSLocalizedString("OTHER", comment: "Other")
 		}
@@ -61,6 +65,9 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell: UITableViewCell = UITableViewCell()
 
+		// /////////////////////////////////
+		// Sorting Options
+		// /////////////////////////////////
 		if indexPath.section == 0 {
 			switch indexPath.row {
 			case 0:
@@ -74,7 +81,23 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 			default:
 				cell.textLabel?.text = "Did you know that switch case statements have to exhaustive?"
 			}
-		} else if indexPath.section == 1 {
+		}
+
+		// /////////////////////////////////
+		// Display Options
+		// /////////////////////////////////
+		else if indexPath.section == 1 {
+			cell.textLabel?.text = NSLocalizedString("HIDE_NODATA_LOTS", comment: "Hide lots without data")
+			let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
+			if doHideLots {
+				cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+			}
+		}
+
+		// /////////////////////////////////
+		// Other Options
+		// /////////////////////////////////
+		else if indexPath.section == 2 {
 			switch indexPath.row {
 			case 0:
 				cell.textLabel?.text = NSLocalizedString("EXPERIMENTAL_PROGNOSIS", comment: "Experimental: Prognosis") 
@@ -99,6 +122,9 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
+		// /////////////////////////////////
+		// Sorting Options
+		// /////////////////////////////////
 		if indexPath.section == 0 {
 			// Unselect all options
 			for row in 0...3 {
@@ -122,7 +148,27 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: "SortingType")
 		}
 
+		// /////////////////////////////////
+		// Display Options
+		// /////////////////////////////////
 		if indexPath.section == 1 {
+			let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
+			if doHideLots {
+				NSUserDefaults.standardUserDefaults().setBool(false, forKey: "SkipNodataLots")
+				tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+			} else {
+				NSUserDefaults.standardUserDefaults().setBool(true, forKey: "SkipNodataLots")
+				tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+			}
+
+			let window = UIApplication.sharedApplication().windows.last as! UIWindow
+			TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("NOTE_TITLE", comment: "Note"), subtitle: NSLocalizedString("LIST_UPDATE_ON_REFRESH", comment: "List will be updated on next refresh"), type: TSMessageNotificationType.Message)
+		}
+
+		// /////////////////////////////////
+		// Other options
+		// /////////////////////////////////
+		if indexPath.section == 2 {
 
 			if indexPath.row == 0 {
 				performSegueWithIdentifier("showPrognosisView", sender: self)

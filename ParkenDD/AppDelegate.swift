@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		locationManager?.requestWhenInUseAuthorization()
 
 		// Initialize User Defaults
-		let defaults: [NSObject:AnyObject] = ["SortingType": "default"]
+		let defaults: [NSObject:AnyObject] = ["SortingType": "default", "SkipNodataLots": true]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 
 		return true

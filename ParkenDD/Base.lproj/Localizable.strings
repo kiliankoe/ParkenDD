@@ -42,3 +42,7 @@
 "EXPERIMENTAL_PROGNOSIS" = "Experimental: Prognosis";
 "CIRCA" = "ca.";
 "SPOTS_AVAILABLE" = "spots available";
+"DISPLAY_OPTIONS" = "Display";
+"HIDE_NODATA_LOTS" = "Hide lots without data";
+"NOTE_TITLE" = "Note";
+"LIST_UPDATE_ON_REFRESH" = "List will be updated on next refresh.";
