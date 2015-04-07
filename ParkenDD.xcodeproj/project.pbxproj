@@ -17,6 +17,7 @@
 		397B92091A9BCE0A000D42CE /* ParkinglotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B92081A9BCE0A000D42CE /* ParkinglotData.swift */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
 		39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B037511A94C73E00C5A273 /* AboutViewController.swift */; };
+		39C873721AD4399200BFD22A /* forecast.csv in Resources */ = {isa = PBXBuildFile; fileRef = 39C873711AD4399200BFD22A /* forecast.csv */; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */; };
 		39F4CFE61A6BBC0200ACFECF /* LotlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */; };
@@ -25,7 +26,6 @@
 		39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFEC1A6BBC0200ACFECF /* LaunchScreen.xib */; };
 		39F4CFFA1A6BBC0200ACFECF /* ParkenDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFF91A6BBC0200ACFECF /* ParkenDDTests.swift */; };
 		39F5CBAE1AC9F9FE00A91879 /* PrognosisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */; };
-		39F5CBB11AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv in Resources */ = {isa = PBXBuildFile; fileRef = 39F5CBB01AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv */; };
 		39F5CBB31AC9FC2F00A91879 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5CBB21AC9FC2F00A91879 /* CSV.swift */; };
 		ED7F9029FF042BAD234F7465 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E7A2493094908F174F06D8B /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -50,12 +50,12 @@
 		3977CA261A9CC78C00E20014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3977CA281A9CC78E00E20014 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		397B92081A9BCE0A000D42CE /* ParkinglotData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotData.swift; sourceTree = "<group>"; };
-		397D7B1A1A9A203E001B5874 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		397D7B1E1A9A2236001B5874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		397D7B201A9A223A001B5874 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		39B037511A94C73E00C5A273 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		39B953521AA0A59600026EC2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		39BE3FCC1AD3402B009A8B74 /* ParkenDD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParkenDD-Bridging-Header.h"; sourceTree = "<group>"; };
+		39C873711AD4399200BFD22A /* forecast.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forecast.csv; sourceTree = "<group>"; };
 		39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		39F4CFDE1A6BBC0200ACFECF /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFE21A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,7 +68,6 @@
 		39F4CFF81A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFF91A6BBC0200ACFECF /* ParkenDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkenDDTests.swift; sourceTree = "<group>"; };
 		39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrognosisViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
-		39F5CBB01AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Centrum-Galerie-Belegung-Vorhersage-2015.csv"; sourceTree = "<group>"; };
 		39F5CBB21AC9FC2F00A91879 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		43FD77E864836590DC337765 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		651121194DE5DC2C75F9DC65 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,7 +218,7 @@
 			children = (
 				39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */,
 				39F5CBB21AC9FC2F00A91879 /* CSV.swift */,
-				39F5CBB01AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv */,
+				39C873711AD4399200BFD22A /* forecast.csv */,
 			);
 			name = PrognosisView;
 			sourceTree = "<group>";
@@ -321,8 +320,8 @@
 				397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */,
 				3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */,
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
+				39C873721AD4399200BFD22A /* forecast.csv in Resources */,
 				39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */,
-				39F5CBB11AC9FBD100A91879 /* Centrum-Galerie-Belegung-Vorhersage-2015.csv in Resources */,
 				39F4CFEB1A6BBC0200ACFECF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +438,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				39F4CFED1A6BBC0200ACFECF /* Base */,
-				397D7B1A1A9A203E001B5874 /* de */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

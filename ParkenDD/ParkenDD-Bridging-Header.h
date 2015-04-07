@@ -4,3 +4,4 @@
 
 #import <TSMessages/TSMessage.h>
 #import <TSMessages/TSMessageView.h>
+#import <BEMSimpleLineGraph/BEMSimpleLineGraphView.h>

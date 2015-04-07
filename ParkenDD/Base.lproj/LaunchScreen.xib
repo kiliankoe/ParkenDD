@@ -37,6 +37,6 @@
     </objects>
     <resources>
         <image name="launchGradient" width="600" height="600"/>
-        <image name="launchIcon" width="256" height="256"/>
+        <image name="launchIcon" width="512" height="512"/>
     </resources>
 </document>
