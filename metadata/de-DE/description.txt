@@ -1,0 +1,5 @@
+ParkenDD zeigt eine Liste der verfügbaren öffentlichen Parkplätze in Dresden. Es zeigt an ob ein öffentlicher Parkplatz geöffnet ist oder nicht, wie viele Plätze aktuell verfügbar sind und wo genau er sich befindet.
+
+Die angezeigten Daten sind so aktuell wie auch unter dresden.de/freie-parkplaetze veröffentlicht.
+
+Der Quelltext dieser Applikation ist auf Github verfügbar. Siehe https://github.com/kiliankoe/parkendd

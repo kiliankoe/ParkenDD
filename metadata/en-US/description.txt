@@ -1,0 +1,5 @@
+ParkenDD shows you a list of the number of available public parking spots in Dresden, Germany. It shows you whether a public parking lot is open or not, how many spots are available and where it is on a map.
+
+The information displayed is up-to-date according to what is published officially on dresden.de/freie-parkplaetze.
+
+The source for this application is available on Github. See https://github.com/kiliankoe/parkendd
