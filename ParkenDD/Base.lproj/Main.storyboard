@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HYE-MB-ofJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HYE-MB-ofJ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -179,7 +179,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Mn-ie-sd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2091" y="-169"/>
+            <point key="canvasLocation" x="2081" y="187"/>
         </scene>
         <!--ParkenDD-->
         <scene sceneID="mA1-45-In7">
@@ -394,7 +394,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxX-Eb-aca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="-903"/>
+            <point key="canvasLocation" x="2796" y="-171"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="6ii-fV-6NZ">
@@ -446,7 +446,7 @@ Car icon on app icon and settingsicon made by Freepik from http://flaticon.com a
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCm-mZ-FHs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="-169"/>
+            <point key="canvasLocation" x="2796" y="563"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="9c2-cj-dIk">
@@ -481,7 +481,7 @@ Car icon on app icon and settingsicon made by Freepik from http://flaticon.com a
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rcu-6M-Tnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2091" y="537"/>
+            <point key="canvasLocation" x="2081" y="903"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xx3-0L-I2R">
