@@ -5,8 +5,8 @@ PODS:
     - HexColors
 
 DEPENDENCIES:
-  - BEMSimpleLineGraph
-  - TSMessages
+  - BEMSimpleLineGraph (~> 3.3)
+  - TSMessages (~> 0.9.12)
 
 SPEC CHECKSUMS:
   BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
