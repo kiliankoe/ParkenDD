@@ -1,5 +1,10 @@
 ## ParkenDD for iOS
 
+[![](https://travis-ci.org/kiliankoe/ParkenDD.svg?branch=master)](https://travis-ci.org/kiliankoe/ParkenDD)
+![](https://img.shields.io/github/release/kiliankoe/ParkenDD.svg)
+![](https://img.shields.io/badge/license-MIT-blue.svg)
+![](https://img.shields.io/badge/awesome-yes-orange.svg)
+
 ![](Resources/screenshot.png)
 
 [![](Resources/badge.png)](https://itunes.apple.com/de/app/parkendd/id957165041)
