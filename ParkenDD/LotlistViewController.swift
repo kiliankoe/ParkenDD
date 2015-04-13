@@ -95,6 +95,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			let mapVC: MapViewController = segue.destinationViewController as! MapViewController
 			mapVC.detailParkinglot = selectedParkinglot
 			mapVC.allParkinglots = parkinglots
+
+//			searchController.active = false
 		}
 	}
 
@@ -148,7 +150,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 					// Scroll to first row to "hide" the searchcontroller by default
 					// This has to be done at a point where the table view actually contains data
-//					self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+//					if self.tableView.contentOffset.y < 60.0 {
+//						self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+//					}
 				})
 			}
 		}
