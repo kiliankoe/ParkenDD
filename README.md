@@ -1,9 +1,9 @@
 ## ParkenDD for iOS
 
 [![](https://travis-ci.org/kiliankoe/ParkenDD.svg?branch=master)](https://travis-ci.org/kiliankoe/ParkenDD)
-![](https://img.shields.io/github/release/kiliankoe/ParkenDD.svg)
-![](https://img.shields.io/badge/license-MIT-blue.svg)
-![](https://img.shields.io/badge/awesome-yes-orange.svg)
+[![](https://img.shields.io/github/release/kiliankoe/ParkenDD.svg)](https://github.com/kiliankoe/ParkenDD/releases)
+[![](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/kiliankoe/ParkenDD/blob/master/LICENSE)
+[![](https://img.shields.io/badge/awesome-yes-orange.svg)](http://i.giphy.com/TlK63Eu7Dwok2j8TgfS.gif)
 
 ![](Resources/screenshot.png)
 
