@@ -28,12 +28,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		searchController.searchResultsUpdater = self
 		searchController.searchBar.delegate = self
 		searchController.dimsBackgroundDuringPresentation = false
-		searchController.hidesNavigationBarDuringPresentation = false
+//		searchController.hidesNavigationBarDuringPresentation = false
 //		searchController.searchBar.searchBarStyle = UISearchBarStyle.Minimal
 
 		searchController.searchBar.frame = CGRectMake(searchController.searchBar.frame.origin.x, searchController.searchBar.frame.origin.y, searchController.searchBar.frame.size.width, 44.0)
 
 //		tableView.tableHeaderView = searchController.searchBar
+		self.definesPresentationContext = true
 
 		// set CLLocationManager delegate
 		locationManager.delegate = self
@@ -146,13 +147,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 				// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
 				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					// Reload the tableView, but with a slight animation
 					self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
-
-					// Scroll to first row to "hide" the searchcontroller by default
-					// This has to be done at a point where the table view actually contains data
-//					if self.tableView.contentOffset.y < 60.0 {
-//						self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-//					}
 				})
 			}
 		}
