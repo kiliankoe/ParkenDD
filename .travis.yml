@@ -2,3 +2,6 @@ language: objective-c
 xcode_project: ParkenDD.xcodeproj
 xcode_scheme: ParkenDD
 script: xctool -workspace ParkenDD.xcworkspace -scheme ParkenDD build test -sdk iphonesimulator
+
+notifications:
+  email: false
