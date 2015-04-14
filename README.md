@@ -8,7 +8,7 @@
 
 ![](Resources/screenshot.png)
 
-[![](Resources/appstorebadge.svg)](https://itunes.apple.com/de/app/parkendd/id957165041)
+[![](http://kilian.io/files/appstorebadge.svg)](https://itunes.apple.com/de/app/parkendd/id957165041)
 
 ParkenDD shows you a list of the number of available public parking spots in Dresden, Germany. This information is taken indirectly from the official page at [dresden.de](http://www.dresden.de/freie-parkplaetze/).
 
