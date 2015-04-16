@@ -29,8 +29,8 @@
 "ABOUT_BUTTON" = "Über";
 "SORTINGTYPE_DEFAULT" = "Standard";
 "NSLocationWhenInUseUsageDescription" = "Wird für den Standort auf der Karte und Sortierung nach Distanz genutzt.";
-"TWEET_TEXT" = "Dresdens Parkplätze übersichtlich auf dem iPhone: #ParkenDD http://kilian.io/parkendd";
-"FBPOST_TEXT" = "Dresdens Parkplätze übersichtlich auf dem iPhone: ParkenDD http://kilian.io/parkendd";
+"TWEET_TEXT" = "Dresdens Parkplätze übersichtlich auf dem iPhone: #ParkenDD http://parkendd.kilian.io";
+"FBPOST_TEXT" = "Dresdens Parkplätze übersichtlich auf dem iPhone: ParkenDD http://parkendd.kilian.io";
 "WAITING_FOR_LOCATION" = "auf Standort warten";
 "APPSTORE_DESCRIPTION" = "ParkenDD zeigt eine Liste der verfügbaren öffentlichen Parkplätze in Dresden. Es zeigt an ob ein öffentlicher Parkplatz geöffnet ist oder nicht, wie viele Plätze aktuell verfügbar sind und wo genau er sich befindet.\n\nDie angezeigten Daten sind so aktuell wie auch unter dresden.de/freie-parkplaetze veröffentlicht.\n\nDer Quelltext dieser Applikation ist auf Github verfügbar. Siehe https://github.com/kiliankoe/parkendd";
 "APPSTORE_TAGS" = "dresden, parken, auto, fahren, navigation, parkplatz, tiefgarage";
