@@ -10,5 +10,5 @@
 *  Stores global constants like the API Server URL
 */
 struct Constants {
-	static var parkinglotURL = "http://kilian.io/parkendd/json.php"
+	static var parkinglotURL = "http://jkliemann.de/offenesdresden.de/json.php"
 }
