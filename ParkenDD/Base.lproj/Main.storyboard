@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HYE-MB-ofJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HYE-MB-ofJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -408,40 +408,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL6-Aw-ZQN">
-                                <rect key="frame" x="16" y="20" width="568" height="572"/>
+                            <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72M-RI-TPI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">ParkenDD v1.1
-
-http://kilian.io/parkendd
-
-All data supplied without any guarantees!
-
-Data is as current as http://www.dresden.de/freie-parkplaetze/.
-
-Thanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Constantin Müller (@ubahnverleih) for creating the API server.
-
-The sourcecode for this application can be viewed at https://github.com/kiliankoe/parkendd and is licensed under the MIT license. Feedback in the form of issues and pull requests is always welcome!
-
-Car icon on app icon and settingsicon made by Freepik from http://flaticon.com and is licensed CC BY 3.0</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="131" width="400" height="378"/>
-                                </variation>
-                            </textView>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="yJE-RY-XFc" id="kGw-eV-PPQ"/>
+                                </connections>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="975-XG-YOB" firstAttribute="top" secondItem="CL6-Aw-ZQN" secondAttribute="bottom" constant="8" id="3A0-nF-ht2"/>
-                            <constraint firstItem="CL6-Aw-ZQN" firstAttribute="leading" secondItem="OBo-U7-Ppp" secondAttribute="leading" constant="16" id="ESj-Sy-biG"/>
-                            <constraint firstAttribute="trailing" secondItem="CL6-Aw-ZQN" secondAttribute="trailing" constant="16" id="lDW-2o-GCR"/>
-                            <constraint firstItem="CL6-Aw-ZQN" firstAttribute="top" secondItem="OBo-U7-Ppp" secondAttribute="top" constant="20" id="n4E-LW-oGt"/>
+                            <constraint firstItem="72M-RI-TPI" firstAttribute="leading" secondItem="OBo-U7-Ppp" secondAttribute="leadingMargin" constant="-16" id="SJX-c7-9Pc"/>
+                            <constraint firstItem="975-XG-YOB" firstAttribute="top" secondItem="72M-RI-TPI" secondAttribute="bottom" id="WMe-tL-Rat"/>
+                            <constraint firstItem="72M-RI-TPI" firstAttribute="top" secondItem="OBo-U7-Ppp" secondAttribute="topMargin" id="jEX-Kt-tfK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="72M-RI-TPI" secondAttribute="trailing" constant="-16" id="pdy-pg-BLq"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="aboutTextView" destination="CL6-Aw-ZQN" id="pYB-b4-cyF"/>
+                        <outlet property="aboutWebView" destination="72M-RI-TPI" id="8uN-Ia-gP9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCm-mZ-FHs" userLabel="First Responder" sceneMemberID="firstResponder"/>

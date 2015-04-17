@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3904EEE11AE1A3D80080EE81 /* abouttext.html in Resources */ = {isa = PBXBuildFile; fileRef = 3904EEE31AE1A3D80080EE81 /* abouttext.html */; };
 		3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926FECC1AAC47AA005B2DF9 /* Constants.swift */; };
 		392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */; };
 		393F0D381A9737AF00B25B74 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3904EEE21AE1A3D80080EE81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/abouttext.html; sourceTree = "<group>"; };
+		3904EEE41AE1A3DB0080EE81 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/abouttext.html; sourceTree = "<group>"; };
 		3926FECC1AAC47AA005B2DF9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotTableViewCell.swift; sourceTree = "<group>"; };
 		393F0D371A9737AF00B25B74 /* Parkinglot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parkinglot.swift; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				39B037511A94C73E00C5A273 /* AboutViewController.swift */,
+				3904EEE31AE1A3D80080EE81 /* abouttext.html */,
 			);
 			name = AboutView;
 			sourceTree = "<group>";
@@ -317,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3904EEE11AE1A3D80080EE81 /* abouttext.html in Resources */,
 				397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */,
 				3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */,
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
@@ -408,6 +413,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3904EEE31AE1A3D80080EE81 /* abouttext.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3904EEE21AE1A3D80080EE81 /* Base */,
+				3904EEE41AE1A3DB0080EE81 /* de */,
+			);
+			name = abouttext.html;
+			sourceTree = "<group>";
+		};
 		3977CA271A9CC78C00E20014 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

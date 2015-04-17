@@ -8,14 +8,16 @@
 
 import UIKit
 
-class AboutViewController: UIViewController {
-
-	@IBOutlet weak var aboutTextView: UITextView!
+class AboutViewController: UIViewController, UIWebViewDelegate {
+	
+	@IBOutlet weak var aboutWebView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		aboutTextView.text = NSLocalizedString("ABOUT_TEXT", comment: "about text")
+		let path = NSBundle.mainBundle().pathForResource("abouttext", ofType: "html")
+		var filecontent = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)!
+		aboutWebView.loadHTMLString(filecontent, baseURL: NSURL())
 
         // Do any additional setup after loading the view.
     }
@@ -27,6 +29,14 @@ class AboutViewController: UIViewController {
 
 	@IBAction func dismissButtonTapped(sender: UIButton) {
 		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+
+	func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+		if navigationType == UIWebViewNavigationType.LinkClicked {
+			UIApplication.sharedApplication().openURL(request.URL!)
+			return false
+		}
+		return true
 	}
 
 }
