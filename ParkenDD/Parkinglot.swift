@@ -20,6 +20,7 @@ struct Parkinglot {
 	let lat: Double?
 	let lon: Double?
 	var distance: Double?
+    var isFavorite: Bool!
 }
 
 /**
