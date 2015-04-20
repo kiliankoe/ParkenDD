@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class LotlistViewController: UITableViewController, CLLocationManagerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+class LotlistViewController: UITableViewController, CLLocationManagerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, MCSwipeTableViewCellDelegate {
 
 	let locationManager = CLLocationManager()
 
@@ -311,6 +311,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			cell.parkinglotLoadLabel.text = "?"
 		}
 
+        // Configure MCSwipeTableViewCell stuff
+        cell.separatorInset = UIEdgeInsetsZero
+        cell.selectionStyle = UITableViewCellSelectionStyle.Gray
+//        cell.contentView.backgroundColor = UIColor.whiteColor()
+
+        let checkView = UIView()
+		let checkColor = UIColor(red: 85.0/255.0, green: 213.0/255.0, blue: 80.0/255.0, alpha: 1.0)
+
+		cell.setSwipeGestureWithView(checkView, color: checkColor, mode: MCSwipeTableViewCellMode.Switch, state: MCSwipeTableViewCellState.State1) { (cell, state, mode) -> Void in
+			println("switched mode")
+		}
+
 		return cell
 	}
 
@@ -373,6 +385,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			let nameMatch = parkinglot.name.lowercaseString.rangeOfString(searchText.lowercaseString)
 			return nameMatch != nil
 		})
+	}
+
+	// /////////////////////////////////////////////////////////////////////////
+	// MARK: - MCSwipeTableViewCellDelegate
+	// /////////////////////////////////////////////////////////////////////////
+
+	func swipeTableViewCellDidEndSwiping(cell: MCSwipeTableViewCell!) {
+		var favorites = NSUserDefaults.standardUserDefaults().arrayForKey("favoriteLots")!
+		favorites.append((cell as! ParkinglotTableViewCell).parkinglotNameLabel.text!)
+		println(favorites)
+		NSUserDefaults.standardUserDefaults().setObject(favorites, forKey: "favoriteLots")
 	}
 
 }

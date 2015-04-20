@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let defaults: [NSObject:AnyObject] = [
 			"SortingType": "default",
 			"SkipNodataLots": true,
-			"grayscaleColors": false
+			"grayscaleColors": false,
+            "favoriteLots": []
 		]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 
