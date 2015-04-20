@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3904EEE11AE1A3D80080EE81 /* abouttext.html in Resources */ = {isa = PBXBuildFile; fileRef = 3904EEE31AE1A3D80080EE81 /* abouttext.html */; };
+		39196E941AE562F8003CBB50 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
+		39196E951AE562FB003CBB50 /* ParkinglotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B92081A9BCE0A000D42CE /* ParkinglotData.swift */; };
 		3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926FECC1AAC47AA005B2DF9 /* Constants.swift */; };
 		392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */; };
 		393F0D381A9737AF00B25B74 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
@@ -398,7 +400,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39196E941AE562F8003CBB50 /* Parkinglot.swift in Sources */,
 				39F4CFFA1A6BBC0200ACFECF /* ParkenDDTests.swift in Sources */,
+				39196E951AE562FB003CBB50 /* ParkinglotData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
