@@ -1,16 +1,19 @@
 PODS:
   - BEMSimpleLineGraph (3.3)
   - HexColors (2.2.1)
+  - MCSwipeTableViewCell (2.1.2)
   - TSMessages (0.9.12):
     - HexColors
 
 DEPENDENCIES:
   - BEMSimpleLineGraph (~> 3.3)
+  - MCSwipeTableViewCell (~> 2.1.2)
   - TSMessages (~> 0.9.12)
 
 SPEC CHECKSUMS:
   BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
+  MCSwipeTableViewCell: 0fc22bd3635b9b5f4ce08675218b0a7278b6440f
   TSMessages: 2a52642128d7ab15b46930c810b9c9403a2b58f3
 
 COCOAPODS: 0.36.4

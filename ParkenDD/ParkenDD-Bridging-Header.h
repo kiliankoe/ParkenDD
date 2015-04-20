@@ -5,3 +5,4 @@
 #import <TSMessages/TSMessage.h>
 #import <TSMessages/TSMessageView.h>
 #import <BEMSimpleLineGraph/BEMSimpleLineGraphView.h>
+#import <MCSwipeTableViewCell/MCSwipeTableViewCell.h>
