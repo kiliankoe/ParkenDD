@@ -9,12 +9,12 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>ParkenDDTests.xcscheme</key>
+		<key>ParkenDDTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>1</integer>
 		</dict>
 		<key>ParkenDDWidget.xcscheme</key>
 		<dict>
