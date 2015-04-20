@@ -123,12 +123,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 						TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
 					})
 
-					if self.parkinglots.isEmpty {
-						// TODO: The app has just tried updating on "an empty stomach"
-						// It is now stuck in a state where it displays "Refreshing..." on the tableview and the pull-to-refresh works awkwardly
-						// Do something about this
-					}
-
 				} else if error == "serverError" {
 
 					// Give the user a notification that data from the server can't be read
