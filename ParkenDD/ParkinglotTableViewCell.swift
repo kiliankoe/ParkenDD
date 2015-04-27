@@ -15,6 +15,8 @@ class ParkinglotTableViewCell: MCSwipeTableViewCell {
 	@IBOutlet weak var parkinglotLoadLabel: UILabel!
 	@IBOutlet weak var parkinglotTendencyLabel: UILabel!
 
+	var parkinglot: Parkinglot?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

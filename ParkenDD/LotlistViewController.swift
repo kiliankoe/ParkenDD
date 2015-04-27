@@ -256,6 +256,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			customParkinglotlist = parkinglots
 		}
 
+		cell.parkinglot = thisLot
 		cell.parkinglotNameLabel.text = thisLot.name
 		cell.parkinglotLoadLabel.text = "\(thisLot.free)"
 
@@ -321,7 +322,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		let checkColor = UIColor(red: 85.0/255.0, green: 213.0/255.0, blue: 80.0/255.0, alpha: 1.0)
 
 		cell.setSwipeGestureWithView(checkView, color: checkColor, mode: MCSwipeTableViewCellMode.Switch, state: MCSwipeTableViewCellState.State1) { (cell, state, mode) -> Void in
-			println("switched mode")
+			var favorites = NSUserDefaults.standardUserDefaults().arrayForKey("favoriteLots") as! [String]
+			let lotName = (cell as! ParkinglotTableViewCell).parkinglot!.name
+			if contains(favorites, lotName) {
+				let index = find(favorites, lotName)
+				favorites.removeAtIndex(index!)
+				NSLog("removed \(lotName) from favorites")
+			} else {
+				favorites.append(lotName)
+				NSLog("added \(lotName) to favorites")
+			}
+			NSUserDefaults.standardUserDefaults().setObject(favorites, forKey: "favoriteLots")
+			NSUserDefaults.standardUserDefaults().synchronize()
 		}
 
 		return cell
