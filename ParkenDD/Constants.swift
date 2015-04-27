@@ -11,4 +11,5 @@
 */
 struct Constants {
 	static var parkinglotURL = "http://jkliemann.de/offenesdresden.de/json.php"
+	static var notificationURL = "http://parkendd.kilian.io/notification.json"
 }
