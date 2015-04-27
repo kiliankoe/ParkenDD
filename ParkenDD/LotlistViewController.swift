@@ -316,14 +316,16 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		}
 
         // Configure MCSwipeTableViewCell stuff
+
+		// Create view with a star image to be displayed in swiped 'backview'
+		let favView = self.viewWithImageName("favStar")
+		let favColor = Colors.sunFlower
+
         cell.separatorInset = UIEdgeInsetsZero
         cell.selectionStyle = UITableViewCellSelectionStyle.Gray
 //        cell.contentView.backgroundColor = UIColor.whiteColor()
 
-        let checkView = UIView()
-		let checkColor = UIColor(red: 85.0/255.0, green: 213.0/255.0, blue: 80.0/255.0, alpha: 1.0)
-
-		cell.setSwipeGestureWithView(checkView, color: checkColor, mode: MCSwipeTableViewCellMode.Switch, state: MCSwipeTableViewCellState.State1) { (cell, state, mode) -> Void in
+		cell.setSwipeGestureWithView(favView, color: favColor, mode: MCSwipeTableViewCellMode.Switch, state: MCSwipeTableViewCellState.State1) { (cell, state, mode) -> Void in
 			var favorites = NSUserDefaults.standardUserDefaults().arrayForKey("favoriteLots") as! [String]
 			let lotName = (cell as! ParkinglotTableViewCell).parkinglot!.name
 			if contains(favorites, lotName) {
@@ -411,6 +413,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		favorites.append((cell as! ParkinglotTableViewCell).parkinglotNameLabel.text!)
 		println(favorites)
 		NSUserDefaults.standardUserDefaults().setObject(favorites, forKey: "favoriteLots")
+	}
+
+	// /////////////////////////////////////////////////////////////////////////
+	// MARK: - Helpers
+	// /////////////////////////////////////////////////////////////////////////
+
+	func viewWithImageName(imageName: String) -> UIImageView {
+		let image = UIImage(named: imageName)
+		let imageView = UIImageView(image: image)
+		imageView.contentMode = UIViewContentMode.Center
+		return imageView
 	}
 
 }

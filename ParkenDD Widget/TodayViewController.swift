@@ -43,11 +43,12 @@ class TodayViewController: UITableViewController, NCWidgetProviding, UITableView
 	}
 
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return lotsToDisplay!.count
+		return 3
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell = tableView.dequeueReusableCellWithIdentifier("widgetCell") as! WidgetTableViewCell
+//		var cell = tableView.dequeueReusableCellWithIdentifier("widgetCell") as! WidgetTableViewCell
+		var cell = WidgetTableViewCell()
 
 		cell.lotNameLabel.text = "Altmarktgalerie"
 		cell.lotFreeLabel.text = "150"
