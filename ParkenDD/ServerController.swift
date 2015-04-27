@@ -121,6 +121,8 @@ class ServerController {
 		let url = NSURL(string: Constants.notificationURL)
 		let request = NSMutableURLRequest(URL: url!)
 
+		var seenNotifications = NSUserDefaults.standardUserDefaults().objectForKey("seenNotifications") as! [Int]
+
 		let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
 			if error == nil {
 				if let output = NSString(data: data, encoding: NSUTF8StringEncoding) {
@@ -128,7 +130,12 @@ class ServerController {
 					let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
 					if let notificationDict = parsedObject as? Dictionary<String, AnyObject> {
 						if let display = notificationDict["display"] as? Bool where display == true {
-							completion(alertTitle: notificationDict["notificationTitle"] as! String, alertText: notificationDict["notificationText"] as! String)
+							if !contains(seenNotifications, notificationDict["id"] as! Int) {
+								seenNotifications.append(notificationDict["id"] as! Int)
+								NSUserDefaults.standardUserDefaults().setObject(seenNotifications, forKey: "seenNotifications")
+								NSUserDefaults.standardUserDefaults().synchronize()
+								completion(alertTitle: notificationDict["notificationTitle"] as! String, alertText: notificationDict["notificationText"] as! String)
+							}
 						}
 					}
 				}

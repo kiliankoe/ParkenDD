@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			"SortingType": "default",
 			"SkipNodataLots": true,
 			"grayscaleColors": false,
-            "favoriteLots": []
+            "favoriteLots": [],
+			"seenNotifications": []
 		]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 
