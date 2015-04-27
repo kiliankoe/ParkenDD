@@ -17,7 +17,7 @@ class ServerController {
 
 	:param: callback (sectionNames: [String]?, parkinglotList: [Parkinglot]?, updateError: String?) -> ()
 	*/
-	static func sendParkinglotDataRequest(callback: (sectionNames: [String]?, parkinglotList: [Parkinglot]?, updateError: String?) -> ()) {
+	static func sendParkinglotDataRequest(completion: (sectionNames: [String]?, parkinglotList: [Parkinglot]?, updateError: String?) -> ()) {
 		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 		sessionConfig.timeoutIntervalForRequest = 15.0
 		sessionConfig.timeoutIntervalForResource = 20.0
@@ -47,7 +47,7 @@ class ServerController {
 								sectionNames.append(sectionName)
 
 								if lots.count == 0 {
-									callback(sectionNames: nil, parkinglotList: nil, updateError: "serverError")
+									completion(sectionNames: nil, parkinglotList: nil, updateError: "serverError")
 								}
 
 								for lot in lots {
@@ -97,18 +97,18 @@ class ServerController {
 								}
 							}
 						}
-						callback(sectionNames: sectionNames, parkinglotList: parkinglotList, updateError: nil)
+						completion(sectionNames: sectionNames, parkinglotList: parkinglotList, updateError: nil)
 					} else {
-						callback(sectionNames: nil, parkinglotList: nil, updateError: "serverError")
+						completion(sectionNames: nil, parkinglotList: nil, updateError: "serverError")
 					}
 				} else {
-					callback(sectionNames: nil, parkinglotList: nil, updateError: "serverError")
+					completion(sectionNames: nil, parkinglotList: nil, updateError: "serverError")
 				}
 			}
 			else {
 				// Failure
 				NSLog("HTTP Request Failure: %@", error.localizedDescription)
-				callback(sectionNames: nil, parkinglotList: nil, updateError: "requestError")
+				completion(sectionNames: nil, parkinglotList: nil, updateError: "requestError")
 			}
 		})
 		task.resume()
