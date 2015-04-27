@@ -321,25 +321,33 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		let favView = self.viewWithImageName("favStar")
 		let unfavView = self.viewWithImageName("unfavStar")
 		let favColor = Colors.sunFlower
-		let unfavColor = Colors.wetAsphalt
+		let unfavColor = Colors.silver
 
         cell.separatorInset = UIEdgeInsetsZero
         cell.selectionStyle = UITableViewCellSelectionStyle.Gray
-//        cell.contentView.backgroundColor = UIColor.whiteColor()
 
-		cell.setSwipeGestureWithView(favView, color: favColor, mode: MCSwipeTableViewCellMode.Switch, state: MCSwipeTableViewCellState.State1) { (cell, state, mode) -> Void in
-			var favorites = NSUserDefaults.standardUserDefaults().arrayForKey("favoriteLots") as! [String]
-			let lotName = (cell as! ParkinglotTableViewCell).parkinglot!.name
-			if contains(favorites, lotName) {
-				let index = find(favorites, lotName)
-				favorites.removeAtIndex(index!)
-				NSLog("removed \(lotName) from favorites")
-			} else {
-				favorites.append(lotName)
-				NSLog("added \(lotName) to favorites")
+		let favoritedLots = NSUserDefaults.standardUserDefaults().arrayForKey("favoriteLots") as! [String]
+		if contains(favoritedLots, thisLot.name) {
+			// Lot is already faved
+			cell.setSwipeGestureWithView(unfavView, color: unfavColor, mode: MCSwipeTableViewCellMode.Switch, state: MCSwipeTableViewCellState.State2) { (cell, state, mode) -> Void in
+				println("foo")
 			}
-			NSUserDefaults.standardUserDefaults().setObject(favorites, forKey: "favoriteLots")
-			NSUserDefaults.standardUserDefaults().synchronize()
+		} else {
+			// Lot is not faved
+			cell.setSwipeGestureWithView(favView, color: favColor, mode: MCSwipeTableViewCellMode.Switch, state: MCSwipeTableViewCellState.State1) { (cell, state, mode) -> Void in
+				var favorites = NSUserDefaults.standardUserDefaults().arrayForKey("favoriteLots") as! [String]
+				let lotName = (cell as! ParkinglotTableViewCell).parkinglot!.name
+				if contains(favorites, lotName) {
+					let index = find(favorites, lotName)
+					favorites.removeAtIndex(index!)
+					NSLog("removed \(lotName) from favorites")
+				} else {
+					favorites.append(lotName)
+					NSLog("added \(lotName) to favorites")
+				}
+				NSUserDefaults.standardUserDefaults().setObject(favorites, forKey: "favoriteLots")
+				NSUserDefaults.standardUserDefaults().synchronize()
+			}
 		}
 
 		return cell
