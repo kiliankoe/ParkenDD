@@ -32,7 +32,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		} else if section == 1 {
 			return 2
 		} else {
-			return 4
+			return 5
 		}
     }
 
@@ -114,8 +114,10 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 				cell.textLabel?.text = NSLocalizedString("ABOUT_BUTTON", comment: "About")
 				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 			case 2:
-				cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
+				cell.textLabel?.text = NSLocalizedString("RESET_NOTIFICATIONS", comment: "Reset Notifications")
 			case 3:
+				cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
+			case 4:
 				cell.textLabel?.text = NSLocalizedString("SHARE_ON_FACEBOOK", comment: "Share on Facebook")
 			default:
 				break
@@ -203,6 +205,11 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 			}
 
 			if indexPath.row == 2 {
+				NSUserDefaults.standardUserDefaults().setObject([], forKey: "seenNotifications")
+				NSUserDefaults.standardUserDefaults().synchronize()
+			}
+
+			if indexPath.row == 3 {
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
 					tweetsheet.setInitialText(NSLocalizedString("TWEET_TEXT", comment: "Check out #ParkenDD..."))
@@ -210,7 +217,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 				}
 			}
 
-			if indexPath.row == 3 {
+			if indexPath.row == 4 {
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
 					let fbsheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
 					fbsheet.setInitialText(NSLocalizedString("FBPOST_TEXT", comment: "Check out ParkenDD..."))
