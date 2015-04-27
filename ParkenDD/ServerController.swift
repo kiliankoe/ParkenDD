@@ -113,5 +113,28 @@ class ServerController {
 		})
 		task.resume()
 	}
+
+	static func sendNotificationRequest(completion: (alertTitle: String, alertText: String) -> ()) {
+		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+		let session = NSURLSession(configuration: sessionConfig)
+
+		let url = NSURL(string: Constants.notificationURL)
+		let request = NSMutableURLRequest(URL: url!)
+
+		let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+			if error == nil {
+				if let output = NSString(data: data, encoding: NSUTF8StringEncoding) {
+					var parseError: NSError?
+					let parsedObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &parseError)
+					if let notificationDict = parsedObject as? Dictionary<String, AnyObject> {
+						if let display = notificationDict["display"] as? Bool where display == true {
+							completion(alertTitle: notificationDict["notificationTitle"] as! String, alertText: notificationDict["notificationText"] as! String)
+						}
+					}
+				}
+			}
+		})
+		task.resume()
+	}
 	
 }
