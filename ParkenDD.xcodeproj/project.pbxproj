@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3904EEE11AE1A3D80080EE81 /* abouttext.html in Resources */ = {isa = PBXBuildFile; fileRef = 3904EEE31AE1A3D80080EE81 /* abouttext.html */; };
+		390CD04A1AEE6602003EB8F4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B953521AA0A59600026EC2 /* NotificationCenter.framework */; };
+		390CD04F1AEE6602003EB8F4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390CD04E1AEE6602003EB8F4 /* TodayViewController.swift */; };
+		390CD0511AEE6602003EB8F4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 390CD0501AEE6602003EB8F4 /* MainInterface.storyboard */; };
+		390CD0541AEE6602003EB8F4 /* ParkenDD Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 390CD0491AEE6602003EB8F4 /* ParkenDD Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		390CD05A1AEE6A0A003EB8F4 /* WidgetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390CD0591AEE6A0A003EB8F4 /* WidgetTableViewCell.swift */; };
 		39196E941AE562F8003CBB50 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
 		39196E951AE562FB003CBB50 /* ParkinglotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B92081A9BCE0A000D42CE /* ParkinglotData.swift */; };
 		3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926FECC1AAC47AA005B2DF9 /* Constants.swift */; };
@@ -34,6 +39,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		390CD0521AEE6602003EB8F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39F4CFD61A6BBC0200ACFECF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 390CD0481AEE6602003EB8F4;
+			remoteInfo = "ParkenDD Widget";
+		};
 		39F4CFF41A6BBC0200ACFECF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39F4CFD61A6BBC0200ACFECF /* Project object */;
@@ -43,9 +55,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		390CD0581AEE6602003EB8F4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				390CD0541AEE6602003EB8F4 /* ParkenDD Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3904EEE21AE1A3D80080EE81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/abouttext.html; sourceTree = "<group>"; };
 		3904EEE41AE1A3DB0080EE81 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/abouttext.html; sourceTree = "<group>"; };
+		390CD0491AEE6602003EB8F4 /* ParkenDD Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ParkenDD Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		390CD04D1AEE6602003EB8F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		390CD04E1AEE6602003EB8F4 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		390CD0501AEE6602003EB8F4 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		390CD0591AEE6A0A003EB8F4 /* WidgetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetTableViewCell.swift; sourceTree = "<group>"; };
 		3926FECC1AAC47AA005B2DF9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotTableViewCell.swift; sourceTree = "<group>"; };
 		393F0D371A9737AF00B25B74 /* Parkinglot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parkinglot.swift; sourceTree = "<group>"; };
@@ -80,6 +111,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		390CD0461AEE6602003EB8F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				390CD04A1AEE6602003EB8F4 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		39F4CFDB1A6BBC0200ACFECF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -98,6 +137,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		390CD04B1AEE6602003EB8F4 /* ParkenDD Widget */ = {
+			isa = PBXGroup;
+			children = (
+				390CD04E1AEE6602003EB8F4 /* TodayViewController.swift */,
+				390CD0501AEE6602003EB8F4 /* MainInterface.storyboard */,
+				390CD0591AEE6A0A003EB8F4 /* WidgetTableViewCell.swift */,
+				390CD04C1AEE6602003EB8F4 /* Supporting Files */,
+			);
+			path = "ParkenDD Widget";
+			sourceTree = "<group>";
+		};
+		390CD04C1AEE6602003EB8F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				390CD04D1AEE6602003EB8F4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		394209B21AADB15900E47539 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +213,7 @@
 			children = (
 				39F4CFE01A6BBC0200ACFECF /* ParkenDD */,
 				39F4CFF61A6BBC0200ACFECF /* ParkenDDTests */,
+				390CD04B1AEE6602003EB8F4 /* ParkenDD Widget */,
 				39B953511AA0A59600026EC2 /* Frameworks */,
 				39F4CFDF1A6BBC0200ACFECF /* Products */,
 				C81E18E5B8E91764A9D40C01 /* Pods */,
@@ -166,6 +225,7 @@
 			children = (
 				39F4CFDE1A6BBC0200ACFECF /* ParkenDD.app */,
 				39F4CFF31A6BBC0200ACFECF /* ParkenDDTests.xctest */,
+				390CD0491AEE6602003EB8F4 /* ParkenDD Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,6 +301,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		390CD0481AEE6602003EB8F4 /* ParkenDD Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 390CD0571AEE6602003EB8F4 /* Build configuration list for PBXNativeTarget "ParkenDD Widget" */;
+			buildPhases = (
+				390CD0451AEE6602003EB8F4 /* Sources */,
+				390CD0461AEE6602003EB8F4 /* Frameworks */,
+				390CD0471AEE6602003EB8F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ParkenDD Widget";
+			productName = "ParkenDD Widget";
+			productReference = 390CD0491AEE6602003EB8F4 /* ParkenDD Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		39F4CFDD1A6BBC0200ACFECF /* ParkenDD */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39F4CFFD1A6BBC0200ACFECF /* Build configuration list for PBXNativeTarget "ParkenDD" */;
@@ -250,10 +327,12 @@
 				39F4CFDB1A6BBC0200ACFECF /* Frameworks */,
 				39F4CFDC1A6BBC0200ACFECF /* Resources */,
 				9A08A0CD4C7D135505D268B0 /* Copy Pods Resources */,
+				390CD0581AEE6602003EB8F4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				390CD0531AEE6602003EB8F4 /* PBXTargetDependency */,
 			);
 			name = ParkenDD;
 			productName = ParkenDD;
@@ -287,6 +366,10 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Kilian Koeltzsch";
 				TargetAttributes = {
+					390CD0481AEE6602003EB8F4 = {
+						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = HU85FER47E;
+					};
 					39F4CFDD1A6BBC0200ACFECF = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = HU85FER47E;
@@ -314,11 +397,20 @@
 			targets = (
 				39F4CFDD1A6BBC0200ACFECF /* ParkenDD */,
 				39F4CFF21A6BBC0200ACFECF /* ParkenDDTests */,
+				390CD0481AEE6602003EB8F4 /* ParkenDD Widget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		390CD0471AEE6602003EB8F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				390CD0511AEE6602003EB8F4 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		39F4CFDC1A6BBC0200ACFECF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -376,6 +468,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		390CD0451AEE6602003EB8F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				390CD04F1AEE6602003EB8F4 /* TodayViewController.swift in Sources */,
+				390CD05A1AEE6A0A003EB8F4 /* WidgetTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		39F4CFDA1A6BBC0200ACFECF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -409,6 +510,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		390CD0531AEE6602003EB8F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 390CD0481AEE6602003EB8F4 /* ParkenDD Widget */;
+			targetProxy = 390CD0521AEE6602003EB8F4 /* PBXContainerItemProxy */;
+		};
 		39F4CFF51A6BBC0200ACFECF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 39F4CFDD1A6BBC0200ACFECF /* ParkenDD */;
@@ -463,6 +569,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		390CD0551AEE6602003EB8F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ParkenDD Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		390CD0561AEE6602003EB8F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "ParkenDD Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		39F4CFFB1A6BBC0200ACFECF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -621,6 +762,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		390CD0571AEE6602003EB8F4 /* Build configuration list for PBXNativeTarget "ParkenDD Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				390CD0551AEE6602003EB8F4 /* Debug */,
+				390CD0561AEE6602003EB8F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		39F4CFD91A6BBC0200ACFECF /* Build configuration list for PBXProject "ParkenDD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
