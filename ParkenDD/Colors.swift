@@ -36,6 +36,9 @@ struct Colors {
 	static let flatOrange = UIColor(red: 240.0/255.0, green: 168.0/255.0, blue: 83.0/255.0, alpha: 1.0)
 	static let flatRed = UIColor(red: 239.0/255.0, green: 83.0/255.0, blue: 84.0/255.0, alpha: 1.0)
 
+	static let softGreen = UIColor(rgba: "#C5E7A3")
+	static let softRed = UIColor(rgba: "#EFB5BC")
+
 	/**
 	Return a color between green and red based on a percentage value
 
@@ -60,5 +63,51 @@ struct Colors {
 			return UIColor(hue: CGFloat(hue), saturation: 0.54, brightness: 0.7, alpha: 1.0)
 		}
 		return UIColor(hue: CGFloat(hue), saturation: 0.54, brightness: 0.8, alpha: 1.0)
+	}
+}
+
+// Props to github.com/yeahdongcn/UIColor-Hex-Swift
+extension UIColor {
+	convenience init(rgba: String) {
+		var red:   CGFloat = 0.0
+		var green: CGFloat = 0.0
+		var blue:  CGFloat = 0.0
+		var alpha: CGFloat = 1.0
+
+		if rgba.hasPrefix("#") {
+			let index   = advance(rgba.startIndex, 1)
+			let hex     = rgba.substringFromIndex(index)
+			let scanner = NSScanner(string: hex)
+			var hexValue: CUnsignedLongLong = 0
+			if scanner.scanHexLongLong(&hexValue) {
+				switch (count(hex)) {
+				case 3:
+					red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
+					green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
+					blue  = CGFloat(hexValue & 0x00F)              / 15.0
+				case 4:
+					red   = CGFloat((hexValue & 0xF000) >> 12)     / 15.0
+					green = CGFloat((hexValue & 0x0F00) >> 8)      / 15.0
+					blue  = CGFloat((hexValue & 0x00F0) >> 4)      / 15.0
+					alpha = CGFloat(hexValue & 0x000F)             / 15.0
+				case 6:
+					red   = CGFloat((hexValue & 0xFF0000) >> 16)   / 255.0
+					green = CGFloat((hexValue & 0x00FF00) >> 8)    / 255.0
+					blue  = CGFloat(hexValue & 0x0000FF)           / 255.0
+				case 8:
+					red   = CGFloat((hexValue & 0xFF000000) >> 24) / 255.0
+					green = CGFloat((hexValue & 0x00FF0000) >> 16) / 255.0
+					blue  = CGFloat((hexValue & 0x0000FF00) >> 8)  / 255.0
+					alpha = CGFloat(hexValue & 0x000000FF)         / 255.0
+				default:
+					print("Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8")
+				}
+			} else {
+				println("Scan hex error")
+			}
+		} else {
+			print("Invalid RGB string, missing '#' as prefix")
+		}
+		self.init(red:red, green:green, blue:blue, alpha:alpha)
 	}
 }

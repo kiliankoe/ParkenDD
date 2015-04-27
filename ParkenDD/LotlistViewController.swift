@@ -320,8 +320,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		// Create view with a star image to be displayed in swiped 'backview'
 		let favView = self.viewWithImageName("favStar")
 		let unfavView = self.viewWithImageName("unfavStar")
-		let favColor = Colors.sunFlower
-		let unfavColor = Colors.silver
+		let favColor = Colors.softGreen
+		let unfavColor = Colors.softRed
 
         cell.separatorInset = UIEdgeInsetsZero
         cell.selectionStyle = UITableViewCellSelectionStyle.Gray
