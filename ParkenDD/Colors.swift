@@ -31,13 +31,8 @@ struct Colors {
 	static let concrete = UIColor(red: 149.0/255.0, green: 165.0/255.0, blue: 166.0/255.0, alpha: 1.0)
 	static let asbestos = UIColor(red: 127.0/255.0, green: 140.0/255.0, blue: 141.0/255.0, alpha: 1.0)
 
-	// Stolen from the app Departure 2
-	static let flatGreen = UIColor(red: 142.0/255.0, green: 211.0/255.0, blue: 95.0/255.0, alpha: 1.0)
-	static let flatOrange = UIColor(red: 240.0/255.0, green: 168.0/255.0, blue: 83.0/255.0, alpha: 1.0)
-	static let flatRed = UIColor(red: 239.0/255.0, green: 83.0/255.0, blue: 84.0/255.0, alpha: 1.0)
-
-	static let softGreen = UIColor(rgba: "#C5E7A3")
-	static let softRed = UIColor(rgba: "#EFB5BC")
+	static let favYellow = UIColor(rgba: "#F9E510")
+	static let unfavYellow = UIColor(rgba: "#F4E974")
 
 	/**
 	Return a color between green and red based on a percentage value

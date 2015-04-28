@@ -14,6 +14,7 @@ class ParkinglotTableViewCell: MCSwipeTableViewCell {
 	@IBOutlet weak var parkinglotAddressLabel: UILabel!
 	@IBOutlet weak var parkinglotLoadLabel: UILabel!
 	@IBOutlet weak var parkinglotTendencyLabel: UILabel!
+	@IBOutlet weak var favTriangle: UIImageView!
 
 	var parkinglot: Parkinglot!
 

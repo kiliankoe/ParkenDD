@@ -256,6 +256,9 @@
                                                 <rect key="frame" x="15" y="19" width="179" height="21"/>
                                             </variation>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejb-y3-wKG">
+                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="gAX-Mc-DZC" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="3" id="4L3-vP-cMi"/>
@@ -269,6 +272,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="favTriangle" destination="ejb-y3-wKG" id="RuN-nt-fAo"/>
                                     <outlet property="parkinglotAddressLabel" destination="aUh-dH-utI" id="97i-IK-5OU"/>
                                     <outlet property="parkinglotLoadLabel" destination="WBR-31-iII" id="CCM-Tr-lcK"/>
                                     <outlet property="parkinglotNameLabel" destination="gAX-Mc-DZC" id="pVt-6k-ppC"/>
