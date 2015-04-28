@@ -73,8 +73,12 @@ class ServerController {
 					}
 				}
 				completion(parkinglotList: parkinglotList, updateError: nil)
+			} else if err != nil && res?.statusCode == 200 {
+				NSLog("Error: \(err!.localizedDescription)")
+				completion(parkinglotList: nil, updateError: .Server)
 			} else {
-				completion(parkinglotList: nil, updateError: UpdateError.Request)
+				NSLog("Error: \(err!.localizedDescription)")
+				completion(parkinglotList: nil, updateError: .Request)
 			}
 		}
 	}
