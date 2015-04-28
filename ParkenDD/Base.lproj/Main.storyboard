@@ -256,16 +256,22 @@
                                                 <rect key="frame" x="15" y="19" width="179" height="21"/>
                                             </variation>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejb-y3-wKG">
-                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ejb-y3-wKG">
+                                            <rect key="frame" x="-8" y="-1" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="CsC-Up-6dh"/>
+                                                <constraint firstAttribute="width" constant="20" id="F9e-80-RuD"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="gAX-Mc-DZC" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="3" id="4L3-vP-cMi"/>
+                                        <constraint firstItem="ejb-y3-wKG" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" constant="-16" id="DlS-Yb-CP8"/>
                                         <constraint firstItem="63L-uQ-iqV" firstAttribute="trailing" secondItem="aeK-tz-Dv3" secondAttribute="trailingMargin" id="JJo-Ih-nGN"/>
                                         <constraint firstItem="gAX-Mc-DZC" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" id="PcJ-UO-wV0"/>
                                         <constraint firstItem="aUh-dH-utI" firstAttribute="bottom" secondItem="aeK-tz-Dv3" secondAttribute="bottomMargin" id="hwC-pq-RYl"/>
                                         <constraint firstItem="WBR-31-iII" firstAttribute="trailing" secondItem="aeK-tz-Dv3" secondAttribute="trailingMargin" id="iJ5-KI-YSU"/>
+                                        <constraint firstItem="ejb-y3-wKG" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="-9" id="k3g-6X-381"/>
                                         <constraint firstItem="63L-uQ-iqV" firstAttribute="bottom" secondItem="aeK-tz-Dv3" secondAttribute="bottomMargin" id="lba-Q5-V4U"/>
                                         <constraint firstItem="aUh-dH-utI" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" id="llR-jb-yf5"/>
                                         <constraint firstItem="WBR-31-iII" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="3" id="tMO-Yl-kt6"/>
