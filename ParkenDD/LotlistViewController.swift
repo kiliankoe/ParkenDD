@@ -20,7 +20,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	var parkinglots: [Parkinglot] = []
 	var defaultSortedParkinglots: [Parkinglot] = []
 	var filteredParkinglots: [Parkinglot] = []
-	var sectionNames: [String] = []
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -118,7 +117,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		}
 
 		ServerController.sendParkinglotDataRequest() {
-			(secNames, plotList, updateError) in
+			(plotList, updateError) in
 
 			// Reset the UI elements showing a loading refresh
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -126,7 +125,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			})
 
 			if let error = updateError {
-				if error == "requestError" {
+				if error == .Request {
 
 					// Give the user a notification that new data can't be fetched
 					dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -134,7 +133,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 						TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
 					})
 
-				} else if error == "serverError" {
+				} else if error == .Server {
 
 					// Give the user a notification that data from the server can't be read
 					dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -144,8 +143,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 				}
 
-			} else if let secNames = secNames, plotList = plotList {
-				self.sectionNames = secNames
+			} else if let plotList = plotList {
 				self.parkinglots = plotList
 				self.defaultSortedParkinglots = plotList
 				self.sortLots()

@@ -12,7 +12,6 @@ import Foundation
 *  Stores a single parkinglot
 */
 struct Parkinglot {
-	let section: String!
 	let name: String!
 	let count: Int!
 	let free: Int!
