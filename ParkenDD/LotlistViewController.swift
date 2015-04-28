@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import MCSwipeTableViewCell
+import TSMessages
 
 class LotlistViewController: UITableViewController, CLLocationManagerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, MCSwipeTableViewCellDelegate {
 

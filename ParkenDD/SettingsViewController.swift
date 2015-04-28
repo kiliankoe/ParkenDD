@@ -8,6 +8,7 @@
 
 import UIKit
 import Social
+import TSMessages
 
 class SettingsViewController: UITableViewController, UITableViewDelegate {
 
