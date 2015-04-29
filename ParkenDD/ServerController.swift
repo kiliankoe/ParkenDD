@@ -22,7 +22,7 @@ class ServerController {
 
 	:param: completion handler that is provided with a list of parkinglots and an optional error
 	*/
-	static func sendParkinglotDataRequest(completion: (parkinglotList: [Parkinglot]?, updateError: UpdateError?) -> ()) {
+	static func sendParkinglotDataRequest(completion: (parkinglotList: [Parkinglot], updateError: UpdateError?) -> ()) {
 
 		// TODO: Include timeouts?
 //		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -75,10 +75,10 @@ class ServerController {
 				completion(parkinglotList: parkinglotList, updateError: nil)
 			} else if err != nil && res?.statusCode == 200 {
 				NSLog("Error: \(err!.localizedDescription)")
-				completion(parkinglotList: nil, updateError: .Server)
+				completion(parkinglotList: [], updateError: .Server)
 			} else {
 				NSLog("Error: \(err!.localizedDescription)")
-				completion(parkinglotList: nil, updateError: .Request)
+				completion(parkinglotList: [], updateError: .Request)
 			}
 		}
 	}

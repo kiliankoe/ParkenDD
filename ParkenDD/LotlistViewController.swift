@@ -143,7 +143,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 				}
 
-			} else if let plotList = plotList {
+			} else {
 				self.parkinglots = plotList
 				self.defaultSortedParkinglots = plotList
 				self.sortLots()
