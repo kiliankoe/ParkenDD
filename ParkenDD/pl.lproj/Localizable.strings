@@ -1,0 +1,93 @@
+/* 
+  Localizable.strings
+  ParkenDD
+
+  Created by Kilian Költzsch on 22/02/15.
+  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
+*/
+
+"REQUEST_ERROR_TITLE" = "Błąd połączenia";
+"REQUEST_ERROR" = "Nie można załadować danych. Prawdopodobnie nie ma połączenia internetowego.";
+"SERVER_ERROR_TITLE" = "Błąd serweru.";
+"SERVER_ERROR" = "Nie można odczytać danych. Prosze zaktualizuj za chwilę ponownie.";
+"UNKNOWN_COORDINATES_TITLE" = "Błąd";
+"UNKNOWN_COORDINATES_ERROR" = "Nie można znaleźć danych o lokalizacji dla wybranego parkingu.";
+"LAST_UPDATE" = "Ostatnia aktualizacja:";
+"NO_DATA" = "Trwa aktualizacja...";
+"OCCUPIED" = "Zajęty";
+"CLOSED" = "Zamknięty";
+"UNKNOWN_ADDRESS" = "Adres nieznany";
+"UNKNOWN_LOAD" = "nieznany";
+"SHARE_ON_FACEBOOK" = "udostępnij na facebooku";
+"OTHER_OPTIONS" = "inne opcje";
+"SORTINGTYPE_LOCATION" = "odległość";
+"SHARE_ON_TWITTER" = "udostępnij na Twitterze";
+"SORTINGTYPE_FREESPOTS" = "wolne mijęsca";
+"SORTING_OPTIONS" = "sortowanie";
+"SORTINGTYPE_ALPHABETICAL" = "alfabetycznie";
+"ABOUT_BUTTON" = "o nas";
+"SORTINGTYPE_DEFAULT" = "standardowe sortowanie";
+"NSLocationWhenInUseUsageDescription" = "Dla lokalizacji na mapie i sortowania według odległości.";
+"TWEET_TEXT" = "Parkingi Drezna przejrzyście na iPhonie:\n#ParkenDD http://parkendd.kilian.io";
+"FBPOST_TEXT" = "Parkingi Drezna przejrzyście na iPhonie:\nParkenDD http://parkendd.kilian.io";
+"WAITING_FOR_LOCATION" = "czekaj na lokalizację";
+"APPSTORE_DESCRIPTION" = "ParkenDD pokazuje listę publicznych dostępnych parkingów w Dreźnie. Ta aplikacja informuje, czy publiczny parking jest otwarty lub nie, ile parkingów są aktualnie dostępnych i gdzie on się dokładnie znajduje.\n\nWyświetlone dane są równiesz aktualne jak na dresden.de/freie-parkplaetze opublikowane.\n\nTekst tej aplikacji znajduje się na Github. Partrz https://github.com/kiliankoe/parkendd";
+"APPSTORE_TAGS" = "drezno, parkowanie, samochód, jeździć, nawigacja, parking, garaż podziemny";
+"LOCATION_DATA_ERROR_TITLE" = "Błąd lokalizacji";
+"LOCATION_DATA_ERROR" = "ParkenDD nie ma zezwolenia do lokalizacji. \nProsze dostępnij to w ustawieniach.";
+"CANCEL" = "Anuluj";
+"SETTINGS" = "Ustawienia";
+"PROGNOSIS_CENTRUM_GALERIE" = "Prognoza dla Centrum Galerie";
+"EXPERIMENTAL_PROGNOSIS" = "Eksperymentalnie: prognosa";
+"CIRCA" = "około";
+"SPOTS_AVAILABLE" = "wolne parkingi";
+"DISPLAY_OPTIONS" = "Opcje wyświetlania";
+"HIDE_NODATA_LOTS" = "Ukryć parkingi bez danych";
+"NOTE_TITLE" = "Wskazanie";
+"LIST_UPDATE_ON_REFRESH" = "Lista zostanie zaktualizowana przy następnej aktualizacji. ";
+"USE_GRAYSCALE_COLORS" = "Użyć szare colory";
+
+/*actions*/
+"action_settings" = "Ustawienia";
+"action_forecast" = "Prognoza";
+"action_refresh" = "Aktualizować";
+"action_about" = "O tej aplikacji";
+
+/*settings*/
+"header_general" = "Ogólnie";
+"header_network" = "Sieć";
+"setting_server" = "serwer";
+"setting_city" = "Miasto";
+"setting_location" = "Użyć lokalizacjię";
+"setting_reset" = "Resetować";
+"setting_ignore_cert" = "Ignorować SSL-Certyfikat (niepewny!)";
+"disclaimer" = "Wszystkje informacje bez gwarancji!";
+"server" = "Kontakt do serwera:";
+
+/*slotstates*/
+"closed" = "Zamknięty";
+"nodata" = "Nie ma danych";
+
+/*alerts*/
+"alert_reset" = "Resetować ustawienia?";
+
+/*pos/neg button*/
+"positive" = "Ok";
+"negative" = "Anuluj";
+
+/*errors*/
+"network_error" = "Błąd przy pobieraniu danych.";
+"invalid_error" = "Otrzymano nieprawidłowe dane.";
+"url_error" = "Nieprawidłowy adres";
+"connection_error" = "Błąd połączenia";
+"intent_error" = "Nieznaleźono odpowiedniej aplikacji.";
+
+/*view*/
+"available" = "od";
+"setting_sorting" = "Sortowanie";
+"setting_sorting_nothing" = "nic";
+"setting_sorting_name" = "Imie";
+"setting_sorting_location" = "Lokalizacja";
+"setting_sorting_available" = "Wolne parkingi";
+"location_error" = "Brak dostępu do lokalizacji.";
+"RESET_NOTIFICATIONS" = "Resetować powiadomienia";
