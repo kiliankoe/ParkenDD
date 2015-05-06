@@ -1,4 +1,4 @@
-## ParkenDD for iOS
+## ParkenDD
 
 Travis' fault → [![](https://travis-ci.org/kiliankoe/ParkenDD.svg?branch=master)](https://travis-ci.org/kiliankoe/ParkenDD)
 [![](https://img.shields.io/github/release/kiliankoe/ParkenDD.svg)](https://github.com/kiliankoe/ParkenDD/releases)
