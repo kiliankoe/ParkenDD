@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var locationManager: CLLocationManager?
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		// Override point for customization after application launch.
+		Fabric.with([Crashlytics()])
 
 		// Request permission to get the user's location
 		locationManager = CLLocationManager()

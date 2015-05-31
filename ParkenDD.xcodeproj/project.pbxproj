@@ -27,6 +27,8 @@
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
 		39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B037511A94C73E00C5A273 /* AboutViewController.swift */; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
+		39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD401B1B686500900967 /* Fabric.framework */; };
+		39F4BD431B1B686500900967 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD411B1B686500900967 /* Crashlytics.framework */; };
 		39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */; };
 		39F4CFE61A6BBC0200ACFECF /* LotlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */; };
 		39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFE71A6BBC0200ACFECF /* Main.storyboard */; };
@@ -95,6 +97,8 @@
 		39B953521AA0A59600026EC2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		39BE3FCC1AD3402B009A8B74 /* ParkenDD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParkenDD-Bridging-Header.h"; sourceTree = "<group>"; };
 		39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		39F4BD401B1B686500900967 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		39F4BD411B1B686500900967 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		39F4CFDE1A6BBC0200ACFECF /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFE21A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1EABDD7F03AE773BB7B1EBE /* Pods.framework in Frameworks */,
+				39F4BD431B1B686500900967 /* Crashlytics.framework in Frameworks */,
+				39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +193,8 @@
 		39B953511AA0A59600026EC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39F4BD401B1B686500900967 /* Fabric.framework */,
+				39F4BD411B1B686500900967 /* Crashlytics.framework */,
 				39B953521AA0A59600026EC2 /* NotificationCenter.framework */,
 				D53AC0AE0930F88C064CC653 /* Pods.framework */,
 			);
@@ -331,6 +339,7 @@
 				9A08A0CD4C7D135505D268B0 /* Copy Pods Resources */,
 				390CD0581AEE6602003EB8F4 /* Embed App Extensions */,
 				D84EC747616463E1B4D22EF3 /* Embed Pods Frameworks */,
+				39F4BD3F1B1B683A00900967 /* Authenticate Fabric */,
 			);
 			buildRules = (
 			);
@@ -439,6 +448,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		39F4BD3F1B1B683A00900967 /* Authenticate Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Authenticate Fabric";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run a73c412e3cdf6638dff0bb09b90292655ab3eecd 7899bb8bd32e08f690b8d3b6bb215ea4010ad734af9516ad408a25025c942313";
+		};
 		9A08A0CD4C7D135505D268B0 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -715,6 +738,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ParkenDD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -733,6 +760,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ParkenDD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
