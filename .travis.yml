@@ -5,8 +5,6 @@ xcode_scheme: ParkenDD
 
 before_install:
   - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
 script: xctool -workspace ParkenDD.xcworkspace -scheme ParkenDD build test -sdk iphonesimulator
-
-notifications:
-  email: false
