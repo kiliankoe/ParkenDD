@@ -46,5 +46,5 @@
 "HIDE_NODATA_LOTS" = "Hide Lots Without Data";
 "NOTE_TITLE" = "Note";
 "LIST_UPDATE_ON_REFRESH" = "List will be updated on next refresh.";
-"USE_GRAYSCALE_COLORS" = "Use Grayscale Colors";
+"USE_GRAYSCALE_COLORS" = "Use Grayscale Colorscheme";
 "RESET_NOTIFICATIONS" = "Reset Notifications";
