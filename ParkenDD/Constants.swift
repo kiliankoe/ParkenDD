@@ -9,7 +9,8 @@
 /**
 *  Stores global constants like the API Server URL
 */
-struct Constants {
-	static var parkinglotURL = "http://jkliemann.de/offenesdresden.de/json.php"
-	static var notificationURL = "http://parkendd.kilian.io/notification.json"
+struct Const {
+	static let parkinglotURL = "http://jkliemann.de/offenesdresden.de/json.php"
+	static let notificationURL = "http://parkendd.kilian.io/notification.json"
+	static let forecastURL = "http://jkliemann.de/parkendd/test/Dresden/forecast/"
 }

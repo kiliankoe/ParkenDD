@@ -31,7 +31,7 @@ class ServerController {
 //		let alamofireManager = Alamofire.Manager(configuration: sessionConfig)
 //		alamofireManager.request...
 
-		Alamofire.request(.GET, Constants.parkinglotURL).responseJSON { (_, res, jsonData, err) -> Void in
+		Alamofire.request(.GET, Const.parkinglotURL).responseJSON { (_, res, jsonData, err) -> Void in
 			if err == nil && res?.statusCode == 200 {
 
 				let json = JSON(jsonData!)
@@ -84,6 +84,33 @@ class ServerController {
 	}
 
 	/**
+	Get forecast data for a specified parkinglot and date as CSV data
+
+	:param: lot        name of a parkinglot
+	:param: date       date
+	:param: completion handler
+	*/
+	static func sendForecastRequest(lot: String, date: NSDate, completion: () -> ()) {
+
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		let dateString = dateFormatter.stringFromDate(date)
+
+		let parameters = [
+			"spot": lot,
+			"date": dateString
+		]
+
+		Alamofire.request(.GET, Const.forecastURL, parameters: parameters).responseString(encoding: NSUTF8StringEncoding) { (_, res, stringData, err) -> Void in
+			if err == nil && res?.statusCode == 200 {
+				println(stringData)
+			} else if err != nil && res?.statusCode == 200 {
+				NSLog("Error: \(err!.localizedDescription)")
+			}
+		}
+	}
+
+	/**
 	Get a json file containing a possible notification to display to the user. The ID of the notification is stored
 	so that a single notification is only ever displayed once. If the completion handler has been called with a specific
 	notification before, it won't be again.
@@ -93,7 +120,7 @@ class ServerController {
 	static func sendNotificationRequest(completion: (alertTitle: String, alertText: String) -> ()) {
 		var seenNotifications = NSUserDefaults.standardUserDefaults().objectForKey("seenNotifications") as! [Int]
 
-		Alamofire.request(.GET, Constants.notificationURL).responseJSON { (_, _, json, err) -> Void in
+		Alamofire.request(.GET, Const.notificationURL).responseJSON { (_, _, json, err) -> Void in
 			if err == nil {
 				let json = JSON(json!)
 
