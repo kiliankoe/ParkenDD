@@ -9,8 +9,9 @@
 import UIKit
 import Social
 import TSMessages
+import MessageUI
 
-class SettingsViewController: UITableViewController, UITableViewDelegate {
+class SettingsViewController: UITableViewController, UITableViewDelegate, MFMailComposeViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 		} else if section == 1 {
 			return 2
 		} else {
-			return 5
+			return 6
 		}
     }
 
@@ -118,8 +119,13 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 				cell.textLabel?.text = NSLocalizedString("RESET_NOTIFICATIONS", comment: "Reset Notifications")
 			case 3:
 				cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
+				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 			case 4:
 				cell.textLabel?.text = NSLocalizedString("SHARE_ON_FACEBOOK", comment: "Share on Facebook")
+				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+			case 5:
+				cell.textLabel?.text = NSLocalizedString("SEND_FEEDBACK", comment: "Got Feedback?")
+				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 			default:
 				break
 			}
@@ -223,6 +229,20 @@ class SettingsViewController: UITableViewController, UITableViewDelegate {
 					let fbsheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
 					fbsheet.setInitialText(NSLocalizedString("FBPOST_TEXT", comment: "Check out ParkenDD..."))
 					self.presentViewController(fbsheet, animated: true, completion: nil)
+				}
+			}
+
+			if indexPath.row == 5 {
+				if MFMailComposeViewController.canSendMail() {
+					let mail = MFMailComposeViewController()
+					mail.mailComposeDelegate = self
+					mail.setSubject("[ParkenDD] Feedback")
+					mail.setToRecipients(["parkendd@kilian.io", "jk@jkliemann.de"])
+
+					let versionNumber: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+					mail.setMessageBody("\n\n ParkenDD v\(versionNumber) \n API URL: \(Const.parkinglotURL)", isHTML: false)
+
+					self.presentViewController(mail, animated: true, completion: nil)
 				}
 			}
 		}
