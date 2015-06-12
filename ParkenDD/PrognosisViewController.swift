@@ -14,6 +14,7 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var spotsAvailableLabel: UILabel!
 	@IBOutlet weak var progressBar: UIProgressView!
+	@IBOutlet weak var datePicker: UIDatePicker!
 	@IBOutlet weak var percentageLabel: UILabel!
 	@IBOutlet weak var lineGraph: BEMSimpleLineGraphView!
 
@@ -55,7 +56,8 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 		// until that reload fires, I don't want to be showing a drawing line
 		lineGraph.colorLine = UIColor.clearColor()
 
-		// TODO: Set the datepicker to the current date if it's past May 1st 2015, nobody is interested in old data
+		let currentDate = NSDate()
+		datePicker.date = currentDate
     }
 
     override func didReceiveMemoryWarning() {

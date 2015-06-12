@@ -427,6 +427,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="4o9-09-X3x" id="lFN-Mr-cqR"/>
                         <outlet property="lineGraph" destination="EJS-D8-YWp" id="ZY1-sm-1zU"/>
                         <outlet property="percentageLabel" destination="xlB-6T-CmZ" id="Rxe-DX-wFl"/>
                         <outlet property="progressBar" destination="AlN-Pl-2ha" id="6Q5-X9-m1R"/>
