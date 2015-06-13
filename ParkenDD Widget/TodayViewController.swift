@@ -9,7 +9,7 @@
 import UIKit
 import NotificationCenter
 
-class TodayViewController: UITableViewController, NCWidgetProviding, UITableViewDataSource, UITableViewDelegate {
+class TodayViewController: UITableViewController, NCWidgetProviding {
 
 	var lotsToDisplay: [String]?
 
