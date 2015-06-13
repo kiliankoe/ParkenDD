@@ -237,7 +237,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 					let mail = MFMailComposeViewController()
 					mail.mailComposeDelegate = self
 					mail.setSubject("[ParkenDD] Feedback")
-					mail.setToRecipients(["parkendd@kilian.io", "jk@jkliemann.de"])
+					mail.setToRecipients(["parkendd@kilian.io", "jklmnn@web.de"])
 
 					let versionNumber: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
 					mail.setMessageBody("\n\n ParkenDD v\(versionNumber) \n API URL: \(Const.parkinglotURL)", isHTML: false)
