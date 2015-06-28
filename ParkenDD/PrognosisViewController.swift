@@ -84,7 +84,7 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 
 	@IBAction func datePickerValueChanged(sender: UIDatePicker) {
 
-		ServerController.sendForecastRequest("centrumgallerie", date: sender.date) { () -> () in
+		ServerController.sendForecastRequest("Centrum-Galerie", date: sender.date) { () -> () in
 
 		}
 

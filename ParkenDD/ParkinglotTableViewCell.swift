@@ -9,7 +9,8 @@
 import UIKit
 import MCSwipeTableViewCell
 
-class ParkinglotTableViewCell: MCSwipeTableViewCell {
+//class ParkinglotTableViewCell: MCSwipeTableViewCell {
+class ParkinglotTableViewCell: UITableViewCell {
 
 	@IBOutlet weak var parkinglotNameLabel: UILabel!
 	@IBOutlet weak var parkinglotAddressLabel: UILabel!
