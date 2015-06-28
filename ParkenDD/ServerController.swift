@@ -15,6 +15,34 @@ class ServerController {
 	enum UpdateError {
 		case Server
 		case Request
+		case IncompatibleAPI
+	}
+
+	/**
+	GET the metadata (API version and list of supported cities) from server
+
+	:param: completion handler that is provided with a list of supported cities and an optional error
+	*/
+	static func sendMetadataRequest(completion: (supportedCities: [String: String], updateError: UpdateError?) -> ()) {
+		Alamofire.request(.GET, Const.apibaseURL, parameters: nil).responseJSON { (_, res, jsonData, err) -> Void in
+			if err == nil && res?.statusCode == 200 {
+				let json = JSON(jsonData!)
+				// Because getting "1.0" into a doubleValue returns nil - Why?
+				if json["api_version"].string == "\(Const.supportedAPIVersion)" {
+					completion(supportedCities: (json["cities"].dictionaryObject as! [String:String]), updateError: nil)
+				} else {
+					let apiversion = json["api_version"].string
+					NSLog("Error: Found API Version \(apiversion). This app can however only understand \(Const.supportedAPIVersion)")
+					completion(supportedCities: [String : String](), updateError: .IncompatibleAPI)
+				}
+			} else if err != nil && res?.statusCode == 200 {
+				NSLog("Error: \(err!.localizedDescription)")
+				completion(supportedCities: [String:String](), updateError: .Server)
+			} else {
+				NSLog("Error: \(err!.localizedDescription)")
+				completion(supportedCities: [String:String](), updateError: .Request)
+			}
+		}
 	}
 
 	/**
@@ -31,7 +59,7 @@ class ServerController {
 //		let alamofireManager = Alamofire.Manager(configuration: sessionConfig)
 //		alamofireManager.request...
 
-		Alamofire.request(.GET, Const.apibaseURL).responseJSON { (_, res, jsonData, err) -> Void in
+		Alamofire.request(.GET, Const.apibaseURL + "Dresden").responseJSON { (_, res, jsonData, err) -> Void in
 			if err == nil && res?.statusCode == 200 {
 
 				let json = JSON(jsonData!)

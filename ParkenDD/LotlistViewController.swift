@@ -117,6 +117,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			})
 		}
 
+		ServerController.sendMetadataRequest { (supportedCities, updateError) -> () in
+			if let error = updateError {
+				println(error)
+			}
+			println(supportedCities)
+		}
+
 		ServerController.sendParkinglotDataRequest() {
 			(plotList, updateError) in
 

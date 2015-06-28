@@ -11,5 +11,6 @@
 */
 struct Const {
 	static let apibaseURL = "https://park-api.higgsboson.tk/"
+	static let supportedAPIVersion = 1.0
 	static let notificationURL = "http://parkendd.kilian.io/notification.json"
 }
