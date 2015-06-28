@@ -237,7 +237,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 					let mail = MFMailComposeViewController()
 					mail.mailComposeDelegate = self
 					mail.setSubject("[ParkenDD] Feedback")
-					mail.setToRecipients(["parkendd@kilian.io", "jklmnn@web.de"])
+					mail.setToRecipients(["parkendd@kilian.io"])
 
 					let versionNumber: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
 					mail.setMessageBody("\n\n ParkenDD v\(versionNumber) \n API URL: \(Const.parkinglotURL)", isHTML: false)
@@ -248,6 +248,12 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 		}
 
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	}
+
+	// MARK: - MFMailComposeViewControllerDelegate
+
+	func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 }
