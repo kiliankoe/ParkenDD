@@ -240,7 +240,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 					mail.setToRecipients(["parkendd@kilian.io"])
 
 					let versionNumber: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-					mail.setMessageBody("\n\n ParkenDD v\(versionNumber) \n API URL: \(Const.parkinglotURL)", isHTML: false)
+					mail.setMessageBody("\n\n ParkenDD v\(versionNumber) \n API URL: \(Const.apibaseURL)", isHTML: false)
 
 					self.presentViewController(mail, animated: true, completion: nil)
 				}

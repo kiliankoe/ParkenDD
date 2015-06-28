@@ -31,7 +31,7 @@ class ServerController {
 //		let alamofireManager = Alamofire.Manager(configuration: sessionConfig)
 //		alamofireManager.request...
 
-		Alamofire.request(.GET, Const.parkinglotURL).responseJSON { (_, res, jsonData, err) -> Void in
+		Alamofire.request(.GET, Const.apibaseURL).responseJSON { (_, res, jsonData, err) -> Void in
 			if err == nil && res?.statusCode == 200 {
 
 				let json = JSON(jsonData!)
@@ -86,26 +86,30 @@ class ServerController {
 	/**
 	Get forecast data for a specified parkinglot and date as CSV data
 
-	:param: lot        name of a parkinglot
-	:param: date       date
+	:param: lotID      id of a parkinlgot
+	:param: fromDate   date object when the data should start
+	:param: toDate     date object when the data should end
 	:param: completion handler
 	*/
-	static func sendForecastRequest(lot: String, date: NSDate, completion: () -> ()) {
+	static func sendForecastRequest(lotID: String, fromDate: NSDate, toDate: NSDate, completion: () -> ()) {
 
 		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd"
-		let dateString = dateFormatter.stringFromDate(date)
+		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+		let fromDateString = dateFormatter.stringFromDate(fromDate)
+		let toDateString = dateFormatter.stringFromDate(toDate)
 
 		let parameters = [
-			"spot": lot,
-			"date": dateString
+			"from": fromDateString,
+			"to": toDateString
 		]
 
-		Alamofire.request(.GET, Const.forecastURL, parameters: parameters).responseString(encoding: NSUTF8StringEncoding) { (_, res, stringData, err) -> Void in
+		Alamofire.request(.GET, Const.apibaseURL + "/Dresden/\(lotID)/timespan", parameters: parameters).responseJSON { (_, res, jsonData, err) -> Void in
 			if err == nil && res?.statusCode == 200 {
-				println(stringData)
+				println(jsonData)
 			} else if err != nil && res?.statusCode == 200 {
-				NSLog("Error: \(err!.localizedDescription)")
+				NSLog("Error: \(err?.localizedDescription)")
+			} else {
+				println(res?.statusCode)
 			}
 		}
 	}

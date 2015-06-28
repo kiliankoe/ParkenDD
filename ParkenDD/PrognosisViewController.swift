@@ -84,9 +84,11 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 
 	@IBAction func datePickerValueChanged(sender: UIDatePicker) {
 
-		ServerController.sendForecastRequest("Centrum-Galerie", date: sender.date) { () -> () in
+		let dateWeekLater = sender.date.dateByAddingTimeInterval(3600*24*7)
 
-		}
+		ServerController.sendForecastRequest("dresdencentrumgalerie", fromDate: sender.date, toDate: dateWeekLater, completion: { () -> () in
+
+		})
 
 		// The app crashes if the user changes the date before the CSV is fully parsed.
 		// This takes about a second... So we'll just ignore the case if there's no csv data yet.

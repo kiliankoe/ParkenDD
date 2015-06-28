@@ -10,7 +10,6 @@
 *  Stores global constants like the API Server URL
 */
 struct Const {
-	static let parkinglotURL = "http://jkliemann.de/offenesdresden.de/json.php"
+	static let apibaseURL = "https://park-api.higgsboson.tk/"
 	static let notificationURL = "http://parkendd.kilian.io/notification.json"
-	static let forecastURL = "http://jkliemann.de/parkendd/test/Dresden/forecast/"
 }
