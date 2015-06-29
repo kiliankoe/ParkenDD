@@ -11,6 +11,12 @@ import Social
 import TSMessages
 import MessageUI
 
+enum Sections: Int {
+	case sortingOptions = 0
+	case displayOptions
+	case otherOptions
+}
+
 class SettingsViewController: UITableViewController, UITableViewDelegate, MFMailComposeViewControllerDelegate {
 
     override func viewDidLoad() {
@@ -29,106 +35,81 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if section == 0 {
+		let sec = Sections(rawValue: section)!
+		switch sec {
+		case .sortingOptions:
 			return 4
-		} else if section == 1 {
+		case .displayOptions:
 			return 2
-		} else {
+		case .otherOptions:
 			return 6
 		}
     }
 
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		if section == 0 {
+		let sec = Sections(rawValue: section)!
+		switch sec {
+		case .sortingOptions:
 			return NSLocalizedString("SORTING_OPTIONS", comment: "Sort by")
-		} else if section == 1 {
+		case .displayOptions:
 			return NSLocalizedString("DISPLAY_OPTIONS", comment: "Display")
-		} else {
+		case .otherOptions:
 			return NSLocalizedString("OTHER_OPTIONS", comment: "Other")
 		}
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let sec = Sections(rawValue: indexPath.section)!
 		let cell: UITableViewCell = UITableViewCell()
 
-		// /////////////////////////////////
-		// Sorting Options
-		// /////////////////////////////////
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
-		if indexPath.section == 0 {
-			switch indexPath.row {
-			case 0:
-				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_DEFAULT", comment: "Default")
-				if sortingType == "default" {
-					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-				}
-			case 1:
-				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_LOCATION", comment: "Distance")
-				if sortingType == "distance" {
-					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-				}
-			case 2:
-				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_ALPHABETICAL", comment: "Alphabetical")
-				if sortingType == "alphabetical" {
-					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-				}
-			case 3:
-				cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_FREESPOTS", comment: "Free spots")
-				if sortingType == "free" {
-					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-				}
-			default:
-				break
-			}
-		}
+		let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
+		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
 
-		// /////////////////////////////////
-		// Display Options
-		// /////////////////////////////////
-		else if indexPath.section == 1 {
-			switch indexPath.row {
-			case 0:
-				cell.textLabel?.text = NSLocalizedString("HIDE_NODATA_LOTS", comment: "Hide lots without data")
-				let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
-				if doHideLots {
-					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-				}
-			case 1:
-				cell.textLabel?.text = NSLocalizedString("USE_GRAYSCALE_COLORS", comment: "Use grayscale colors")
-				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
-				if useGrayscale {
-					cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-				}
-			default:
-				break
-			}
-		}
+		switch (sec, indexPath.row) {
+		// SORTING OPTIONS
+		case (.sortingOptions, 0):
+			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_DEFAULT", comment: "Default")
+			cell.accessoryType = sortingType == "default" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+		case (.sortingOptions, 1):
+			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_LOCATION", comment: "Distance")
+			cell.accessoryType = sortingType == "distance" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+		case (.sortingOptions, 2):
+			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_ALPHABETICAL", comment: "Alphabetical")
+			cell.accessoryType = sortingType == "alphabetical" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+		case (.sortingOptions, 3):
+			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_FREESPOTS", comment: "Free spots")
+			cell.accessoryType = sortingType == "free" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
-		// /////////////////////////////////
-		// Other Options
-		// /////////////////////////////////
-		else if indexPath.section == 2 {
-			switch indexPath.row {
-			case 0:
-				cell.textLabel?.text = NSLocalizedString("EXPERIMENTAL_PROGNOSIS", comment: "Experimental: Prognosis") 
-				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-			case 1:
-				cell.textLabel?.text = NSLocalizedString("ABOUT_BUTTON", comment: "About")
-				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-			case 2:
-				cell.textLabel?.text = NSLocalizedString("RESET_NOTIFICATIONS", comment: "Reset Notifications")
-			case 3:
-				cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
-				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-			case 4:
-				cell.textLabel?.text = NSLocalizedString("SHARE_ON_FACEBOOK", comment: "Share on Facebook")
-				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-			case 5:
-				cell.textLabel?.text = NSLocalizedString("SEND_FEEDBACK", comment: "Got Feedback?")
-				cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-			default:
-				break
-			}
+		// DISPLAY OPTIONS
+		case (.displayOptions, 0):
+			cell.textLabel?.text = NSLocalizedString("HIDE_NODATA_LOTS", comment: "Hide lots without data")
+			cell.accessoryType = doHideLots ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+		case (.displayOptions, 1):
+			cell.textLabel?.text = NSLocalizedString("USE_GRAYSCALE_COLORS", comment: "Use grayscale colors")
+			cell.accessoryType = useGrayscale ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+
+		// OTHER OPTIONS
+		case (.otherOptions, 0):
+			cell.textLabel?.text = NSLocalizedString("EXPERIMENTAL_PROGNOSIS", comment: "Experimental: Prognosis")
+			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+		case (.otherOptions, 1):
+			cell.textLabel?.text = NSLocalizedString("ABOUT_BUTTON", comment: "About")
+			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+		case (.otherOptions, 2):
+			cell.textLabel?.text = NSLocalizedString("RESET_NOTIFICATIONS", comment: "Reset Notifications")
+		case (.otherOptions, 3):
+			cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
+			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+		case (.otherOptions, 4):
+			cell.textLabel?.text = NSLocalizedString("SHARE_ON_FACEBOOK", comment: "Share on Facebook")
+			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+		case (.otherOptions, 5):
+			cell.textLabel?.text = NSLocalizedString("SEND_FEEDBACK", comment: "Feedback / Report Problem")
+			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+
+		default:
+			break
 		}
 
 		cell.textLabel?.font = UIFont(name: "AvenirNext-Regular", size: 16.0)
@@ -236,11 +217,10 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 				if MFMailComposeViewController.canSendMail() {
 					let mail = MFMailComposeViewController()
 					mail.mailComposeDelegate = self
-					mail.setSubject("[ParkenDD] Feedback")
-					mail.setToRecipients(["parkendd@kilian.io"])
 
 					let versionNumber: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-					mail.setMessageBody("\n\n ParkenDD v\(versionNumber) \n API URL: \(Const.apibaseURL)", isHTML: false)
+					mail.setSubject("[ParkenDD v\(versionNumber)] Feedback")
+					mail.setToRecipients(["parkendd@kilian.io"])
 
 					self.presentViewController(mail, animated: true, completion: nil)
 				}
