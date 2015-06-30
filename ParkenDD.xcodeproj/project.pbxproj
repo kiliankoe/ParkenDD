@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3904EEE11AE1A3D80080EE81 /* abouttext.html in Resources */ = {isa = PBXBuildFile; fileRef = 3904EEE31AE1A3D80080EE81 /* abouttext.html */; };
 		39196E941AE562F8003CBB50 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
-		39196E951AE562FB003CBB50 /* ParkinglotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B92081A9BCE0A000D42CE /* ParkinglotData.swift */; };
 		3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926FECC1AAC47AA005B2DF9 /* Constants.swift */; };
 		392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */; };
 		393F0D381A9737AF00B25B74 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
@@ -18,9 +17,9 @@
 		3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3946D82C1AD309EB00CB4C41 /* Colors.swift */; };
 		3963A6F11AD47A750026DC51 /* forecast.csv in Resources */ = {isa = PBXBuildFile; fileRef = 3963A6F01AD47A750026DC51 /* forecast.csv */; };
 		3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3977CA271A9CC78C00E20014 /* InfoPlist.strings */; };
-		397B92091A9BCE0A000D42CE /* ParkinglotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397B92081A9BCE0A000D42CE /* ParkinglotData.swift */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
 		39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B037511A94C73E00C5A273 /* AboutViewController.swift */; };
+		39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD401B1B686500900967 /* Fabric.framework */; };
 		39F4BD431B1B686500900967 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD411B1B686500900967 /* Crashlytics.framework */; };
@@ -72,12 +71,12 @@
 		3963A6F01AD47A750026DC51 /* forecast.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forecast.csv; sourceTree = "<group>"; };
 		3977CA261A9CC78C00E20014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3977CA281A9CC78E00E20014 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		397B92081A9BCE0A000D42CE /* ParkinglotData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotData.swift; sourceTree = "<group>"; };
 		397D7B1E1A9A2236001B5874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		397D7B201A9A223A001B5874 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		39B037511A94C73E00C5A273 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		39B953521AA0A59600026EC2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		39BE3FCC1AD3402B009A8B74 /* ParkenDD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParkenDD-Bridging-Header.h"; sourceTree = "<group>"; };
+		39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySelectionTVC.swift; sourceTree = "<group>"; };
 		39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		39F4BD401B1B686500900967 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		39F4BD411B1B686500900967 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -140,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				393F0D371A9737AF00B25B74 /* Parkinglot.swift */,
-				397B92081A9BCE0A000D42CE /* ParkinglotData.swift */,
 			);
 			name = ParkinglotData;
 			sourceTree = "<group>";
@@ -160,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */,
+				39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */,
 			);
 			name = SettingsView;
 			sourceTree = "<group>";
@@ -440,8 +439,8 @@
 				392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */,
 				393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */,
 				39F4CFE61A6BBC0200ACFECF /* LotlistViewController.swift in Sources */,
+				39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */,
 				39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */,
-				397B92091A9BCE0A000D42CE /* ParkinglotData.swift in Sources */,
 				394209B41AADB17600E47539 /* MapViewController.swift in Sources */,
 				39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */,
 				393F0D381A9737AF00B25B74 /* Parkinglot.swift in Sources */,
@@ -459,7 +458,6 @@
 			files = (
 				39196E941AE562F8003CBB50 /* Parkinglot.swift in Sources */,
 				39F4CFFA1A6BBC0200ACFECF /* ParkenDDTests.swift in Sources */,
-				39196E951AE562FB003CBB50 /* ParkinglotData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

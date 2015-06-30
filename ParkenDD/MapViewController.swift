@@ -24,7 +24,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		// Add annotations for all parking lots to the map
 		for singleLot in allParkinglots {
 			var lotAnnotation = MKPointAnnotation()
-			if let currentLat = singleLot.lat, currentLon = singleLot.lon {
+			if let currentLat = singleLot.lat, currentLon = singleLot.lng {
 				lotAnnotation.coordinate = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLon)
 
 				if singleLot.state != lotstate.nodata {
@@ -42,7 +42,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 
 		// Set the map's region to a 1km region around the selected lot
-		if let currentLat = detailParkinglot.lat, currentLon = detailParkinglot.lon {
+		if let currentLat = detailParkinglot.lat, currentLon = detailParkinglot.lng {
 			let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: currentLat, longitude: currentLon), 1000, 1000)
 			mapView.setRegion(parkinglotRegion, animated: false)
 		} else {
@@ -83,16 +83,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 
 		switch thisLotState {
+		case .open:
+			annotationView.pinColor = MKPinAnnotationColor.Green
 		case .closed:
-			annotationView.pinColor = MKPinAnnotationColor.Red
-		case .full:
 			annotationView.pinColor = MKPinAnnotationColor.Red
 		case .nodata:
 			annotationView.pinColor = MKPinAnnotationColor.Red
-		case .many:
-			annotationView.pinColor = MKPinAnnotationColor.Green
-		case .few:
-			annotationView.pinColor = MKPinAnnotationColor.Green
 		}
 
 		annotationView.canShowCallout = true

@@ -13,28 +13,25 @@ import Foundation
 */
 struct Parkinglot {
 	let name: String!
-	let count: Int!
+	let total: Int!
 	let free: Int!
 	let state: lotstate
 	let lat: Double?
-	let lon: Double?
+	let lng: Double?
+	let address: String?
+	let region: String?
+	let type: String?
+	let id: String!
+
 	var distance: Double?
-    var isFavorite: Bool!
+	var isFavorite: Bool!
 }
 
 /**
-Enumerate the state a parkinglot can be in.
-
-- closed: Closed and unavailable, 0 empty spots
-- few:    Open, but only a small number of spots remaining
-- full:   Open, but no or just very few spots remaining
-- many:   Open, many empty spots remaining
-- nodata: State unknown, probably not part of Dresden's Parkleitsystem
+Enumerate the states a parkinglot can be in.
 */
 enum lotstate {
+	case open
 	case closed
-	case few
-	case full
-	case many
 	case nodata
 }

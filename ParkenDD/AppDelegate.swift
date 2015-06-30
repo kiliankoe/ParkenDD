@@ -33,12 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let defaults: [NSObject:AnyObject] = [
 			"SortingType": "default",
 			"selectedCity": "Dresden",
-			"SkipNodataLots": true,
+			"supportedCities": ["Dresden": "Dresden"],
+			"SkipNodataLots": false,
 			"grayscaleColors": false,
             "favoriteLots": [],
 			"seenNotifications": []
 		]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
+
+		supportedCities = NSUserDefaults.standardUserDefaults().dictionaryForKey("supportedCities") as! [String:String]
 
 		// apply custom font to UIBarButtonItems (mainly the back button) as well
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
@@ -59,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 
 		inBackground = true
+		NSUserDefaults.standardUserDefaults().setObject(supportedCities, forKey: "supportedCities")
 	}
 
 	func applicationWillEnterForeground(application: UIApplication) {

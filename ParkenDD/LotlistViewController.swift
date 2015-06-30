@@ -125,7 +125,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		}
 
 		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
-		ServerController.sendParkinglotDataRequest(selectedCity) {
+		let selectedCityID = (UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities[selectedCity]!
+		ServerController.sendParkinglotDataRequest(selectedCityID) {
 			(plotList, updateError) in
 
 			// Reset the UI elements showing a loading refresh
@@ -271,30 +272,22 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		cell.parkinglotNameLabel.text = thisLot.name
 		cell.parkinglotLoadLabel.text = "\(thisLot.free)"
 
-		if let thisLotAddress = parkinglotData[thisLot.name] {
-			// check if location sorting is enabled, then we're displaying distance instead of address
-			if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "distance" {
-				if let distance = thisLot.distance {
-					cell.parkinglotAddressLabel.text = "\((round(distance/100))/10)km"
-				} else {
-					cell.parkinglotAddressLabel.text = NSLocalizedString("WAITING_FOR_LOCATION", comment: "waiting for location")
-				}
+		// check if location sorting is enabled, then we're displaying distance instead of address
+		if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "distance" {
+			if let distance = thisLot.distance {
+				cell.parkinglotAddressLabel.text = "\((round(distance/100))/10)km"
 			} else {
-				cell.parkinglotAddressLabel.text = thisLotAddress
+				cell.parkinglotAddressLabel.text = NSLocalizedString("WAITING_FOR_LOCATION", comment: "waiting for location")
 			}
-		} else {
+		} else if thisLot.address == "" {
 			cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_ADDRESS", comment: "unknown address")
+		} else {
+			cell.parkinglotAddressLabel.text = thisLot.address
 		}
 
-		var load: Int = Int(round(100 - (Double(thisLot.free) / Double(thisLot.count) * 100)))
-
-		// Some cleanup
-		if load < 0 {
-			// Apparently there can be 52 empty spots on a 50 spot parking lot...
-			load = 0
-		} else if thisLot.state == lotstate.full {
-			load = 100
-		}
+		var load: Int = Int(round(100 - (Double(thisLot.free) / Double(thisLot.total) * 100)))
+		load = load < 0 ? 0 : load
+		load = thisLot.state == lotstate.closed ? 100 : load
 
 		// Maybe a future version of the scraper will be able to read the tendency as well
 		if thisLot.state == lotstate.nodata && thisLot.free == -1 {
@@ -312,7 +305,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		cell.parkinglotLoadLabel.textColor = UIColor.whiteColor()
 		cell.parkinglotTendencyLabel.textColor = UIColor.whiteColor()
 
-		var percentage = 1 - (Double(thisLot.free) / Double(thisLot.count))
+		var percentage = 1 - (Double(thisLot.free) / Double(thisLot.total))
 		if percentage < 0.1 {
 			percentage = 0.1
 		} else if percentage > 0.99 {
@@ -320,9 +313,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		}
 		cell.backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: thisLot.free)
 
-		if thisLot.state == lotstate.nodata {
-			cell.parkinglotLoadLabel.text = "?"
-		}
+//		if thisLot.state == lotstate.nodata {
+//			cell.parkinglotLoadLabel.text = "?"
+//		}
 
 //        // Configure MCSwipeTableViewCell stuff
 //
@@ -392,7 +385,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 		// Cycle through all lots to assign their respective distances from the user
 		for index in 0..<parkinglots.count {
-			if let lat = parkinglots[index].lat, lon = parkinglots[index].lon {
+			if let lat = parkinglots[index].lat, lon = parkinglots[index].lng {
 				let lotLocation = CLLocation(latitude: lat, longitude: lon)
 				let distance = currentLocation.distanceFromLocation(lotLocation)
 				parkinglots[index].distance = round(distance)

@@ -16,6 +16,7 @@ class ServerController {
 		case Server
 		case Request
 		case IncompatibleAPI
+		case Unknown
 	}
 
 	/**
@@ -58,55 +59,54 @@ class ServerController {
 //		sessionConfig.timeoutIntervalForResource = 20.0
 //		let alamofireManager = Alamofire.Manager(configuration: sessionConfig)
 //		alamofireManager.request...
-
 		Alamofire.request(.GET, Const.apibaseURL + city).responseJSON { (_, res, jsonData, err) -> Void in
-			if err == nil && res?.statusCode == 200 {
-
+			// TODO: Replace me with a guard when this becomes Swift 2
+			if res == nil {
+				completion(parkinglotList: [], updateError: .Request)
+			}
+			switch (err, res!.statusCode) {
+			case (_, 200):
 				let json = JSON(jsonData!)
 				var parkinglotList = [Parkinglot]()
-				for section in json.arrayValue {
-					for lot in section["lots"].arrayValue {
+				for lot in json["lots"].arrayValue {
 
-						// the API sometimes returns the amount of free spots as an empty string if the parkinglot is closed, yay
-						// but I'm still going to assume that it always exists before making this more complicated
-						var lotFree: Int!
-						if lot["free"].stringValue == "" {
-							lotFree = 0
-						} else {
-							lotFree = lot["free"].intValue
-						}
-
-						// "convert" the state into the appropriate enum
-						let lotState: lotstate!
-						switch lot["state"] {
-						case "many":
-							lotState = lotstate.many
-						case "few":
-							lotState = lotstate.few
-						case "full":
-							lotState = lotstate.full
-						case "closed":
-							lotState = lotstate.closed
-						default:
-							lotState = lotstate.nodata
-							lotFree = -1
-
-							if NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots") == true {
-								continue
-							}
-						}
-
-						let parkingLot = Parkinglot(name: lot["name"].stringValue, count: lot["count"].intValue, free: lot["free"].intValue, state: lotState, lat: lot["lat"].doubleValue, lon: lot["lon"].doubleValue, distance: nil, isFavorite: false)
-						parkinglotList.append(parkingLot)
+					// the API sometimes returns the amount of free spots as an empty string if the parkinglot is closed, yay
+					// but I'm still going to assume that it always exists before making this more complicated
+					var lotFree: Int!
+					if lot["free"].stringValue == "" {
+						lotFree = 0
+					} else {
+						lotFree = lot["free"].intValue
 					}
+
+					// "convert" the state into the appropriate enum
+					let lotState: lotstate!
+					switch lot["state"] {
+					case "open":
+						lotState = lotstate.open
+					case "closed":
+						lotState = lotstate.closed
+					default:
+						lotState = lotstate.nodata
+						//						lotFree = -1
+
+						if NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots") == true {
+							continue
+						}
+					}
+
+					let parkinglot = Parkinglot(name: lot["name"].stringValue, total: lot["total"].intValue, free: lotFree, state: lotState, lat: lot["coords"]["lat"].doubleValue, lng: lot["coords"]["lng"].doubleValue, address: lot["address"].stringValue, region: lot["region"].stringValue, type: lot["lot_type"].stringValue, id: lot["id"].stringValue, distance: nil, isFavorite: false)
+					parkinglotList.append(parkinglot)
 				}
 				completion(parkinglotList: parkinglotList, updateError: nil)
-			} else if err != nil && res?.statusCode == 200 {
-				NSLog("Error: \(err!.localizedDescription)")
+			case (_, 400...500):
 				completion(parkinglotList: [], updateError: .Server)
-			} else {
+			case (let err, _):
 				NSLog("Error: \(err!.localizedDescription)")
 				completion(parkinglotList: [], updateError: .Request)
+			default:
+				NSLog("Error: Something unknown happened to the request 😨")
+				completion(parkinglotList: [], updateError: .Unknown)
 			}
 		}
 	}
