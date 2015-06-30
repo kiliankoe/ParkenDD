@@ -134,26 +134,26 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 				self.stopRefreshUI()
 			})
 
-			if let error = updateError {
-				if error == .Request {
-
-					// Give the user a notification that new data can't be fetched
-					dispatch_async(dispatch_get_main_queue(), { () -> Void in
-						let window = UIApplication.sharedApplication().windows.last as! UIWindow
-						TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
-					})
-
-				} else if error == .Server {
-
-					// Give the user a notification that data from the server can't be read
-					dispatch_async(dispatch_get_main_queue(), { () -> Void in
-						let window = UIApplication.sharedApplication().windows.last as! UIWindow
-						TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), subtitle: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), type: TSMessageNotificationType.Error)
-					})
-
-				}
-
-			} else {
+			switch updateError {
+			case .Some(.Request):
+				// Give the user a notification that new data can't be fetched
+				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					let window = UIApplication.sharedApplication().windows.last as! UIWindow
+					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
+				})
+			case .Some(.Server):
+				// Give the user a notification that data from the server can't be read
+				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					let window = UIApplication.sharedApplication().windows.last as! UIWindow
+					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), subtitle: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), type: TSMessageNotificationType.Error)
+				})
+			case .Some(_):
+				// Give the user a notification that an unknown error occurred
+				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					let window = UIApplication.sharedApplication().windows.last as! UIWindow
+					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("UNKNOWN_ERROR_TITLE", comment: "Unknown Error"), subtitle: NSLocalizedString("UNKNOWN_ERROR", comment: "An unknown error occurred. Please try again in a few moments."), type: TSMessageNotificationType.Error)
+				})
+			case .None:
 				self.parkinglots = plotList
 				self.defaultSortedParkinglots = plotList
 				self.sortLots()
