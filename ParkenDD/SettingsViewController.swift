@@ -120,16 +120,14 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 	// MARK: - Table View Delegate
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		let sec = Sections(rawValue: indexPath.row)!
 
-		// /////////////////////////////////
-		// Sorting Options
-		// /////////////////////////////////
-		if indexPath.section == 0 {
-			// Unselect all options
+		switch sec {
+		// SORTING OPTIONS
+		case .sortingOptions:
 			for row in 0...3 {
 				tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.None
 			}
-			// mark the selected one
 			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 
 			var defaultsValue: String
@@ -143,14 +141,10 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 			default:
 				defaultsValue = "default"
 			}
-
 			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: "SortingType")
-		}
 
-		// /////////////////////////////////
-		// Display Options
-		// /////////////////////////////////
-		if indexPath.section == 1 {
+		// DISPLAY OPTIONS
+		case .displayOptions:
 			switch indexPath.row {
 			case 0:
 				let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
@@ -173,47 +167,33 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "grayscaleColors")
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
-
 			default:
 				break
 			}
-		}
 
-		// /////////////////////////////////
-		// Other options
-		// /////////////////////////////////
-		if indexPath.section == 2 {
-
-			if indexPath.row == 0 {
+		// OTHER OPTIONS
+		case .otherOptions:
+			switch indexPath.row {
+			case 0:
 				performSegueWithIdentifier("showPrognosisView", sender: self)
-			}
-
-			if indexPath.row == 1 {
+			case 1:
 				performSegueWithIdentifier("showAboutView", sender: self)
-			}
-
-			if indexPath.row == 2 {
+			case 2:
 				NSUserDefaults.standardUserDefaults().setObject([], forKey: "seenNotifications")
 				NSUserDefaults.standardUserDefaults().synchronize()
-			}
-
-			if indexPath.row == 3 {
+			case 3:
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
 					tweetsheet.setInitialText(NSLocalizedString("TWEET_TEXT", comment: "Check out #ParkenDD..."))
 					self.presentViewController(tweetsheet, animated: true, completion: nil)
 				}
-			}
-
-			if indexPath.row == 4 {
+			case 4:
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
 					let fbsheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
 					fbsheet.setInitialText(NSLocalizedString("FBPOST_TEXT", comment: "Check out ParkenDD..."))
 					self.presentViewController(fbsheet, animated: true, completion: nil)
 				}
-			}
-
-			if indexPath.row == 5 {
+			case 5:
 				if MFMailComposeViewController.canSendMail() {
 					let mail = MFMailComposeViewController()
 					mail.mailComposeDelegate = self
@@ -224,6 +204,8 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 
 					self.presentViewController(mail, animated: true, completion: nil)
 				}
+			default:
+				break
 			}
 		}
 
