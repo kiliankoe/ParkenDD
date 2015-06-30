@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var locationManager: CLLocationManager?
 
+	var supportedCities = [String:String]()
+
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		Fabric.with([Crashlytics()])
 
@@ -30,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Initialize User Defaults
 		let defaults: [NSObject:AnyObject] = [
 			"SortingType": "default",
+			"selectedCity": "Dresden",
 			"SkipNodataLots": true,
 			"grayscaleColors": false,
             "favoriteLots": [],

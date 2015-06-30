@@ -50,7 +50,7 @@ class ServerController {
 
 	:param: completion handler that is provided with a list of parkinglots and an optional error
 	*/
-	static func sendParkinglotDataRequest(completion: (parkinglotList: [Parkinglot], updateError: UpdateError?) -> ()) {
+	static func sendParkinglotDataRequest(city: String, completion: (parkinglotList: [Parkinglot], updateError: UpdateError?) -> ()) {
 
 		// TODO: Include timeouts?
 //		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -59,7 +59,7 @@ class ServerController {
 //		let alamofireManager = Alamofire.Manager(configuration: sessionConfig)
 //		alamofireManager.request...
 
-		Alamofire.request(.GET, Const.apibaseURL + "Dresden").responseJSON { (_, res, jsonData, err) -> Void in
+		Alamofire.request(.GET, Const.apibaseURL + city).responseJSON { (_, res, jsonData, err) -> Void in
 			if err == nil && res?.statusCode == 200 {
 
 				let json = JSON(jsonData!)

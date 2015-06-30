@@ -121,10 +121,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			if let error = updateError {
 				println(error)
 			}
-			println(supportedCities)
+			(UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities = supportedCities
 		}
 
-		ServerController.sendParkinglotDataRequest() {
+		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
+		ServerController.sendParkinglotDataRequest(selectedCity) {
 			(plotList, updateError) in
 
 			// Reset the UI elements showing a loading refresh

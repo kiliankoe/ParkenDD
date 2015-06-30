@@ -12,7 +12,8 @@ import TSMessages
 import MessageUI
 
 enum Sections: Int {
-	case sortingOptions = 0
+	case cityOptions = 0
+	case sortingOptions
 	case displayOptions
 	case otherOptions
 }
@@ -23,6 +24,10 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
         super.viewDidLoad()
     }
 
+	override func viewWillAppear(animated: Bool) {
+		tableView.reloadData()
+	}
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,12 +36,14 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let sec = Sections(rawValue: section)!
 		switch sec {
+		case .cityOptions:
+			return 1
 		case .sortingOptions:
 			return 4
 		case .displayOptions:
@@ -49,6 +56,8 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let sec = Sections(rawValue: section)!
 		switch sec {
+		case .cityOptions:
+			return NSLocalizedString("CITY_OPTIONS", comment: "City")
 		case .sortingOptions:
 			return NSLocalizedString("SORTING_OPTIONS", comment: "Sort by")
 		case .displayOptions:
@@ -62,11 +71,17 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 		let sec = Sections(rawValue: indexPath.section)!
 		let cell: UITableViewCell = UITableViewCell()
 
+		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 		let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
 		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
 
 		switch (sec, indexPath.row) {
+		// CITY OPTIONS
+		case (.cityOptions, 0):
+			cell.textLabel!.text = selectedCity
+			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+
 		// SORTING OPTIONS
 		case (.sortingOptions, 0):
 			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_DEFAULT", comment: "Default")
@@ -120,13 +135,17 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 	// MARK: - Table View Delegate
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let sec = Sections(rawValue: indexPath.row)!
+		let sec = Sections(rawValue: indexPath.section)!
 
 		switch sec {
+		// CITY OPTIONS
+		case .cityOptions:
+			performSegueWithIdentifier("showCitySelection", sender: self)
+
 		// SORTING OPTIONS
 		case .sortingOptions:
 			for row in 0...3 {
-				tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.None
+				tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: Sections.sortingOptions.rawValue))?.accessoryType = UITableViewCellAccessoryType.None
 			}
 			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 
