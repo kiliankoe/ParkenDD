@@ -24,14 +24,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		// Add annotations for all parking lots to the map
 		for singleLot in allParkinglots {
 			var lotAnnotation = MKPointAnnotation()
-			if let currentLat = singleLot.lat, currentLon = singleLot.lng {
-				lotAnnotation.coordinate = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLon)
+			if let currentLat = singleLot.lat, currentLng = singleLot.lng {
+				lotAnnotation.coordinate = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng)
 
-				if singleLot.state != lotstate.nodata {
-					lotAnnotation.title = "\(singleLot.name): \(singleLot.free)"
-				} else {
-					lotAnnotation.title = "\(singleLot.name): ?"
-				}
+				lotAnnotation.title = "\(singleLot.name): \(singleLot.free)"
 
 				mapView.addAnnotation(lotAnnotation)
 				if singleLot.name == detailParkinglot.name {
@@ -63,8 +59,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
 	// It's nice to show custom pin colors on the map denoting the current state of the parking lot they're referencing
-	// green: many, few
-	// red: full, closed, nodata
+	// green: open
+	// red: closed, nodata
 	func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
 		let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "parkinglotAnnotation")
 

@@ -372,6 +372,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// /////////////////////////////////////////////////////////////////////////
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		let cellTitle = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglotNameLabel.text!
+		for lot in parkinglots {
+			if lot.name == cellTitle && lot.lat! == 0.0 {
+				dispatch_async(dispatch_get_main_queue(), { () -> Void in
+					let window = UIApplication.sharedApplication().windows.last as! UIWindow
+					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("NO_COORDS_WARNING_TITLE", comment: "No coordinates found"), subtitle: NSLocalizedString("NO_COORDS_WARNING 😭", comment: "Don't have no coords, ain't showing no nothing!"), type: TSMessageNotificationType.Warning)
+				})
+				tableView.deselectRowAtIndexPath(indexPath, animated: true)
+				return
+			}
+		}
 		performSegueWithIdentifier("showParkinglotMap", sender: self)
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
