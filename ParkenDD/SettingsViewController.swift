@@ -49,7 +49,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 		case .displayOptions:
 			return 2
 		case .otherOptions:
-			return 6
+			return 4
 		}
     }
 
@@ -112,14 +112,9 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 			cell.textLabel?.text = NSLocalizedString("ABOUT_BUTTON", comment: "About")
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 		case (.otherOptions, 2):
-			cell.textLabel?.text = NSLocalizedString("RESET_NOTIFICATIONS", comment: "Reset Notifications")
-		case (.otherOptions, 3):
 			cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-		case (.otherOptions, 4):
-			cell.textLabel?.text = NSLocalizedString("SHARE_ON_FACEBOOK", comment: "Share on Facebook")
-			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-		case (.otherOptions, 5):
+		case (.otherOptions, 3):
 			cell.textLabel?.text = NSLocalizedString("SEND_FEEDBACK", comment: "Feedback / Report Problem")
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
@@ -198,21 +193,12 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 			case 1:
 				performSegueWithIdentifier("showAboutView", sender: self)
 			case 2:
-				NSUserDefaults.standardUserDefaults().setObject([], forKey: "seenNotifications")
-				NSUserDefaults.standardUserDefaults().synchronize()
-			case 3:
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
 					tweetsheet.setInitialText(NSLocalizedString("TWEET_TEXT", comment: "Check out #ParkenDD..."))
 					self.presentViewController(tweetsheet, animated: true, completion: nil)
 				}
-			case 4:
-				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
-					let fbsheet = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-					fbsheet.setInitialText(NSLocalizedString("FBPOST_TEXT", comment: "Check out ParkenDD..."))
-					self.presentViewController(fbsheet, animated: true, completion: nil)
-				}
-			case 5:
+			case 3:
 				if MFMailComposeViewController.canSendMail() {
 					let mail = MFMailComposeViewController()
 					mail.mailComposeDelegate = self
