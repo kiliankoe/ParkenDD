@@ -60,46 +60,30 @@ class ServerController {
 //		let alamofireManager = Alamofire.Manager(configuration: sessionConfig)
 //		alamofireManager.request...
 		Alamofire.request(.GET, Const.apibaseURL + city).responseJSON { (_, res, jsonData, err) -> Void in
-			// TODO: Replace me with a guard when this becomes Swift 2
-			if res == nil {
-				completion(parkinglotList: [], updateError: .Request)
-			}
-			switch (err, res!.statusCode) {
-			case (_, 200):
+			switch (err, res?.statusCode) {
+			case (_, .Some(200)):
 				let json = JSON(jsonData!)
+
 				var parkinglotList = [Parkinglot]()
 				for lot in json["lots"].arrayValue {
 
-					// the API sometimes returns the amount of free spots as an empty string if the parkinglot is closed, yay
-					// but I'm still going to assume that it always exists before making this more complicated
-					var lotFree: Int!
-					if lot["free"].stringValue == "" {
-						lotFree = 0
-					} else {
-						lotFree = lot["free"].intValue
-					}
+					let parkinglot = Parkinglot(name: lot["name"].stringValue,
+												total: lot["total"].intValue,
+												free: lot["free"].intValue,
+												state: lotstate(rawValue: lot["state"].stringValue)!,
+												lat: lot["coords"]["lat"].doubleValue,
+												lng: lot["coords"]["lng"].doubleValue,
+												address: lot["address"].stringValue,
+												region: lot["region"].stringValue,
+												type: lot["lot_type"].stringValue,
+												id: lot["id"].stringValue,
+												distance: nil,
+												isFavorite: false)
 
-					// "convert" the state into the appropriate enum
-					let lotState: lotstate!
-					switch lot["state"] {
-					case "open":
-						lotState = lotstate.open
-					case "closed":
-						lotState = lotstate.closed
-					default:
-						lotState = lotstate.nodata
-						//						lotFree = -1
-
-						if NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots") == true {
-							continue
-						}
-					}
-
-					let parkinglot = Parkinglot(name: lot["name"].stringValue, total: lot["total"].intValue, free: lotFree, state: lotState, lat: lot["coords"]["lat"].doubleValue, lng: lot["coords"]["lng"].doubleValue, address: lot["address"].stringValue, region: lot["region"].stringValue, type: lot["lot_type"].stringValue, id: lot["id"].stringValue, distance: nil, isFavorite: false)
 					parkinglotList.append(parkinglot)
 				}
 				completion(parkinglotList: parkinglotList, updateError: nil)
-			case (_, 400...500):
+			case (_, .Some(400..<600)):
 				completion(parkinglotList: [], updateError: .Server)
 			case (let err, _):
 				NSLog("Error: \(err!.localizedDescription)")
