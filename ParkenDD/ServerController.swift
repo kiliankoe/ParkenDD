@@ -126,31 +126,4 @@ class ServerController {
 			}
 		}
 	}
-
-	/**
-	Get a json file containing a possible notification to display to the user. The ID of the notification is stored
-	so that a single notification is only ever displayed once. If the completion handler has been called with a specific
-	notification before, it won't be again.
-
-	:param: completion handler that gets provided with an alertTitle and an alertText
-	*/
-	static func sendNotificationRequest(completion: (alertTitle: String, alertText: String) -> ()) {
-		var seenNotifications = NSUserDefaults.standardUserDefaults().objectForKey("seenNotifications") as! [Int]
-
-		Alamofire.request(.GET, Const.notificationURL).responseJSON { (_, _, json, err) -> Void in
-			if err == nil {
-				let json = JSON(json!)
-
-				// Should the notification be displayed?
-				if json["display"].boolValue && !contains(seenNotifications, json["id"].intValue) {
-					seenNotifications.append(json["id"].intValue)
-					NSUserDefaults.standardUserDefaults().setObject(seenNotifications, forKey: "seenNotifications")
-					NSUserDefaults.standardUserDefaults().synchronize()
-					completion(alertTitle: json["notificationTitle"].stringValue, alertText: json["notificationText"].stringValue)
-				} else {
-					let notificationText = json["notificationText"].stringValue
-				}
-			}
-		}
-	}
 }

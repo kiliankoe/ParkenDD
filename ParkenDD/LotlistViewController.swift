@@ -104,14 +104,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	func updateData() {
 		showActivityIndicator()
 
-		ServerController.sendNotificationRequest { (alertTitle, alertText) -> () in
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				let alertController = UIAlertController(title: alertTitle, message: alertText, preferredStyle: UIAlertControllerStyle.Alert)
-				alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-				self.presentViewController(alertController, animated: true, completion: nil)
-			})
-		}
-
 		ServerController.sendMetadataRequest { (supportedCities, updateError) -> () in
 			switch updateError {
 			case .Some(let err):

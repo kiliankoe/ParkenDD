@@ -36,8 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			"supportedCities": ["Dresden": "Dresden"],
 			"SkipNodataLots": false,
 			"grayscaleColors": false,
-            "favoriteLots": [],
-			"seenNotifications": []
+            "favoriteLots": []
 		]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 
