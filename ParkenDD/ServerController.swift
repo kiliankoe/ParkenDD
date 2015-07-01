@@ -26,7 +26,8 @@ class ServerController {
 	*/
 	static func sendMetadataRequest(completion: (supportedCities: [String: String], updateError: UpdateError?) -> ()) {
 		Alamofire.request(.GET, Const.apibaseURL, parameters: nil).responseJSON { (_, res, jsonData, err) -> Void in
-			if err == nil && res?.statusCode == 200 {
+			switch (err, res?.statusCode) {
+			case (_, .Some(200)):
 				let json = JSON(jsonData!)
 				// Because getting "1.0" into a doubleValue returns nil - Why?
 				if json["api_version"].string == "\(Const.supportedAPIVersion)" {
@@ -36,10 +37,10 @@ class ServerController {
 					NSLog("Error: Found API Version \(apiversion). This app can however only understand \(Const.supportedAPIVersion)")
 					completion(supportedCities: [String : String](), updateError: .IncompatibleAPI)
 				}
-			} else if err != nil && res?.statusCode == 200 {
+			case (let err, .Some(400..<600)):
 				NSLog("Error: \(err!.localizedDescription)")
 				completion(supportedCities: [String:String](), updateError: .Server)
-			} else {
+			case (let err, _):
 				NSLog("Error: \(err!.localizedDescription)")
 				completion(supportedCities: [String:String](), updateError: .Request)
 			}

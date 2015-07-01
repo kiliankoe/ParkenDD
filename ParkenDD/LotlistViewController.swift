@@ -88,12 +88,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		if segue.identifier == "showParkinglotMap" {
 			let indexPath = tableView.indexPathForSelectedRow()
 
-			let selectedParkinglot: Parkinglot!
-			if searchController.active {
-				selectedParkinglot = filteredParkinglots[indexPath!.row]
-			} else {
-				selectedParkinglot = parkinglots[indexPath!.row]
-			}
+			let selectedParkinglot = searchController.active ? filteredParkinglots[indexPath!.row] : parkinglots[indexPath!.row]
 
 			let mapVC: MapViewController = segue.destinationViewController as! MapViewController
 			mapVC.detailParkinglot = selectedParkinglot
@@ -118,52 +113,63 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		}
 
 		ServerController.sendMetadataRequest { (supportedCities, updateError) -> () in
-			if let error = updateError {
-				println(error)
-			}
-			(UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities = supportedCities
-		}
-
-		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
-		let selectedCityID = (UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities[selectedCity]!
-		ServerController.sendParkinglotDataRequest(selectedCityID) {
-			(plotList, updateError) in
-
-			// Reset the UI elements showing a loading refresh
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				self.stopRefreshUI()
-			})
-
 			switch updateError {
-			case .Some(.Request):
-				// Give the user a notification that new data can't be fetched
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
-					let window = UIApplication.sharedApplication().windows.last as! UIWindow
-					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
-				})
-			case .Some(.Server):
-				// Give the user a notification that data from the server can't be read
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
-					let window = UIApplication.sharedApplication().windows.last as! UIWindow
-					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), subtitle: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), type: TSMessageNotificationType.Error)
-				})
-			case .Some(_):
-				// Give the user a notification that an unknown error occurred
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
-					let window = UIApplication.sharedApplication().windows.last as! UIWindow
-					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("UNKNOWN_ERROR_TITLE", comment: "Unknown Error"), subtitle: NSLocalizedString("UNKNOWN_ERROR", comment: "An unknown error occurred. Please try again in a few moments."), type: TSMessageNotificationType.Error)
-				})
+			case .Some(let err):
+				self.showUpdateError(err)
+				// Reset the UI elements showing a loading refresh
+				self.stopRefreshUI()
 			case .None:
-				self.parkinglots = plotList
-				self.defaultSortedParkinglots = plotList
-				self.sortLots()
+				(UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities = supportedCities
+				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
+				let selectedCityID = supportedCities[selectedCity]!
+				ServerController.sendParkinglotDataRequest(selectedCityID) {
+					(plotList, updateError) in
 
-				// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
-					// Reload the tableView, but with a slight animation
-					self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
-				})
+					// Reset the UI elements showing a loading refresh
+					self.stopRefreshUI()
+
+					switch updateError {
+					case .Some(let err):
+						self.showUpdateError(err)
+					case .None:
+						self.parkinglots = plotList
+						self.defaultSortedParkinglots = plotList
+						self.sortLots()
+
+						// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
+						dispatch_async(dispatch_get_main_queue(), { () -> Void in
+							// Reload the tableView, but with a slight animation
+							self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+						})
+					}
+				}
 			}
+		}
+	}
+
+	/**
+	Called by the request to the API in case of failure and handed the error to display to the user.
+	*/
+	func showUpdateError(err: ServerController.UpdateError) {
+		switch err {
+		case .Server, .IncompatibleAPI:
+			// Give the user a notification that data from the server can't be read
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				let window = UIApplication.sharedApplication().windows.last as! UIWindow
+				TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), subtitle: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), type: TSMessageNotificationType.Error)
+			})
+		case .Request:
+			// Give the user a notification that new data can't be fetched
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				let window = UIApplication.sharedApplication().windows.last as! UIWindow
+				TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
+			})
+		case .Unknown:
+			// Give the user a notification that an unknown error occurred
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+				let window = UIApplication.sharedApplication().windows.last as! UIWindow
+				TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("UNKNOWN_ERROR_TITLE", comment: "Unknown Error"), subtitle: NSLocalizedString("UNKNOWN_ERROR", comment: "An unknown error occurred. Please try again in a few moments."), type: TSMessageNotificationType.Error)
+			})
 		}
 	}
 
@@ -210,9 +216,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	Remove all UI that has to do with refreshing data.
 	*/
 	func stopRefreshUI() {
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-		showReloadButton()
-		refreshControl!.endRefreshing()
+		dispatch_async(dispatch_get_main_queue(), { () -> Void in
+			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+			self.showReloadButton()
+			self.refreshControl!.endRefreshing()
+		})
 	}
 
 	/**

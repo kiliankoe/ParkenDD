@@ -30,8 +30,8 @@ struct Parkinglot {
 /**
 Enumerate the states a parkinglot can be in.
 */
-enum lotstate {
-	case open
-	case closed
-	case nodata
+enum lotstate: String {
+	case open = "open"
+	case closed = "closed"
+	case nodata = "nodata"
 }
