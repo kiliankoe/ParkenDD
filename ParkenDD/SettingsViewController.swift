@@ -45,7 +45,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 		case .cityOptions:
 			return 1
 		case .sortingOptions:
-			return 4
+			return 5
 		case .displayOptions:
 			return 2
 		case .otherOptions:
@@ -95,6 +95,9 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 		case (.sortingOptions, 3):
 			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_FREESPOTS", comment: "Free spots")
 			cell.accessoryType = sortingType == "free" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+		case (.sortingOptions, 4):
+			cell.textLabel!.text = NSLocalizedString("SORTINGTYPE_EUKLID", comment: "Best First")
+			cell.accessoryType = sortingType == "euklid" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
 		// DISPLAY OPTIONS
 		case (.displayOptions, 0):
@@ -139,7 +142,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 
 		// SORTING OPTIONS
 		case .sortingOptions:
-			for row in 0...3 {
+			for row in 0...4 {
 				tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: Sections.sortingOptions.rawValue))?.accessoryType = UITableViewCellAccessoryType.None
 			}
 			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
@@ -152,6 +155,8 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 				defaultsValue = "alphabetical"
 			case 3:
 				defaultsValue = "free"
+			case 4:
+				defaultsValue = "euklid"
 			default:
 				defaultsValue = "default"
 			}

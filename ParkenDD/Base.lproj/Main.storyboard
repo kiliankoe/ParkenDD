@@ -139,6 +139,23 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ev3-M2-aAp" style="IBUITableViewCellStyleDefault" id="4Kr-ju-eeq">
+                                        <rect key="frame" x="0.0" y="245.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Kr-ju-eeq" id="UMZ-aS-Eqp">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Best First" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ev3-M2-aAp">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Display" id="7b9-oS-kca">
@@ -374,6 +391,30 @@
                                     <outlet property="parkinglotLoadLabel" destination="WBR-31-iII" id="CCM-Tr-lcK"/>
                                     <outlet property="parkinglotNameLabel" destination="gAX-Mc-DZC" id="pVt-6k-ppC"/>
                                     <outlet property="parkinglotTendencyLabel" destination="63L-uQ-iqV" id="gcp-9R-Rcr"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timestampCell" rowHeight="30" id="d4d-j2-2PP" customClass="timestampCell" customModule="ParkenDD" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4d-j2-2PP" id="H70-yI-Iit">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stand: 01.07.2015 14:07 Uhr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzP-nE-SeB">
+                                            <rect key="frame" x="8" y="6" width="584" height="17.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="xzP-nE-SeB" firstAttribute="top" secondItem="H70-yI-Iit" secondAttribute="topMargin" constant="-2" id="ELw-4B-Zqa"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="xzP-nE-SeB" secondAttribute="bottom" constant="-2" id="FnC-Nh-YOj"/>
+                                        <constraint firstItem="xzP-nE-SeB" firstAttribute="leading" secondItem="H70-yI-Iit" secondAttribute="leadingMargin" id="hVH-rg-jmG"/>
+                                        <constraint firstItem="xzP-nE-SeB" firstAttribute="trailing" secondItem="H70-yI-Iit" secondAttribute="trailingMargin" id="wLn-cv-Hyb"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="timestampLabel" destination="xzP-nE-SeB" id="J3T-pg-t3B"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

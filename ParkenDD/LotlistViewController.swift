@@ -63,7 +63,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		tableView.reloadData()
 
 		// Start getting location updates if the user wants lots sorted by distance
-		if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "distance" {
+		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")!
+		if sortingType == "distance" || sortingType == "euklid" {
 			if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
@@ -115,7 +116,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
 				let selectedCityID = supportedCities[selectedCity]!
 				ServerController.sendParkinglotDataRequest(selectedCityID) {
-					(plotList, updateError) in
+					(lotList, updateError) in
 
 					// Reset the UI elements showing a loading refresh
 					self.stopRefreshUI()
@@ -124,8 +125,20 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 					case .Some(let err):
 						self.showUpdateError(err)
 					case .None:
-						self.parkinglots = plotList
-						self.defaultSortedParkinglots = plotList
+
+						self.parkinglots = lotList
+						self.defaultSortedParkinglots = lotList
+
+						if let currentUserLocation = self.locationManager.location {
+							for index in 0..<self.parkinglots.count {
+								if let lat = self.parkinglots[index].lat, lon = self.parkinglots[index].lng, currentUserLocation = self.locationManager.location {
+									let lotLocation = CLLocation(latitude: lat, longitude: lon)
+									let distance = currentUserLocation.distanceFromLocation(lotLocation)
+									self.parkinglots[index].distance = round(distance)
+								}
+							}
+						}
+
 						self.sortLots()
 
 						// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
@@ -186,6 +199,19 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		case "free":
 			parkinglots.sort({
 				$0.free > $1.free
+			})
+		case "euklid":
+			parkinglots.sort({
+				if let distance0 = $0.distance, distance1 = $1.distance where $0.total != 0 && $1.total != 0 {
+
+					let load0 = Double($0.free / $0.total)
+					let load1 = Double($1.free / $1.total)
+					let sqrt0 = sqrt(pow(distance0, 2.0) + pow(load0, 2.0)) / (1 - load0)
+					let sqrt1 = sqrt(pow(distance1, 2.0) + pow(load1, 2.0)) / (1 - load1)
+
+					return sqrt0 > sqrt1
+				}
+				return $0.free > $1.free
 			})
 		default:
 			parkinglots = defaultSortedParkinglots
@@ -269,11 +295,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		cell.parkinglotLoadLabel.text = "\(thisLot.free)"
 
 		// check if location sorting is enabled, then we're displaying distance instead of address
-		if NSUserDefaults.standardUserDefaults().stringForKey("SortingType")! == "distance" {
-			if let distance = thisLot.distance {
-				cell.parkinglotAddressLabel.text = "\((round(distance/100))/10)km"
+		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")!
+		if sortingType == "distance" || sortingType == "euklid" {
+			if let currentUserLocation = locationManager.location, lat = thisLot.lat, lng = thisLot.lng {
+				let lotLocation = CLLocation(latitude: lat, longitude: lng)
+				thisLot.distance = currentUserLocation.distanceFromLocation(lotLocation)
+				cell.parkinglotAddressLabel.text = "\((round(thisLot.distance!/100))/10)km"
 			} else {
-				cell.parkinglotAddressLabel.text = NSLocalizedString("WAITING_FOR_LOCATION", comment: "waiting for location")
+				if let distance = thisLot.distance {
+					cell.parkinglotAddressLabel.text = "\((round(distance/100))/10)km"
+				} else {
+					cell.parkinglotAddressLabel.text = NSLocalizedString("WAITING_FOR_LOCATION", comment: "waiting for location")
+				}
 			}
 		} else if thisLot.address == "" {
 			cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_ADDRESS", comment: "unknown address")
@@ -389,9 +422,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 		// Cycle through all lots to assign their respective distances from the user
 		for index in 0..<parkinglots.count {
-			if let lat = parkinglots[index].lat, lon = parkinglots[index].lng {
+			if let lat = parkinglots[index].lat, lon = parkinglots[index].lng, currentUserLocation = locationManager.location {
 				let lotLocation = CLLocation(latitude: lat, longitude: lon)
-				let distance = currentLocation.distanceFromLocation(lotLocation)
+//				let distance = currentLocation.distanceFromLocation(lotLocation)
+				let distance = currentUserLocation.distanceFromLocation(lotLocation)
 				parkinglots[index].distance = round(distance)
 			}
 		}
