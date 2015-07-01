@@ -248,11 +248,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	}
 
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if searchController.active {
-			return filteredParkinglots.count
-		} else {
-			return parkinglots.count
-		}
+		return searchController.active ? filteredParkinglots.count : parkinglots.count
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -285,7 +281,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			cell.parkinglotAddressLabel.text = thisLot.address
 		}
 
-		var load: Int = Int(round(100 - (Double(thisLot.free) / Double(thisLot.total) * 100)))
+		// I kinda feel bad for writing this...
+		var load = thisLot.total > 0 ? Int(round(100 - (Double(thisLot.free) / Double(thisLot.total) * 100))) : 100
 		load = load < 0 ? 0 : load
 		load = thisLot.state == lotstate.closed ? 100 : load
 
@@ -305,17 +302,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		cell.parkinglotLoadLabel.textColor = UIColor.whiteColor()
 		cell.parkinglotTendencyLabel.textColor = UIColor.whiteColor()
 
-		var percentage = 1 - (Double(thisLot.free) / Double(thisLot.total))
+		var percentage = thisLot.total > 0 ? 1 - (Double(thisLot.free) / Double(thisLot.total)) : 0.99
 		if percentage < 0.1 {
 			percentage = 0.1
 		} else if percentage > 0.99 {
 			percentage = 0.99
 		}
 		cell.backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: thisLot.free)
-
-//		if thisLot.state == lotstate.nodata {
-//			cell.parkinglotLoadLabel.text = "?"
-//		}
 
 //        // Configure MCSwipeTableViewCell stuff
 //
