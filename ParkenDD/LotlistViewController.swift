@@ -435,9 +435,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 				if let let dataSourceURL = NSURL(string: dataSource) {
 					UIApplication.sharedApplication().openURL(dataSourceURL)
 					tableView.deselectRowAtIndexPath(indexPath, animated: true)
-					return
 				}
 			}
+			NSLog("Looks like the datasource \(dataSource) isn't a valid URL.")
+			return
 		}
 
 		let cellTitle = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglotNameLabel.text!

@@ -56,6 +56,12 @@ class CitySelectionTVC: UITableViewController {
 		let selectedCity = tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text
 		NSUserDefaults.standardUserDefaults().setObject(selectedCity!, forKey: "selectedCity")
 		NSUserDefaults.standardUserDefaults().synchronize()
+
+		if let lotlistVC = UIApplication.sharedApplication().keyWindow?.rootViewController?.childViewControllers[0] as? LotlistViewController {
+			lotlistVC.updateData()
+		}
+
+		navigationController?.popViewControllerAnimated(true)
 	}
 
 }
