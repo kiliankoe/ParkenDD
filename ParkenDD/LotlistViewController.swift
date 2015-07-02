@@ -22,6 +22,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	var defaultSortedParkinglots: [Parkinglot] = []
 	var filteredParkinglots: [Parkinglot] = []
 
+	var timeUpdated: NSDate?
+	var timeDownloaded: NSDate?
+	var dataSource: String?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -116,7 +120,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
 				let selectedCityID = supportedCities[selectedCity]!
 				ServerController.sendParkinglotDataRequest(selectedCityID) {
-					(lotList, updateError) in
+					(lotList, timeUpdated, timeDownloaded, dataSource, updateError) in
 
 					// Reset the UI elements showing a loading refresh
 					self.stopRefreshUI()
@@ -128,6 +132,12 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 						self.parkinglots = lotList
 						self.defaultSortedParkinglots = lotList
+
+						if let timeUpdated = timeUpdated, timeDownloaded = timeDownloaded, dataSource = dataSource {
+							self.timeUpdated = timeUpdated
+							self.timeDownloaded = timeDownloaded
+							self.dataSource = dataSource
+						}
 
 						if let currentUserLocation = self.locationManager.location {
 							for index in 0..<self.parkinglots.count {
@@ -274,11 +284,32 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	}
 
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return searchController.active ? filteredParkinglots.count : parkinglots.count
+		// adding 1 for timeUpdated
+		// not checking its availability here because there's no reason it shouldn't be available if the rest has worked up to this point
+		return searchController.active ? filteredParkinglots.count + 1 : parkinglots.count + 1
+	}
+
+	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		if indexPath.row < parkinglots.count {
+			return 60
+		}
+		return 30
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
+
+		if indexPath.row >= parkinglots.count {
+			var timecell: TimestampCell = tableView.dequeueReusableCellWithIdentifier("timestampCell") as! TimestampCell
+			let dateFormatter = NSDateFormatter()
+			dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+			dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+
+			if let timeUpdated = timeUpdated {
+				timecell.timestampLabel.text = "Stand: \(dateFormatter.stringFromDate(timeUpdated)) Uhr"
+			}
+			return timecell
+		}
 
 		let thisLot: Parkinglot!
 		let customParkinglotlist: [Parkinglot]!
@@ -398,6 +429,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// /////////////////////////////////////////////////////////////////////////
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+		if indexPath.row >= parkinglots.count {
+			if let dataSource = dataSource {
+				if let let dataSourceURL = NSURL(string: dataSource) {
+					UIApplication.sharedApplication().openURL(dataSourceURL)
+					tableView.deselectRowAtIndexPath(indexPath, animated: true)
+					return
+				}
+			}
+		}
+
 		let cellTitle = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglotNameLabel.text!
 		for lot in parkinglots {
 			if lot.name == cellTitle && lot.lat! == 0.0 {

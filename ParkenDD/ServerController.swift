@@ -52,7 +52,7 @@ class ServerController {
 
 	:param: completion handler that is provided with a list of parkinglots and an optional error
 	*/
-	static func sendParkinglotDataRequest(city: String, completion: (parkinglotList: [Parkinglot], updateError: UpdateError?) -> ()) {
+	static func sendParkinglotDataRequest(city: String, completion: (parkinglotList: [Parkinglot], timeUpdated: NSDate?, timeDownloaded: NSDate?, dataSource: String?, updateError: UpdateError?) -> ()) {
 
 		// TODO: Include timeouts?
 //		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -64,6 +64,15 @@ class ServerController {
 			switch (err, res?.statusCode) {
 			case (_, .Some(200)):
 				let json = JSON(jsonData!)
+
+				let UTCdateFormatter = NSDateFormatter()
+				UTCdateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+				UTCdateFormatter.timeZone = NSTimeZone(name: "UTC")
+
+				let timeUpdated = UTCdateFormatter.dateFromString(json["last_updated"].stringValue)
+				let timeDownloaded = UTCdateFormatter.dateFromString(json["last_downloaded"].stringValue)
+
+				let dataSource = json["data_source"].stringValue
 
 				var parkinglotList = [Parkinglot]()
 				for lot in json["lots"].arrayValue {
@@ -83,15 +92,15 @@ class ServerController {
 
 					parkinglotList.append(parkinglot)
 				}
-				completion(parkinglotList: parkinglotList, updateError: nil)
+				completion(parkinglotList: parkinglotList, timeUpdated: timeUpdated, timeDownloaded: timeDownloaded, dataSource: dataSource, updateError: nil)
 			case (_, .Some(400..<600)):
-				completion(parkinglotList: [], updateError: .Server)
+				completion(parkinglotList: [], timeUpdated: nil, timeDownloaded: nil, dataSource: nil, updateError: .Server)
 			case (let err, _):
 				NSLog("Error: \(err!.localizedDescription)")
-				completion(parkinglotList: [], updateError: .Request)
+				completion(parkinglotList: [], timeUpdated: nil, timeDownloaded: nil, dataSource: nil, updateError: .Request)
 			default:
 				NSLog("Error: Something unknown happened to the request 😨")
-				completion(parkinglotList: [], updateError: .Unknown)
+				completion(parkinglotList: [], timeUpdated: nil, timeDownloaded: nil, dataSource: nil, updateError: .Unknown)
 			}
 		}
 	}

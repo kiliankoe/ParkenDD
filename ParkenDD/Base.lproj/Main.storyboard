@@ -393,7 +393,7 @@
                                     <outlet property="parkinglotTendencyLabel" destination="63L-uQ-iqV" id="gcp-9R-Rcr"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timestampCell" rowHeight="30" id="d4d-j2-2PP" customClass="timestampCell" customModule="ParkenDD" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timestampCell" rowHeight="30" id="d4d-j2-2PP" customClass="TimestampCell" customModule="ParkenDD" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4d-j2-2PP" id="H70-yI-Iit">
