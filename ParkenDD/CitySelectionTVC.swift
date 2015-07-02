@@ -61,7 +61,7 @@ class CitySelectionTVC: UITableViewController {
 			lotlistVC.updateData()
 		}
 
-		navigationController?.popViewControllerAnimated(true)
+		navigationController?.popToRootViewControllerAnimated(true)
 	}
 
 }

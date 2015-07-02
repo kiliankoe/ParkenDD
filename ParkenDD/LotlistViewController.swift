@@ -142,6 +142,20 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 							self.dataSource = dataSource
 						}
 
+						// Check if date signifies that the data is possibly outdated and warn the user if that is the case
+						if let timeUpdated = timeUpdated {
+							let currentDate = NSDate()
+							let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+							let dateDifference = calendar.components(NSCalendarUnit.CalendarUnitMinute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
+
+							if dateDifference.minute >= 30 {
+								dispatch_async(dispatch_get_main_queue(), { () -> Void in
+									let window = UIApplication.sharedApplication().windows.last as! UIWindow
+									TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("OUTDATED_DATA_WARNING_TITLE", comment: "Warning: Outdated data"), subtitle: NSLocalizedString("OUTDATED_DATA_WARNING", comment: "The server indicates that the displayed data might be outdated. It was last updated more than 30 minutes ago"), type: .Warning)
+								})
+							}
+						}
+
 						if let currentUserLocation = self.locationManager.location {
 							for index in 0..<self.parkinglots.count {
 								if let lat = self.parkinglots[index].lat, lon = self.parkinglots[index].lng, currentUserLocation = self.locationManager.location {
