@@ -59,6 +59,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		attrsDict[NSFontAttributeName] = font
 		navBar!.titleTextAttributes = attrsDict
 
+		// Set a table footer view so that separators aren't shown when no data is yet present
+		self.tableView.tableFooterView = UIView(frame: CGRectZero)
+
 		updateData()
 	}
 
@@ -298,6 +301,12 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
+
+		if parkinglots.count == 0 {
+			self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+		} else {
+			self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+		}
 
 		if indexPath.row >= parkinglots.count {
 			var timecell: TimestampCell = tableView.dequeueReusableCellWithIdentifier("timestampCell") as! TimestampCell
