@@ -71,7 +71,7 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
-      allowLocationSimulation = "NO"
+      allowLocationSimulation = "YES"
       language = "de"
       region = "DE">
       <BuildableProductRunnable
@@ -87,7 +87,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../durchDresden.gpx"
+         identifier = "../augustusbruecke.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

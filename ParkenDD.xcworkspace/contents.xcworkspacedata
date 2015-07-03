@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:augustusbruecke.gpx">
+   </FileRef>
+   <FileRef
       location = "group:durchDresden.gpx">
    </FileRef>
    <FileRef
