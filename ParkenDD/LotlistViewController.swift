@@ -228,21 +228,25 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 				$0.free > $1.free
 			})
 		case "euklid":
-			parkinglots.sort({
-				if let distance0 = $0.distance, distance1 = $1.distance where $0.total != 0 && $1.total != 0 {
-
-					let load0 = Double($0.free / $0.total)
-					let load1 = Double($1.free / $1.total)
-					let sqrt0 = sqrt(pow(distance0, 2.0) + pow(load0, 2.0)) / (1 - load0)
-					let sqrt1 = sqrt(pow(distance1, 2.0) + pow(load1, 2.0)) / (1 - load1)
-
-					return sqrt0 > sqrt1
-				}
-				return $0.free > $1.free
-			})
+			self.parkinglots.sort(sortEuclidian)
 		default:
 			parkinglots = defaultSortedParkinglots
 		}
+	}
+
+	func sortEuclidian(lot1: Parkinglot, lot2: Parkinglot) -> Bool {
+		if let distance1 = lot1.distance, distance2 = lot2.distance {
+			// TODO: Also check if state is either open or unknown, others should not be sorted
+			if lot1.total != 0 && lot2.total != 0 {
+				var occ1 = Double(lot1.total - lot1.free) / Double(lot1.total)
+				var occ2 = Double(lot2.total - lot2.free) / Double(lot2.total)
+				let sqrt1 = sqrt(pow(distance1, 2.0) + pow(Double(occ1*1000), 2.0))
+				let sqrt2 = sqrt(pow(distance2, 2.0) + pow(Double(occ2*1000), 2.0))
+
+				return sqrt1 < sqrt2
+			}
+		}
+		return lot1.free > lot2.free
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
