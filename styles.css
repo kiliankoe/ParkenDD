@@ -92,6 +92,7 @@ a:hover {
 		margin: 0 auto;
 		width: 90%;
 	}
+
 	h2 {
 		font-size: 1.4em;
 	}
@@ -109,5 +110,5 @@ a:hover {
 
 	.app-store-icon {
 	height: 8vh;
-}
+	}
 }
