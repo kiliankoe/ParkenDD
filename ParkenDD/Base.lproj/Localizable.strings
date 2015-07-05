@@ -18,10 +18,8 @@
 "CLOSED" = "closed";
 "UNKNOWN_ADDRESS" = "unknown address";
 "UNKNOWN_LOAD" = "unknown";
-"SHARE_ON_FACEBOOK" = "Share on Facebook";
 "OTHER_OPTIONS" = "Other";
 "SORTINGTYPE_LOCATION" = "Distance";
-"ABOUT_TEXT" = "ParkenDD v1.2\n\nhttp://kilian.io/parkendd\n\nAll data supplied without any guarantees!\n\nData is as current as http://www.dresden.de/freie-parkplaetze/.\n\nThanks to Rob Tranquillo (@robtranquillo), Johannes Kliemann (@JK70523) and Constantin Müller (@ubahnverleih) for creating the API server.\n\nThanks to Paul Balzer (@balzer82) for calculating and supplying the prognosis data.\n\nThe sourcecode for this application can be viewed at https://github.com/kiliankoe/parkendd and is licensed under the MIT license. Feedback in the form of issues and pull requests is always welcome!\n\nIcon on app icon and settingsicon made by Freepik from http://flaticon.com and is licensed CC BY 3.0\n\n\nTSMessage\n\nCopyright (c) 2014 Toursprung, Felix Krause <krausefx@gmail.com>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\nBEMSimpleLineGraph\n\nThe MIT License (MIT)\n\nCopyright (c) 2014 Boris Emorine. Copyright (c) 2014 Sam Spencer.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.";
 "SHARE_ON_TWITTER" = "Share on Twitter";
 "SORTINGTYPE_FREESPOTS" = "Free Spots";
 "SORTING_OPTIONS" = "Sort by";
@@ -29,8 +27,7 @@
 "ABOUT_BUTTON" = "About";
 "SORTINGTYPE_DEFAULT" = "Default";
 "NSLocationWhenInUseUsageDescription" = "Used to show location on map and for sorting parking lots by distance.";
-"TWEET_TEXT" = "Check out #ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://parkendd.kilian.io";
-"FBPOST_TEXT" = "Check out ParkenDD, an iOS app for checking the availability of Dresden's public parking lots. http://parkendd.kilian.io";
+"TWEET_TEXT" = "No free parking space in sight? -> #ParkenDD http://kilian.io/parkendd";
 "WAITING_FOR_LOCATION" = "waiting for location";
 "APPSTORE_DESCRIPTION" = "ParkenDD shows you a list of the number of available public parking spots in Dresden, Germany. It shows you whether a public parking lot is open or not, how many spots are available and where it is on a map.\n\nThe information displayed is up-to-date according to what is published officially on dresden.de/freie-parkplaetze.\n\nThe source for this application is available on Github. See https://github.com/kiliankoe/parkendd";
 "APPSTORE_TAGS" = "dresden, parking, car, driving, navigation, park, public, parkinglot, lot";
@@ -49,3 +46,15 @@
 "USE_GRAYSCALE_COLORS" = "Use Grayscale Colorscheme";
 "RESET_NOTIFICATIONS" = "Reset Notifications";
 "SEND_FEEDBACK" = "Feedback / Report Problem";
+"OUTDATED_DATA_WARNING_TITLE" = "Outdated data";
+"OUTDATED_DATA_WARNING" = "The server indicates that the displayed data might be outdated. It was last updated more than 30 minutes ago.";
+"UNKNOWN_ERROR_TITLE" = "Unknown error";
+"UNKNOWN_ERROR" = "An unknown error has occurred.";
+"LAST_UPDATED" = "Updated:";
+"TIME_SUFFIX" = " ";
+"NO_COORDS_WARNING_TITLE" = "No coordinates";
+"NO_COORDS_WARNING" = "Unfortunately there don't seem to be any coordinates attached to this parking lot.";
+"CITY_OPTIONS" = "City";
+
+/*Fuzzy*/
+"SORTINGTYPE_EUKLID" = "Best";

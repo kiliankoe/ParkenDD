@@ -329,11 +329,12 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		if indexPath.row >= parkinglots.count {
 			var timecell: TimestampCell = tableView.dequeueReusableCellWithIdentifier("timestampCell") as! TimestampCell
 			let dateFormatter = NSDateFormatter()
-			dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-			dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+			dateFormatter.dateStyle = .MediumStyle
+			dateFormatter.timeStyle = .ShortStyle
 
 			if let timeUpdated = timeUpdated {
-				timecell.timestampLabel.text = "Stand: \(dateFormatter.stringFromDate(timeUpdated)) Uhr"
+				let lastUpdatedString = NSLocalizedString("LAST_UPDATED", comment: "Updated:") + " " + dateFormatter.stringFromDate(timeUpdated) + " " + NSLocalizedString("TIME_SUFFIX", comment: "German: Uhr")
+				timecell.timestampLabel.text = lastUpdatedString
 			}
 			return timecell
 		}
@@ -473,7 +474,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			if lot.name == cellTitle && lot.lat! == 0.0 {
 				dispatch_async(dispatch_get_main_queue(), { () -> Void in
 					let window = UIApplication.sharedApplication().windows.last as! UIWindow
-					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("NO_COORDS_WARNING_TITLE", comment: "No coordinates found"), subtitle: NSLocalizedString("NO_COORDS_WARNING 😭", comment: "Don't have no coords, ain't showing no nothing!"), type: TSMessageNotificationType.Warning)
+					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("NO_COORDS_WARNING_TITLE", comment: "No coordinates found"), subtitle: NSLocalizedString("NO_COORDS_WARNING", comment: "Don't have no coords, ain't showing no nothing!"), type: TSMessageNotificationType.Warning)
 				})
 				tableView.deselectRowAtIndexPath(indexPath, animated: true)
 				return
