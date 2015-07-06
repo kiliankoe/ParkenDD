@@ -277,6 +277,7 @@
 				9A08A0CD4C7D135505D268B0 /* Copy Pods Resources */,
 				390CD0581AEE6602003EB8F4 /* Embed App Extensions */,
 				D84EC747616463E1B4D22EF3 /* Embed Pods Frameworks */,
+				395CC1821B4AB62600F81721 /* Highlight TODO/FIXME/ERROR */,
 				39F4BD3F1B1B683A00900967 /* Authenticate Fabric */,
 			);
 			buildRules = (
@@ -373,6 +374,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		395CC1821B4AB62600F81721 /* Highlight TODO/FIXME/ERROR */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Highlight TODO/FIXME/ERROR";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"";
+		};
 		39F4BD3F1B1B683A00900967 /* Authenticate Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
