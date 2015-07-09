@@ -12,4 +12,5 @@
 struct Const {
 	static let apibaseURL = "https://park-api.higgsboson.tk/"
 	static let supportedAPIVersion = 1.0
+	static let rssURL = "http://parkendd.tumblr.com/rss"
 }

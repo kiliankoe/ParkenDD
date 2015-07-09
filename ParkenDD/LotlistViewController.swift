@@ -10,9 +10,11 @@ import UIKit
 import CoreLocation
 //import MCSwipeTableViewCell
 import TSMessages
+import SwiftyTimer
+import MWFeedParser
 
 // Removing MCSwipeTableViewCellDelegate here temporarily
-class LotlistViewController: UITableViewController, CLLocationManagerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+class LotlistViewController: UITableViewController, CLLocationManagerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, MWFeedParserDelegate {
 
 	let locationManager = CLLocationManager()
 
@@ -25,6 +27,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	var timeUpdated: NSDate?
 	var timeDownloaded: NSDate?
 	var dataSource: String?
+
+	var feedItems = [MWFeedItem]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -62,7 +66,15 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRectZero)
 
+		// Create Feed Parser for news notification
+		let rssURL = NSURL(string: Const.rssURL)
+		let feedParser = MWFeedParser(feedURL: rssURL)
+		feedParser.delegate = self
+		feedParser.connectionType = ConnectionTypeAsynchronously
+		feedParser.parse()
+
 		updateData()
+		NSTimer.every(5.minutes,updateData)
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -487,7 +499,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - CLLocationManagerDelegate
 	// /////////////////////////////////////////////////////////////////////////
-
 	func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
 		let currentLocation: CLLocation = locations.last as! CLLocation
 
@@ -557,6 +568,22 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		let imageView = UIImageView(image: image)
 		imageView.contentMode = UIViewContentMode.Center
 		return imageView
+	}
+
+	// /////////////////////////////////////////////////////////////////////////
+	// MARK: - MWFeedParser
+	// /////////////////////////////////////////////////////////////////////////
+
+	func feedParser(parser: MWFeedParser!, didParseFeedItem item: MWFeedItem!) {
+		self.feedItems.append(item)
+	}
+
+	func feedParserDidFinish(parser: MWFeedParser!) {
+		let lastItem = self.feedItems.first
+		let request = NSURLRequest(URL: NSURL(string: lastItem!.link)!)
+
+		// TODO: Display a modal VC with the post page of the latest post
+		// Some kind of check for which notifications have been displayed needs to be built as well
 	}
 
 }
