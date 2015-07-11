@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "icon-1.png"
+      "filename" : "parkendd_background_logo_ios.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "icon.png"
+      "filename" : "parkendd_background_logo_ios-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "icon-2.png"
+      "filename" : "parkendd_background_logo_ios-2.png"
     }
   ],
   "info" : {
