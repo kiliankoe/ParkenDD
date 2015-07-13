@@ -136,7 +136,7 @@ class ServerController {
 		}
 	}
 
-	static func sendNominatimRequest(searchString: String, completion: (lat: Double, lng: Double) -> ()) {
+	static func sendNominatimSearchRequest(searchString: String, completion: (lat: Double, lng: Double) -> ()) {
 		let parameters: [String:AnyObject] = [
 			"q": searchString,
 			"format": "json",
@@ -145,9 +145,24 @@ class ServerController {
 			"addressdetails": 1
 		]
 
-		Alamofire.request(.GET, Const.nominatimURL, parameters: parameters).validate().responseJSON { (_, res, jsonData, err) -> Void in
+		Alamofire.request(.GET, Const.nominatimURL + "search", parameters: parameters).validate().responseJSON { (_, res, jsonData, err) -> Void in
 			let json = JSON(jsonData!)
 			completion(lat: json[0]["lat"].doubleValue, lng: json[0]["lon"].doubleValue)
+		}
+	}
+
+	static func sendNominatimReverseGeocodingRequest(lat: Double, lng: Double, completion: (address: String) -> ()) {
+		let parameters: [String:AnyObject] = [
+			"format": "json",
+			"accept-language": "de",
+			"lat": lat,
+			"lon": lng,
+			"addressdetails": 1
+		]
+
+		Alamofire.request(.GET, Const.nominatimURL + "reverse", parameters: parameters).validate().responseJSON { (_, res, jsonData, err) -> Void in
+			let json = JSON(jsonData!)
+			completion(address: json["address"]["road"].stringValue + " " + json["address"]["city"].stringValue)
 		}
 	}
 }
