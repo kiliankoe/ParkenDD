@@ -135,4 +135,19 @@ class ServerController {
 			}
 		}
 	}
+
+	static func sendNominatimRequest(searchString: String, completion: (lat: Double, lng: Double) -> ()) {
+		let parameters: [String:AnyObject] = [
+			"q": searchString,
+			"format": "json",
+			"accept-language": "de",
+			"limit": 1,
+			"addressdetails": 1
+		]
+
+		Alamofire.request(.GET, Const.nominatimURL, parameters: parameters).validate().responseJSON { (_, res, jsonData, err) -> Void in
+			let json = JSON(jsonData!)
+			completion(lat: json[0]["lat"].doubleValue, lng: json[0]["lon"].doubleValue)
+		}
+	}
 }
