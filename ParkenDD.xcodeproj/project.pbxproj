@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3904EE051B55C61700B2933B /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3904EE041B55C61700B2933B /* Settings.storyboard */; };
 		3904EEE11AE1A3D80080EE81 /* abouttext.html in Resources */ = {isa = PBXBuildFile; fileRef = 3904EEE31AE1A3D80080EE81 /* abouttext.html */; };
 		39196E941AE562F8003CBB50 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
 		3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926FECC1AAC47AA005B2DF9 /* Constants.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3904EE041B55C61700B2933B /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		3904EEE21AE1A3D80080EE81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/abouttext.html; sourceTree = "<group>"; };
 		3904EEE41AE1A3DB0080EE81 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/abouttext.html; sourceTree = "<group>"; };
 		3926FECC1AAC47AA005B2DF9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */,
 				39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */,
+				3904EE041B55C61700B2933B /* Settings.storyboard */,
 			);
 			name = SettingsView;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */,
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
 				3963A6F11AD47A750026DC51 /* forecast.csv in Resources */,
+				3904EE051B55C61700B2933B /* Settings.storyboard in Resources */,
 				39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */,
 				39F4CFEB1A6BBC0200ACFECF /* Images.xcassets in Resources */,
 			);
