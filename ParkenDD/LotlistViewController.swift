@@ -153,8 +153,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 
 						if let currentUserLocation = self.locationManager.location {
 							for index in 0..<self.parkinglots.count {
-								if let lat = self.parkinglots[index].lat, lon = self.parkinglots[index].lng, currentUserLocation = self.locationManager.location {
-									let lotLocation = CLLocation(latitude: lat, longitude: lon)
+								if let lat = self.parkinglots[index].lat, lng = self.parkinglots[index].lng, currentUserLocation = self.locationManager.location {
+									let lotLocation = CLLocation(latitude: lat, longitude: lng)
 									let distance = currentUserLocation.distanceFromLocation(lotLocation)
 									self.parkinglots[index].distance = round(distance)
 								}

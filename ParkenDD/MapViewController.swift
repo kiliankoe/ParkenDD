@@ -38,8 +38,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 
 		// Set the map's region to a 1km region around the selected lot
-		if let currentLat = detailParkinglot.lat, currentLon = detailParkinglot.lng {
-			let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: currentLat, longitude: currentLon), 1000, 1000)
+		if let currentLat = detailParkinglot.lat, currentLng = detailParkinglot.lng {
+			let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng), 1000, 1000)
 			mapView.setRegion(parkinglotRegion, animated: false)
 		} else {
 			// Just in case the selected lot comes with no coordinates, show a default view of Dresden
