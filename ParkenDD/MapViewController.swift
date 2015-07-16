@@ -78,13 +78,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 			}
 		}
 
+		// I'd really love having more colors to choose from besides green, red and... purple...
 		switch thisLotState {
 		case .open:
-			annotationView.pinColor = MKPinAnnotationColor.Green
-		case .closed:
-			annotationView.pinColor = MKPinAnnotationColor.Red
-		case .nodata:
-			annotationView.pinColor = MKPinAnnotationColor.Red
+			annotationView.pinColor = .Green
+		default:
+			annotationView.pinColor = .Red
 		}
 
 		annotationView.canShowCallout = true
