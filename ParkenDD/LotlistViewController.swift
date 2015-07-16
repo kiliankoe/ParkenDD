@@ -14,15 +14,12 @@ import SwiftyTimer
 import MWFeedParser
 
 // Removing MCSwipeTableViewCellDelegate here temporarily
-class LotlistViewController: UITableViewController, CLLocationManagerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, MWFeedParserDelegate {
+class LotlistViewController: UITableViewController, CLLocationManagerDelegate, MWFeedParserDelegate {
 
 	let locationManager = CLLocationManager()
 
-	var searchController: UISearchController!
-
 	var parkinglots: [Parkinglot] = []
 	var defaultSortedParkinglots: [Parkinglot] = []
-	var filteredParkinglots: [Parkinglot] = []
 
 	var timeUpdated: NSDate?
 	var timeDownloaded: NSDate?
@@ -32,19 +29,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		// Set up the UISearchController
-		searchController = UISearchController(searchResultsController: nil)
-		searchController.searchResultsUpdater = self
-		searchController.searchBar.delegate = self
-		searchController.dimsBackgroundDuringPresentation = false
-//		searchController.hidesNavigationBarDuringPresentation = false
-//		searchController.searchBar.searchBarStyle = UISearchBarStyle.Minimal
-
-		searchController.searchBar.frame = CGRectMake(searchController.searchBar.frame.origin.x, searchController.searchBar.frame.origin.y, searchController.searchBar.frame.size.width, 44.0)
-
-//		tableView.tableHeaderView = searchController.searchBar
-		self.definesPresentationContext = true
 
 		// set CLLocationManager delegate
 		locationManager.delegate = self
@@ -108,13 +92,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		if segue.identifier == "showParkinglotMap" {
 			let indexPath = tableView.indexPathForSelectedRow()
 
-			let selectedParkinglot = searchController.active ? filteredParkinglots[indexPath!.row] : parkinglots[indexPath!.row]
+			let selectedParkinglot = parkinglots[indexPath!.row]
 
 			let mapVC: MapViewController = segue.destinationViewController as! MapViewController
 			mapVC.detailParkinglot = selectedParkinglot
 			mapVC.allParkinglots = parkinglots
-
-//			searchController.active = false
 		}
 	}
 
@@ -160,6 +142,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 							let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
 							let dateDifference = calendar.components(NSCalendarUnit.CalendarUnitMinute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
 
+							// TODO: Increase to an hour and "re"localize the message
 							if dateDifference.minute >= 30 {
 								dispatch_async(dispatch_get_main_queue(), { () -> Void in
 									let window = UIApplication.sharedApplication().windows.last as! UIWindow
@@ -320,8 +303,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// adding 1 for timeUpdated
-		// not checking its availability here because there's no reason it shouldn't be available if the rest has worked up to this point
-		return searchController.active ? filteredParkinglots.count + 1 : parkinglots.count + 1
+		return parkinglots.count + 1
 	}
 
 	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -334,12 +316,14 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
 
+		// Don't display any separators if the list is still empty
 		if parkinglots.count == 0 {
 			self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
 		} else {
 			self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
 		}
 
+		// Handle the TimestampCell
 		if indexPath.row >= parkinglots.count {
 			var timecell: TimestampCell = tableView.dequeueReusableCellWithIdentifier("timestampCell") as! TimestampCell
 			let dateFormatter = NSDateFormatter()
@@ -353,15 +337,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			return timecell
 		}
 
-		let thisLot: Parkinglot!
-		let customParkinglotlist: [Parkinglot]!
-		if searchController.active {
-			thisLot = filteredParkinglots[indexPath.row]
-			customParkinglotlist = filteredParkinglots
-		} else {
-			thisLot = parkinglots[indexPath.row]
-			customParkinglotlist = parkinglots
-		}
+		var thisLot = parkinglots[indexPath.row]
+		let customParkinglotlist = parkinglots
 
 		cell.parkinglot = thisLot
 		cell.parkinglotNameLabel.text = thisLot.name
@@ -472,17 +449,20 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
+		// Open link to datasource in Safari if TimestampCell was selected
 		if indexPath.row >= parkinglots.count {
 			if let dataSource = dataSource {
 				if let let dataSourceURL = NSURL(string: dataSource) {
 					UIApplication.sharedApplication().openURL(dataSourceURL)
 					tableView.deselectRowAtIndexPath(indexPath, animated: true)
+				} else {
+					NSLog("Looks like the datasource \(dataSource) isn't a valid URL.")
 				}
 			}
-			NSLog("Looks like the datasource \(dataSource) isn't a valid URL.")
 			return
 		}
 
+		// Every other cell goes to the mapview
 		let cellTitle = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglotNameLabel.text!
 		for lot in parkinglots {
 			if lot.name == cellTitle && lot.lat! == 0.0 {
@@ -520,34 +500,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 		// Going to have to stop refreshui as well if this is right after a refresh, in that case we haven't done this yet. Otherwise it doesn't really hurt either.
 		stopRefreshUI()
-	}
-
-	// /////////////////////////////////////////////////////////////////////////
-	// MARK: - UISearchResultsUpdating
-	// /////////////////////////////////////////////////////////////////////////
-
-	func updateSearchResultsForSearchController(searchController: UISearchController) {
-		let searchString = searchController.searchBar.text
-
-		if searchString == "" {
-			filteredParkinglots = parkinglots
-		} else {
-			filterContentForSearch(searchString)
+		println(locations)
+		if locations.count == 1 {
+			sortLots()
+			tableView.reloadData()
 		}
-
-		tableView.reloadData()
-	}
-
-	/**
-	Filter the content of the parkinglot list according to what the user types in the searchbar
-
-	:param: searchText String to search with
-	*/
-	func filterContentForSearch(searchText: String) {
-		filteredParkinglots = parkinglots.filter({ (parkinglot: Parkinglot) -> Bool in
-			let nameMatch = parkinglot.name.lowercaseString.rangeOfString(searchText.lowercaseString)
-			return nameMatch != nil
-		})
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
