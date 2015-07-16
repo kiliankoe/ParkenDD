@@ -22,7 +22,20 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+		let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
+		self.navigationItem.rightBarButtonItem = doneButton
+
+		self.navigationItem.title = NSLocalizedString("SETTINGS", comment: "Settings")
+		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
+		var attrsDict = [NSObject: AnyObject]()
+		attrsDict[NSFontAttributeName] = font
+		self.navigationController?.navigationBar.titleTextAttributes = attrsDict
     }
+
+	func dismiss() {
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
 
 	override func viewWillAppear(animated: Bool) {
 		tableView.reloadData()

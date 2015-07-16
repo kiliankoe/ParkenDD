@@ -250,7 +250,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 	@IBAction func settingsButtonTapped(sender: UIBarButtonItem) {
 		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: NSBundle.mainBundle())
 		let settingsVC = settingsStoryBoard.instantiateInitialViewController() as! UIViewController
-		self.navigationController?.pushViewController(settingsVC, animated: true)
+		self.navigationController?.presentViewController(settingsVC, animated: true, completion: nil)
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
