@@ -481,29 +481,31 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - CLLocationManagerDelegate
 	// /////////////////////////////////////////////////////////////////////////
+	var lastLocation: CLLocation?
 	func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-		let currentLocation: CLLocation = locations.last as! CLLocation
-
+		let currentUserLocation = locationManager.location
 		// Cycle through all lots to assign their respective distances from the user
 		for index in 0..<parkinglots.count {
-			if let lat = parkinglots[index].lat, lon = parkinglots[index].lng, currentUserLocation = locationManager.location {
-				let lotLocation = CLLocation(latitude: lat, longitude: lon)
-//				let distance = currentLocation.distanceFromLocation(lotLocation)
+			if let lat = parkinglots[index].lat, lng = parkinglots[index].lng {
+				let lotLocation = CLLocation(latitude: lat, longitude: lng)
 				let distance = currentUserLocation.distanceFromLocation(lotLocation)
 				parkinglots[index].distance = round(distance)
 			}
 		}
 
-		// sort data and reload tableview
-		sortLots()
-		tableView.reloadData()
-
-		// Going to have to stop refreshui as well if this is right after a refresh, in that case we haven't done this yet. Otherwise it doesn't really hurt either.
-		stopRefreshUI()
-		println(locations)
-		if locations.count == 1 {
-			sortLots()
-			tableView.reloadData()
+		// The idea here is to check the location on each update from the locationManager and only resort
+		// the lots and update the tableView if the user has moved more than 100 meters. Doing both every
+		// second is aggravating and really not necessary.
+		if let lastLoc = lastLocation {
+			let distance = currentUserLocation.distanceFromLocation(lastLoc)
+			if distance > 100 {
+				sortLots()
+				tableView.reloadData()
+				lastLocation = locations.last as? CLLocation
+			}
+		} else {
+			// we need to set lastLocation at least once somewhere
+			lastLocation = locations.last as? CLLocation
 		}
 	}
 
