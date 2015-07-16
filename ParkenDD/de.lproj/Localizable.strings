@@ -47,7 +47,7 @@
 "RESET_NOTIFICATIONS" = "Benachrichtigungen zurücksetzen";
 "SEND_FEEDBACK" = "Feedback / Problem melden";
 "OUTDATED_DATA_WARNING_TITLE" = "Veraltete Daten";
-"OUTDATED_DATA_WARNING" = "Laut Server sind die erhaltenen Daten möglicherweise veraltet. Sie wurden vor mehr als 30 Minuten zuletzt aktualisiert.";
+"OUTDATED_DATA_WARNING" = "Laut Server sind die erhaltenen Daten möglicherweise veraltet. Sie wurden vor mehr als einer Stunde zuletzt aktualisiert.";
 "UNKNOWN_ERROR_TITLE" = "Unbekannter Fehler";
 "UNKNOWN_ERROR" = "Es ist ein unbekannter Fehler aufgetreten.";
 "LAST_UPDATED" = "Stand:";

@@ -142,11 +142,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 							let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
 							let dateDifference = calendar.components(NSCalendarUnit.CalendarUnitMinute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
 
-							// TODO: Increase to an hour and "re"localize the message
-							if dateDifference.minute >= 30 {
+							if dateDifference.minute >= 60 {
 								dispatch_async(dispatch_get_main_queue(), { () -> Void in
 									let window = UIApplication.sharedApplication().windows.last as! UIWindow
-									TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("OUTDATED_DATA_WARNING_TITLE", comment: "Warning: Outdated data"), subtitle: NSLocalizedString("OUTDATED_DATA_WARNING", comment: "The server indicates that the displayed data might be outdated. It was last updated more than 30 minutes ago"), type: .Warning)
+									TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("OUTDATED_DATA_WARNING_TITLE", comment: "Warning: Outdated data"), subtitle: NSLocalizedString("OUTDATED_DATA_WARNING", comment: "The server indicates that the displayed data might be outdated. It was last updated more than an hour ago"), type: .Warning)
 								})
 							}
 						}

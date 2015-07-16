@@ -47,7 +47,7 @@
 "RESET_NOTIFICATIONS" = "Reset Notifications";
 "SEND_FEEDBACK" = "Feedback / Report Problem";
 "OUTDATED_DATA_WARNING_TITLE" = "Outdated data";
-"OUTDATED_DATA_WARNING" = "The server indicates that the displayed data might be outdated. It was last updated more than 30 minutes ago.";
+"OUTDATED_DATA_WARNING" = "The server indicates that the displayed data might be outdated. It was last updated more than an hour ago.";
 "UNKNOWN_ERROR_TITLE" = "Unknown error";
 "UNKNOWN_ERROR" = "An unknown error has occurred.";
 "LAST_UPDATED" = "Updated:";
