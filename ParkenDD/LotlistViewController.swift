@@ -509,6 +509,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 		}
 	}
 
+	func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+		// TODO: Implement me to hopefully fix #41
+	}
+
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - MCSwipeTableViewCellDelegate
 	// /////////////////////////////////////////////////////////////////////////
