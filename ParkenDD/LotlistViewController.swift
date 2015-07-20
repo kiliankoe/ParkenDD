@@ -12,6 +12,7 @@ import CoreLocation
 import TSMessages
 import SwiftyTimer
 import MWFeedParser
+import GBVersionTracking
 
 // Removing MCSwipeTableViewCellDelegate here temporarily
 class LotlistViewController: UITableViewController, CLLocationManagerDelegate, MWFeedParserDelegate {
