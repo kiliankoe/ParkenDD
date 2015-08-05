@@ -11,11 +11,10 @@ import CoreLocation
 //import MCSwipeTableViewCell
 import SwiftyDrop
 import SwiftyTimer
-import MWFeedParser
 import GBVersionTracking
 
 // Removing MCSwipeTableViewCellDelegate here temporarily
-class LotlistViewController: UITableViewController, CLLocationManagerDelegate, MWFeedParserDelegate {
+class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	let locationManager = CLLocationManager()
 
@@ -25,8 +24,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 	var timeUpdated: NSDate?
 	var timeDownloaded: NSDate?
 	var dataSource: String?
-
-	var feedItems = [MWFeedItem]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -51,15 +48,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRectZero)
 
-		// Create Feed Parser for news notification
-		let rssURL = NSURL(string: Const.rssURL)
-		let feedParser = MWFeedParser(feedURL: rssURL)
-		feedParser.delegate = self
-		feedParser.connectionType = ConnectionTypeAsynchronously
-		feedParser.parse()
-
 		updateData()
-		NSTimer.every(5.minutes,updateData)
+		NSTimer.every(5.minutes, updateData)
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -111,7 +101,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 			switch updateError {
 			case .Some(let err):
 				self.showUpdateError(err)
-				// Reset the UI elements showing a loading refresh
 				self.stopRefreshUI()
 			case .None:
 				(UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities = supportedCities
@@ -120,7 +109,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 				ServerController.sendParkinglotDataRequest(selectedCityID) {
 					(lotList, timeUpdated, timeDownloaded, dataSource, updateError) in
 
-					// Reset the UI elements showing a loading refresh
 					self.stopRefreshUI()
 
 					switch updateError {
@@ -162,7 +150,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 
 						// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
 						dispatch_async(dispatch_get_main_queue(), { () -> Void in
-							// Reload the tableView, but with a slight animation
 							self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
 						})
 					}
@@ -516,21 +503,4 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 		imageView.contentMode = UIViewContentMode.Center
 		return imageView
 	}
-
-	// /////////////////////////////////////////////////////////////////////////
-	// MARK: - MWFeedParser
-	// /////////////////////////////////////////////////////////////////////////
-
-	func feedParser(parser: MWFeedParser!, didParseFeedItem item: MWFeedItem!) {
-		self.feedItems.append(item)
-	}
-
-	func feedParserDidFinish(parser: MWFeedParser!) {
-		let lastItem = self.feedItems.first
-		let request = NSURLRequest(URL: NSURL(string: lastItem!.link)!)
-
-		// TODO: Display a modal VC with the post page of the latest post
-		// Some kind of check for which notifications have been displayed needs to be built as well
-	}
-
 }
