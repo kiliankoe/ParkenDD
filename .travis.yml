@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode64
+osx_image: beta-xcode6.3
 xcode_project: ParkenDD.xcodeproj
 xcode_scheme: ParkenDD
 
