@@ -12,6 +12,7 @@
 		39196E941AE562F8003CBB50 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
 		3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926FECC1AAC47AA005B2DF9 /* Constants.swift */; };
 		392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */; };
+		39392ECE1B72BDE900C3EDA4 /* SwiftyDrop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */; };
 		393E8B171B440F12003D9D55 /* TimestampCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E8B161B440F12003D9D55 /* TimestampCell.swift */; };
 		393F0D381A9737AF00B25B74 /* Parkinglot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D371A9737AF00B25B74 /* Parkinglot.swift */; };
 		393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D391A97BDBB00B25B74 /* ServerController.swift */; };
@@ -67,6 +68,7 @@
 		392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotTableViewCell.swift; sourceTree = "<group>"; };
 		393407361AF916B60002EDD3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		393407371AF9171C0002EDD3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyDrop.framework; path = Carthage/Build/iOS/SwiftyDrop.framework; sourceTree = "<group>"; };
 		393E8B161B440F12003D9D55 /* TimestampCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimestampCell.swift; sourceTree = "<group>"; };
 		393F0D371A9737AF00B25B74 /* Parkinglot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parkinglot.swift; sourceTree = "<group>"; };
 		393F0D391A97BDBB00B25B74 /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				D1EABDD7F03AE773BB7B1EBE /* Pods.framework in Frameworks */,
 				39F4BD431B1B686500900967 /* Crashlytics.framework in Frameworks */,
 				39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */,
+				39392ECE1B72BDE900C3EDA4 /* SwiftyDrop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +154,7 @@
 		39B953511AA0A59600026EC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */,
 				39F4BD401B1B686500900967 /* Fabric.framework */,
 				39F4BD411B1B686500900967 /* Crashlytics.framework */,
 				39B953521AA0A59600026EC2 /* NotificationCenter.framework */,
@@ -282,6 +286,7 @@
 				D84EC747616463E1B4D22EF3 /* Embed Pods Frameworks */,
 				395CC1821B4AB62600F81721 /* Highlight TODO/FIXME/ERROR */,
 				39F4BD3F1B1B683A00900967 /* Authenticate Fabric */,
+				39392ECF1B72BE0500C3EDA4 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -378,6 +383,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		39392ECF1B72BE0500C3EDA4 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyDrop.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		395CC1821B4AB62600F81721 /* Highlight TODO/FIXME/ERROR */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -634,9 +654,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ParkenDD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e4a7a7b4-561b-4092-9005-8d2c91492d9c";
@@ -656,9 +677,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ParkenDD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e4a7a7b4-561b-4092-9005-8d2c91492d9c";

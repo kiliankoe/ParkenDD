@@ -8,8 +8,8 @@
 
 import UIKit
 import Social
-import TSMessages
 import MessageUI
+import SwiftyDrop
 
 enum Sections: Int {
 	case cityOptions = 0
@@ -187,9 +187,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "SkipNodataLots")
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
-
-				let window = UIApplication.sharedApplication().windows.last as! UIWindow
-				TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("NOTE_TITLE", comment: "Note"), subtitle: NSLocalizedString("LIST_UPDATE_ON_REFRESH", comment: "List will be updated on next refresh"), type: TSMessageNotificationType.Message)
+				Drop.down(NSLocalizedString("LIST_UPDATE_ON_REFRESH", comment: "List will be updated on next refresh"), blur: .Dark)
 			case 1:
 				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
 				if useGrayscale {

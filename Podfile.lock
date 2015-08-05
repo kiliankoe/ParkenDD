@@ -2,7 +2,6 @@ PODS:
   - Alamofire (1.2.3)
   - BEMSimpleLineGraph (3.3)
   - GBVersionTracking (1.3.0)
-  - HexColors (2.2.1)
   - MCSwipeTableViewCell (2.1.2)
   - MWFeedParser (1.0.1):
     - MWFeedParser/FeedParser (= 1.0.1)
@@ -15,8 +14,6 @@ PODS:
   - MWFeedParser/NSString+HTML (1.0.1)
   - SwiftyJSON (2.2.0)
   - SwiftyTimer (1.1.0)
-  - TSMessages (0.9.12):
-    - HexColors (~> 2.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 1.2)
@@ -26,17 +23,14 @@ DEPENDENCIES:
   - MWFeedParser (~> 1.0.1)
   - SwiftyJSON (~> 2.2)
   - SwiftyTimer (~> 1.1.0)
-  - TSMessages (~> 0.9.12)
 
 SPEC CHECKSUMS:
   Alamofire: 5550bf0b575ed1a4bf9be572f9463e1015cc169e
   BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
   GBVersionTracking: a224aab45526bbff46898c27c3db84768b871a77
-  HexColors: abfd172e329dab59888614ccba6f216cec59289d
   MCSwipeTableViewCell: 0fc22bd3635b9b5f4ce08675218b0a7278b6440f
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
   SwiftyTimer: 3b1bf42c8b1bb09dff7107b12d3b73cbf700bbce
-  TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.0

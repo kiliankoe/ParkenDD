@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 //import MCSwipeTableViewCell
-import TSMessages
+import SwiftyDrop
 import SwiftyTimer
 import MWFeedParser
 import GBVersionTracking
@@ -144,10 +144,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 							let dateDifference = calendar.components(NSCalendarUnit.CalendarUnitMinute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
 
 							if dateDifference.minute >= 60 {
-								dispatch_async(dispatch_get_main_queue(), { () -> Void in
-									let window = UIApplication.sharedApplication().windows.last as! UIWindow
-									TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("OUTDATED_DATA_WARNING_TITLE", comment: "Warning: Outdated data"), subtitle: NSLocalizedString("OUTDATED_DATA_WARNING", comment: "The server indicates that the displayed data might be outdated. It was last updated more than an hour ago"), type: .Warning)
-								})
+								Drop.down(NSLocalizedString("OUTDATED_DATA_WARNING", comment: "The server indicates that the displayed data might be outdated. It was last updated more than an hour ago"), blur: .Dark)
 							}
 						}
 
@@ -180,23 +177,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 	func showUpdateError(err: ServerController.UpdateError) {
 		switch err {
 		case .Server, .IncompatibleAPI:
-			// Give the user a notification that data from the server can't be read
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				let window = UIApplication.sharedApplication().windows.last as! UIWindow
-				TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("SERVER_ERROR_TITLE", comment: "Server Error"), subtitle: NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), type: TSMessageNotificationType.Error)
-			})
+			Drop.down(NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), state: .Error)
 		case .Request:
-			// Give the user a notification that new data can't be fetched
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				let window = UIApplication.sharedApplication().windows.last as! UIWindow
-				TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("REQUEST_ERROR_TITLE", comment: "Connection Error"), subtitle: NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), type: TSMessageNotificationType.Error)
-			})
+			Drop.down(NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), state: .Error)
 		case .Unknown:
-			// Give the user a notification that an unknown error occurred
-			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				let window = UIApplication.sharedApplication().windows.last as! UIWindow
-				TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("UNKNOWN_ERROR_TITLE", comment: "Unknown Error"), subtitle: NSLocalizedString("UNKNOWN_ERROR", comment: "An unknown error occurred. Please try again in a few moments."), type: TSMessageNotificationType.Error)
-			})
+			Drop.down(NSLocalizedString("UNKNOWN_ERROR", comment: "An unknown error occurred. Please try again in a few moments."), state: .Error)
 		}
 	}
 
@@ -466,10 +451,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, M
 		let cellTitle = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglotNameLabel.text!
 		for lot in parkinglots {
 			if lot.name == cellTitle && lot.lat! == 0.0 {
-				dispatch_async(dispatch_get_main_queue(), { () -> Void in
-					let window = UIApplication.sharedApplication().windows.last as! UIWindow
-					TSMessage.showNotificationInViewController(window.rootViewController, title: NSLocalizedString("NO_COORDS_WARNING_TITLE", comment: "No coordinates found"), subtitle: NSLocalizedString("NO_COORDS_WARNING", comment: "Don't have no coords, ain't showing no nothing!"), type: TSMessageNotificationType.Warning)
-				})
+				Drop.down(NSLocalizedString("NO_COORDS_WARNING", comment: "Don't have no coords, ain't showing no nothin'!"), blur: .Dark)
 				tableView.deselectRowAtIndexPath(indexPath, animated: true)
 				return
 			}
