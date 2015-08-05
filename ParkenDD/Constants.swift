@@ -14,4 +14,6 @@ struct Const {
 	static let nominatimURL = "https://nominatim.openstreetmap.org/"
 	static let supportedAPIVersion = 1.0
 	static let rssURL = "http://parkendd.tumblr.com/rss"
+
+	static let debugAPI = false
 }

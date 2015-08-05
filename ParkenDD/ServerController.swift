@@ -25,7 +25,8 @@ class ServerController {
 	:param: completion handler that is provided with a list of supported cities and an optional error
 	*/
 	static func sendMetadataRequest(completion: (supportedCities: [String: String], updateError: UpdateError?) -> ()) {
-		Alamofire.request(.GET, Const.apibaseURL, parameters: nil).responseJSON { (_, res, jsonData, err) -> Void in
+		let metaURL = Const.debugAPI ? "http://localhost:8000/meta.json" : Const.apibaseURL
+		Alamofire.request(.GET, metaURL, parameters: nil).responseJSON { (_, res, jsonData, err) -> Void in
 			switch (err, res?.statusCode) {
 			case (_, .Some(200)):
 				let json = JSON(jsonData!)
@@ -48,7 +49,7 @@ class ServerController {
 	}
 
 	/**
-	Get the current data for all parkinglots by asking the happy PHP scraper and adding a "Pretty please with sugar on top" to the request
+	Get the current data for all parkinglots
 
 	:param: completion handler that is provided with a list of parkinglots and an optional error
 	*/
@@ -60,7 +61,8 @@ class ServerController {
 //		sessionConfig.timeoutIntervalForResource = 20.0
 //		let alamofireManager = Alamofire.Manager(configuration: sessionConfig)
 //		alamofireManager.request...
-		Alamofire.request(.GET, Const.apibaseURL + city).responseJSON { (_, res, jsonData, err) -> Void in
+		let parkinglotURL = Const.debugAPI ? "http://localhost:8000/dresden.json" : Const.apibaseURL + city
+		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, res, jsonData, err) -> Void in
 			switch (err, res?.statusCode) {
 			case (_, .Some(200)):
 				let json = JSON(jsonData!)
