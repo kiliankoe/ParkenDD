@@ -109,7 +109,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				ServerController.sendParkinglotDataRequest(selectedCityID) {
 					(lotList, timeUpdated, timeDownloaded, dataSource, updateError) in
 
-					Answers.logCustomEventWithName("View City", customAttributes: ["selected City": selectedCity])
+					let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
+					if let sortingType = sortingType {
+						Answers.logCustomEventWithName("View City", customAttributes: ["selected City": selectedCity, "sorting type": sortingType])
+					}
 
 					self.stopRefreshUI()
 

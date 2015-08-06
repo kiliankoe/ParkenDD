@@ -11,6 +11,7 @@ import Social
 import MessageUI
 import SwiftyDrop
 import CoreLocation
+import Crashlytics
 
 enum Sections: Int {
 	case cityOptions = 0
@@ -149,9 +150,12 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		let sec = Sections(rawValue: indexPath.section)!
 
+		var answersParams: [NSObject: AnyObject]?
+
 		switch sec {
 		// CITY OPTIONS
 		case .cityOptions:
+			answersParams = ["section": "cityOptions"]
 			performSegueWithIdentifier("showCitySelection", sender: self)
 
 		// SORTING OPTIONS
@@ -168,7 +172,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 					}))
 					presentViewController(alertController, animated: true, completion: nil)
 
-					tableView.deselectRowAtIndexPath(indexPath, animated: false)
+					tableView.deselectRowAtIndexPath(indexPath, animated: true)
 					return
 				}
 			}
@@ -181,14 +185,19 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 			var defaultsValue: String
 			switch indexPath.row {
 			case 1:
+				answersParams = ["section": "sortingOptions", "row": "distance"]
 				defaultsValue = "distance"
 			case 2:
+				answersParams = ["section": "sortingOptions", "row": "alphabetical"]
 				defaultsValue = "alphabetical"
 			case 3:
+				answersParams = ["section": "sortingOptions", "row": "free"]
 				defaultsValue = "free"
 			case 4:
+				answersParams = ["section": "sortingOptions", "row": "euklid"]
 				defaultsValue = "euklid"
 			default:
+				answersParams = ["section": "sortingOptions", "row": "default"]
 				defaultsValue = "default"
 			}
 			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: "SortingType")
@@ -199,9 +208,11 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 			case 0:
 				let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
 				if doHideLots {
+					answersParams = ["section": "displayOptions", "row": "skipNodataLotsDisabled"]
 					NSUserDefaults.standardUserDefaults().setBool(false, forKey: "SkipNodataLots")
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
 				} else {
+					answersParams = ["section": "displayOptions", "row": "skipNodataLotsEnabled"]
 					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "SkipNodataLots")
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
@@ -210,9 +221,11 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
 				if useGrayscale {
 					NSUserDefaults.standardUserDefaults().setBool(false, forKey: "grayscaleColors")
+					answersParams = ["section": "displayOptions", "row": "grayscaleDisabled"]
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
 				} else {
 					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "grayscaleColors")
+					answersParams = ["section": "displayOptions", "row": "grayscaleEnabled"]
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
 			default:
@@ -223,16 +236,20 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 		case .otherOptions:
 			switch indexPath.row {
 			case 0:
+				answersParams = ["section": "otherOptions", "row": "showPrognosisView"]
 				performSegueWithIdentifier("showPrognosisView", sender: self)
 			case 1:
+				answersParams = ["section": "otherOptions", "row": "showAboutView"]
 				performSegueWithIdentifier("showAboutView", sender: self)
 			case 2:
+				answersParams = ["section": "otherOptions", "row": "presentTweetComposer"]
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
 					tweetsheet.setInitialText(NSLocalizedString("TWEET_TEXT", comment: "Check out #ParkenDD..."))
 					self.presentViewController(tweetsheet, animated: true, completion: nil)
 				}
 			case 3:
+				answersParams = ["section": "otherOptions", "row": "presentMailComposer"]
 				if MFMailComposeViewController.canSendMail() {
 					let mail = MFMailComposeViewController()
 					mail.mailComposeDelegate = self
@@ -248,6 +265,10 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 			}
 		}
 
+		if let answersParams = answersParams {
+			Answers.logCustomEventWithName("User Settings", customAttributes: answersParams)
+			NSLog("\(answersParams)")
+		}
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 
