@@ -25,7 +25,7 @@ class ServerController {
 	:param: completion handler that is provided with a list of supported cities and an optional error
 	*/
 	static func sendMetadataRequest(completion: (supportedCities: [String: String], updateError: UpdateError?) -> ()) {
-		let metaURL = Const.debugAPI ? "http://localhost:8000/meta.json" : Const.apibaseURL
+		let metaURL = Const.useStagingAPI ? Const.apiBaseURLStaging : Const.apibaseURL
 		Alamofire.request(.GET, metaURL, parameters: nil).responseJSON { (_, res, jsonData, err) -> Void in
 			switch (err, res?.statusCode) {
 			case (_, .Some(200)):
@@ -61,7 +61,7 @@ class ServerController {
 //		sessionConfig.timeoutIntervalForResource = 20.0
 //		let alamofireManager = Alamofire.Manager(configuration: sessionConfig)
 //		alamofireManager.request...
-		let parkinglotURL = Const.debugAPI ? "http://localhost:8000/dresden.json" : Const.apibaseURL + city
+		let parkinglotURL = Const.useStagingAPI ? Const.apiBaseURLStaging + city : Const.apibaseURL + city
 		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, res, jsonData, err) -> Void in
 			switch (err, res?.statusCode) {
 			case (_, .Some(200)):

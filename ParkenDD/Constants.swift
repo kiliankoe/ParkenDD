@@ -13,7 +13,7 @@ struct Const {
 	static let apibaseURL = "https://park-api.higgsboson.tk/"
 	static let nominatimURL = "https://nominatim.openstreetmap.org/"
 	static let supportedAPIVersion = 1.0
-	static let rssURL = "http://parkendd.tumblr.com/rss"
 
-	static let debugAPI = false
+	static let useStagingAPI = true
+	static let apiBaseURLStaging = "https://staging-park-api.higgsboson.tk/"
 }
