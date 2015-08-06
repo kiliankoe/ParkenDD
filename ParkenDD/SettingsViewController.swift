@@ -185,19 +185,19 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 			var defaultsValue: String
 			switch indexPath.row {
 			case 1:
-				answersParams = ["section": "sortingOptions", "row": "distance"]
+				answersParams = ["section": "sortingOptions", "row": "sortingDistance"]
 				defaultsValue = "distance"
 			case 2:
-				answersParams = ["section": "sortingOptions", "row": "alphabetical"]
+				answersParams = ["section": "sortingOptions", "row": "sortingAlphabetical"]
 				defaultsValue = "alphabetical"
 			case 3:
-				answersParams = ["section": "sortingOptions", "row": "free"]
+				answersParams = ["section": "sortingOptions", "row": "sortingFree"]
 				defaultsValue = "free"
 			case 4:
-				answersParams = ["section": "sortingOptions", "row": "euklid"]
+				answersParams = ["section": "sortingOptions", "row": "sortingEuklid"]
 				defaultsValue = "euklid"
 			default:
-				answersParams = ["section": "sortingOptions", "row": "default"]
+				answersParams = ["section": "sortingOptions", "row": "sortingDefault"]
 				defaultsValue = "default"
 			}
 			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: "SortingType")
