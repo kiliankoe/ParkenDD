@@ -79,7 +79,7 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 
 	
 	@IBAction func infoButtonPressed(sender: UIButton) {
-		let alertController = UIAlertController(title: NSLocalizedString("FORECAST_INFO_TITLE", comment: "Prognosedaten"), message: NSLocalizedString("FORECAST_INFO_TEXT", comment: "This is the forecastview..."), preferredStyle: UIAlertControllerStyle.Alert)
+		let alertController = UIAlertController(title: NSLocalizedString("FORECAST_INFO_TITLE", comment: "Forecast Data"), message: NSLocalizedString("FORECAST_INFO_TEXT", comment: "This is the forecastview..."), preferredStyle: UIAlertControllerStyle.Alert)
 		alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
 		presentViewController(alertController, animated: true, completion: nil)
 	}

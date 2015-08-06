@@ -55,6 +55,8 @@
 "NO_COORDS_WARNING_TITLE" = "No coordinates";
 "NO_COORDS_WARNING" = "Unfortunately there don't seem to be any coordinates attached to this parking lot.";
 "CITY_OPTIONS" = "City";
+"FORECAST_INFO_TITLE" = "Forecast Data";
+"FORECAST_INFO_TEXT" = "Use this function to view into the future of the parking block Centrum Galerie in Dresden. Pick a date and see how many spaces will presumably be available at that point in time. Support for more parking lots will be added in the future.";
 
 /*Fuzzy*/
 "SORTINGTYPE_EUKLID" = "Best";

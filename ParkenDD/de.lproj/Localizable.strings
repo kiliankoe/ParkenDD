@@ -55,6 +55,8 @@
 "NO_COORDS_WARNING_TITLE" = "Keine Ortsdaten";
 "NO_COORDS_WARNING" = "Für diesen Parkplatz sind leider keine Ortsdaten verfügbar.";
 "CITY_OPTIONS" = "Stadt";
+"FORECAST_INFO_TITLE" = "Prognosedaten";
+"FORECAST_INFO_TEXT" = "Hier kannst du in die Zukunft des Parkhauses Centrum Galerie in Dresden schauen. Wähle ein Datum und Uhrzeit und lass' dir die voraussichtliche Belegung zu diesem Zeitpunkt anzeigen. Support für mehr Parkplätze folgt in Zukunft.";
 
 /*Fuzzy*/
 "SORTINGTYPE_EUKLID" = "Beste";
