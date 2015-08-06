@@ -115,7 +115,7 @@ class ServerController {
 	:param: toDate     date object when the data should end
 	:param: completion handler
 	*/
-	static func sendForecastRequest(lotID: String, fromDate: NSDate, toDate: NSDate, completion: () -> ()) {
+	static func sendForecastRequest(lotID: String, fromDate: NSDate, toDate: NSDate, completion: (data: [NSDate: Int]) -> ()) {
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -129,7 +129,18 @@ class ServerController {
 
 		Alamofire.request(.GET, Const.apibaseURL + "/Dresden/\(lotID)/timespan", parameters: parameters).responseJSON { (_, res, jsonData, err) -> Void in
 			if err == nil && res?.statusCode == 200 {
-				println(jsonData)
+
+				let data = JSON(jsonData!)["data"].dictionaryValue
+				var parsedData = [NSDate: Int]()
+
+				for (date, load) in data {
+					if let parsedDate = dateFormatter.dateFromString(date) {
+						parsedData[parsedDate] = load.intValue
+					}
+				}
+				
+				completion(data: parsedData)
+
 			} else if err != nil && res?.statusCode == 200 {
 				NSLog("Error: \(err?.localizedDescription)")
 			} else {

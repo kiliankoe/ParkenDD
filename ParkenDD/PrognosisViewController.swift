@@ -20,12 +20,11 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 
 	var csvData: CSV!
 	var thisWeekData = [68, 77, 86, 95, 87, 82, 78, 77, 75, 74, 72, 71, 76, 79, 78, 75, 71, 67, 60, 53, 49, 45, 43, 41, 41, 40, 42, 44, 43, 45, 47, 52, 57, 62, 67, 71, 76, 79, 78, 75, 71, 64, 58, 51, 47, 43, 41, 39, 39, 40, 42, 44, 43, 45, 47, 52, 57, 62, 67, 71, 76, 79, 78, 75, 71, 64, 58, 51, 45, 38, 34, 30, 27, 27, 26, 26, 28, 32, 37, 44, 51, 58, 65, 72, 76, 79, 78, 75, 71, 64, 57, 50, 44, 37, 33, 29, 26, 26, 26, 26, 25, 28, 33, 40, 47, 54, 61, 69, 76, 79, 80, 78, 75, 69, 62, 56, 48, 40, 33, 26, 21, 19, 17, 15, 16, 17, 24, 33, 44, 54, 65, 75, 84, 93, 96, 94, 89, 80, 72, 63, 63, 62, 63, 66, 71, 79, 87, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 95, 86, 78, 70, 62, 54, 45, 36, 27]
-	let thisWeekLabels = ["Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Mon", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Tue", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Wed", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Thu", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sat", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun", "Sun"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+		let currentDate = NSDate()
 
 		titleLabel.text = NSLocalizedString("PROGNOSIS_CENTRUM_GALERIE", comment: "Prognosis for Centrum Galerie")
 		let occupiedString = NSLocalizedString("OCCUPIED", comment: "occupied")
@@ -34,29 +33,25 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 		let spotsAvailableString = NSLocalizedString("SPOTS_AVAILABLE", comment: "spots available")
 		spotsAvailableLabel.text = "\(caString) 892/1050 \(spotsAvailableString)"
 
-		// Read the CSV data on another thread
-		let csvqueue = dispatch_queue_create("csvqueue", nil)
-		dispatch_async(csvqueue, { () -> Void in
-			self.readCSV()
+		ServerController.sendForecastRequest("dresdencentrumgalerie", fromDate: currentDate, toDate: currentDate.dateByAddingTimeInterval(3600*24*7)) { (data) -> () in
 
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
 				self.lineGraph.colorLine = UIColor.blackColor()
 				self.lineGraph.reloadGraph()
 			})
-		})
+		}
 
 		// Setup BEMSimpleLineGraph
 		lineGraph.colorTop = UIColor.clearColor()
 		lineGraph.colorBottom = UIColor.clearColor()
 		lineGraph.colorPoint = UIColor.clearColor()
-		lineGraph.animationGraphEntranceTime = 1.0
+		lineGraph.animationGraphEntranceTime = 0.7
 		lineGraph.enableBezierCurve = true
 
 		// Feels hacky, but the graph starts animating on viewDidLoad and the data only comes in a second later
 		// until that reload fires, I don't want to be showing a drawing line
 		lineGraph.colorLine = UIColor.clearColor()
 
-		let currentDate = NSDate()
 		datePicker.date = currentDate
     }
 
@@ -82,13 +77,20 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 	// MARK: - IBActions
 	// /////////////////////////////////////////////////////////////////////////
 
+	
+	@IBAction func infoButtonPressed(sender: UIButton) {
+		let alertController = UIAlertController(title: NSLocalizedString("FORECAST_INFO_TITLE", comment: "Prognosedaten"), message: NSLocalizedString("FORECAST_INFO_TEXT", comment: "This is the forecastview..."), preferredStyle: UIAlertControllerStyle.Alert)
+		alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+		presentViewController(alertController, animated: true, completion: nil)
+	}
+
 	@IBAction func datePickerValueChanged(sender: UIDatePicker) {
 
 		let dateWeekLater = sender.date.dateByAddingTimeInterval(3600*24*7)
 
-		ServerController.sendForecastRequest("dresdencentrumgalerie", fromDate: sender.date, toDate: dateWeekLater, completion: { () -> () in
-
-		})
+//		ServerController.sendForecastRequest("dresdencentrumgalerie", fromDate: sender.date, toDate: dateWeekLater, completion: { () -> () in
+//
+//		})
 
 		// The app crashes if the user changes the date before the CSV is fully parsed.
 		// This takes about a second... So we'll just ignore the case if there's no csv data yet.
