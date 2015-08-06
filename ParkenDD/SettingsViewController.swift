@@ -267,7 +267,6 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 
 		if let answersParams = answersParams {
 			Answers.logCustomEventWithName("User Settings", customAttributes: answersParams)
-			NSLog("\(answersParams)")
 		}
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
