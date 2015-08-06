@@ -315,7 +315,7 @@
                                     <action selector="datePickerValueChanged:" destination="tSH-id-jNS" eventType="valueChanged" id="n7b-Jn-qhX"/>
                                 </connections>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Prognosis for Centrum Galerie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVy-hF-uYZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prognosis for Centrum Galerie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVy-hF-uYZ">
                                 <rect key="frame" x="16" y="72" width="568" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="5vw-mU-eL9"/>
@@ -349,7 +349,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njV-Zk-oKF" customClass="BEMSimpleLineGraphView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njV-Zk-oKF" customClass="BEMSimpleLineGraphView">
                                 <rect key="frame" x="16" y="117" width="568" height="245"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -357,6 +357,15 @@
                                     <outlet property="delegate" destination="tSH-id-jNS" id="pTb-S0-tgs"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6e2-X6-AxD">
+                                <rect key="frame" x="562" y="80" width="22" height="22"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="infoButtonPressed:" destination="tSH-id-jNS" eventType="touchUpInside" id="b0N-fH-bAO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -367,6 +376,7 @@
                             <constraint firstItem="nPG-Fm-FFy" firstAttribute="top" secondItem="njV-Zk-oKF" secondAttribute="bottom" constant="8" id="A4M-Vd-XXT"/>
                             <constraint firstItem="gVy-hF-uYZ" firstAttribute="top" secondItem="sdF-9U-KUN" secondAttribute="bottom" constant="8" id="Ce5-Sr-Yv9"/>
                             <constraint firstItem="Kpe-n5-JUK" firstAttribute="top" secondItem="bch-0g-3Te" secondAttribute="bottom" id="HrB-qG-cve"/>
+                            <constraint firstItem="6e2-X6-AxD" firstAttribute="trailing" secondItem="Yjt-Bs-XRv" secondAttribute="trailingMargin" id="K6Y-T2-sHx"/>
                             <constraint firstItem="gVy-hF-uYZ" firstAttribute="trailing" secondItem="Yjt-Bs-XRv" secondAttribute="trailingMargin" id="OQU-he-J9M"/>
                             <constraint firstItem="njV-Zk-oKF" firstAttribute="leading" secondItem="Yjt-Bs-XRv" secondAttribute="leadingMargin" id="Um8-tz-yem"/>
                             <constraint firstItem="bch-0g-3Te" firstAttribute="leading" secondItem="Yjt-Bs-XRv" secondAttribute="leadingMargin" constant="-16" id="VEk-Hv-dVZ"/>
@@ -375,6 +385,7 @@
                             <constraint firstItem="SxM-vz-M6w" firstAttribute="trailing" secondItem="Yjt-Bs-XRv" secondAttribute="trailingMargin" id="eNe-NG-VrO"/>
                             <constraint firstItem="6mQ-C2-Add" firstAttribute="top" secondItem="nPG-Fm-FFy" secondAttribute="bottom" constant="8" id="eYH-Jx-r6S"/>
                             <constraint firstAttribute="centerX" secondItem="6mQ-C2-Add" secondAttribute="centerX" id="gnH-2t-Sq2"/>
+                            <constraint firstItem="6e2-X6-AxD" firstAttribute="top" secondItem="sdF-9U-KUN" secondAttribute="bottom" constant="16" id="ibF-Ws-WJA"/>
                             <constraint firstItem="gVy-hF-uYZ" firstAttribute="leading" secondItem="Yjt-Bs-XRv" secondAttribute="leadingMargin" id="phT-Gf-FgA"/>
                             <constraint firstItem="nPG-Fm-FFy" firstAttribute="trailing" secondItem="Yjt-Bs-XRv" secondAttribute="trailingMargin" id="w0q-Hs-030"/>
                             <constraint firstItem="njV-Zk-oKF" firstAttribute="top" secondItem="gVy-hF-uYZ" secondAttribute="bottom" constant="8" id="yxl-FH-dEu"/>
