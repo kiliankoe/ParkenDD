@@ -187,6 +187,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			parkinglots.sort({
 				(lot1: Parkinglot, lot2: Parkinglot) -> Bool in
 				if let firstDistance = lot1.distance, secondDistance = lot2.distance {
+					if lot1.name == "Parkhaus Mitte" && firstDistance <= 2000 {
+						// FIXME: This is only temporary ಠ_ಠ
+						return true
+					}
 					return firstDistance < secondDistance
 				}
 				return lot1.name < lot2.name
@@ -208,6 +212,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	func sortEuclidian(lot1: Parkinglot, lot2: Parkinglot) -> Bool {
 		if let distance1 = lot1.distance, distance2 = lot2.distance {
+			if lot1.name == "Parkhaus Mitte" && distance1 <= 2000 {
+				// FIXME: This is only temporary ಠ_ಠ
+				return true
+			}
 			// TODO: Also check if state is either open or unknown, others should not be sorted
 			if lot1.total != 0 && lot2.total != 0 {
 				var occ1 = Double(lot1.total - lot1.free) / Double(lot1.total)
