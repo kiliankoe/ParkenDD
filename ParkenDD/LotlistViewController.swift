@@ -11,6 +11,7 @@ import CoreLocation
 //import MCSwipeTableViewCell
 import SwiftyDrop
 import SwiftyTimer
+import Crashlytics
 
 // Removing MCSwipeTableViewCellDelegate here temporarily
 class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
@@ -107,6 +108,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				let selectedCityID = supportedCities[selectedCity]!
 				ServerController.sendParkinglotDataRequest(selectedCityID) {
 					(lotList, timeUpdated, timeDownloaded, dataSource, updateError) in
+
+					Answers.logCustomEventWithName("View City", customAttributes: ["selected City": selectedCity])
 
 					self.stopRefreshUI()
 

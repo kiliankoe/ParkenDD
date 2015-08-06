@@ -9,7 +9,6 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-import Crashlytics
 
 class ServerController {
 
@@ -55,9 +54,6 @@ class ServerController {
 	:param: completion handler that is provided with a list of parkinglots and an optional error
 	*/
 	static func sendParkinglotDataRequest(city: String, completion: (parkinglotList: [Parkinglot], timeUpdated: NSDate?, timeDownloaded: NSDate?, dataSource: String?, updateError: UpdateError?) -> ()) {
-
-		Answers.logCustomEventWithName(city,
-			customAttributes: [:])
 
 		// TODO: Include timeouts?
 //		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
