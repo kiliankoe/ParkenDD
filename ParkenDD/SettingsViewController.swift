@@ -10,6 +10,7 @@ import UIKit
 import Social
 import MessageUI
 import SwiftyDrop
+import CoreLocation
 
 enum Sections: Int {
 	case cityOptions = 0
@@ -155,6 +156,23 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 
 		// SORTING OPTIONS
 		case .sortingOptions:
+
+			// Don't let the user select a location based sorting option if the required authorization is missing
+			if indexPath.row == 1 || indexPath.row == 4 {
+				if CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse {
+					let alertController = UIAlertController(title: NSLocalizedString("LOCATION_DATA_ERROR_TITLE", comment: "Location Data Error"), message: NSLocalizedString("LOCATION_DATA_ERROR", comment: "Please allow location data..."), preferredStyle: UIAlertControllerStyle.Alert)
+					alertController.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
+					alertController.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS", comment: "Settings"), style: UIAlertActionStyle.Default, handler: {
+						(action) in
+						UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+					}))
+					presentViewController(alertController, animated: true, completion: nil)
+
+					tableView.deselectRowAtIndexPath(indexPath, animated: false)
+					return
+				}
+			}
+
 			for row in 0...4 {
 				tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: Sections.sortingOptions.rawValue))?.accessoryType = UITableViewCellAccessoryType.None
 			}

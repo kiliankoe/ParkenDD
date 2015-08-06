@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// Initialize User Defaults
 		let defaults: [NSObject:AnyObject] = [
-			"SortingType": "euklid",
+			"SortingType": "default",
 			"selectedCity": "Dresden",
 			"supportedCities": ["Dresden": "Dresden"],
 			"SkipNodataLots": false,

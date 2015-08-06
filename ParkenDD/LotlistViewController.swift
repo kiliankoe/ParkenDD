@@ -11,7 +11,6 @@ import CoreLocation
 //import MCSwipeTableViewCell
 import SwiftyDrop
 import SwiftyTimer
-import GBVersionTracking
 
 // Removing MCSwipeTableViewCellDelegate here temporarily
 class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
@@ -59,7 +58,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		// Start getting location updates if the user wants lots sorted by distance
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")!
 		if sortingType == "distance" || sortingType == "euklid" {
-			if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
+			if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
 				let alertController = UIAlertController(title: NSLocalizedString("LOCATION_DATA_ERROR_TITLE", comment: "Location Data Error"), message: NSLocalizedString("LOCATION_DATA_ERROR", comment: "Please allow location data..."), preferredStyle: UIAlertControllerStyle.Alert)
