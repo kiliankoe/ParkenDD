@@ -65,11 +65,14 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 	*/
 	func readCSV() {
 		let path = NSBundle.mainBundle().pathForResource("forecast", ofType: "csv")
-		var filecontent = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)!
+		var filecontent = try! String(contentsOfFile: path!, encoding: NSUTF8StringEncoding)
 
 		var error: NSErrorPointer = nil
-		if let csv = CSV(fromString: filecontent, error: error) {
+		do {
+			let csv = try CSV(fromString: filecontent)
 			csvData = csv
+		} catch var error1 as NSError {
+			error.memory = error1
 		}
 	}
 

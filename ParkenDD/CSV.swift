@@ -14,7 +14,7 @@ public class CSV {
 	public var columns = Dictionary<String, [String]>()
 	var delimiter = NSCharacterSet(charactersInString: ",")
 
-	public init?(fromString csvStringToParse: String, delimiter: NSCharacterSet, error: NSErrorPointer) {
+	public init(fromString csvStringToParse: String, delimiter: NSCharacterSet) throws {
 		self.delimiter = delimiter
 
 		let newline = NSCharacterSet.newlineCharacterSet()
@@ -26,13 +26,18 @@ public class CSV {
 		self.columns = self.parseColumns(fromLines: lines)
 	}
 
-	public convenience init?(fromString csvStringToParse: String, error: NSErrorPointer) {
+	public convenience init(fromString csvStringToParse: String) throws {
 		let comma = NSCharacterSet(charactersInString: ",")
-		self.init(fromString: csvStringToParse, delimiter: comma, error: error)
+		try self.init(fromString: csvStringToParse, delimiter: comma)
 	}
 
-	public init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, error: NSErrorPointer) {
-		let csvString = String(contentsOfURL: url, encoding: NSUTF8StringEncoding, error: error);
+	public init(contentsOfURL url: NSURL, delimiter: NSCharacterSet) throws {
+		let csvString: String?
+		do {
+			csvString = try String(contentsOfURL: url, encoding: NSUTF8StringEncoding)
+		} catch _ {
+			csvString = nil
+		};
 		if let csvStringToParse = csvString {
 			self.delimiter = delimiter
 
@@ -46,9 +51,9 @@ public class CSV {
 		}
 	}
 
-	public convenience init?(contentsOfURL url: NSURL, error: NSErrorPointer) {
+	public convenience init(contentsOfURL url: NSURL) throws {
 		let comma = NSCharacterSet(charactersInString: ",")
-		self.init(contentsOfURL: url, delimiter: comma, error: error)
+		try self.init(contentsOfURL: url, delimiter: comma)
 	}
 
 	func parseHeaders(fromLines lines: [String]) -> [String] {
@@ -58,14 +63,14 @@ public class CSV {
 	func parseRows(fromLines lines: [String]) -> [Dictionary<String, String>] {
 		var rows: [Dictionary<String, String>] = []
 
-		for (lineNumber, line) in enumerate(lines) {
+		for (lineNumber, line) in lines.enumerate() {
 			if lineNumber == 0 {
 				continue
 			}
 
 			var row = Dictionary<String, String>()
 			let values = line.componentsSeparatedByCharactersInSet(self.delimiter)
-			for (index, header) in enumerate(self.headers) {
+			for (index, header) in self.headers.enumerate() {
 				let value = values[index]
 				row[header] = value
 			}

@@ -21,7 +21,7 @@ class CitySelectionTVC: UITableViewController {
 		for (cityKey, cityVal) in self.supportedCities {
 			citiesList.append(cityKey)
 		}
-		citiesList.sort(<)
+		citiesList.sortInPlace(<)
     }
 
     // MARK: - Table view data source
@@ -35,7 +35,7 @@ class CitySelectionTVC: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("citySelectionCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("citySelectionCell", forIndexPath: indexPath) 
 		cell.textLabel?.text = citiesList[indexPath.row]
 
 		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!

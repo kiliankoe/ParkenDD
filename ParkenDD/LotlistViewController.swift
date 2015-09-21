@@ -81,7 +81,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showParkinglotMap" {
-			let indexPath = tableView.indexPathForSelectedRow()
+			let indexPath = tableView.indexPathForSelectedRow
 
 			let selectedParkinglot = parkinglots[indexPath!.row]
 
@@ -134,7 +134,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 						if let timeUpdated = timeUpdated {
 							let currentDate = NSDate()
 							let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-							let dateDifference = calendar.components(NSCalendarUnit.CalendarUnitMinute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
+							let dateDifference = calendar.components(NSCalendarUnit.Minute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
 
 							if dateDifference.minute >= 60 {
 								Drop.down(NSLocalizedString("OUTDATED_DATA_WARNING", comment: "The server indicates that the displayed data might be outdated. It was last updated more than an hour ago"), blur: .Dark)
@@ -184,7 +184,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 		switch sortingType! {
 		case "distance":
-			parkinglots.sort({
+			parkinglots.sortInPlace({
 				(lot1: Parkinglot, lot2: Parkinglot) -> Bool in
 				if let firstDistance = lot1.distance, secondDistance = lot2.distance {
 					if lot1.name == "Parkhaus Mitte" && firstDistance <= 2000 {
@@ -196,15 +196,15 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				return lot1.name < lot2.name
 			})
 		case "alphabetical":
-			parkinglots.sort({
+			parkinglots.sortInPlace({
 				$0.name < $1.name
 			})
 		case "free":
-			parkinglots.sort({
+			parkinglots.sortInPlace({
 				$0.free > $1.free
 			})
 		case "euklid":
-			self.parkinglots.sort(sortEuclidian)
+			self.parkinglots.sortInPlace(sortEuclidian)
 		default:
 			parkinglots = defaultSortedParkinglots
 		}
@@ -218,8 +218,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			}
 			// TODO: Also check if state is either open or unknown, others should not be sorted
 			if lot1.total != 0 && lot2.total != 0 {
-				var occ1 = Double(lot1.total - lot1.free) / Double(lot1.total)
-				var occ2 = Double(lot2.total - lot2.free) / Double(lot2.total)
+				let occ1 = Double(lot1.total - lot1.free) / Double(lot1.total)
+				let occ2 = Double(lot2.total - lot2.free) / Double(lot2.total)
 				let sqrt1 = sqrt(pow(distance1, 2.0) + pow(Double(occ1*1000), 2.0))
 				let sqrt2 = sqrt(pow(distance2, 2.0) + pow(Double(occ2*1000), 2.0))
 
@@ -299,7 +299,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
+		let cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
 
 		// Don't display any separators if the list is still empty
 		if parkinglots.count == 0 {
@@ -310,7 +310,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		// Handle the TimestampCell
 		if indexPath.row >= parkinglots.count {
-			var timecell: TimestampCell = tableView.dequeueReusableCellWithIdentifier("timestampCell") as! TimestampCell
+			let timecell: TimestampCell = tableView.dequeueReusableCellWithIdentifier("timestampCell") as! TimestampCell
 			let dateFormatter = NSDateFormatter()
 			dateFormatter.dateStyle = .MediumStyle
 			dateFormatter.timeStyle = .ShortStyle
@@ -464,7 +464,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	// MARK: - CLLocationManagerDelegate
 	// /////////////////////////////////////////////////////////////////////////
 	var lastLocation: CLLocation?
-	func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let currentUserLocation = locationManager.location
 		// Cycle through all lots to assign their respective distances from the user
 		for index in 0..<parkinglots.count {
@@ -491,7 +491,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		}
 	}
 
-	func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
 		// TODO: Implement me to hopefully fix #41
 	}
 

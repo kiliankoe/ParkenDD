@@ -16,7 +16,7 @@ class AboutViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
 
 		let path = NSBundle.mainBundle().pathForResource("abouttext", ofType: "html")
-		var filecontent = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)!
+		let filecontent = try! String(contentsOfFile: path!, encoding: NSUTF8StringEncoding)
 		aboutWebView.loadHTMLString(filecontent, baseURL: NSURL())
 
         // Do any additional setup after loading the view.

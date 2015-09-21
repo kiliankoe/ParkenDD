@@ -22,7 +22,7 @@ class ServerController {
 	/**
 	GET the metadata (API version and list of supported cities) from server
 
-	:param: completion handler that is provided with a list of supported cities and an optional error
+	- parameter completion: handler that is provided with a list of supported cities and an optional error
 	*/
 	static func sendMetadataRequest(completion: (supportedCities: [String: String], updateError: UpdateError?) -> ()) {
 		let metaURL = Const.useStagingAPI ? Const.apiBaseURLStaging : Const.apibaseURL
@@ -51,7 +51,7 @@ class ServerController {
 	/**
 	Get the current data for all parkinglots
 
-	:param: completion handler that is provided with a list of parkinglots and an optional error
+	- parameter completion: handler that is provided with a list of parkinglots and an optional error
 	*/
 	static func sendParkinglotDataRequest(city: String, completion: (parkinglotList: [Parkinglot], timeUpdated: NSDate?, timeDownloaded: NSDate?, dataSource: String?, updateError: UpdateError?) -> ()) {
 
@@ -110,10 +110,10 @@ class ServerController {
 	/**
 	Get forecast data for a specified parkinglot and date as CSV data
 
-	:param: lotID      id of a parkinlgot
-	:param: fromDate   date object when the data should start
-	:param: toDate     date object when the data should end
-	:param: completion handler
+	- parameter lotID:      id of a parkinlgot
+	- parameter fromDate:   date object when the data should start
+	- parameter toDate:     date object when the data should end
+	- parameter completion: handler
 	*/
 	static func sendForecastRequest(lotID: String, fromDate: NSDate, toDate: NSDate, completion: (data: [NSDate: Int]) -> ()) {
 

@@ -23,7 +23,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
 		// Add annotations for all parking lots to the map
 		for singleLot in allParkinglots {
-			var lotAnnotation = MKPointAnnotation()
+			let lotAnnotation = MKPointAnnotation()
 			if let currentLat = singleLot.lat, currentLng = singleLot.lng {
 				lotAnnotation.coordinate = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng)
 
@@ -47,7 +47,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 			mapView.setRegion(dresdenRegion, animated: false)
 
 			// Also give the user a notification that this is an unfortunate mishap
-			var alertController = UIAlertController(title: NSLocalizedString("UNKNOWN_COORDINATES_TITLE", comment: "Data Error"), message: NSLocalizedString("UNKNOWN_COORDINATES_ERROR", comment: "Couldn't find coordinates for parking lot."), preferredStyle: UIAlertControllerStyle.Alert)
+			let alertController = UIAlertController(title: NSLocalizedString("UNKNOWN_COORDINATES_TITLE", comment: "Data Error"), message: NSLocalizedString("UNKNOWN_COORDINATES_ERROR", comment: "Couldn't find coordinates for parking lot."), preferredStyle: UIAlertControllerStyle.Alert)
 			alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
 			self.presentViewController(alertController, animated: true, completion: nil)
 		}
@@ -61,7 +61,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 	// It's nice to show custom pin colors on the map denoting the current state of the parking lot they're referencing
 	// green: open
 	// red: closed, nodata
-	func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
 		let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "parkinglotAnnotation")
 
 		if annotation.isKindOfClass(MKUserLocation) {
