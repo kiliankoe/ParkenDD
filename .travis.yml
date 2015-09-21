@@ -3,6 +3,9 @@ osx_image: beta-xcode6.3
 xcode_project: ParkenDD.xcodeproj
 xcode_scheme: ParkenDD
 
+notifications:
+  email: false
+
 before_install:
   - brew update
   - brew install carthage

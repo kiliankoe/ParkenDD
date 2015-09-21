@@ -53,6 +53,7 @@ class ServerController {
 				let apiVersion = jsonData["api_version"].doubleValue
 				NSLog("Error: Found API Version \(apiVersion). This version of ParkenDD can however only understand \(SCOptions.supportedAPIVersion)")
 				completion(.Failure(SCError.IncompatibleAPI))
+				return
 			}
 
 			completion(.Success(jsonData["cities"].dictionaryObject as! [String: String]))
