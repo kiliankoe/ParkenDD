@@ -26,7 +26,7 @@ class ServerController {
 	*/
 	static func sendMetadataRequest(completion: (supportedCities: [String: String], updateError: UpdateError?) -> ()) {
 		let metaURL = Const.useStagingAPI ? Const.apiBaseURLStaging : Const.apibaseURL
-		Alamofire.request(.GET, metaURL, parameters: nil).responseJSON { (_, res, jsonData, err) -> Void in
+		Alamofire.request(.GET, metaURL).responseJSON { (_, response, result) -> Void in
 			switch (err, res?.statusCode) {
 			case (_, .Some(200)):
 				let json = JSON(jsonData!)

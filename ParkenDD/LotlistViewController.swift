@@ -41,7 +41,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		// pretty title
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
-		var attrsDict = [NSObject: AnyObject]()
+		var attrsDict = [String: AnyObject]()
 		attrsDict[NSFontAttributeName] = font
 		navBar!.titleTextAttributes = attrsDict
 
@@ -235,7 +235,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	@IBAction func settingsButtonTapped(sender: UIBarButtonItem) {
 		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: NSBundle.mainBundle())
-		let settingsVC = settingsStoryBoard.instantiateInitialViewController() as! UIViewController
+		let settingsVC = settingsStoryBoard.instantiateInitialViewController()!
 		self.navigationController?.presentViewController(settingsVC, animated: true, completion: nil)
 	}
 
@@ -470,7 +470,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		for index in 0..<parkinglots.count {
 			if let lat = parkinglots[index].lat, lng = parkinglots[index].lng {
 				let lotLocation = CLLocation(latitude: lat, longitude: lng)
-				let distance = currentUserLocation.distanceFromLocation(lotLocation)
+				let distance = currentUserLocation!.distanceFromLocation(lotLocation)
 				parkinglots[index].distance = round(distance)
 			}
 		}
@@ -479,15 +479,15 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		// the lots and update the tableView if the user has moved more than 100 meters. Doing both every
 		// second is aggravating and really not necessary.
 		if let lastLoc = lastLocation {
-			let distance = currentUserLocation.distanceFromLocation(lastLoc)
+			let distance = currentUserLocation!.distanceFromLocation(lastLoc)
 			if distance > 100 {
 				sortLots()
 				tableView.reloadData()
-				lastLocation = locations.last as? CLLocation
+				lastLocation = locations.last
 			}
 		} else {
 			// we need to set lastLocation at least once somewhere
-			lastLocation = locations.last as? CLLocation
+			lastLocation = locations.last
 		}
 	}
 

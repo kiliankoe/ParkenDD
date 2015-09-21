@@ -20,7 +20,7 @@ enum Sections: Int {
 	case otherOptions
 }
 
-class SettingsViewController: UITableViewController, UITableViewDelegate, MFMailComposeViewControllerDelegate {
+class SettingsViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class SettingsViewController: UITableViewController, UITableViewDelegate, MFMail
 
 		self.navigationItem.title = NSLocalizedString("SETTINGS", comment: "Settings")
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
-		var attrsDict = [NSObject: AnyObject]()
+		var attrsDict = [String: AnyObject]()
 		attrsDict[NSFontAttributeName] = font
 		self.navigationController?.navigationBar.titleTextAttributes = attrsDict
     }

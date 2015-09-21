@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		locationManager?.requestWhenInUseAuthorization()
 
 		// Initialize User Defaults
-		let defaults: [NSObject:AnyObject] = [
+		let defaults: [String:AnyObject] = [
 			"SortingType": "default",
 			"selectedCity": "Dresden",
 			"supportedCities": ["Dresden": "Dresden"],
@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// apply custom font to UIBarButtonItems (mainly the back button) as well
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
-		var attrsDict = [NSObject: AnyObject]()
+		var attrsDict = [String: AnyObject]()
 		attrsDict[NSFontAttributeName] = font
 		UIBarButtonItem.appearance().setTitleTextAttributes(attrsDict, forState: UIControlState.Normal)
 

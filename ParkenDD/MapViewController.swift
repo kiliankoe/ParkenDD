@@ -61,15 +61,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 	// It's nice to show custom pin colors on the map denoting the current state of the parking lot they're referencing
 	// green: open
 	// red: closed, nodata
-	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
+	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
 		let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "parkinglotAnnotation")
 
 		if annotation.isKindOfClass(MKUserLocation) {
 			return nil
 		}
 
-		let fullPinTitle = annotation.title!.componentsSeparatedByString(":")
-		let pinTitle = fullPinTitle[0]
+		let fullPinTitle = annotation.title??.componentsSeparatedByString(":")
+		let pinTitle = fullPinTitle![0]
 
 		var thisLotState = lotstate.closed
 		for lot in allParkinglots {
