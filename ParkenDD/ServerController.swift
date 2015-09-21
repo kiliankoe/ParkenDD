@@ -15,25 +15,25 @@ enum SCResult<S,F> {
 	case Failure(F)
 }
 
-enum SCError {
-	case Server
-	case Request
-	case IncompatibleAPI
-	case Unknown
-}
-
-struct SCOptions {
-	static let supportedAPIVersion = 1.0
-	static let useStagingAPI = true
-}
-
-struct URL {
-	static let apiBaseURL = "https://park-api.higgsboson.tk/"
-	static let apiBaseURLStaging = "https://staging-park-api.higgsboson.tk/"
-	static let nominatimURL = "https://nominatim.openstreetmap.org/"
-}
-
 class ServerController {
+
+	enum SCError {
+		case Server
+		case Request
+		case IncompatibleAPI
+		case Unknown
+	}
+
+	struct SCOptions {
+		static let supportedAPIVersion = 1.0
+		static let useStagingAPI = true
+	}
+
+	struct URL {
+		static let apiBaseURL = "https://park-api.higgsboson.tk/"
+		static let apiBaseURLStaging = "https://staging-park-api.higgsboson.tk/"
+		static let nominatimURL = "https://nominatim.openstreetmap.org/"
+	}
 
 	/**
 	GET the metadata (API version and list of supported cities) from server

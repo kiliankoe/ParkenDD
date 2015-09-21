@@ -23,7 +23,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	var timeUpdated: NSDate?
 	var timeDownloaded: NSDate?
-	var dataSource: String?
+	var dataURL: String?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -97,17 +97,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	func updateData() {
 		showActivityIndicator()
 
-		ServerController.sendMetadataRequest { (supportedCities, updateError) -> () in
-			switch updateError {
-			case .Some(let err):
+		ServerController.sendMetadataRequest { (result) -> () in
+			switch result {
+			case .Failure(let err):
 				self.showUpdateError(err)
 				self.stopRefreshUI()
-			case .None:
+			case .Success(let supportedCities):
 				(UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities = supportedCities
 				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
 				let selectedCityID = supportedCities[selectedCity]!
 				ServerController.sendParkinglotDataRequest(selectedCityID) {
-					(lotList, timeUpdated, timeDownloaded, dataSource, updateError) in
+					(result) in
 
 					let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 					if let sortingType = sortingType {
@@ -116,22 +116,22 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 					self.stopRefreshUI()
 
-					switch updateError {
-					case .Some(let err):
+					switch result {
+					case .Failure(let err):
 						self.showUpdateError(err)
-					case .None:
+					case .Success(let data):
 
-						self.parkinglots = lotList
-						self.defaultSortedParkinglots = lotList
+						self.parkinglots = data.parkinglotList
+						self.defaultSortedParkinglots = data.parkinglotList
 
-						if let timeUpdated = timeUpdated, timeDownloaded = timeDownloaded, dataSource = dataSource {
+						if let timeUpdated = data.timeUpdated, timeDownloaded = data.timeDownloaded, dataURL = data.dataURL {
 							self.timeUpdated = timeUpdated
 							self.timeDownloaded = timeDownloaded
-							self.dataSource = dataSource
+							self.dataURL = dataURL
 						}
 
 						// Check if date signifies that the data is possibly outdated and warn the user if that is the case
-						if let timeUpdated = timeUpdated {
+						if let timeUpdated = data.timeUpdated {
 							let currentDate = NSDate()
 							let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
 							let dateDifference = calendar.components(NSCalendarUnit.Minute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
@@ -166,7 +166,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	/**
 	Called by the request to the API in case of failure and handed the error to display to the user.
 	*/
-	func showUpdateError(err: ServerController.UpdateError) {
+	func showUpdateError(err: ServerController.SCError) {
 		switch err {
 		case .Server, .IncompatibleAPI:
 			Drop.down(NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), state: .Error)
@@ -436,12 +436,12 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		// Open link to datasource in Safari if TimestampCell was selected
 		if indexPath.row >= parkinglots.count {
-			if let dataSource = dataSource {
-				if let dataSourceURL = NSURL(string: dataSource) {
-					UIApplication.sharedApplication().openURL(dataSourceURL)
+			if let dataURL = dataURL {
+				if let dataURL = NSURL(string: dataURL) {
+					UIApplication.sharedApplication().openURL(dataURL)
 					tableView.deselectRowAtIndexPath(indexPath, animated: true)
 				} else {
-					NSLog("Looks like the datasource \(dataSource) isn't a valid URL.")
+					NSLog("Looks like the datasource \(dataURL) isn't a valid URL.")
 				}
 			}
 			return
