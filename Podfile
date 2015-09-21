@@ -5,6 +5,6 @@ use_frameworks!
 
 pod 'BEMSimpleLineGraph', '~> 3.3'
 pod 'MCSwipeTableViewCell', '~> 2.1.2'
-pod 'Alamofire', '~> 1.2'
+pod 'Alamofire', '~> 2.0.2'
 pod 'SwiftyJSON', '~> 2.2'
 pod 'SwiftyTimer', '~> 1.1.0'
