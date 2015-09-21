@@ -28,9 +28,9 @@ struct SCOptions {
 }
 
 struct URL {
-	static let apibaseURL = "https://park-api.higgsboson.tk/"
-	static let nominatimURL = "https://nominatim.openstreetmap.org/"
+	static let apiBaseURL = "https://park-api.higgsboson.tk/"
 	static let apiBaseURLStaging = "https://staging-park-api.higgsboson.tk/"
+	static let nominatimURL = "https://nominatim.openstreetmap.org/"
 }
 
 class ServerController {
@@ -38,11 +38,11 @@ class ServerController {
 	/**
 	GET the metadata (API version and list of supported cities) from server
 
-	- parameter completion: handler that is provided with a list of supported cities and an optional error
+	- parameter completion: handler that is provided with a list of supported cities or an error wrapped in an SCResult
 	*/
 	static func sendMetadataRequest(completion: (SCResult<[String: String], SCError>) -> Void) {
 		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-		let metadataURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging : URL.apibaseURL
+		let metadataURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging : URL.apiBaseURL
 		Alamofire.request(.GET, metadataURL).responseJSON { (_, response, result) -> Void in
 			defer { UIApplication.sharedApplication().networkActivityIndicatorVisible = false }
 			guard let response = response else { completion(.Failure(SCError.Request)); return }
@@ -69,11 +69,11 @@ class ServerController {
 	/**
 	Get the current data for all parkinglots
 
-	- parameter completion: handler that is provided with a list of parkinglots and an optional error
+	- parameter completion: handler that is provided with a list of parkinglots or an error wrapped in an SCResult
 	*/
 	static func sendParkinglotDataRequest(city: String, completion: SCResult<ParkinglotDataResult,SCError> -> Void) {
 		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-		let parkinglotURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + city : URL.apibaseURL + city
+		let parkinglotURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + city : URL.apiBaseURL + city
 		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, response, result) -> Void in
 			defer { UIApplication.sharedApplication().networkActivityIndicatorVisible = false }
 			guard let response = response else { completion(.Failure(SCError.Request)); return }
