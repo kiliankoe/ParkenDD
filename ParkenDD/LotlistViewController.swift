@@ -97,17 +97,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	func updateData() {
 		showActivityIndicator()
 
-		ServerController.sendMetadataRequest { (result) -> () in
+		ServerController.sendMetadataRequest { result in
 			switch result {
 			case .Failure(let err):
 				self.showUpdateError(err)
 				self.stopRefreshUI()
-			case .Success(let supportedCities):
+			case .Success(let supportedCitiesJSON):
+				let supportedCities = supportedCitiesJSON.mapPairs {(key, val) in (key, val.stringValue)}
 				(UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities = supportedCities
 				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
-				let selectedCityID = supportedCities[selectedCity]!
-				ServerController.sendParkinglotDataRequest(selectedCityID) {
-					(result) in
+				let selectedCityID = supportedCities[selectedCity]! // FIXME: This will keep on crashing if a selected city is ever removed from the API -> not cool!
+				ServerController.sendParkinglotDataRequest(selectedCityID) { (result) in
 
 					let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 					if let sortingType = sortingType {
@@ -248,7 +248,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	*/
 	func stopRefreshUI() {
 		dispatch_async(dispatch_get_main_queue(), { () -> Void in
-			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 			self.showReloadButton()
 			self.refreshControl!.endRefreshing()
 		})
@@ -266,7 +265,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	Replace the right UIBarButtonItem with a UIActivityIndicatorView.
 	*/
 	func showActivityIndicator() {
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 20, 20))
 		activityIndicator.color = UIColor.blackColor()
 		activityIndicator.startAnimating()

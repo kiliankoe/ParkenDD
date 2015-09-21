@@ -26,7 +26,7 @@ class ServerController {
 
 	struct SCOptions {
 		static let supportedAPIVersion = 1.0
-		static let useStagingAPI = true
+		static let useStagingAPI = false
 	}
 
 	struct URL {
@@ -40,7 +40,7 @@ class ServerController {
 
 	- parameter completion: handler that is provided with a list of supported cities or an error wrapped in an SCResult
 	*/
-	static func sendMetadataRequest(completion: (SCResult<[String: String], SCError>) -> Void) {
+	static func sendMetadataRequest(completion: (SCResult<[String: JSON], SCError>) -> Void) {
 		let metadataURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging : URL.apiBaseURL
 		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		Alamofire.request(.GET, metadataURL).responseJSON { (_, response, result) -> Void in
@@ -56,7 +56,7 @@ class ServerController {
 				return
 			}
 
-			completion(.Success(jsonData["cities"].dictionaryObject as! [String: String]))
+			completion(.Success(jsonData["cities"].dictionaryValue))
 		}
 	}
 

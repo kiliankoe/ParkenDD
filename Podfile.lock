@@ -9,7 +9,7 @@ DEPENDENCIES:
   - Alamofire (~> 2.0.2)
   - BEMSimpleLineGraph (~> 3.3)
   - MCSwipeTableViewCell (~> 2.1.2)
-  - SwiftyJSON (~> 2.2)
+  - SwiftyJSON (~> 2.3)
   - SwiftyTimer (~> 1.1.0)
 
 SPEC CHECKSUMS:
