@@ -327,18 +327,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		cell.parkinglot = thisLot
 		cell.parkinglotNameLabel.text = thisLot.name
-		cell.parkinglotLoadLabel.text = "\(thisLot.free)"
+		cell.parkinglotLoadLabel.text = thisLot.state == .unknown ? "?" : "\(thisLot.free)"
 
 		// check if location sorting is enabled, then we're displaying distance instead of address
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")!
 		if sortingType == "distance" || sortingType == "euklid" {
-			if let currentUserLocation = locationManager.location, lat = thisLot.lat, lng = thisLot.lng {
+			if let currentUserLocation = locationManager.location, lat = thisLot.lat, lng = thisLot.lng where lat != 0.0 && lng != 0.0 {
 				let lotLocation = CLLocation(latitude: lat, longitude: lng)
 				thisLot.distance = currentUserLocation.distanceFromLocation(lotLocation)
 				cell.parkinglotAddressLabel.text = "\((round(thisLot.distance!/100))/10)km"
 			} else {
 				if let distance = thisLot.distance {
-					cell.parkinglotAddressLabel.text = "\((round(distance/100))/10)km"
+					cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_LOCATION", comment: "unknown location")
 				} else {
 					cell.parkinglotAddressLabel.text = NSLocalizedString("WAITING_FOR_LOCATION", comment: "waiting for location")
 				}
@@ -355,7 +355,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		load = thisLot.state == lotstate.closed ? 100 : load
 
 		// Maybe a future version of the scraper will be able to read the tendency as well
-		if thisLot.state == lotstate.nodata && thisLot.free == -1 {
+		if thisLot.state == lotstate.unknown {
 			cell.parkinglotTendencyLabel.text = NSLocalizedString("UNKNOWN_LOAD", comment: "unknown")
 		} else if thisLot.state == lotstate.closed {
 			cell.parkinglotTendencyLabel.text = NSLocalizedString("CLOSED", comment: "closed")

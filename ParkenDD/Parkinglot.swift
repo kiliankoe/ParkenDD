@@ -34,4 +34,5 @@ enum lotstate: String {
 	case open = "open"
 	case closed = "closed"
 	case nodata = "nodata"
+	case unknown = "unknown"
 }
