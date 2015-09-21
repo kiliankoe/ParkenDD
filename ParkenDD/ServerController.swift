@@ -41,10 +41,10 @@ class ServerController {
 	- parameter completion: handler that is provided with a list of supported cities or an error wrapped in an SCResult
 	*/
 	static func sendMetadataRequest(completion: (SCResult<[String: String], SCError>) -> Void) {
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		let metadataURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging : URL.apiBaseURL
+		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		Alamofire.request(.GET, metadataURL).responseJSON { (_, response, result) -> Void in
-			defer { UIApplication.sharedApplication().networkActivityIndicatorVisible = false }
+			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 			guard let response = response else { completion(.Failure(SCError.Request)); return }
 			guard response.statusCode == 200 else { completion(.Failure(SCError.Server)); return }
 			guard let data = result.value else { completion(.Failure(SCError.Server)); return }
@@ -72,10 +72,10 @@ class ServerController {
 	- parameter completion: handler that is provided with a list of parkinglots or an error wrapped in an SCResult
 	*/
 	static func sendParkinglotDataRequest(city: String, completion: SCResult<ParkinglotDataResult,SCError> -> Void) {
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		let parkinglotURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + city : URL.apiBaseURL + city
+		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, response, result) -> Void in
-			defer { UIApplication.sharedApplication().networkActivityIndicatorVisible = false }
+			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 			guard let response = response else { completion(.Failure(SCError.Request)); return }
 			guard response.statusCode == 200 else { completion(.Failure(SCError.Server)); return }
 			guard let data = result.value else { completion(.Failure(SCError.Server)); return }
@@ -121,8 +121,7 @@ class ServerController {
 	- parameter toDate:     date object when the data should end
 	- parameter completion: handler
 	*/
-	static func sendForecastRequest(lotID: String, fromDate: NSDate, toDate: NSDate, completion: (data: [NSDate: Int]) -> ()) {
-
+	static func sendForecastRequest(lotID: String, fromDate: NSDate, toDate: NSDate, completion: (SCResult<[NSDate: Int], SCError>) -> Void) {
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
 		let fromDateString = dateFormatter.stringFromDate(fromDate)
@@ -133,25 +132,24 @@ class ServerController {
 			"to": toDateString
 		]
 
-		Alamofire.request(.GET, Const.apibaseURL + "/Dresden/\(lotID)/timespan", parameters: parameters).responseJSON { (_, res, jsonData, err) -> Void in
-			if err == nil && res?.statusCode == 200 {
+		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+		let forecastURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + "/Dresden/\(lotID)/timespan" : URL.apiBaseURL + "/Dresden/\(lotID)/timespan"
+		Alamofire.request(.GET, forecastURL, parameters: parameters).responseJSON { (_, response, result) -> Void in
+			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+			guard let response = response else { completion(.Failure(SCError.Request)); return }
+			guard response.statusCode == 200 else { completion(.Failure(SCError.Server)); return }
+			guard let data = result.value else { completion(.Failure(SCError.Server)); return }
+			let jsonData = JSON(data)["data"].dictionaryValue
 
-				let data = JSON(jsonData!)["data"].dictionaryValue
-				var parsedData = [NSDate: Int]()
+			var parsedData = [NSDate: Int]()
 
-				for (date, load) in data {
-					if let parsedDate = dateFormatter.dateFromString(date) {
-						parsedData[parsedDate] = load.intValue
-					}
+			for (date, load) in jsonData {
+				if let parsedDate = dateFormatter.dateFromString(date) {
+					parsedData[parsedDate] = load.intValue
 				}
-				
-				completion(data: parsedData)
-
-			} else if err != nil && res?.statusCode == 200 {
-				NSLog("Error: \(err?.localizedDescription)")
-			} else {
-				println(res?.statusCode)
 			}
+
+			completion(.Success(parsedData))
 		}
 	}
 
@@ -164,9 +162,8 @@ class ServerController {
 			"addressdetails": 1
 		]
 
-		Alamofire.request(.GET, Const.nominatimURL + "search", parameters: parameters).validate().responseJSON { (_, res, jsonData, err) -> Void in
-			let json = JSON(jsonData!)
-			completion(lat: json[0]["lat"].doubleValue, lng: json[0]["lon"].doubleValue)
+		Alamofire.request(.GET, URL.nominatimURL + "search", parameters: parameters).validate().responseJSON { (_, response, result) -> Void in
+			print(result.value)
 		}
 	}
 
@@ -179,9 +176,8 @@ class ServerController {
 			"addressdetails": 1
 		]
 
-		Alamofire.request(.GET, Const.nominatimURL + "reverse", parameters: parameters).validate().responseJSON { (_, res, jsonData, err) -> Void in
-			let json = JSON(jsonData!)
-			completion(address: json["address"]["road"].stringValue + " " + json["address"]["city"].stringValue)
+		Alamofire.request(.GET, URL.nominatimURL + "reverse", parameters: parameters).validate().responseJSON { (_, response, result) -> Void in
+			print(result.value)
 		}
 	}
 }
