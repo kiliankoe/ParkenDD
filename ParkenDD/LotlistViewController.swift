@@ -437,7 +437,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		// Open link to datasource in Safari if TimestampCell was selected
 		if indexPath.row >= parkinglots.count {
 			if let dataSource = dataSource {
-				if let let dataSourceURL = NSURL(string: dataSource) {
+				if let dataSourceURL = NSURL(string: dataSource) {
 					UIApplication.sharedApplication().openURL(dataSourceURL)
 					tableView.deselectRowAtIndexPath(indexPath, animated: true)
 				} else {
