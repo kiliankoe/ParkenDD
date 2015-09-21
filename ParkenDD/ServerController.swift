@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-enum APIResult<S,F> {
+enum SCResult<S,F> {
 	case Success(S)
 	case Failure(F)
 }
@@ -40,7 +40,7 @@ class ServerController {
 
 	- parameter completion: handler that is provided with a list of supported cities and an optional error
 	*/
-	static func sendMetadataRequest(completion: (APIResult<[String: String], SCError>) -> Void) {
+	static func sendMetadataRequest(completion: (SCResult<[String: String], SCError>) -> Void) {
 		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		let metadataURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging : URL.apibaseURL
 		Alamofire.request(.GET, metadataURL).responseJSON { (_, response, result) -> Void in
@@ -59,62 +59,57 @@ class ServerController {
 		}
 	}
 
+	struct ParkinglotDataResult {
+		let parkinglotList: [Parkinglot]
+		let timeUpdated: NSDate?
+		let timeDownloaded: NSDate?
+		let dataURL: String?
+	}
+
 	/**
 	Get the current data for all parkinglots
 
 	- parameter completion: handler that is provided with a list of parkinglots and an optional error
 	*/
-	static func sendParkinglotDataRequest(city: String, completion: (parkinglotList: [Parkinglot], timeUpdated: NSDate?, timeDownloaded: NSDate?, dataSource: String?, updateError: UpdateError?) -> ()) {
+	static func sendParkinglotDataRequest(city: String, completion: SCResult<ParkinglotDataResult,SCError> -> Void) {
+		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+		let parkinglotURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + city : URL.apibaseURL + city
+		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, response, result) -> Void in
+			defer { UIApplication.sharedApplication().networkActivityIndicatorVisible = false }
+			guard let response = response else { completion(.Failure(SCError.Request)); return }
+			guard response.statusCode == 200 else { completion(.Failure(SCError.Server)); return }
+			guard let data = result.value else { completion(.Failure(SCError.Server)); return }
+			let jsonData = JSON(data)
 
-		// TODO: Include timeouts?
-//		let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-//		sessionConfig.timeoutIntervalForRequest = 15.0
-//		sessionConfig.timeoutIntervalForResource = 20.0
-//		let alamofireManager = Alamofire.Manager(configuration: sessionConfig)
-//		alamofireManager.request...
-		let parkinglotURL = Const.useStagingAPI ? Const.apiBaseURLStaging + city : Const.apibaseURL + city
-		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, res, jsonData, err) -> Void in
-			switch (err, res?.statusCode) {
-			case (_, .Some(200)):
-				let json = JSON(jsonData!)
+			let UTCdateFormatter = NSDateFormatter()
+			UTCdateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+			UTCdateFormatter.timeZone = NSTimeZone(name: "UTC")
 
-				let UTCdateFormatter = NSDateFormatter()
-				UTCdateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-				UTCdateFormatter.timeZone = NSTimeZone(name: "UTC")
+			let timeUpdated = UTCdateFormatter.dateFromString(jsonData["last_updated"].stringValue)
+			let timeDownloaded = UTCdateFormatter.dateFromString(jsonData["last_downloaded"].stringValue)
 
-				let timeUpdated = UTCdateFormatter.dateFromString(json["last_updated"].stringValue)
-				let timeDownloaded = UTCdateFormatter.dateFromString(json["last_downloaded"].stringValue)
+			let dataURL = jsonData["url"].stringValue
 
-				let dataSource = json["data_source"].stringValue
+			var parkinglotList = [Parkinglot]()
+			for lot in jsonData["lots"].arrayValue {
+				let parkinglot = Parkinglot(name: lot["name"].stringValue,
+					total: lot["total"].intValue,
+					free: lot["free"].intValue,
+					state: lotstate(rawValue: lot["state"].stringValue)!,
+					lat: lot["coords"]["lat"].doubleValue,
+					lng: lot["coords"]["lng"].doubleValue,
+					address: lot["address"].stringValue,
+					region: lot["region"].stringValue,
+					type: lot["lot_type"].stringValue,
+					id: lot["id"].stringValue,
+					distance: nil,
+					isFavorite: false)
 
-				var parkinglotList = [Parkinglot]()
-				for lot in json["lots"].arrayValue {
-
-					let parkinglot = Parkinglot(name: lot["name"].stringValue,
-												total: lot["total"].intValue,
-												free: lot["free"].intValue,
-												state: lotstate(rawValue: lot["state"].stringValue)!,
-												lat: lot["coords"]["lat"].doubleValue,
-												lng: lot["coords"]["lng"].doubleValue,
-												address: lot["address"].stringValue,
-												region: lot["region"].stringValue,
-												type: lot["lot_type"].stringValue,
-												id: lot["id"].stringValue,
-												distance: nil,
-												isFavorite: false)
-
-					parkinglotList.append(parkinglot)
-				}
-				completion(parkinglotList: parkinglotList, timeUpdated: timeUpdated, timeDownloaded: timeDownloaded, dataSource: dataSource, updateError: nil)
-			case (_, .Some(400..<600)):
-				completion(parkinglotList: [], timeUpdated: nil, timeDownloaded: nil, dataSource: nil, updateError: .Server)
-			case (let err, _):
-				NSLog("Error: \(err!.localizedDescription)")
-				completion(parkinglotList: [], timeUpdated: nil, timeDownloaded: nil, dataSource: nil, updateError: .Request)
-			default:
-				NSLog("Error: Something unknown happened to the request 😨")
-				completion(parkinglotList: [], timeUpdated: nil, timeDownloaded: nil, dataSource: nil, updateError: .Unknown)
+				parkinglotList.append(parkinglot)
 			}
+
+			let resultData = ParkinglotDataResult(parkinglotList: parkinglotList, timeUpdated: timeUpdated, timeDownloaded: timeDownloaded, dataURL: dataURL)
+			completion(.Success(resultData))
 		}
 	}
 
