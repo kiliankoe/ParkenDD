@@ -6,45 +6,56 @@
 //  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ServerController {
+enum APIResult<S,F> {
+	case Success(S)
+	case Failure(F)
+}
 
-	enum UpdateError {
-		case Server
-		case Request
-		case IncompatibleAPI
-		case Unknown
-	}
+enum SCError {
+	case Server
+	case Request
+	case IncompatibleAPI
+	case Unknown
+}
+
+struct SCOptions {
+	static let supportedAPIVersion = 1.0
+	static let useStagingAPI = true
+}
+
+struct URL {
+	static let apibaseURL = "https://park-api.higgsboson.tk/"
+	static let nominatimURL = "https://nominatim.openstreetmap.org/"
+	static let apiBaseURLStaging = "https://staging-park-api.higgsboson.tk/"
+}
+
+class ServerController {
 
 	/**
 	GET the metadata (API version and list of supported cities) from server
 
 	- parameter completion: handler that is provided with a list of supported cities and an optional error
 	*/
-	static func sendMetadataRequest(completion: (supportedCities: [String: String], updateError: UpdateError?) -> ()) {
-		let metaURL = Const.useStagingAPI ? Const.apiBaseURLStaging : Const.apibaseURL
-		Alamofire.request(.GET, metaURL).responseJSON { (_, response, result) -> Void in
-			switch (err, res?.statusCode) {
-			case (_, .Some(200)):
-				let json = JSON(jsonData!)
-				// Because getting "1.0" into a doubleValue returns nil - Why?
-				if json["api_version"].string == "\(Const.supportedAPIVersion)" {
-					completion(supportedCities: (json["cities"].dictionaryObject as! [String:String]), updateError: nil)
-				} else {
-					let apiversion = json["api_version"].string
-					NSLog("Error: Found API Version \(apiversion). This app can however only understand \(Const.supportedAPIVersion)")
-					completion(supportedCities: [String : String](), updateError: .IncompatibleAPI)
-				}
-			case (let err, .Some(400..<600)):
-				NSLog("Error: \(err!.localizedDescription)")
-				completion(supportedCities: [String:String](), updateError: .Server)
-			case (let err, _):
-				NSLog("Error: \(err!.localizedDescription)")
-				completion(supportedCities: [String:String](), updateError: .Request)
+	static func sendMetadataRequest(completion: (APIResult<[String: String], SCError>) -> Void) {
+		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+		let metadataURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging : URL.apibaseURL
+		Alamofire.request(.GET, metadataURL).responseJSON { (_, response, result) -> Void in
+			defer { UIApplication.sharedApplication().networkActivityIndicatorVisible = false }
+			guard let response = response else { completion(.Failure(SCError.Request)); return }
+			guard response.statusCode == 200 else { completion(.Failure(SCError.Server)); return }
+			guard let data = result.value else { completion(.Failure(SCError.Server)); return }
+			let jsonData = JSON(data)
+			guard jsonData["api_version"].doubleValue == SCOptions.supportedAPIVersion else {
+				let apiVersion = jsonData["api_version"].doubleValue
+				NSLog("Error: Found API Version \(apiVersion). This version of ParkenDD can however only understand \(SCOptions.supportedAPIVersion)")
+				completion(.Failure(SCError.IncompatibleAPI))
 			}
+
+			completion(.Success(jsonData["cities"].dictionaryObject as! [String: String]))
 		}
 	}
 

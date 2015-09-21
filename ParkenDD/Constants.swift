@@ -7,13 +7,8 @@
 //
 
 /**
-*  Stores global constants like the API Server URL
+*  Stores global constants
 */
 struct Const {
-	static let apibaseURL = "https://park-api.higgsboson.tk/"
-	static let nominatimURL = "https://nominatim.openstreetmap.org/"
-	static let supportedAPIVersion = 1.0
 
-	static let useStagingAPI = true
-	static let apiBaseURLStaging = "https://staging-park-api.higgsboson.tk/"
 }
