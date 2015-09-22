@@ -150,7 +150,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		let sec = Sections(rawValue: indexPath.section)!
 
-		var answersParams: [NSObject: AnyObject]?
+		var answersParams: [String: AnyObject]?
 
 		switch sec {
 		// CITY OPTIONS
