@@ -20,6 +20,7 @@
 		3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3946D82C1AD309EB00CB4C41 /* Colors.swift */; };
 		3963A6F11AD47A750026DC51 /* forecast.csv in Resources */ = {isa = PBXBuildFile; fileRef = 3963A6F01AD47A750026DC51 /* forecast.csv */; };
 		3966421E1BB2037100DF2E99 /* generateLoc.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3966421D1BB2037100DF2E99 /* generateLoc.rb */; settings = {ASSET_TAGS = (); }; };
+		396642201BB203DC00DF2E99 /* Loc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966421F1BB203DC00DF2E99 /* Loc.swift */; settings = {ASSET_TAGS = (); }; };
 		3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3977CA271A9CC78C00E20014 /* InfoPlist.strings */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
 		399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */; settings = {ASSET_TAGS = (); }; };
@@ -78,6 +79,7 @@
 		3946D82C1AD309EB00CB4C41 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3963A6F01AD47A750026DC51 /* forecast.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forecast.csv; sourceTree = "<group>"; };
 		3966421D1BB2037100DF2E99 /* generateLoc.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = generateLoc.rb; sourceTree = "<group>"; };
+		3966421F1BB203DC00DF2E99 /* Loc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loc.swift; sourceTree = "<group>"; };
 		3977CA261A9CC78C00E20014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3977CA281A9CC78E00E20014 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		397D7B1E1A9A2236001B5874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				3966421D1BB2037100DF2E99 /* generateLoc.rb */,
 				39F4CFE21A6BBC0200ACFECF /* Info.plist */,
 				3977CA271A9CC78C00E20014 /* InfoPlist.strings */,
+				3966421F1BB203DC00DF2E99 /* Loc.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			buildConfigurationList = 39F4CFFD1A6BBC0200ACFECF /* Build configuration list for PBXNativeTarget "ParkenDD" */;
 			buildPhases = (
 				9EB46FEFD7E069C3F62E32E6 /* Check Pods Manifest.lock */,
+				396642211BB203EF00DF2E99 /* Generate Localization Enum */,
 				39F4CFDA1A6BBC0200ACFECF /* Sources */,
 				39F4CFDB1A6BBC0200ACFECF /* Frameworks */,
 				39F4CFDC1A6BBC0200ACFECF /* Resources */,
@@ -428,6 +432,20 @@
 			shellPath = /bin/sh;
 			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"";
 		};
+		396642211BB203EF00DF2E99 /* Generate Localization Enum */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Localization Enum";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SOURCEROOT/Supporting\\ Files/generateLoc.rb $SOURCEROOT/Supporting\\ Files/Base.lproj/Localizable.strings > $SOURCEROOT/Supporting\\ Files/Loc.swift";
+		};
 		39F4BD3F1B1B683A00900967 /* Authenticate Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -496,6 +514,7 @@
 			files = (
 				393E8B171B440F12003D9D55 /* TimestampCell.swift in Sources */,
 				392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */,
+				396642201BB203DC00DF2E99 /* Loc.swift in Sources */,
 				393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */,
 				39F4CFE61A6BBC0200ACFECF /* LotlistViewController.swift in Sources */,
 				39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */,
@@ -680,6 +699,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.kilian.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e4a7a7b4-561b-4092-9005-8d2c91492d9c";
+				SOURCEROOT = ParkenDD/;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParkenDD/ParkenDD-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -704,6 +724,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.kilian.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e4a7a7b4-561b-4092-9005-8d2c91492d9c";
+				SOURCEROOT = ParkenDD/;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParkenDD/ParkenDD-Bridging-Header.h";
 			};
 			name = Release;
