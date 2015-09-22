@@ -1,9 +1,62 @@
-//
-//  Loc.swift
-//  ParkenDD
-//
-//  Created by Kilian Költzsch on 22/09/15.
-//  Copyright © 2015 Kilian Koeltzsch. All rights reserved.
-//
+// This file is generated automatically, there's no need to update it manually.
 
 import Foundation
+
+enum Loc: String {
+	case REQUEST_ERROR_TITLE
+	case REQUEST_ERROR
+	case SERVER_ERROR_TITLE
+	case SERVER_ERROR
+	case UNKNOWN_COORDINATES_TITLE
+	case UNKNOWN_COORDINATES_ERROR
+	case LAST_UPDATE
+	case NO_DATA
+	case OCCUPIED
+	case CLOSED
+	case UNKNOWN_ADDRESS
+	case UNKNOWN_LOAD
+	case OTHER_OPTIONS
+	case SORTINGTYPE_LOCATION
+	case SHARE_ON_TWITTER
+	case SORTINGTYPE_FREESPOTS
+	case SORTING_OPTIONS
+	case SORTINGTYPE_ALPHABETICAL
+	case ABOUT_BUTTON
+	case SORTINGTYPE_DEFAULT
+	case NSLocationWhenInUseUsageDescription
+	case TWEET_TEXT
+	case WAITING_FOR_LOCATION
+	case APPSTORE_DESCRIPTION
+	case APPSTORE_TAGS
+	case LOCATION_DATA_ERROR_TITLE
+	case LOCATION_DATA_ERROR
+	case CANCEL
+	case SETTINGS
+	case PROGNOSIS_CENTRUM_GALERIE
+	case EXPERIMENTAL_PROGNOSIS
+	case CIRCA
+	case SPOTS_AVAILABLE
+	case DISPLAY_OPTIONS
+	case HIDE_NODATA_LOTS
+	case NOTE_TITLE
+	case LIST_UPDATE_ON_REFRESH
+	case USE_GRAYSCALE_COLORS
+	case RESET_NOTIFICATIONS
+	case SEND_FEEDBACK
+	case OUTDATED_DATA_WARNING_TITLE
+	case OUTDATED_DATA_WARNING
+	case UNKNOWN_ERROR_TITLE
+	case UNKNOWN_ERROR
+	case LAST_UPDATED
+	case TIME_SUFFIX
+	case NO_COORDS_WARNING_TITLE
+	case NO_COORDS_WARNING
+	case CITY_OPTIONS
+	case FORECAST_INFO_TITLE
+	case FORECAST_INFO_TEXT
+	case SORTINGTYPE_EUKLID
+
+	func string() -> String {
+		return NSLocalizedString(self.rawValue, comment: "")
+	}
+}
