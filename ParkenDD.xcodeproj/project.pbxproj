@@ -19,6 +19,7 @@
 		394209B41AADB17600E47539 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394209B31AADB17600E47539 /* MapViewController.swift */; };
 		3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3946D82C1AD309EB00CB4C41 /* Colors.swift */; };
 		3963A6F11AD47A750026DC51 /* forecast.csv in Resources */ = {isa = PBXBuildFile; fileRef = 3963A6F01AD47A750026DC51 /* forecast.csv */; };
+		3966421E1BB2037100DF2E99 /* generateLoc.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3966421D1BB2037100DF2E99 /* generateLoc.rb */; settings = {ASSET_TAGS = (); }; };
 		3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3977CA271A9CC78C00E20014 /* InfoPlist.strings */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
 		399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */; settings = {ASSET_TAGS = (); }; };
@@ -76,6 +77,7 @@
 		394209B31AADB17600E47539 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3946D82C1AD309EB00CB4C41 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3963A6F01AD47A750026DC51 /* forecast.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forecast.csv; sourceTree = "<group>"; };
+		3966421D1BB2037100DF2E99 /* generateLoc.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = generateLoc.rb; sourceTree = "<group>"; };
 		3977CA261A9CC78C00E20014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3977CA281A9CC78E00E20014 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		397D7B1E1A9A2236001B5874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -227,10 +229,8 @@
 				39F16F801AB828E4006C2CF0 /* SettingsView */,
 				39F16F831AB8EF89006C2CF0 /* AboutView */,
 				39F5CBAF1AC9FA0300A91879 /* PrognosisView */,
-				397D7B1F1A9A2236001B5874 /* Localizable.strings */,
 				39F4CFE71A6BBC0200ACFECF /* Main.storyboard */,
 				39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */,
-				39F4CFEC1A6BBC0200ACFECF /* LaunchScreen.xib */,
 				39F4CFE11A6BBC0200ACFECF /* Supporting Files */,
 			);
 			path = ParkenDD;
@@ -239,6 +239,9 @@
 		39F4CFE11A6BBC0200ACFECF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39F4CFEC1A6BBC0200ACFECF /* LaunchScreen.xib */,
+				397D7B1F1A9A2236001B5874 /* Localizable.strings */,
+				3966421D1BB2037100DF2E99 /* generateLoc.rb */,
 				39F4CFE21A6BBC0200ACFECF /* Info.plist */,
 				3977CA271A9CC78C00E20014 /* InfoPlist.strings */,
 			);
@@ -379,6 +382,7 @@
 				3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */,
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
 				3963A6F11AD47A750026DC51 /* forecast.csv in Resources */,
+				3966421E1BB2037100DF2E99 /* generateLoc.rb in Resources */,
 				3904EE051B55C61700B2933B /* Settings.storyboard in Resources */,
 				39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */,
 				39F4CFEB1A6BBC0200ACFECF /* Images.xcassets in Resources */,
