@@ -28,7 +28,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
 		self.navigationItem.rightBarButtonItem = doneButton
 
-		self.navigationItem.title = NSLocalizedString("SETTINGS", comment: "Settings")
+		self.navigationItem.title = Loc.SETTINGS.string()
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
 		var attrsDict = [String: AnyObject]()
 		attrsDict[NSFontAttributeName] = font
@@ -72,13 +72,13 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		let sec = Sections(rawValue: section)!
 		switch sec {
 		case .cityOptions:
-			return NSLocalizedString("CITY_OPTIONS", comment: "City")
+			return Loc.CITY_OPTIONS.string()
 		case .sortingOptions:
-			return NSLocalizedString("SORTING_OPTIONS", comment: "Sort by")
+			return Loc.SORTING_OPTIONS.string()
 		case .displayOptions:
-			return NSLocalizedString("DISPLAY_OPTIONS", comment: "Display")
+			return Loc.DISPLAY_OPTIONS.string()
 		case .otherOptions:
-			return NSLocalizedString("OTHER_OPTIONS", comment: "Other")
+			return Loc.OTHER_OPTIONS.string()
 		}
 	}
 
@@ -99,41 +99,41 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
 		// SORTING OPTIONS
 		case (.sortingOptions, 0):
-			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_DEFAULT", comment: "Default")
+			cell.textLabel?.text = Loc.SORTINGTYPE_DEFAULT.string()
 			cell.accessoryType = sortingType == "default" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 1):
-			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_LOCATION", comment: "Distance")
+			cell.textLabel?.text = Loc.SORTINGTYPE_LOCATION.string()
 			cell.accessoryType = sortingType == "distance" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 2):
-			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_ALPHABETICAL", comment: "Alphabetical")
+			cell.textLabel?.text = Loc.SORTINGTYPE_ALPHABETICAL.string()
 			cell.accessoryType = sortingType == "alphabetical" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 3):
-			cell.textLabel?.text = NSLocalizedString("SORTINGTYPE_FREESPOTS", comment: "Free spots")
+			cell.textLabel?.text = Loc.SORTINGTYPE_FREESPOTS.string()
 			cell.accessoryType = sortingType == "free" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 4):
-			cell.textLabel!.text = NSLocalizedString("SORTINGTYPE_EUKLID", comment: "Best First")
+			cell.textLabel!.text = Loc.SORTINGTYPE_EUKLID.string()
 			cell.accessoryType = sortingType == "euklid" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
 		// DISPLAY OPTIONS
 		case (.displayOptions, 0):
-			cell.textLabel?.text = NSLocalizedString("HIDE_NODATA_LOTS", comment: "Hide lots without data")
+			cell.textLabel?.text = Loc.HIDE_NODATA_LOTS.string()
 			cell.accessoryType = doHideLots ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.displayOptions, 1):
-			cell.textLabel?.text = NSLocalizedString("USE_GRAYSCALE_COLORS", comment: "Use grayscale colors")
+			cell.textLabel?.text = Loc.USE_GRAYSCALE_COLORS.string()
 			cell.accessoryType = useGrayscale ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
 		// OTHER OPTIONS
 		case (.otherOptions, 0):
-			cell.textLabel?.text = NSLocalizedString("EXPERIMENTAL_PROGNOSIS", comment: "Experimental: Prognosis")
+			cell.textLabel?.text = Loc.EXPERIMENTAL_PROGNOSIS.string()
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 		case (.otherOptions, 1):
-			cell.textLabel?.text = NSLocalizedString("ABOUT_BUTTON", comment: "About")
+			cell.textLabel?.text = Loc.ABOUT_BUTTON.string()
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 		case (.otherOptions, 2):
-			cell.textLabel?.text = NSLocalizedString("SHARE_ON_TWITTER", comment: "Share on Twitter")
+			cell.textLabel?.text = Loc.SHARE_ON_TWITTER.string()
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 		case (.otherOptions, 3):
-			cell.textLabel?.text = NSLocalizedString("SEND_FEEDBACK", comment: "Feedback / Report Problem")
+			cell.textLabel?.text = Loc.SEND_FEEDBACK.string()
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
 		default:
@@ -164,9 +164,9 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			// Don't let the user select a location based sorting option if the required authorization is missing
 			if indexPath.row == 1 || indexPath.row == 4 {
 				if CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse {
-					let alertController = UIAlertController(title: NSLocalizedString("LOCATION_DATA_ERROR_TITLE", comment: "Location Data Error"), message: NSLocalizedString("LOCATION_DATA_ERROR", comment: "Please allow location data..."), preferredStyle: UIAlertControllerStyle.Alert)
-					alertController.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
-					alertController.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS", comment: "Settings"), style: UIAlertActionStyle.Default, handler: {
+					let alertController = UIAlertController(title: Loc.LOCATION_DATA_ERROR_TITLE.string(), message: Loc.LOCATION_DATA_ERROR.string(), preferredStyle: UIAlertControllerStyle.Alert)
+					alertController.addAction(UIAlertAction(title: Loc.CANCEL.string(), style: UIAlertActionStyle.Cancel, handler: nil))
+					alertController.addAction(UIAlertAction(title: Loc.SETTINGS.string(), style: UIAlertActionStyle.Default, handler: {
 						(action) in
 						UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
 					}))
@@ -216,7 +216,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "SkipNodataLots")
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
-				Drop.down(NSLocalizedString("LIST_UPDATE_ON_REFRESH", comment: "List will be updated on next refresh"), blur: .Dark)
+				Drop.down(Loc.LIST_UPDATE_ON_REFRESH.string(), blur: .Dark)
 			case 1:
 				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
 				if useGrayscale {
@@ -245,7 +245,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 				answersParams = ["section": "otherOptions", "row": "presentTweetComposer"]
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-					tweetsheet.setInitialText(NSLocalizedString("TWEET_TEXT", comment: "Check out #ParkenDD..."))
+					tweetsheet.setInitialText(Loc.TWEET_TEXT.string())
 					self.presentViewController(tweetsheet, animated: true, completion: nil)
 				}
 			case 3:

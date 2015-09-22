@@ -26,11 +26,11 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 
 		let currentDate = NSDate()
 
-		titleLabel.text = NSLocalizedString("PROGNOSIS_CENTRUM_GALERIE", comment: "Prognosis for Centrum Galerie")
-		let occupiedString = NSLocalizedString("OCCUPIED", comment: "occupied")
+		titleLabel.text = Loc.PROGNOSIS_CENTRUM_GALERIE.string()
+		let occupiedString = Loc.OCCUPIED.string()
 		percentageLabel.text = "15% \(occupiedString)"
-		let caString = NSLocalizedString("CIRCA", comment: "ca.")
-		let spotsAvailableString = NSLocalizedString("SPOTS_AVAILABLE", comment: "spots available")
+		let caString = Loc.CIRCA.string()
+		let spotsAvailableString = Loc.SPOTS_AVAILABLE.string()
 		spotsAvailableLabel.text = "\(caString) 892/1050 \(spotsAvailableString)"
 
 		ServerController.sendForecastRequest("dresdencentrumgalerie", fromDate: currentDate, toDate: currentDate.dateByAddingTimeInterval(3600*24*7)) { (data) -> () in
@@ -82,7 +82,7 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 
 	
 	@IBAction func infoButtonPressed(sender: UIButton) {
-		let alertController = UIAlertController(title: NSLocalizedString("FORECAST_INFO_TITLE", comment: "Forecast Data"), message: NSLocalizedString("FORECAST_INFO_TEXT", comment: "This is the forecastview..."), preferredStyle: UIAlertControllerStyle.Alert)
+		let alertController = UIAlertController(title: Loc.FORECAST_INFO_TITLE.string(), message: Loc.FORECAST_INFO_TEXT.string(), preferredStyle: UIAlertControllerStyle.Alert)
 		alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
 		presentViewController(alertController, animated: true, completion: nil)
 	}
@@ -115,12 +115,12 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 		}
 
 		progressBar.progress = prognosis
-		let occupiedString = NSLocalizedString("OCCUPIED", comment: "occupied")
+		let occupiedString = Loc.OCCUPIED.string()
 		percentageLabel.text = "\(Int(round(prognosis*100)))% \(occupiedString)"
 
 		let availableSpots = 1050-(1050*prognosis)
-		let caString = NSLocalizedString("CIRCA", comment: "ca.")
-		let spotsAvailableString = NSLocalizedString("SPOTS_AVAILABLE", comment: "spots available")
+		let caString = Loc.CIRCA.string()
+		let spotsAvailableString = Loc.SPOTS_AVAILABLE.string()
 		spotsAvailableLabel.text = "\(caString) \(Int(round(availableSpots)))/1050 \(spotsAvailableString)"
 	}
 

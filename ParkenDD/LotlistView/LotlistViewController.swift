@@ -62,9 +62,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
-				let alertController = UIAlertController(title: NSLocalizedString("LOCATION_DATA_ERROR_TITLE", comment: "Location Data Error"), message: NSLocalizedString("LOCATION_DATA_ERROR", comment: "Please allow location data..."), preferredStyle: UIAlertControllerStyle.Alert)
-				alertController.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: nil))
-				alertController.addAction(UIAlertAction(title: NSLocalizedString("SETTINGS", comment: "Settings"), style: UIAlertActionStyle.Default, handler: {
+				let alertController = UIAlertController(title: Loc.LOCATION_DATA_ERROR_TITLE.string(), message: Loc.LOCATION_DATA_ERROR.string(), preferredStyle: UIAlertControllerStyle.Alert)
+				alertController.addAction(UIAlertAction(title: Loc.CANCEL.string(), style: UIAlertActionStyle.Cancel, handler: nil))
+				alertController.addAction(UIAlertAction(title: Loc.SETTINGS.string(), style: UIAlertActionStyle.Default, handler: {
 					(action) in
 					UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
 				}))
@@ -137,7 +137,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 							let dateDifference = calendar.components(NSCalendarUnit.Minute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
 
 							if dateDifference.minute >= 60 {
-								Drop.down(NSLocalizedString("OUTDATED_DATA_WARNING", comment: "The server indicates that the displayed data might be outdated. It was last updated more than an hour ago"), blur: .Dark)
+								Drop.down(Loc.OUTDATED_DATA_WARNING.string(), blur: .Dark)
 							}
 						}
 
@@ -169,11 +169,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	func showUpdateError(err: ServerController.SCError) {
 		switch err {
 		case .Server, .IncompatibleAPI:
-			Drop.down(NSLocalizedString("SERVER_ERROR", comment: "Couldn't read data from server. Please try again in a few moments."), state: .Error)
+			Drop.down(Loc.SERVER_ERROR.string(), state: .Error)
 		case .Request:
-			Drop.down(NSLocalizedString("REQUEST_ERROR", comment: "Couldn't fetch data. You appear to be disconnected from the internet."), state: .Error)
+			Drop.down(Loc.REQUEST_ERROR.string(), state: .Error)
 		case .Unknown:
-			Drop.down(NSLocalizedString("UNKNOWN_ERROR", comment: "An unknown error occurred. Please try again in a few moments."), state: .Error)
+			Drop.down(Loc.UNKNOWN_ERROR.string(), state: .Error)
 		}
 	}
 
@@ -314,7 +314,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			dateFormatter.timeStyle = .ShortStyle
 
 			if let timeUpdated = timeUpdated {
-				let lastUpdatedString = NSLocalizedString("LAST_UPDATED", comment: "Updated:") + " " + dateFormatter.stringFromDate(timeUpdated) + " " + NSLocalizedString("TIME_SUFFIX", comment: "German: Uhr")
+				let lastUpdatedString = Loc.LAST_UPDATED.string() + " " + dateFormatter.stringFromDate(timeUpdated) + " " + Loc.TIME_SUFFIX.string()
 				timecell.timestampLabel.text = lastUpdatedString
 			}
 			return timecell
@@ -338,11 +338,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				if let distance = thisLot.distance {
 					cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_LOCATION", comment: "unknown location")
 				} else {
-					cell.parkinglotAddressLabel.text = NSLocalizedString("WAITING_FOR_LOCATION", comment: "waiting for location")
+					cell.parkinglotAddressLabel.text = Loc.WAITING_FOR_LOCATION.string()
 				}
 			}
 		} else if thisLot.address == "" {
-			cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_ADDRESS", comment: "unknown address")
+			cell.parkinglotAddressLabel.text = Loc.UNKNOWN_ADDRESS.string()
 		} else {
 			cell.parkinglotAddressLabel.text = thisLot.address
 		}
@@ -354,11 +354,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		// Maybe a future version of the scraper will be able to read the tendency as well
 		if thisLot.state == lotstate.unknown {
-			cell.parkinglotTendencyLabel.text = NSLocalizedString("UNKNOWN_LOAD", comment: "unknown")
+			cell.parkinglotTendencyLabel.text = Loc.UNKNOWN_LOAD.string()
 		} else if thisLot.state == lotstate.closed {
-			cell.parkinglotTendencyLabel.text = NSLocalizedString("CLOSED", comment: "closed")
+			cell.parkinglotTendencyLabel.text = Loc.CLOSED.string()
 		} else {
-			let localizedOccupied = NSLocalizedString("OCCUPIED", comment: "occupied")
+			let localizedOccupied = Loc.OCCUPIED.string()
 			cell.parkinglotTendencyLabel.text = "\(load)% \(localizedOccupied)"
 		}
 
@@ -449,7 +449,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		let cellTitle = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglotNameLabel.text!
 		for lot in parkinglots {
 			if lot.name == cellTitle && lot.lat! == 0.0 {
-				Drop.down(NSLocalizedString("NO_COORDS_WARNING", comment: "Don't have no coords, ain't showing no nothin'!"), blur: .Dark)
+				Drop.down(Loc.NO_COORDS_WARNING.string(), blur: .Dark)
 				tableView.deselectRowAtIndexPath(indexPath, animated: true)
 				return
 			}
