@@ -312,8 +312,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			dateFormatter.timeStyle = .ShortStyle
 
 			if let timeUpdated = timeUpdated {
-				let lastUpdatedString = Loc.LAST_UPDATED.string() + " " + dateFormatter.stringFromDate(timeUpdated) + " " + Loc.TIME_SUFFIX.string()
-				timecell.timestampLabel.text = lastUpdatedString
+				timecell.timestampLabel.text = Loc.LAST_UPDATED.string() + " " + dateFormatter.stringFromDate(timeUpdated) + " " + Loc.TIME_SUFFIX.string()
 			}
 			return timecell
 		}
@@ -356,8 +355,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		} else if thisLot.state == lotstate.closed {
 			cell.parkinglotTendencyLabel.text = Loc.CLOSED.string()
 		} else {
-			let localizedOccupied = Loc.OCCUPIED.string()
-			cell.parkinglotTendencyLabel.text = "\(load)% \(localizedOccupied)"
+			cell.parkinglotTendencyLabel.text = "\(load)% \(Loc.OCCUPIED.string())"
 		}
 
 		// Set all labels to be white, 'cause it looks awesome
