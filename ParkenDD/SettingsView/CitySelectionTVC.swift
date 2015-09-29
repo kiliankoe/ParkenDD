@@ -10,7 +10,7 @@ import UIKit
 
 class CitySelectionTVC: UITableViewController {
 
-	var supportedCities = [String: String]()
+	var supportedCities = [String]()
 
 	var citiesList = [String]()
 
@@ -18,8 +18,8 @@ class CitySelectionTVC: UITableViewController {
         super.viewDidLoad()
 
 		self.supportedCities = (UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities
-		for (cityKey, cityVal) in self.supportedCities {
-			citiesList.append(cityKey)
+		for city in self.supportedCities {
+			citiesList.append(city)
 		}
 		citiesList.sortInPlace(<)
     }

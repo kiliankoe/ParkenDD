@@ -101,11 +101,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				self.showUpdateError(err)
 				self.stopRefreshUI()
 			case .Success(let supportedCitiesJSON):
-				let supportedCities = supportedCitiesJSON.mapPairs {(key, val) in (key, val.stringValue)}
+				var supportedCities = [String]()
+				for (city, _) in supportedCitiesJSON {
+					supportedCities.append(city)
+				}
 				(UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities = supportedCities
 				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
-				let selectedCityID = supportedCities[selectedCity]! // FIXME: This will keep on crashing if a selected city is ever removed from the API -> not cool!
-				ServerController.sendParkinglotDataRequest(selectedCityID) { (result) in
+				ServerController.sendParkinglotDataRequest(selectedCity) { (result) in
 
 					let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
 					if let sortingType = sortingType {

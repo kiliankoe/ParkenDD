@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var locationManager: CLLocationManager?
 
-	var supportedCities: [String:String]!
+	var supportedCities: [String]!
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		Fabric.with([Crashlytics()])
@@ -33,14 +33,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let defaults: [String:AnyObject] = [
 			"SortingType": "default",
 			"selectedCity": "Dresden",
-			"supportedCities": ["Dresden": "Dresden"],
+			"supportedCities": ["Dresden"],
 			"SkipNodataLots": false,
 			"grayscaleColors": false,
             "favoriteLots": []
 		]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 
-		supportedCities = NSUserDefaults.standardUserDefaults().dictionaryForKey("supportedCities") as! [String:String]
+		supportedCities = NSUserDefaults.standardUserDefaults().arrayForKey("supportedCities") as! [String]
 
 		// apply custom font to UIBarButtonItems (mainly the back button) as well
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)

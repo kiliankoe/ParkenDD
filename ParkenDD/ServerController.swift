@@ -73,6 +73,7 @@ class ServerController {
 	- parameter completion: handler that is provided with a list of parkinglots or an error wrapped in an SCResult
 	*/
 	static func sendParkinglotDataRequest(city: String, completion: SCResult<ParkinglotDataResult,SCError> -> Void) {
+		print("Selected city: \(city)")
 		let parkinglotURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + city : URL.apiBaseURL + city
 		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, response, result) -> Void in
@@ -93,6 +94,7 @@ class ServerController {
 
 			var parkinglotList = [Parkinglot]()
 			for lot in jsonData["lots"].arrayValue {
+				print(lot["name"].stringValue)
 				let parkinglot = Parkinglot(name: lot["name"].stringValue,
 					total: lot["total"].intValue,
 					free: lot["free"].intValue,
