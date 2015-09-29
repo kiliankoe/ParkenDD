@@ -8,12 +8,10 @@
 
 import UIKit
 import CoreLocation
-//import MCSwipeTableViewCell
 import SwiftyDrop
 import SwiftyTimer
 import Crashlytics
 
-// Removing MCSwipeTableViewCellDelegate here temporarily
 class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	let locationManager = CLLocationManager()
@@ -376,53 +374,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		}
 		cell.backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: thisLot.free)
 
-//        // Configure MCSwipeTableViewCell stuff
-//
-//		// Create view with a star image to be displayed in swiped 'backview'
-//		let favView = self.viewWithImageName("favStar")
-//		let unfavView = self.viewWithImageName("unfavStar")
-//		let favColor = Colors.favYellow
-//		let unfavColor = Colors.unfavYellow
-//
-//        cell.separatorInset = UIEdgeInsetsZero
-//        cell.selectionStyle = UITableViewCellSelectionStyle.Gray
-//
-//		var favoriteLots = NSUserDefaults.standardUserDefaults().arrayForKey("favoriteLots") as! [String]
-//		if contains(favoriteLots, thisLot.name) {
-//			// Lot is already faved
-//
-//			cell.favTriangle.image = UIImage(named: "favTriangle")
-//
-//			cell.setSwipeGestureWithView(unfavView, color: unfavColor, mode: MCSwipeTableViewCellMode.Switch, state: MCSwipeTableViewCellState.State1) { (cell, state, mode) -> Void in
-//				let index = find(favoriteLots, thisLot.name)
-//				favoriteLots.removeAtIndex(index!)
-//				NSLog("removed \(thisLot.name) from favorites")
-//				NSUserDefaults.standardUserDefaults().setObject(favoriteLots, forKey: "favoriteLots")
-//				NSUserDefaults.standardUserDefaults().synchronize()
-//
-//				// remove favtriangle from cell
-//				(cell as! ParkinglotTableViewCell).favTriangle.image = nil
-//
-//				self.tableView.reloadData()
-//			}
-//		} else {
-//			// Lot is not faved
-//
-//			cell.favTriangle.image = nil
-//
-//			cell.setSwipeGestureWithView(favView, color: favColor, mode: MCSwipeTableViewCellMode.Switch, state: MCSwipeTableViewCellState.State1) { (cell, state, mode) -> Void in
-//				favoriteLots.append(thisLot.name)
-//				NSLog("added \(thisLot.name) to favorites")
-//				NSUserDefaults.standardUserDefaults().setObject(favoriteLots, forKey: "favoriteLots")
-//				NSUserDefaults.standardUserDefaults().synchronize()
-//
-//				// add favtriangle to cell
-//				(cell as! ParkinglotTableViewCell).favTriangle.image = UIImage(named: "favTriangle")
-//
-//				self.tableView.reloadData()
-//			}
-//		}
-
 		return cell
 	}
 
@@ -492,17 +443,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
 		// TODO: Implement me to hopefully fix #41
 	}
-
-	// /////////////////////////////////////////////////////////////////////////
-	// MARK: - MCSwipeTableViewCellDelegate
-	// /////////////////////////////////////////////////////////////////////////
-
-//	func swipeTableViewCellDidEndSwiping(cell: MCSwipeTableViewCell!) {
-//		var favorites = NSUserDefaults.standardUserDefaults().arrayForKey("favoriteLots")!
-//		favorites.append((cell as! ParkinglotTableViewCell).parkinglotNameLabel.text!)
-//		println(favorites)
-//		NSUserDefaults.standardUserDefaults().setObject(favorites, forKey: "favoriteLots")
-//	}
 
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - Helpers
