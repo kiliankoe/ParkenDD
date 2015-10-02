@@ -299,6 +299,7 @@
 			buildConfigurationList = 39F4CFFD1A6BBC0200ACFECF /* Build configuration list for PBXNativeTarget "ParkenDD" */;
 			buildPhases = (
 				9EB46FEFD7E069C3F62E32E6 /* Check Pods Manifest.lock */,
+				39D26D541BBF44B00094A496 /* Set CFBundleVersion */,
 				396642211BB203EF00DF2E99 /* Generate Localization Enum */,
 				39F4CFDA1A6BBC0200ACFECF /* Sources */,
 				39F4CFDB1A6BBC0200ACFECF /* Frameworks */,
@@ -309,6 +310,7 @@
 				395CC1821B4AB62600F81721 /* Highlight TODO/FIXME/ERROR */,
 				39F4BD3F1B1B683A00900967 /* Authenticate Fabric */,
 				39392ECF1B72BE0500C3EDA4 /* Carthage */,
+				39D26D551BBF45060094A496 /* Change CFBundleVersion back */,
 			);
 			buildRules = (
 			);
@@ -450,6 +452,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$SOURCEROOT/Supporting\\ Files/generateLoc.rb $SOURCEROOT/Supporting\\ Files/Base.lproj/Localizable.strings > $SOURCEROOT/Supporting\\ Files/Loc.swift";
+		};
+		39D26D541BBF44B00094A496 /* Set CFBundleVersion */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set CFBundleVersion";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Set the build number to the count of Git commits\nbuildNumber=$(git rev-list HEAD | wc -l | tr -d ' ')\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+		39D26D551BBF45060094A496 /* Change CFBundleVersion back */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Change CFBundleVersion back";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Set the build number to \"DEVELOPMENT\"\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion DEVELOPMENT\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
 		39F4BD3F1B1B683A00900967 /* Authenticate Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -696,6 +726,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -721,6 +752,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
