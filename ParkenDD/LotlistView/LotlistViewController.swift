@@ -83,9 +83,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 			let selectedParkinglot = parkinglots[indexPath!.row]
 
-			let mapVC: MapViewController = segue.destinationViewController as! MapViewController
-			mapVC.detailParkinglot = selectedParkinglot
-			mapVC.allParkinglots = parkinglots
+			let mapVC = segue.destinationViewController as? MapViewController
+			mapVC?.detailParkinglot = selectedParkinglot
+			mapVC?.allParkinglots = parkinglots
 		}
 	}
 
