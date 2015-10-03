@@ -28,7 +28,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismiss")
 		self.navigationItem.rightBarButtonItem = doneButton
 
-		self.navigationItem.title = Loc.SETTINGS.string()
+		self.navigationItem.title = L10n.SETTINGS.string
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
 		var attrsDict = [String: AnyObject]()
 		attrsDict[NSFontAttributeName] = font
@@ -72,13 +72,13 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		let sec = Sections(rawValue: section)!
 		switch sec {
 		case .cityOptions:
-			return Loc.CITY_OPTIONS.string()
+			return L10n.CITYOPTIONS.string
 		case .sortingOptions:
-			return Loc.SORTING_OPTIONS.string()
+			return L10n.SORTINGOPTIONS.string
 		case .displayOptions:
-			return Loc.DISPLAY_OPTIONS.string()
+			return L10n.DISPLAYOPTIONS.string
 		case .otherOptions:
-			return Loc.OTHER_OPTIONS.string()
+			return L10n.OTHEROPTIONS.string
 		}
 	}
 
@@ -99,41 +99,41 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
 		// SORTING OPTIONS
 		case (.sortingOptions, 0):
-			cell.textLabel?.text = Loc.SORTINGTYPE_DEFAULT.string()
+			cell.textLabel?.text = L10n.SORTINGTYPEDEFAULT.string
 			cell.accessoryType = sortingType == "default" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 1):
-			cell.textLabel?.text = Loc.SORTINGTYPE_LOCATION.string()
+			cell.textLabel?.text = L10n.SORTINGTYPELOCATION.string
 			cell.accessoryType = sortingType == "distance" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 2):
-			cell.textLabel?.text = Loc.SORTINGTYPE_ALPHABETICAL.string()
+			cell.textLabel?.text = L10n.SORTINGTYPEALPHABETICAL.string
 			cell.accessoryType = sortingType == "alphabetical" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 3):
-			cell.textLabel?.text = Loc.SORTINGTYPE_FREESPOTS.string()
+			cell.textLabel?.text = L10n.SORTINGTYPEFREESPOTS.string
 			cell.accessoryType = sortingType == "free" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 4):
-			cell.textLabel!.text = Loc.SORTINGTYPE_EUKLID.string()
+			cell.textLabel!.text = L10n.SORTINGTYPEEUKLID.string
 			cell.accessoryType = sortingType == "euklid" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
 		// DISPLAY OPTIONS
 		case (.displayOptions, 0):
-			cell.textLabel?.text = Loc.HIDE_NODATA_LOTS.string()
+			cell.textLabel?.text = L10n.HIDENODATALOTS.string
 			cell.accessoryType = doHideLots ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.displayOptions, 1):
-			cell.textLabel?.text = Loc.USE_GRAYSCALE_COLORS.string()
+			cell.textLabel?.text = L10n.USEGRAYSCALECOLORS.string
 			cell.accessoryType = useGrayscale ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
 		// OTHER OPTIONS
 		case (.otherOptions, 0):
-			cell.textLabel?.text = Loc.EXPERIMENTAL_PROGNOSIS.string()
+			cell.textLabel?.text = L10n.EXPERIMENTALPROGNOSIS.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 		case (.otherOptions, 1):
-			cell.textLabel?.text = Loc.ABOUT_BUTTON.string()
+			cell.textLabel?.text = L10n.ABOUTBUTTON.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 		case (.otherOptions, 2):
-			cell.textLabel?.text = Loc.SHARE_ON_TWITTER.string()
+			cell.textLabel?.text = L10n.SHAREONTWITTER.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 		case (.otherOptions, 3):
-			cell.textLabel?.text = Loc.SEND_FEEDBACK.string()
+			cell.textLabel?.text = L10n.SENDFEEDBACK.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
 		default:
@@ -164,9 +164,9 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			// Don't let the user select a location based sorting option if the required authorization is missing
 			if indexPath.row == 1 || indexPath.row == 4 {
 				if CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse {
-					let alertController = UIAlertController(title: Loc.LOCATION_DATA_ERROR_TITLE.string(), message: Loc.LOCATION_DATA_ERROR.string(), preferredStyle: UIAlertControllerStyle.Alert)
-					alertController.addAction(UIAlertAction(title: Loc.CANCEL.string(), style: UIAlertActionStyle.Cancel, handler: nil))
-					alertController.addAction(UIAlertAction(title: Loc.SETTINGS.string(), style: UIAlertActionStyle.Default, handler: {
+					let alertController = UIAlertController(title: L10n.LOCATIONDATAERRORTITLE.string, message: L10n.LOCATIONDATAERROR.string, preferredStyle: UIAlertControllerStyle.Alert)
+					alertController.addAction(UIAlertAction(title: L10n.CANCEL.string, style: UIAlertActionStyle.Cancel, handler: nil))
+					alertController.addAction(UIAlertAction(title: L10n.SETTINGS.string, style: UIAlertActionStyle.Default, handler: {
 						(action) in
 						UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
 					}))
@@ -216,7 +216,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "SkipNodataLots")
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
-				Drop.down(Loc.LIST_UPDATE_ON_REFRESH.string(), blur: .Dark)
+				Drop.down(L10n.LISTUPDATEONREFRESH.string, blur: .Dark)
 			case 1:
 				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
 				if useGrayscale {
@@ -245,7 +245,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 				answersParams = ["section": "otherOptions", "row": "presentTweetComposer"]
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-					tweetsheet.setInitialText(Loc.TWEET_TEXT.string())
+					tweetsheet.setInitialText(L10n.TWEETTEXT.string)
 					self.presentViewController(tweetsheet, animated: true, completion: nil)
 				}
 			case 3:

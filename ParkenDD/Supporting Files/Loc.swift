@@ -1,62 +1,178 @@
-// This file is generated automatically, there's no need to update it manually.
+// Generated using SwiftGen, by O.Halligon — https://github.com/AliSoftware/SwiftGen
 
 import Foundation
 
-enum Loc: String {
-	case REQUEST_ERROR_TITLE
-	case REQUEST_ERROR
-	case SERVER_ERROR_TITLE
-	case SERVER_ERROR
-	case UNKNOWN_COORDINATES_TITLE
-	case UNKNOWN_COORDINATES_ERROR
-	case LAST_UPDATE
-	case NO_DATA
-	case OCCUPIED
-	case CLOSED
-	case UNKNOWN_ADDRESS
-	case UNKNOWN_LOAD
-	case OTHER_OPTIONS
-	case SORTINGTYPE_LOCATION
-	case SHARE_ON_TWITTER
-	case SORTINGTYPE_FREESPOTS
-	case SORTING_OPTIONS
-	case SORTINGTYPE_ALPHABETICAL
-	case ABOUT_BUTTON
-	case SORTINGTYPE_DEFAULT
-	case NSLocationWhenInUseUsageDescription
-	case TWEET_TEXT
-	case WAITING_FOR_LOCATION
-	case APPSTORE_DESCRIPTION
-	case APPSTORE_TAGS
-	case LOCATION_DATA_ERROR_TITLE
-	case LOCATION_DATA_ERROR
-	case CANCEL
-	case SETTINGS
-	case PROGNOSIS_CENTRUM_GALERIE
-	case EXPERIMENTAL_PROGNOSIS
-	case CIRCA
-	case SPOTS_AVAILABLE
-	case DISPLAY_OPTIONS
-	case HIDE_NODATA_LOTS
-	case NOTE_TITLE
-	case LIST_UPDATE_ON_REFRESH
-	case USE_GRAYSCALE_COLORS
-	case RESET_NOTIFICATIONS
-	case SEND_FEEDBACK
-	case OUTDATED_DATA_WARNING_TITLE
-	case OUTDATED_DATA_WARNING
-	case UNKNOWN_ERROR_TITLE
-	case UNKNOWN_ERROR
-	case LAST_UPDATED
-	case TIME_SUFFIX
-	case NO_COORDS_WARNING_TITLE
-	case NO_COORDS_WARNING
-	case CITY_OPTIONS
-	case FORECAST_INFO_TITLE
-	case FORECAST_INFO_TEXT
-	case SORTINGTYPE_EUKLID
-
-	func string() -> String {
-		return NSLocalizedString(self.rawValue, comment: "")
-	}
+enum L10n {
+    case REQUESTERRORTITLE
+    case REQUESTERROR
+    case SERVERERRORTITLE
+    case SERVERERROR
+    case UNKNOWNCOORDINATESTITLE
+    case UNKNOWNCOORDINATESERROR
+    case LASTUPDATE
+    case NODATA
+    case OCCUPIED
+    case CLOSED
+    case UNKNOWNADDRESS
+    case UNKNOWNLOAD
+    case OTHEROPTIONS
+    case SORTINGTYPELOCATION
+    case SHAREONTWITTER
+    case SORTINGTYPEFREESPOTS
+    case SORTINGOPTIONS
+    case SORTINGTYPEALPHABETICAL
+    case ABOUTBUTTON
+    case SORTINGTYPEDEFAULT
+    case NSLocationWhenInUseUsageDescription
+    case TWEETTEXT
+    case WAITINGFORLOCATION
+    case APPSTOREDESCRIPTION
+    case APPSTORETAGS
+    case LOCATIONDATAERRORTITLE
+    case LOCATIONDATAERROR
+    case CANCEL
+    case SETTINGS
+    case PROGNOSISCENTRUMGALERIE
+    case EXPERIMENTALPROGNOSIS
+    case CIRCA
+    case SPOTSAVAILABLE
+    case DISPLAYOPTIONS
+    case HIDENODATALOTS
+    case NOTETITLE
+    case LISTUPDATEONREFRESH
+    case USEGRAYSCALECOLORS
+    case RESETNOTIFICATIONS
+    case SENDFEEDBACK
+    case OUTDATEDDATAWARNINGTITLE
+    case OUTDATEDDATAWARNING
+    case UNKNOWNERRORTITLE
+    case UNKNOWNERROR
+    case LASTUPDATED(String)
+    case NOCOORDSWARNINGTITLE
+    case NOCOORDSWARNING
+    case CITYOPTIONS
+    case FORECASTINFOTITLE
+    case FORECASTINFOTEXT
+    case SORTINGTYPEEUKLID
 }
+
+extension L10n : CustomStringConvertible {
+    var description : String { return self.string }
+
+    var string : String {
+        switch self {
+            case .REQUESTERRORTITLE:
+                return L10n.tr("REQUEST_ERROR_TITLE")
+            case .REQUESTERROR:
+                return L10n.tr("REQUEST_ERROR")
+            case .SERVERERRORTITLE:
+                return L10n.tr("SERVER_ERROR_TITLE")
+            case .SERVERERROR:
+                return L10n.tr("SERVER_ERROR")
+            case .UNKNOWNCOORDINATESTITLE:
+                return L10n.tr("UNKNOWN_COORDINATES_TITLE")
+            case .UNKNOWNCOORDINATESERROR:
+                return L10n.tr("UNKNOWN_COORDINATES_ERROR")
+            case .LASTUPDATE:
+                return L10n.tr("LAST_UPDATE")
+            case .NODATA:
+                return L10n.tr("NO_DATA")
+            case .OCCUPIED:
+                return L10n.tr("OCCUPIED")
+            case .CLOSED:
+                return L10n.tr("CLOSED")
+            case .UNKNOWNADDRESS:
+                return L10n.tr("UNKNOWN_ADDRESS")
+            case .UNKNOWNLOAD:
+                return L10n.tr("UNKNOWN_LOAD")
+            case .OTHEROPTIONS:
+                return L10n.tr("OTHER_OPTIONS")
+            case .SORTINGTYPELOCATION:
+                return L10n.tr("SORTINGTYPE_LOCATION")
+            case .SHAREONTWITTER:
+                return L10n.tr("SHARE_ON_TWITTER")
+            case .SORTINGTYPEFREESPOTS:
+                return L10n.tr("SORTINGTYPE_FREESPOTS")
+            case .SORTINGOPTIONS:
+                return L10n.tr("SORTING_OPTIONS")
+            case .SORTINGTYPEALPHABETICAL:
+                return L10n.tr("SORTINGTYPE_ALPHABETICAL")
+            case .ABOUTBUTTON:
+                return L10n.tr("ABOUT_BUTTON")
+            case .SORTINGTYPEDEFAULT:
+                return L10n.tr("SORTINGTYPE_DEFAULT")
+            case .NSLocationWhenInUseUsageDescription:
+                return L10n.tr("NSLocationWhenInUseUsageDescription")
+            case .TWEETTEXT:
+                return L10n.tr("TWEET_TEXT")
+            case .WAITINGFORLOCATION:
+                return L10n.tr("WAITING_FOR_LOCATION")
+            case .APPSTOREDESCRIPTION:
+                return L10n.tr("APPSTORE_DESCRIPTION")
+            case .APPSTORETAGS:
+                return L10n.tr("APPSTORE_TAGS")
+            case .LOCATIONDATAERRORTITLE:
+                return L10n.tr("LOCATION_DATA_ERROR_TITLE")
+            case .LOCATIONDATAERROR:
+                return L10n.tr("LOCATION_DATA_ERROR")
+            case .CANCEL:
+                return L10n.tr("CANCEL")
+            case .SETTINGS:
+                return L10n.tr("SETTINGS")
+            case .PROGNOSISCENTRUMGALERIE:
+                return L10n.tr("PROGNOSIS_CENTRUM_GALERIE")
+            case .EXPERIMENTALPROGNOSIS:
+                return L10n.tr("EXPERIMENTAL_PROGNOSIS")
+            case .CIRCA:
+                return L10n.tr("CIRCA")
+            case .SPOTSAVAILABLE:
+                return L10n.tr("SPOTS_AVAILABLE")
+            case .DISPLAYOPTIONS:
+                return L10n.tr("DISPLAY_OPTIONS")
+            case .HIDENODATALOTS:
+                return L10n.tr("HIDE_NODATA_LOTS")
+            case .NOTETITLE:
+                return L10n.tr("NOTE_TITLE")
+            case .LISTUPDATEONREFRESH:
+                return L10n.tr("LIST_UPDATE_ON_REFRESH")
+            case .USEGRAYSCALECOLORS:
+                return L10n.tr("USE_GRAYSCALE_COLORS")
+            case .RESETNOTIFICATIONS:
+                return L10n.tr("RESET_NOTIFICATIONS")
+            case .SENDFEEDBACK:
+                return L10n.tr("SEND_FEEDBACK")
+            case .OUTDATEDDATAWARNINGTITLE:
+                return L10n.tr("OUTDATED_DATA_WARNING_TITLE")
+            case .OUTDATEDDATAWARNING:
+                return L10n.tr("OUTDATED_DATA_WARNING")
+            case .UNKNOWNERRORTITLE:
+                return L10n.tr("UNKNOWN_ERROR_TITLE")
+            case .UNKNOWNERROR:
+                return L10n.tr("UNKNOWN_ERROR")
+            case .LASTUPDATED(let p0):
+                return L10n.tr("LAST_UPDATED", p0)
+            case .NOCOORDSWARNINGTITLE:
+                return L10n.tr("NO_COORDS_WARNING_TITLE")
+            case .NOCOORDSWARNING:
+                return L10n.tr("NO_COORDS_WARNING")
+            case .CITYOPTIONS:
+                return L10n.tr("CITY_OPTIONS")
+            case .FORECASTINFOTITLE:
+                return L10n.tr("FORECAST_INFO_TITLE")
+            case .FORECASTINFOTEXT:
+                return L10n.tr("FORECAST_INFO_TEXT")
+            case .SORTINGTYPEEUKLID:
+                return L10n.tr("SORTINGTYPE_EUKLID")
+        }
+    }
+
+    private static func tr(key: String, _ args: CVarArgType...) -> String {
+        let format = NSLocalizedString(key, comment: "")
+        return String(format: format, arguments: args)
+    }
+}
+
+func tr(key: L10n) -> String {
+    return key.string
+}
+

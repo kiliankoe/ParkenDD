@@ -60,9 +60,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
-				let alertController = UIAlertController(title: Loc.LOCATION_DATA_ERROR_TITLE.string(), message: Loc.LOCATION_DATA_ERROR.string(), preferredStyle: UIAlertControllerStyle.Alert)
-				alertController.addAction(UIAlertAction(title: Loc.CANCEL.string(), style: UIAlertActionStyle.Cancel, handler: nil))
-				alertController.addAction(UIAlertAction(title: Loc.SETTINGS.string(), style: UIAlertActionStyle.Default, handler: {
+				let alertController = UIAlertController(title: L10n.LOCATIONDATAERRORTITLE.string, message: L10n.LOCATIONDATAERROR.string, preferredStyle: UIAlertControllerStyle.Alert)
+				alertController.addAction(UIAlertAction(title: L10n.CANCEL.string, style: UIAlertActionStyle.Cancel, handler: nil))
+				alertController.addAction(UIAlertAction(title: L10n.SETTINGS.string, style: UIAlertActionStyle.Default, handler: {
 					(action) in
 					UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
 				}))
@@ -105,7 +105,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				for (city, _) in supportedCitiesJSON {
 					supportedCities.append(city)
 				}
-				(UIApplication.sharedApplication().delegate as! AppDelegate).supportedCities = supportedCities
+				(UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities = supportedCities
 				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
 				ServerController.sendParkinglotDataRequest(selectedCity) { (result) in
 
@@ -137,7 +137,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 							let dateDifference = calendar.components(NSCalendarUnit.Minute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
 
 							if dateDifference.minute >= 60 {
-								Drop.down(Loc.OUTDATED_DATA_WARNING.string(), blur: .Dark)
+								Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
 							}
 						}
 
@@ -169,11 +169,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	func showUpdateError(err: ServerController.SCError) {
 		switch err {
 		case .Server, .IncompatibleAPI:
-			Drop.down(Loc.SERVER_ERROR.string(), state: .Error)
+			Drop.down(L10n.SERVERERROR.string, state: .Error)
 		case .Request:
-			Drop.down(Loc.REQUEST_ERROR.string(), state: .Error)
+			Drop.down(L10n.REQUESTERROR.string, state: .Error)
 		case .Unknown:
-			Drop.down(Loc.UNKNOWN_ERROR.string(), state: .Error)
+			Drop.down(L10n.UNKNOWNERROR.string, state: .Error)
 		}
 	}
 
@@ -314,7 +314,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			dateFormatter.timeStyle = .ShortStyle
 
 			if let timeUpdated = timeUpdated {
-				timecell.timestampLabel.text = Loc.LAST_UPDATED.string() + " " + dateFormatter.stringFromDate(timeUpdated) + " " + Loc.TIME_SUFFIX.string()
+                timecell.timestampLabel.text = L10n.LASTUPDATED(dateFormatter.stringFromDate(timeUpdated)).string
 			}
 			return timecell
 		}
@@ -337,11 +337,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				if let distance = thisLot.distance {
 					cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_LOCATION", comment: "unknown location")
 				} else {
-					cell.parkinglotAddressLabel.text = Loc.WAITING_FOR_LOCATION.string()
+					cell.parkinglotAddressLabel.text = L10n.WAITINGFORLOCATION.string
 				}
 			}
 		} else if thisLot.address == "" {
-			cell.parkinglotAddressLabel.text = Loc.UNKNOWN_ADDRESS.string()
+			cell.parkinglotAddressLabel.text = L10n.UNKNOWNADDRESS.string
 		} else {
 			cell.parkinglotAddressLabel.text = thisLot.address
 		}
@@ -353,11 +353,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		// Maybe a future version of the scraper will be able to read the tendency as well
 		if thisLot.state == lotstate.unknown {
-			cell.parkinglotTendencyLabel.text = Loc.UNKNOWN_LOAD.string()
+			cell.parkinglotTendencyLabel.text = L10n.UNKNOWNLOAD.string
 		} else if thisLot.state == lotstate.closed {
-			cell.parkinglotTendencyLabel.text = Loc.CLOSED.string()
+			cell.parkinglotTendencyLabel.text = L10n.CLOSED.string
 		} else {
-			cell.parkinglotTendencyLabel.text = "\(load)% \(Loc.OCCUPIED.string())"
+			cell.parkinglotTendencyLabel.text = "\(load)% \(L10n.OCCUPIED.string)"
 		}
 
 		// Set all labels to be white, 'cause it looks awesome
@@ -400,7 +400,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		let cellTitle = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglotNameLabel.text!
 		for lot in parkinglots {
 			if lot.name == cellTitle && lot.lat! == 0.0 {
-				Drop.down(Loc.NO_COORDS_WARNING.string(), blur: .Dark)
+				Drop.down(L10n.NOCOORDSWARNING.string, blur: .Dark)
 				tableView.deselectRowAtIndexPath(indexPath, animated: true)
 				return
 			}

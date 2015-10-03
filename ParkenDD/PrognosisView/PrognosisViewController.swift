@@ -26,11 +26,11 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 
 		let currentDate = NSDate()
 
-		titleLabel.text = Loc.PROGNOSIS_CENTRUM_GALERIE.string()
-		let occupiedString = Loc.OCCUPIED.string()
+		titleLabel.text = L10n.PROGNOSISCENTRUMGALERIE.string
+		let occupiedString = L10n.OCCUPIED.string
 		percentageLabel.text = "15% \(occupiedString)"
-		let caString = Loc.CIRCA.string()
-		let spotsAvailableString = Loc.SPOTS_AVAILABLE.string()
+		let caString = L10n.CIRCA.string
+		let spotsAvailableString = L10n.SPOTSAVAILABLE.string
 		spotsAvailableLabel.text = "\(caString) 892/1050 \(spotsAvailableString)"
 
 		ServerController.sendForecastRequest("dresdencentrumgalerie", fromDate: currentDate, toDate: currentDate.dateByAddingTimeInterval(3600*24*7)) { (data) -> () in
@@ -82,7 +82,7 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 
 	
 	@IBAction func infoButtonPressed(sender: UIButton) {
-		let alertController = UIAlertController(title: Loc.FORECAST_INFO_TITLE.string(), message: Loc.FORECAST_INFO_TEXT.string(), preferredStyle: UIAlertControllerStyle.Alert)
+		let alertController = UIAlertController(title: L10n.FORECASTINFOTITLE.string, message: L10n.FORECASTINFOTEXT.string, preferredStyle: UIAlertControllerStyle.Alert)
 		alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
 		presentViewController(alertController, animated: true, completion: nil)
 	}
@@ -115,12 +115,12 @@ class PrognosisViewController: UIViewController, BEMSimpleLineGraphDataSource, B
 		}
 
 		progressBar.progress = prognosis
-		let occupiedString = Loc.OCCUPIED.string()
+		let occupiedString = L10n.OCCUPIED.string
 		percentageLabel.text = "\(Int(round(prognosis*100)))% \(occupiedString)"
 
 		let availableSpots = 1050-(1050*prognosis)
-		let caString = Loc.CIRCA.string()
-		let spotsAvailableString = Loc.SPOTS_AVAILABLE.string()
+		let caString = L10n.CIRCA.string
+		let spotsAvailableString = L10n.SPOTSAVAILABLE.string
 		spotsAvailableLabel.text = "\(caString) \(Int(round(availableSpots)))/1050 \(spotsAvailableString)"
 	}
 
