@@ -42,6 +42,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		var attrsDict = [String: AnyObject]()
 		attrsDict[NSFontAttributeName] = font
 		navBar!.titleTextAttributes = attrsDict
+        navigationItem.title = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")
 
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -94,6 +95,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	*/
 	func updateData() {
 		showActivityIndicator()
+        navigationItem.title = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")
 
 		ServerController.sendMetadataRequest { result in
 			switch result {
