@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/kiliankoe/ParkenDD.png?label=ready&title=Ready)](https://waffle.io/kiliankoe/ParkenDD)
 ## ParkenDD
 
 [![](https://travis-ci.org/kiliankoe/ParkenDD.svg?branch=master)](https://travis-ci.org/kiliankoe/ParkenDD)
