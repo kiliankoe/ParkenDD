@@ -183,7 +183,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	Sort the parkingslots array based on what is currently saved for SortingType in NSUserDefaults.
 	*/
 	func sortLots() {
-		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
+        guard let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType") else {
+            
+            return
+        }
 		switch sortingType! {
 		case "distance":
 			parkinglots.sortInPlace({
@@ -238,7 +241,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	@IBAction func settingsButtonTapped(sender: UIBarButtonItem) {
 		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: NSBundle.mainBundle())
 		let settingsVC = settingsStoryBoard.instantiateInitialViewController()!
-		self.navigationController?.presentViewController(settingsVC, animated: true, completion: nil)
+		navigationController?.presentViewController(settingsVC, animated: true, completion: nil)
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
@@ -260,7 +263,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	*/
 	func showReloadButton() {
 		let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "updateData")
-		self.navigationItem.rightBarButtonItem = refreshButton
+		navigationItem.rightBarButtonItem = refreshButton
 	}
 
 	/**
@@ -271,7 +274,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		activityIndicator.color = UIColor.blackColor()
 		activityIndicator.startAnimating()
 		let activityItem = UIBarButtonItem(customView: activityIndicator)
-		self.navigationItem.rightBarButtonItem = activityItem
+		navigationItem.rightBarButtonItem = activityItem
 	}
 
 	@IBAction func refreshControlValueChanged(sender: UIRefreshControl) {
@@ -303,9 +306,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		// Don't display any separators if the list is still empty
 		if parkinglots.count == 0 {
-			self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+			tableView.separatorStyle = UITableViewCellSeparatorStyle.None
 		} else {
-			self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+			tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
 		}
 
 		// Handle the TimestampCell
