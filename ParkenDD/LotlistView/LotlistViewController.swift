@@ -187,7 +187,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
             
             return
         }
-		switch sortingType! {
+		switch sortingType {
 		case "distance":
 			parkinglots.sortInPlace({
 				(lot1: Parkinglot, lot2: Parkinglot) -> Bool in
