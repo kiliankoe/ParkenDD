@@ -10,5 +10,17 @@
 *  Stores global constants
 */
 struct Const {
+    
+}
 
+/**
+*  NSUserDefaults keys
+*/
+struct Defaults {
+    static let selectedCity = "selectedCity"
+    static let sortingType = "sortingType"
+    static let supportedCities = "supportedCities"
+    static let grayscaleUI = "grayscaleUI"
+    static let skipNodataLots = "skipNodataLots"
+    static let favoriteLots = "favoriteLots"
 }

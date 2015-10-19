@@ -38,7 +38,7 @@ class CitySelectionTVC: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("citySelectionCell", forIndexPath: indexPath) 
 		cell.textLabel?.text = citiesList[indexPath.row]
 
-		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
+		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
 		cell.accessoryType = citiesList[indexPath.row] == selectedCity ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
         return cell
@@ -54,7 +54,7 @@ class CitySelectionTVC: UITableViewController {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
 		let selectedCity = tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text
-		NSUserDefaults.standardUserDefaults().setObject(selectedCity!, forKey: "selectedCity")
+		NSUserDefaults.standardUserDefaults().setObject(selectedCity!, forKey: Defaults.selectedCity)
 		NSUserDefaults.standardUserDefaults().synchronize()
 
 		if let lotlistVC = UIApplication.sharedApplication().keyWindow?.rootViewController?.childViewControllers[0] as? LotlistViewController {

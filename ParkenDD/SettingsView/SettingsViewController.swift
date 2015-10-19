@@ -86,10 +86,10 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		let sec = Sections(rawValue: indexPath.section)!
 		let cell: UITableViewCell = UITableViewCell()
 
-		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")
-		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
-		let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
-		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
+		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)
+		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)
+		let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.skipNodataLots)
+		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.grayscaleUI)
 
 		switch (sec, indexPath.row) {
 		// CITY OPTIONS
@@ -200,31 +200,31 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 				answersParams = ["section": "sortingOptions", "row": "sortingDefault"]
 				defaultsValue = "default"
 			}
-			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: "SortingType")
+			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: Defaults.sortingType)
 
 		// DISPLAY OPTIONS
 		case .displayOptions:
 			switch indexPath.row {
 			case 0:
-				let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey("SkipNodataLots")
+				let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.skipNodataLots)
 				if doHideLots {
 					answersParams = ["section": "displayOptions", "row": "skipNodataLotsDisabled"]
-					NSUserDefaults.standardUserDefaults().setBool(false, forKey: "SkipNodataLots")
+					NSUserDefaults.standardUserDefaults().setBool(false, forKey: Defaults.skipNodataLots)
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
 				} else {
 					answersParams = ["section": "displayOptions", "row": "skipNodataLotsEnabled"]
-					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "SkipNodataLots")
+					NSUserDefaults.standardUserDefaults().setBool(true, forKey: Defaults.skipNodataLots)
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
 				Drop.down(L10n.LISTUPDATEONREFRESH.string, blur: .Dark)
 			case 1:
-				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
+				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.grayscaleUI)
 				if useGrayscale {
-					NSUserDefaults.standardUserDefaults().setBool(false, forKey: "grayscaleColors")
+					NSUserDefaults.standardUserDefaults().setBool(false, forKey: Defaults.grayscaleUI)
 					answersParams = ["section": "displayOptions", "row": "grayscaleDisabled"]
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
 				} else {
-					NSUserDefaults.standardUserDefaults().setBool(true, forKey: "grayscaleColors")
+					NSUserDefaults.standardUserDefaults().setBool(true, forKey: Defaults.grayscaleUI)
 					answersParams = ["section": "displayOptions", "row": "grayscaleEnabled"]
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}

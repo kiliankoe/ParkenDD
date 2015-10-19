@@ -24,7 +24,7 @@ struct Colors {
 
 		let hue = 1 - (percentage * 0.3 + 0.7) // I want to limit this to the colors between 0 and 0.3
 
-		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey("grayscaleColors")
+		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.grayscaleUI)
 		if useGrayscale {
 			if emptyLots <= 0 {
 				return UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
