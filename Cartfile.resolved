@@ -1,1 +1,2 @@
-github "morizotter/SwiftyDrop" "cde79e2596606dc126c391c8ab97ac0c4a85ab16"
+github "Hearst-DD/ObjectMapper" "0.19"
+github "morizotter/SwiftyDrop" "2.0.0"
