@@ -20,6 +20,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
 
 		mapView.showsUserLocation = true
+        
+        if #available(iOS 9, *) {
+            mapView.showsTraffic = true
+        }
 
 		// Add annotations for all parking lots to the map
 		for singleLot in allParkinglots {
