@@ -282,6 +282,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
+        
+        let thisLot = parkinglots[indexPath.row]
+        cell.setParkinglot(thisLot)
 
 		// Don't display any separators if the list is still empty
 		if parkinglots.count == 0 {
@@ -289,70 +292,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		} else {
 			tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
 		}
-
-
-		let thisLot = parkinglots[indexPath.row]
-        cell.parkinglot = thisLot
-		
-        let customParkinglotlist = parkinglots
-		
-        // Set the cell's main title
-        if let lotType = thisLot.lotType {
-            cell.parkinglotNameLabel.text = "\(lotType) \(thisLot.name)"
-        } else {
-            cell.parkinglotNameLabel.text = thisLot.name
-        }
-        
-        // Set the cell's number value
-        cell.parkinglotLoadLabel.text = "\(thisLot.free)"
-        
-        // TODO: Have a look at the following line
-//		cell.parkinglotLoadLabel.text = thisLot.state == .unknown ? "?" : "\(thisLot.free)"
-
-		// check if location sorting is enabled, then we're displaying distance instead of address
-		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
-		if sortingType == "distance" || sortingType == "euklid" {
-			if let currentUserLocation = locationManager.location {
-				let lotDistance = thisLot.distance(from: currentUserLocation)
-                cell.parkinglotAddressLabel.text = lotDistance == 100000000.0 ? L10n.UNKNOWNADDRESS.string : "\((round(lotDistance/100))/10)km"
-			} else {
-                cell.parkinglotAddressLabel.text = L10n.WAITINGFORLOCATION.string
-			}
-		} else if thisLot.address == "" {
-			cell.parkinglotAddressLabel.text = L10n.UNKNOWNADDRESS.string
-		} else {
-			cell.parkinglotAddressLabel.text = thisLot.address
-		}
-        
-		// Set all labels to be white, 'cause it looks awesome
-		cell.parkinglotNameLabel.textColor = UIColor.whiteColor()
-		cell.parkinglotAddressLabel.textColor = UIColor.whiteColor()
-		cell.parkinglotLoadLabel.textColor = UIColor.whiteColor()
-		cell.parkinglotTendencyLabel.textColor = UIColor.whiteColor()
-
-        // Set the cell's bg color dynamically based on the load percentage.
-		var percentage = thisLot.total > 0 ? 1 - (Double(thisLot.free) / Double(thisLot.total)) : 0.99
-		if percentage < 0.1 {
-			percentage = 0.1
-		} else if percentage > 0.99 {
-			percentage = 0.99
-		}
-		cell.backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: thisLot.free)
-        
-        // TODO: Do all kinds of things with the cell according to the state of the lot
-        if let lotState = thisLot.state {
-            switch lotState {
-            case .closed:
-                cell.parkinglotTendencyLabel.text = L10n.CLOSED.string
-            case .nodata:
-                cell.parkinglotLoadLabel.text = "?"
-                cell.parkinglotTendencyLabel.text = L10n.UNKNOWNLOAD.string
-            case .open:
-                cell.parkinglotTendencyLabel.text = "\(thisLot.loadPercentage)% \(L10n.OCCUPIED.string)"
-            case .unknown:
-                cell.parkinglotTendencyLabel.text = "THIS IS UNKNOWN, WHY?!"
-            }
-        }
 
 		return cell
 	}
@@ -362,15 +301,11 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	// /////////////////////////////////////////////////////////////////////////
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-//		for lot in parkinglots {
-//			if lot.name == cellTitle && lot.lat! == 0.0 {
-//				Drop.down(L10n.NOCOORDSWARNING.string, blur: .Dark)
-//				tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//				return
-//			}
-//		}
-		performSegueWithIdentifier("showParkinglotMap", sender: self)
+        if let _ = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglot?.coords {
+            performSegueWithIdentifier("showParkinglotMap", sender: self)
+        } else {
+            Drop.down(L10n.NOCOORDSWARNING.string, blur: .Dark)
+        }
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 

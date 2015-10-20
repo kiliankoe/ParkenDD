@@ -12,23 +12,82 @@ import MCSwipeTableViewCell
 //class ParkinglotTableViewCell: MCSwipeTableViewCell {
 class ParkinglotTableViewCell: UITableViewCell {
 
-	@IBOutlet weak var parkinglotNameLabel: UILabel!
-	@IBOutlet weak var parkinglotAddressLabel: UILabel!
-	@IBOutlet weak var parkinglotLoadLabel: UILabel!
-	@IBOutlet weak var parkinglotTendencyLabel: UILabel!
-	@IBOutlet weak var favTriangle: UIImageView!
+	@IBOutlet weak var parkinglotNameLabel: UILabel?
+	@IBOutlet weak var parkinglotAddressLabel: UILabel?
+	@IBOutlet weak var parkinglotLoadLabel: UILabel?
+	@IBOutlet weak var parkinglotTendencyLabel: UILabel?
+	@IBOutlet weak var favTriangle: UIImageView?
 
-	var parkinglot: Parkinglot!
+    var parkinglot: Parkinglot?
+    
+    func setParkinglot(lot: Parkinglot) {
+        parkinglot = lot
+        
+        // MARK: Name label
+        if let lotType = lot.lotType {
+            parkinglotNameLabel?.text = "\(lotType) \(lot.name)"
+        } else {
+            parkinglotNameLabel?.text = lot.name
+        }
+        
+        // MARK: Load label
+        parkinglotLoadLabel?.text = "\(lot.free)"
+        
+        // TODO: Have a look at the following line
+        //		cell.parkinglotLoadLabel.text = thisLot.state == .unknown ? "?" : "\(thisLot.free)"
+        
+        // check if location sorting is enabled, then we're displaying distance instead of address
+        let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
+        if sortingType == "distance" || sortingType == "euklid" {
+//            if let currentUserLocation = locationManager.location {
+//                let lotDistance = thisLot.distance(from: currentUserLocation)
+//                cell.parkinglotAddressLabel?.text = lotDistance == 100000000.0 ? L10n.UNKNOWNADDRESS.string : "\((round(lotDistance/100))/10)km"
+//            } else {
+//                cell.parkinglotAddressLabel?.text = L10n.WAITINGFORLOCATION.string
+//            }
+        } else if lot.address == "" {
+            parkinglotAddressLabel?.text = L10n.UNKNOWNADDRESS.string
+        } else {
+            parkinglotAddressLabel?.text = lot.address
+        }
+        
+        // Set all labels to be white, 'cause it looks awesome
+        parkinglotNameLabel?.textColor = UIColor.whiteColor()
+        parkinglotAddressLabel?.textColor = UIColor.whiteColor()
+        parkinglotLoadLabel?.textColor = UIColor.whiteColor()
+        parkinglotTendencyLabel?.textColor = UIColor.whiteColor()
+        
+        // Set the cell's bg color dynamically based on the load percentage.
+        var percentage = lot.total > 0 ? 1 - (Double(lot.free) / Double(lot.total)) : 0.99
+        if percentage < 0.1 {
+            percentage = 0.1
+        } else if percentage > 0.99 {
+            percentage = 0.99
+        }
+        backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: lot.free)
+        
+        // TODO: Do all kinds of things with the cell according to the state of the lot
+        if let lotState = lot.state {
+            switch lotState {
+            case .closed:
+                parkinglotTendencyLabel?.text = L10n.CLOSED.string
+            case .nodata:
+                parkinglotLoadLabel?.text = "?"
+                parkinglotTendencyLabel?.text = L10n.UNKNOWNLOAD.string
+                backgroundColor = UIColor.lightGrayColor()
+            case .open:
+                parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
+            case .unknown:
+                parkinglotTendencyLabel?.text = "THIS IS UNKNOWN, WHY?!"
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }
