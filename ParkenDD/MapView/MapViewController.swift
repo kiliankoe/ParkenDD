@@ -26,35 +26,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
 
 		// Add annotations for all parking lots to the map
-		for singleLot in allParkinglots {
-			let lotAnnotation = MKPointAnnotation()
-			if let currentLat = singleLot.lat, currentLng = singleLot.lng {
-				lotAnnotation.coordinate = CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng)
-
-				lotAnnotation.title = "\(singleLot.name): \(singleLot.free)"
-
-				mapView.addAnnotation(lotAnnotation)
-				if singleLot.name == detailParkinglot.name {
-					// Have the selected lot's callout already displayed
-					mapView.selectAnnotation(lotAnnotation, animated: true)
-				}
-			}
-		}
-
+        for singleLot in allParkinglots {
+            let lotAnnotation = ParkinglotAnnotation(title: "\(singleLot.name): \(singleLot.free)", subtitle: nil, parkinglot: singleLot)
+            
+            mapView.addAnnotation(lotAnnotation)
+            
+            // Display the callout if this is the previously selected annotation
+            if singleLot.name == detailParkinglot.name {
+                mapView.selectAnnotation(lotAnnotation, animated: true)
+            }
+        }
+        
 		// Set the map's region to a 1km region around the selected lot
-		if let currentLat = detailParkinglot.lat, currentLng = detailParkinglot.lng {
-			let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: currentLat, longitude: currentLng), 1000, 1000)
-			mapView.setRegion(parkinglotRegion, animated: false)
-		} else {
-			// Just in case the selected lot comes with no coordinates, show a default view of Dresden
-			let dresdenRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: 51.051660, longitude: 13.739882), 4000, 4000)
-			mapView.setRegion(dresdenRegion, animated: false)
-
-			// Also give the user a notification that this is an unfortunate mishap
-			let alertController = UIAlertController(title: L10n.UNKNOWNCOORDINATESTITLE.string, message: L10n.UNKNOWNCOORDINATESERROR.string, preferredStyle: UIAlertControllerStyle.Alert)
-			alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-			self.presentViewController(alertController, animated: true, completion: nil)
-		}
+        if let lat = detailParkinglot.coords?.lat, lng = detailParkinglot.coords?.lng {
+            let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: lat, longitude: lng), 1000, 1000)
+            mapView.setRegion(parkinglotRegion, animated: false)
+        } else {
+            NSLog("Came to map view with a selected lot that has no coordinates. We're now showing Germany. This is probably not ideal.")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,29 +55,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 	// green: open
 	// red: closed, nodata
 	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        // We don't care about the MKUserLocation here
+        guard annotation.isKindOfClass(ParkinglotAnnotation) else { return nil }
+        
+        let annotation = annotation as! ParkinglotAnnotation
 		let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "parkinglotAnnotation")
 
-		if annotation.isKindOfClass(MKUserLocation) {
-			return nil
-		}
-
-		let fullPinTitle = annotation.title??.componentsSeparatedByString(":")
-		let pinTitle = fullPinTitle![0]
-
-		var thisLotState = lotstate.closed
-		for lot in allParkinglots {
-			if lot.name == pinTitle {
-				thisLotState = lot.state
-			}
-		}
-
-		// I'd really love having more colors to choose from besides green, red and... purple...
-		switch thisLotState {
-		case .open:
-			annotationView.pinColor = .Green
-		default:
-			annotationView.pinColor = .Red
-		}
+        if let state = annotation.parkinglot.state {
+            switch state {
+            case .closed, .unknown:
+                annotationView.pinColor = .Red
+            case .open:
+                annotationView.pinColor = .Green
+            case .nodata:
+                annotationView.pinColor = .Purple
+            }
+        }
 
 		annotationView.canShowCallout = true
 

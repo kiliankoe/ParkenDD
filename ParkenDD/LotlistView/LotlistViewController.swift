@@ -42,7 +42,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		var attrsDict = [String: AnyObject]()
 		attrsDict[NSFontAttributeName] = font
 		navBar!.titleTextAttributes = attrsDict
-        navigationItem.title = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")
+        navigationItem.title = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)
 
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -56,7 +56,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		tableView.reloadData()
 
 		// Start getting location updates if the user wants lots sorted by distance
-		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")!
+		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
 		if sortingType == "distance" || sortingType == "euklid" {
 			if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
 				locationManager.startUpdatingLocation()
@@ -95,74 +95,52 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	*/
 	func updateData() {
 		showActivityIndicator()
-        navigationItem.title = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")
-
-		ServerController.sendMetadataRequest { result in
-			switch result {
-			case .Failure(let err):
-				self.showUpdateError(err)
-				self.stopRefreshUI()
-			case .Success(let supportedCitiesJSON):
-				var supportedCities = [String]()
-				for (city, _) in supportedCitiesJSON {
-					supportedCities.append(city)
-				}
-				(UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities = supportedCities
-				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey("selectedCity")!
-				ServerController.sendParkinglotDataRequest(selectedCity) { (result) in
-
-					let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
-					if let sortingType = sortingType {
-						Answers.logCustomEventWithName("View City", customAttributes: ["selected City": selectedCity, "sorting type": sortingType])
-					}
-
-					self.stopRefreshUI()
-
-					switch result {
-					case .Failure(let err):
-						self.showUpdateError(err)
-					case .Success(let data):
-
-						self.parkinglots = data.parkinglotList
-						self.defaultSortedParkinglots = data.parkinglotList
-
-						if let timeUpdated = data.timeUpdated, timeDownloaded = data.timeDownloaded, dataURL = data.dataURL {
-							self.timeUpdated = timeUpdated
-							self.timeDownloaded = timeDownloaded
-							self.dataURL = dataURL
-						}
-
-						// Check if date signifies that the data is possibly outdated and warn the user if that is the case
-						if let timeUpdated = data.timeUpdated {
-							let currentDate = NSDate()
-							let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-							let dateDifference = calendar.components(NSCalendarUnit.Minute, fromDate: timeUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
-
-							if dateDifference.minute >= 60 {
-								Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
-							}
-						}
-
-						if let currentUserLocation = self.locationManager.location {
-							for index in 0..<self.parkinglots.count {
-								if let lat = self.parkinglots[index].lat, lng = self.parkinglots[index].lng, currentUserLocation = self.locationManager.location {
-									let lotLocation = CLLocation(latitude: lat, longitude: lng)
-									let distance = currentUserLocation.distanceFromLocation(lotLocation)
-									self.parkinglots[index].distance = round(distance)
-								}
-							}
-						}
-
-						self.sortLots()
-
-						// Reload the tableView on the main thread, otherwise it will only update once the user interacts with it
-						dispatch_async(dispatch_get_main_queue(), { () -> Void in
-							self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
-						})
-					}
-				}
-			}
-		}
+        navigationItem.title = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)
+        
+        ServerController.updateDataForSavedCity { [unowned self] (result, error) -> Void in
+            if let error = error {
+                self.showUpdateError(error)
+                self.stopRefreshUI()
+            } else {
+                guard let result = result else { NSLog("Neither got any results from the API or an error. This is odd. Very odd indeed. Houston?"); return }
+                
+                // Let's gather some statistics about which cities and sorting types users actually care about.
+                let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
+                let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
+                Answers.logCustomEventWithName("View City", customAttributes: ["selected city": selectedCity, "sorting type": sortingType])
+                
+                self.stopRefreshUI()
+                
+                if let lots = result.parkinglotData.lots {
+                    self.parkinglots = lots
+                    self.defaultSortedParkinglots = lots
+                }
+                
+                if let lastUpdated = result.parkinglotData.lastUpdated, lastDownloaded = result.parkinglotData.lastDownloaded {
+                    self.timeUpdated = lastUpdated
+                    self.timeDownloaded = lastDownloaded
+                    
+                    // While we're at it we're also going to check if the current data is older than an hour and tell the user if it is.
+                    let currentDate = NSDate()
+//                    print("Current: \(currentDate)")
+//                    print("Last:    \(lastUpdated)")
+                    let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+                    let dateDifference = calendar.components(NSCalendarUnit.Minute, fromDate: lastUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
+                    
+                    if dateDifference.minute >= 60 {
+                        Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
+                    }
+                }
+                
+                // TODO: I want a way to get the data url for the currently selected city to give that to the user somehow...
+                
+                self.sortLots()
+                
+                dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
+                    self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
+                })
+            }
+        }
 	}
 
 	/**
@@ -183,18 +161,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	Sort the parkingslots array based on what is currently saved for SortingType in NSUserDefaults.
 	*/
 	func sortLots() {
-		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")
+		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)
 		switch sortingType! {
 		case "distance":
 			parkinglots.sortInPlace({
 				(lot1: Parkinglot, lot2: Parkinglot) -> Bool in
-				if let firstDistance = lot1.distance, secondDistance = lot2.distance {
-					if lot1.name == "Parkhaus Mitte" && firstDistance <= 2000 {
-						// FIXME: This is only temporary ಠ_ಠ
-						return true
-					}
-					return firstDistance < secondDistance
-				}
+                if let currentUserLocation = locationManager.location {
+                    if lot1.name == "Parkhaus Mitte" && lot1.distance(from: currentUserLocation) <= 2000 {
+                        // FIXME: This is only temporary ಠ_ಠ
+                        return true
+                    }
+                    return lot1.distance(from: currentUserLocation) < lot2.distance(from: currentUserLocation)
+                }
 				return lot1.name < lot2.name
 			})
 		case "alphabetical":
@@ -213,8 +191,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	}
 
 	func sortEuclidian(lot1: Parkinglot, lot2: Parkinglot) -> Bool {
-		if let distance1 = lot1.distance, distance2 = lot2.distance {
-			if lot1.name == "Parkhaus Mitte" && distance1 <= 2000 {
+		if let currentUserLocation = locationManager.location {
+			if lot1.name == "Parkhaus Mitte" && lot1.distance(from: currentUserLocation) <= 2000 {
 				// FIXME: This is only temporary ಠ_ಠ
 				return true
 			}
@@ -222,8 +200,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			if lot1.total != 0 && lot2.total != 0 {
 				let occ1 = Double(lot1.total - lot1.free) / Double(lot1.total)
 				let occ2 = Double(lot2.total - lot2.free) / Double(lot2.total)
-				let sqrt1 = sqrt(pow(distance1, 2.0) + pow(Double(occ1*1000), 2.0))
-				let sqrt2 = sqrt(pow(distance2, 2.0) + pow(Double(occ2*1000), 2.0))
+				let sqrt1 = sqrt(pow(lot1.distance(from: currentUserLocation), 2.0) + pow(Double(occ1*1000), 2.0))
+				let sqrt2 = sqrt(pow(lot2.distance(from: currentUserLocation), 2.0) + pow(Double(occ2*1000), 2.0))
 
 				return sqrt1 < sqrt2
 			}
@@ -321,53 +299,46 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			return timecell
 		}
 
-		var thisLot = parkinglots[indexPath.row]
-		let customParkinglotlist = parkinglots
-
-		cell.parkinglot = thisLot
-		cell.parkinglotNameLabel.text = thisLot.name
-		cell.parkinglotLoadLabel.text = thisLot.state == .unknown ? "?" : "\(thisLot.free)"
+		let thisLot = parkinglots[indexPath.row]
+        cell.parkinglot = thisLot
+		
+        let customParkinglotlist = parkinglots
+		
+        // Set the cell's main title
+        if let lotType = thisLot.lotType {
+            cell.parkinglotNameLabel.text = "\(lotType) \(thisLot.name)"
+        } else {
+            cell.parkinglotNameLabel.text = thisLot.name
+        }
+        
+        // Set the cell's number value
+        cell.parkinglotLoadLabel.text = "\(thisLot.free)"
+        
+        // TODO: Have a look at the following line
+//		cell.parkinglotLoadLabel.text = thisLot.state == .unknown ? "?" : "\(thisLot.free)"
 
 		// check if location sorting is enabled, then we're displaying distance instead of address
-		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey("SortingType")!
+		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
 		if sortingType == "distance" || sortingType == "euklid" {
-			if let currentUserLocation = locationManager.location, lat = thisLot.lat, lng = thisLot.lng where lat != 0.0 && lng != 0.0 {
-				let lotLocation = CLLocation(latitude: lat, longitude: lng)
-				thisLot.distance = currentUserLocation.distanceFromLocation(lotLocation)
-				cell.parkinglotAddressLabel.text = "\((round(thisLot.distance!/100))/10)km"
+			if let currentUserLocation = locationManager.location {
+				let lotDistance = thisLot.distance(from: currentUserLocation)
+                cell.parkinglotAddressLabel.text = lotDistance == 100000000.0 ? L10n.UNKNOWNADDRESS.string : "\((round(lotDistance/100))/10)km"
 			} else {
-				if let distance = thisLot.distance {
-					cell.parkinglotAddressLabel.text = NSLocalizedString("UNKNOWN_LOCATION", comment: "unknown location")
-				} else {
-					cell.parkinglotAddressLabel.text = L10n.WAITINGFORLOCATION.string
-				}
+                cell.parkinglotAddressLabel.text = L10n.WAITINGFORLOCATION.string
 			}
 		} else if thisLot.address == "" {
 			cell.parkinglotAddressLabel.text = L10n.UNKNOWNADDRESS.string
 		} else {
 			cell.parkinglotAddressLabel.text = thisLot.address
 		}
-
-		// I kinda feel bad for writing this...
-		var load = thisLot.total > 0 ? Int(round(100 - (Double(thisLot.free) / Double(thisLot.total) * 100))) : 100
-		load = load < 0 ? 0 : load
-		load = thisLot.state == lotstate.closed ? 100 : load
-
-		// Maybe a future version of the scraper will be able to read the tendency as well
-		if thisLot.state == lotstate.unknown {
-			cell.parkinglotTendencyLabel.text = L10n.UNKNOWNLOAD.string
-		} else if thisLot.state == lotstate.closed {
-			cell.parkinglotTendencyLabel.text = L10n.CLOSED.string
-		} else {
-			cell.parkinglotTendencyLabel.text = "\(load)% \(L10n.OCCUPIED.string)"
-		}
-
+        
 		// Set all labels to be white, 'cause it looks awesome
 		cell.parkinglotNameLabel.textColor = UIColor.whiteColor()
 		cell.parkinglotAddressLabel.textColor = UIColor.whiteColor()
 		cell.parkinglotLoadLabel.textColor = UIColor.whiteColor()
 		cell.parkinglotTendencyLabel.textColor = UIColor.whiteColor()
 
+        // Set the cell's bg color dynamically based on the load percentage.
 		var percentage = thisLot.total > 0 ? 1 - (Double(thisLot.free) / Double(thisLot.total)) : 0.99
 		if percentage < 0.1 {
 			percentage = 0.1
@@ -375,6 +346,21 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			percentage = 0.99
 		}
 		cell.backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: thisLot.free)
+        
+        // TODO: Do all kinds of things with the cell according to the state of the lot
+        if let lotState = thisLot.state {
+            switch lotState {
+            case .closed:
+                cell.parkinglotTendencyLabel.text = L10n.CLOSED.string
+            case .nodata:
+                cell.parkinglotLoadLabel.text = "?"
+                cell.parkinglotTendencyLabel.text = L10n.UNKNOWNLOAD.string
+            case .open:
+                cell.parkinglotTendencyLabel.text = "\(thisLot.loadPercentage)% \(L10n.OCCUPIED.string)"
+            case .unknown:
+                cell.parkinglotTendencyLabel.text = "THIS IS UNKNOWN, WHY?!"
+            }
+        }
 
 		return cell
 	}
@@ -400,13 +386,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		// Every other cell goes to the mapview
 		let cellTitle = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglotNameLabel.text!
-		for lot in parkinglots {
-			if lot.name == cellTitle && lot.lat! == 0.0 {
-				Drop.down(L10n.NOCOORDSWARNING.string, blur: .Dark)
-				tableView.deselectRowAtIndexPath(indexPath, animated: true)
-				return
-			}
-		}
+//		for lot in parkinglots {
+//			if lot.name == cellTitle && lot.lat! == 0.0 {
+//				Drop.down(L10n.NOCOORDSWARNING.string, blur: .Dark)
+//				tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//				return
+//			}
+//		}
 		performSegueWithIdentifier("showParkinglotMap", sender: self)
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
@@ -417,14 +403,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	var lastLocation: CLLocation?
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let currentUserLocation = locationManager.location
-		// Cycle through all lots to assign their respective distances from the user
-		for index in 0..<parkinglots.count {
-			if let lat = parkinglots[index].lat, lng = parkinglots[index].lng {
-				let lotLocation = CLLocation(latitude: lat, longitude: lng)
-				let distance = currentUserLocation!.distanceFromLocation(lotLocation)
-				parkinglots[index].distance = round(distance)
-			}
-		}
 
 		// The idea here is to check the location on each update from the locationManager and only resort
 		// the lots and update the tableView if the user has moved more than 100 meters. Doing both every
