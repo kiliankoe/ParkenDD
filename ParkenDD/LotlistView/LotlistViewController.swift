@@ -270,8 +270,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	}
 
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		// adding 1 for timeUpdated
-		return parkinglots.count + 1
+		return parkinglots.count
 	}
 
 	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -291,18 +290,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
 		}
 
-		// Handle the TimestampCell
-		if indexPath.row >= parkinglots.count {
-			let timecell: TimestampCell = tableView.dequeueReusableCellWithIdentifier("timestampCell") as! TimestampCell
-			let dateFormatter = NSDateFormatter()
-			dateFormatter.dateStyle = .MediumStyle
-			dateFormatter.timeStyle = .ShortStyle
-
-			if let timeUpdated = timeUpdated {
-                timecell.timestampLabel.text = L10n.LASTUPDATED(dateFormatter.stringFromDate(timeUpdated)).string
-			}
-			return timecell
-		}
 
 		let thisLot = parkinglots[indexPath.row]
         cell.parkinglot = thisLot
@@ -376,21 +363,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-		// Open link to datasource in Safari if TimestampCell was selected
-		if indexPath.row >= parkinglots.count {
-			if let dataURL = dataURL {
-				if let dataURL = NSURL(string: dataURL) {
-					UIApplication.sharedApplication().openURL(dataURL)
-					tableView.deselectRowAtIndexPath(indexPath, animated: true)
-				} else {
-					NSLog("Looks like the datasource \(dataURL) isn't a valid URL.")
-				}
-			}
-			return
-		}
-
-		// Every other cell goes to the mapview
-		let cellTitle = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglotNameLabel.text!
 //		for lot in parkinglots {
 //			if lot.name == cellTitle && lot.lat! == 0.0 {
 //				Drop.down(L10n.NOCOORDSWARNING.string, blur: .Dark)
