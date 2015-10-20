@@ -72,6 +72,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		} else {
 			locationManager.stopUpdatingLocation()
 		}
+        
+        refreshControl?.endRefreshing()
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -119,6 +121,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
                 if let lastUpdated = result.parkinglotData.lastUpdated, lastDownloaded = result.parkinglotData.lastDownloaded {
                     self.timeUpdated = lastUpdated
                     self.timeDownloaded = lastDownloaded
+                    
+                    self.refreshControl?.attributedTitle = NSAttributedString(string: "\(lastUpdated)")
                     
                     // While we're at it we're also going to check if the current data is older than an hour and tell the user if it is.
                     let currentDate = NSDate()
@@ -227,9 +231,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	Remove all UI that has to do with refreshing data.
 	*/
 	func stopRefreshUI() {
-		dispatch_async(dispatch_get_main_queue(), { () -> Void in
+		dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
 			self.showReloadButton()
-			self.refreshControl!.endRefreshing()
+            self.refreshControl?.beginRefreshing() // leaving this here to fix a slight offset bug with the refresh control's attributed title
+			self.refreshControl?.endRefreshing()
 		})
 	}
 
@@ -404,7 +409,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let currentUserLocation = locationManager.location
 
-		// The idea here is to check the location on each update from the locationManager and only resort
+		// The idea here is to check the location on each update from the locationManager and only re-sort
 		// the lots and update the tableView if the user has moved more than 100 meters. Doing both every
 		// second is aggravating and really not necessary.
 		if let lastLoc = lastLocation {
