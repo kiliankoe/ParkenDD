@@ -40,7 +40,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		navBar!.tintColor = UIColor.blackColor()
 
 		// Set title to selected city
-        titleButton.setTitle(NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity), forState: .Normal)
+        let selectedCityName = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCityName)
+        titleButton.setTitle(selectedCityName, forState: .Normal)
 
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -95,7 +96,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	*/
 	func updateData() {
 		showActivityIndicator()
-        titleButton.setTitle(NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity), forState: .Normal)
+        // Set title to selected city
+        let selectedCityName = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCityName)
+        titleButton.setTitle(selectedCityName, forState: .Normal)
         
         ServerController.updateDataForSavedCity { [unowned self] (result, error) -> Void in
             if let error = error {
@@ -110,6 +113,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
                 Answers.logCustomEventWithName("View City", customAttributes: ["selected city": selectedCity, "sorting type": sortingType])
                 
                 self.stopRefreshUI()
+                
+                (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList = result.metadata.cities!
                 
                 if let lots = result.parkinglotData.lots {
                     self.parkinglots = lots
@@ -131,7 +136,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
                     
                     if dateDifference.minute >= 60 {
                         attrs = [NSForegroundColorAttributeName: UIColor.redColor()]
-                        Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
+//                        Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
+                        NSLog("Data seems to be outdated.")
                     }
                     
                     let dateFormatter = NSDateFormatter()

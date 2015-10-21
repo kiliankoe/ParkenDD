@@ -31,9 +31,6 @@ class ParkinglotTableViewCell: UITableViewCell {
         
         parkinglotLoadLabel?.text = "\(lot.free)"
         
-        // TODO: Have a look at the following line
-        //		cell.parkinglotLoadLabel.text = thisLot.state == .unknown ? "?" : "\(thisLot.free)"
-        
         // check if location sorting is enabled, then we're displaying distance instead of address
         let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
         if sortingType == "distance" || sortingType == "euklid" {
