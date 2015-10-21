@@ -53,7 +53,7 @@ enum L10n {
     case CITYOPTIONS
     case FORECASTINFOTITLE
     case FORECASTINFOTEXT
-    case MAPSUBTITLE(Int, Int)
+    case MAPSUBTITLE(String, Int)
     case SORTINGTYPEEUKLID
 }
 
