@@ -23,14 +23,12 @@ class ParkinglotTableViewCell: UITableViewCell {
     func setParkinglot(lot: Parkinglot) {
         parkinglot = lot
         
-        // MARK: Name label
         if let lotType = lot.lotType {
             parkinglotNameLabel?.text = "\(lotType) \(lot.name)"
         } else {
             parkinglotNameLabel?.text = lot.name
         }
         
-        // MARK: Load label
         parkinglotLoadLabel?.text = "\(lot.free)"
         
         // TODO: Have a look at the following line
@@ -71,6 +69,9 @@ class ParkinglotTableViewCell: UITableViewCell {
             switch lotState {
             case .closed:
                 parkinglotTendencyLabel?.text = L10n.CLOSED.string
+                backgroundColor = UIColor.grayColor()
+                parkinglotLoadLabel?.text = "X"
+//                parkinglotLoadLabel?.attributedText = NSAttributedString(string: "\(lot.free)", attributes: [NSStrikethroughStyleAttributeName: 1])
             case .nodata:
                 parkinglotLoadLabel?.text = "?"
                 parkinglotTendencyLabel?.text = L10n.UNKNOWNLOAD.string
