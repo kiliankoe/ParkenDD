@@ -22,6 +22,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	var timeUpdated: NSDate?
 	var timeDownloaded: NSDate?
 	var dataURL: String?
+    
+    @IBOutlet weak var titleButton: UIButton!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -37,12 +39,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		navBar!.translucent = false
 		navBar!.tintColor = UIColor.blackColor()
 
-		// pretty title
-		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
-		var attrsDict = [String: AnyObject]()
-		attrsDict[NSFontAttributeName] = font
-		navBar!.titleTextAttributes = attrsDict
-        navigationItem.title = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)
+		// Set title to selected city
+        titleButton.setTitle(NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity), forState: .Normal)
 
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -97,7 +95,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	*/
 	func updateData() {
 		showActivityIndicator()
-        navigationItem.title = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)
+        titleButton.setTitle(NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity), forState: .Normal)
         
         ServerController.updateDataForSavedCity { [unowned self] (result, error) -> Void in
             if let error = error {
@@ -223,12 +221,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	// MARK: - IBActions
 	// /////////////////////////////////////////////////////////////////////////
 
-	@IBAction func settingsButtonTapped(sender: UIBarButtonItem) {
+    @IBAction func titleButtonTapped(sender: UIButton) {
+        let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: NSBundle.mainBundle())
+        let citySelectionVC = settingsStoryBoard.instantiateViewControllerWithIdentifier("City SelectionTVC")
+        showViewController(citySelectionVC, sender: self)
+    }
+    
+    @IBAction func settingsButtonTapped(sender: UIBarButtonItem) {
 		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: NSBundle.mainBundle())
 		let settingsVC = settingsStoryBoard.instantiateInitialViewController()!
 		navigationController?.presentViewController(settingsVC, animated: true, completion: nil)
 	}
-
+    
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - Reload Button Stuff
 	// /////////////////////////////////////////////////////////////////////////

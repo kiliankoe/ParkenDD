@@ -128,12 +128,25 @@
                             <outlet property="delegate" destination="t3H-oi-vUE" id="ocG-rJ-y45"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="ParkenDD" id="vzi-sq-g1r">
+                    <navigationItem key="navigationItem" id="vzi-sq-g1r">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="settingsButton" id="5ZO-Nw-ttC">
                             <connections>
                                 <action selector="settingsButtonTapped:" destination="t3H-oi-vUE" id="F2j-C4-xpK"/>
                             </connections>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nIf-ms-NoY">
+                            <rect key="frame" x="252" y="7" width="96" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                            <state key="normal" title="ParkenDD">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="titleButtonTapped:" destination="t3H-oi-vUE" eventType="touchUpInside" id="uOG-4a-MYx"/>
+                            </connections>
+                        </button>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="c1C-xO-xrW">
                         <autoresizingMask key="autoresizingMask"/>
@@ -143,6 +156,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="titleButton" destination="nIf-ms-NoY" id="ebD-8h-JQ2"/>
                         <segue destination="PlL-UC-K5S" kind="show" identifier="showParkinglotMap" id="Hik-be-W5a"/>
                     </connections>
                 </tableViewController>
