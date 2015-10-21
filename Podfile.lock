@@ -1,22 +1,16 @@
 PODS:
   - Alamofire (2.0.2)
   - BEMSimpleLineGraph (3.3)
-  - MCSwipeTableViewCell (2.1.4)
-  - SwiftyJSON (2.3.0)
   - SwiftyTimer (1.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0.2)
   - BEMSimpleLineGraph (~> 3.3)
-  - MCSwipeTableViewCell (~> 2.1.2)
-  - SwiftyJSON (~> 2.3)
   - SwiftyTimer (~> 1.1.0)
 
 SPEC CHECKSUMS:
   Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
   BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
-  MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
-  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
   SwiftyTimer: 3b1bf42c8b1bb09dff7107b12d3b73cbf700bbce
 
 COCOAPODS: 0.38.2
