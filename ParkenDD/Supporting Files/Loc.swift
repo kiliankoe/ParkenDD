@@ -53,6 +53,7 @@ enum L10n {
     case CITYOPTIONS
     case FORECASTINFOTITLE
     case FORECASTINFOTEXT
+    case MAPSUBTITLE(Int, Int)
     case SORTINGTYPEEUKLID
 }
 
@@ -161,6 +162,8 @@ extension L10n : CustomStringConvertible {
                 return L10n.tr("FORECAST_INFO_TITLE")
             case .FORECASTINFOTEXT:
                 return L10n.tr("FORECAST_INFO_TEXT")
+            case .MAPSUBTITLE(let p0, let p1):
+                return L10n.tr("MAPSUBTITLE", p0, p1)
             case .SORTINGTYPEEUKLID:
                 return L10n.tr("SORTINGTYPE_EUKLID")
         }

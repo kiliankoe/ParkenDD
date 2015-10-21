@@ -27,7 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
 		// Add annotations for all parking lots to the map
         for singleLot in allParkinglots {
-            let lotAnnotation = ParkinglotAnnotation(title: "\(singleLot.name): \(singleLot.free)", subtitle: nil, parkinglot: singleLot)
+            let lotAnnotation = ParkinglotAnnotation(title: singleLot.name, subtitle: "\(L10n.MAPSUBTITLE(singleLot.free, singleLot.total))", parkinglot: singleLot)
             
             mapView.addAnnotation(lotAnnotation)
             
