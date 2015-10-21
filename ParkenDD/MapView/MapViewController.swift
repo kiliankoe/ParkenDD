@@ -77,7 +77,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             case .closed, .unknown:
                 annotationView.pinColor = .Red
             case .open:
-                annotationView.pinColor = .Green
+                annotationView.pinColor = annotation.parkinglot.free != 0 ? .Green : .Red
             case .nodata:
                 annotationView.pinColor = .Purple
             }
