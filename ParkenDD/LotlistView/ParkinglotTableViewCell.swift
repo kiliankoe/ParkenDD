@@ -79,7 +79,7 @@ class ParkinglotTableViewCell: UITableViewCell {
             case .open:
                 parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
             case .unknown:
-                parkinglotTendencyLabel?.text = "THIS IS UNKNOWN, WHY?!"
+                parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
             }
         }
     }

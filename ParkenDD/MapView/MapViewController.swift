@@ -57,11 +57,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 	// It's nice to show custom pin colors on the map denoting the current state of the parking lot they're referencing
 	// green: open
 	// red: closed, nodata
@@ -74,9 +69,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
         if let state = annotation.parkinglot.state {
             switch state {
-            case .closed, .unknown:
+            case .closed:
                 annotationView.pinColor = .Red
-            case .open:
+            case .open, .unknown:
                 annotationView.pinColor = annotation.parkinglot.free != 0 ? .Green : .Red
             case .nodata:
                 annotationView.pinColor = .Purple
