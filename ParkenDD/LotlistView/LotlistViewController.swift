@@ -122,8 +122,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
                     self.timeUpdated = lastUpdated
                     self.timeDownloaded = lastDownloaded
                     
-                    self.refreshControl?.attributedTitle = NSAttributedString(string: "\(lastUpdated)")
-                    
                     // While we're at it we're also going to check if the current data is older than an hour and tell the user if it is.
                     let currentDate = NSDate()
 //                    print("Current: \(currentDate)")
@@ -131,9 +129,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
                     let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
                     let dateDifference = calendar.components(NSCalendarUnit.Minute, fromDate: lastUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
                     
+                    var attrs = [String: AnyObject]()
+                    
                     if dateDifference.minute >= 60 {
+                        attrs = [NSForegroundColorAttributeName: UIColor.redColor()]
                         Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
                     }
+                    
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+                    
+                    self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.LASTUPDATED(dateFormatter.stringFromDate(lastUpdated)))", attributes: attrs)
                 }
                 
                 // TODO: I want a way to get the data url for the currently selected city to give that to the user somehow...
