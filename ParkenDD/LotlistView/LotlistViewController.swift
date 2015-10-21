@@ -117,8 +117,22 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
                 (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList = result.metadata.cities!
                 
                 if let lots = result.parkinglotData.lots {
-                    self.parkinglots = lots
-                    self.defaultSortedParkinglots = lots
+                    
+                    // Filter out nodata lots if the user has the setting enabled
+                    let filteredLots: [Parkinglot]
+                    if NSUserDefaults.standardUserDefaults().boolForKey(Defaults.skipNodataLots) {
+                        filteredLots = lots.filter({ (lot) -> Bool in
+                            if let state = lot.state {
+                                return state != .nodata
+                            }
+                            return true
+                        })
+                    } else {
+                        filteredLots = lots
+                    }
+                    
+                    self.parkinglots = filteredLots
+                    self.defaultSortedParkinglots = filteredLots
                 }
                 
                 if let lastUpdated = result.parkinglotData.lastUpdated, lastDownloaded = result.parkinglotData.lastDownloaded {
