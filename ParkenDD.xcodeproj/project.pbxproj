@@ -41,7 +41,7 @@
 		39F4CFFA1A6BBC0200ACFECF /* ParkenDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFF91A6BBC0200ACFECF /* ParkenDDTests.swift */; };
 		39F5CBAE1AC9F9FE00A91879 /* PrognosisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */; };
 		39F5CBB31AC9FC2F00A91879 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5CBB21AC9FC2F00A91879 /* CSV.swift */; };
-		D1EABDD7F03AE773BB7B1EBE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53AC0AE0930F88C064CC653 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D1EABDD7F03AE773BB7B1EBE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53AC0AE0930F88C064CC653 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

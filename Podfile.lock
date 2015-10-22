@@ -13,4 +13,4 @@ SPEC CHECKSUMS:
   BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
   SwiftyTimer: 3b1bf42c8b1bb09dff7107b12d3b73cbf700bbce
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
