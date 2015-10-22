@@ -191,7 +191,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	func sortLots() {
         guard let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType) else { return }
 		switch sortingType {
-		case "distance":
+		case Sorting.distance:
 			parkinglots.sortInPlace({
 				(lot1: Parkinglot, lot2: Parkinglot) -> Bool in
                 if let currentUserLocation = locationManager.location {
@@ -203,15 +203,15 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
                 }
 				return lot1.name < lot2.name
 			})
-		case "alphabetical":
+		case Sorting.alphabetical:
 			parkinglots.sortInPlace({
 				$0.name < $1.name
 			})
-		case "free":
+		case Sorting.free:
 			parkinglots.sortInPlace({
 				$0.free > $1.free
 			})
-		case "euklid":
+		case Sorting.euclid:
 			self.parkinglots.sortInPlace(sortEuclidian)
 		default:
 			parkinglots = defaultSortedParkinglots
