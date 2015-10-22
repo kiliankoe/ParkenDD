@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MCSwipeTableViewCell
 
 //class ParkinglotTableViewCell: MCSwipeTableViewCell {
 class ParkinglotTableViewCell: UITableViewCell {
