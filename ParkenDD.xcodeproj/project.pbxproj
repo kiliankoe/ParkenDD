@@ -13,20 +13,21 @@
 		392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */; };
 		39392ECE1B72BDE900C3EDA4 /* SwiftyDrop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */; };
 		393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D391A97BDBB00B25B74 /* ServerController.swift */; };
+		3941FACF1BD8C36900E8DE89 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3941FACE1BD8C36900E8DE89 /* Charts.framework */; };
 		394209B41AADB17600E47539 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394209B31AADB17600E47539 /* MapViewController.swift */; };
 		3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3946D82C1AD309EB00CB4C41 /* Colors.swift */; };
-		395A15FA1BC2BEB3000510E3 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395A15F91BC2BEB3000510E3 /* DataTypes.swift */; settings = {ASSET_TAGS = (); }; };
+		395A15FA1BC2BEB3000510E3 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395A15F91BC2BEB3000510E3 /* DataTypes.swift */; };
 		395A15FC1BC2C430000510E3 /* Decodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395A15FB1BC2C430000510E3 /* Decodable.framework */; };
 		3963A6F11AD47A750026DC51 /* forecast.csv in Resources */ = {isa = PBXBuildFile; fileRef = 3963A6F01AD47A750026DC51 /* forecast.csv */; };
-		396642201BB203DC00DF2E99 /* Loc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966421F1BB203DC00DF2E99 /* Loc.swift */; settings = {ASSET_TAGS = (); }; };
+		396642201BB203DC00DF2E99 /* Loc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966421F1BB203DC00DF2E99 /* Loc.swift */; };
 		3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3977CA271A9CC78C00E20014 /* InfoPlist.strings */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
-		3986E8D61BD4FC7200B86673 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3986E8D51BD4FC7200B86673 /* Cartfile */; settings = {ASSET_TAGS = (); }; };
+		3986E8D61BD4FC7200B86673 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3986E8D51BD4FC7200B86673 /* Cartfile */; };
 		3986E8D81BD5084100B86673 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3986E8D71BD5084100B86673 /* ObjectMapper.framework */; };
-		3986E8DA1BD6541500B86673 /* ParkinglotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3986E8D91BD6541500B86673 /* ParkinglotAnnotation.swift */; settings = {ASSET_TAGS = (); }; };
-		399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */; settings = {ASSET_TAGS = (); }; };
-		39AEA1801BBADCCD0029642F /* augustusbruecke.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */; settings = {ASSET_TAGS = (); }; };
-		39AEA1811BBADCCD0029642F /* durchDresden.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17F1BBADCCD0029642F /* durchDresden.gpx */; settings = {ASSET_TAGS = (); }; };
+		3986E8DA1BD6541500B86673 /* ParkinglotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3986E8D91BD6541500B86673 /* ParkinglotAnnotation.swift */; };
+		399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */; };
+		39AEA1801BBADCCD0029642F /* augustusbruecke.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */; };
+		39AEA1811BBADCCD0029642F /* durchDresden.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17F1BBADCCD0029642F /* durchDresden.gpx */; };
 		39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B037511A94C73E00C5A273 /* AboutViewController.swift */; };
 		39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
@@ -74,6 +75,7 @@
 		392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotTableViewCell.swift; sourceTree = "<group>"; };
 		39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyDrop.framework; path = Carthage/Build/iOS/SwiftyDrop.framework; sourceTree = "<group>"; };
 		393F0D391A97BDBB00B25B74 /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
+		3941FACE1BD8C36900E8DE89 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		394209B31AADB17600E47539 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3946D82C1AD309EB00CB4C41 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		395A15F91BC2BEB3000510E3 /* DataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				395A15FC1BC2C430000510E3 /* Decodable.framework in Frameworks */,
 				39392ECE1B72BDE900C3EDA4 /* SwiftyDrop.framework in Frameworks */,
 				3986E8D81BD5084100B86673 /* ObjectMapper.framework in Frameworks */,
+				3941FACF1BD8C36900E8DE89 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +170,7 @@
 		39B953511AA0A59600026EC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3941FACE1BD8C36900E8DE89 /* Charts.framework */,
 				3986E8D71BD5084100B86673 /* ObjectMapper.framework */,
 				395A15FB1BC2C430000510E3 /* Decodable.framework */,
 				39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */,
@@ -418,6 +422,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyDrop.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Decodable.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 			);
 			name = Carthage;
 			outputPaths = (
