@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// Initialize User Defaults
 		let defaults: [String:AnyObject] = [
-			Defaults.sortingType      : "default",
+			Defaults.sortingType      : Sorting.standard,
 			Defaults.selectedCity     : "Dresden",
             Defaults.selectedCityName : "Dresden",
 			Defaults.supportedCities  : ["Dresden"],

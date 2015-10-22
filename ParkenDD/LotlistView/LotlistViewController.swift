@@ -56,7 +56,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		// Start getting location updates if the user wants lots sorted by distance
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
-		if sortingType == "distance" || sortingType == "euklid" {
+		if sortingType == Sorting.distance || sortingType == Sorting.euclid {
 			if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {

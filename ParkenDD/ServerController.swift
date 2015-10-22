@@ -79,7 +79,7 @@ class ServerController {
 	}
     
     static func updateDataForSavedCity(completion: (APIResult?, SCError?) -> Void) {
-        sendMetadataRequest { (metadata, metaError) -> Void in
+        sendMetadataRequest { (metaData, metaError) -> Void in
             if let metaError = metaError {
                 completion(nil, metaError)
                 return
@@ -92,7 +92,7 @@ class ServerController {
                     return
                 }
                 
-                let apiResult = APIResult(metadata: metadata!, parkinglotData: parkinglotData!)
+                let apiResult = APIResult(metadata: metaData!, parkinglotData: parkinglotData!)
                 completion(apiResult, nil)
             })
         }

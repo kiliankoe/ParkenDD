@@ -100,19 +100,19 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		// SORTING OPTIONS
 		case (.sortingOptions, 0):
 			cell.textLabel?.text = L10n.SORTINGTYPEDEFAULT.string
-			cell.accessoryType = sortingType == "default" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+			cell.accessoryType = sortingType == Sorting.standard ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 1):
 			cell.textLabel?.text = L10n.SORTINGTYPELOCATION.string
-			cell.accessoryType = sortingType == "distance" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+			cell.accessoryType = sortingType == Sorting.distance ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 2):
 			cell.textLabel?.text = L10n.SORTINGTYPEALPHABETICAL.string
-			cell.accessoryType = sortingType == "alphabetical" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+			cell.accessoryType = sortingType == Sorting.alphabetical ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 3):
 			cell.textLabel?.text = L10n.SORTINGTYPEFREESPOTS.string
-			cell.accessoryType = sortingType == "free" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+			cell.accessoryType = sortingType == Sorting.free ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 		case (.sortingOptions, 4):
 			cell.textLabel!.text = L10n.SORTINGTYPEEUKLID.string
-			cell.accessoryType = sortingType == "euklid" ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+			cell.accessoryType = sortingType == Sorting.euclid ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
 		// DISPLAY OPTIONS
 		case (.displayOptions, 0):
@@ -186,19 +186,19 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			switch indexPath.row {
 			case 1:
 				answersParams = ["section": "sortingOptions", "row": "sortingDistance"]
-				defaultsValue = "distance"
+				defaultsValue = Sorting.distance
 			case 2:
 				answersParams = ["section": "sortingOptions", "row": "sortingAlphabetical"]
-				defaultsValue = "alphabetical"
+				defaultsValue = Sorting.alphabetical
 			case 3:
 				answersParams = ["section": "sortingOptions", "row": "sortingFree"]
-				defaultsValue = "free"
+				defaultsValue = Sorting.free
 			case 4:
 				answersParams = ["section": "sortingOptions", "row": "sortingEuklid"]
-				defaultsValue = "euklid"
+				defaultsValue = Sorting.euclid
 			default:
 				answersParams = ["section": "sortingOptions", "row": "sortingDefault"]
-				defaultsValue = "default"
+				defaultsValue = Sorting.standard
 			}
 			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: Defaults.sortingType)
 

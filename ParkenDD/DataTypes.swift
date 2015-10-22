@@ -98,7 +98,7 @@ struct Parkinglot: Mappable {
     }
     
     func distance(from userLocation: CLLocation) -> Double {
-        guard let lat = coords?.lat, lng = coords?.lng else { return 100000000.0 }
+        guard let lat = coords?.lat, lng = coords?.lng else { return Const.dummyDistance }
         let lotLocation = CLLocation(latitude: lat, longitude: lng)
         return userLocation.distanceFromLocation(lotLocation)
     }
