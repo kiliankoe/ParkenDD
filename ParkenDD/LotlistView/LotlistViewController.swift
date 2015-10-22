@@ -228,8 +228,14 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			if lot1.total != 0 && lot2.total != 0 {
 				let occ1 = Double(lot1.total - lot1.free) / Double(lot1.total)
 				let occ2 = Double(lot2.total - lot2.free) / Double(lot2.total)
-				let sqrt1 = sqrt(pow(lot1.distance(from: currentUserLocation), 2.0) + pow(Double(occ1*1000), 2.0))
-				let sqrt2 = sqrt(pow(lot2.distance(from: currentUserLocation), 2.0) + pow(Double(occ2*1000), 2.0))
+                
+                // This factor gives a penalty for very crowded parking spaces
+                // so they are ranked down the list, even if they are very close
+                let smoothingfactor1 = 1.0 / Double(2.0*(1.0-occ1))
+                let smoothingfactor2 = 1.0 / Double(2.0*(1.0-occ2))
+                
+				let sqrt1 = sqrt(pow(lot1.distance(from: currentUserLocation), 2.0) + smoothingfactor1 * pow(Double(occ1*1000), 2.0))
+				let sqrt2 = sqrt(pow(lot2.distance(from: currentUserLocation), 2.0) + smoothingfactor2 * pow(Double(occ2*1000), 2.0))
 
 				return sqrt1 < sqrt2
 			}
@@ -370,6 +376,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		} else {
 			// we need to set lastLocation at least once somewhere
 			lastLocation = locations.last
+            tableView.reloadData()
 		}
 	}
 
