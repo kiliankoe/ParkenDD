@@ -20,6 +20,16 @@ class ParkinglotTableViewCell: UITableViewCell {
 
     var parkinglot: Parkinglot?
     
+    var distance: Double = 0.0 {
+        didSet {
+            guard distance != Const.dummyDistance else {
+                parkinglotAddressLabel?.text = L10n.UNKNOWNADDRESS.string
+                return
+            }
+            parkinglotAddressLabel?.text = "\((round(distance/100))/10)km"
+        }
+    }
+    
     func setParkinglot(lot: Parkinglot) {
         parkinglot = lot
         
@@ -33,17 +43,14 @@ class ParkinglotTableViewCell: UITableViewCell {
         
         // check if location sorting is enabled, then we're displaying distance instead of address
         let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
-        if sortingType == "distance" || sortingType == "euklid" {
-//            if let currentUserLocation = locationManager.location {
-//                let lotDistance = thisLot.distance(from: currentUserLocation)
-//                cell.parkinglotAddressLabel?.text = lotDistance == 100000000.0 ? L10n.UNKNOWNADDRESS.string : "\((round(lotDistance/100))/10)km"
-//            } else {
-//                cell.parkinglotAddressLabel?.text = L10n.WAITINGFORLOCATION.string
-//            }
-        } else if lot.address == "" {
-            parkinglotAddressLabel?.text = L10n.UNKNOWNADDRESS.string
+        if sortingType == Sorting.standard || sortingType == Sorting.alphabetical || sortingType == Sorting.free {
+            if lot.address == "" {
+                parkinglotAddressLabel?.text = L10n.UNKNOWNADDRESS.string
+            } else {
+                parkinglotAddressLabel?.text = lot.address
+            }
         } else {
-            parkinglotAddressLabel?.text = lot.address
+            parkinglotAddressLabel?.text = L10n.WAITINGFORLOCATION.string
         }
         
         // Set all labels to be white, 'cause it looks awesome

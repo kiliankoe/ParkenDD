@@ -315,6 +315,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
         
         let thisLot = parkinglots[indexPath.row]
         cell.setParkinglot(thisLot)
+        
+        // Since we've got the locationManager available here it's kinda tricky telling the cell what the current distance
+        // from the lot is, so we're passing that along and setting the label in the cell class to keep it separate.
+        let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
+        if sortingType == Sorting.distance || sortingType == Sorting.euclid {
+            if let userLocation = locationManager.location {
+                cell.distance = thisLot.distance(from: userLocation)
+            } else {
+                cell.distance = Const.dummyDistance
+            }
+        }
 
 		// Don't display any separators if the list is still empty
 		if parkinglots.count == 0 {
