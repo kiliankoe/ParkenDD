@@ -114,7 +114,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
                 
                 self.stopRefreshUI()
                 
-                (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList = result.metadata.cities!
+                var citiesList = [String: City]()
+                if NSUserDefaults.standardUserDefaults().boolForKey(Defaults.showExperimentalCities) {
+                    citiesList = result.metadata.cities!
+                } else {
+                    for (id, city) in result.metadata.cities! {
+                        if let supported = city.activeSupport where supported == true {
+                            citiesList[id] = city
+                        }
+                    }
+                }
+                
+                (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList = citiesList
                 
                 if let lots = result.parkinglotData.lots {
                     

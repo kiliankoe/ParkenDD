@@ -40,13 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// Initialize User Defaults
 		let defaults: [String:AnyObject] = [
-			Defaults.sortingType      : Sorting.standard,
-			Defaults.selectedCity     : "Dresden",
-            Defaults.selectedCityName : "Dresden",
-			Defaults.supportedCities  : ["Dresden"],
-			Defaults.skipNodataLots   : false,
-			Defaults.grayscaleUI      : false,
-            Defaults.favoriteLots     : []
+			Defaults.sortingType            : Sorting.standard,
+			Defaults.selectedCity           : "Dresden",
+            Defaults.selectedCityName       : "Dresden",
+			Defaults.supportedCities        : ["Dresden"],
+			Defaults.skipNodataLots         : false,
+			Defaults.grayscaleUI            : false,
+            Defaults.favoriteLots           : [],
+            Defaults.showExperimentalCities : false
 		]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 

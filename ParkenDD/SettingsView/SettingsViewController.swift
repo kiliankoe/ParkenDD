@@ -62,7 +62,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case .sortingOptions:
 			return 5
 		case .displayOptions:
-			return 2
+			return 3
 		case .otherOptions:
 			return 4
 		}
@@ -90,6 +90,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)
 		let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.skipNodataLots)
 		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.grayscaleUI)
+        let showExperimentalCities = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.showExperimentalCities)
 
 		switch (sec, indexPath.row) {
 		// CITY OPTIONS
@@ -121,6 +122,9 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case (.displayOptions, 1):
 			cell.textLabel?.text = L10n.USEGRAYSCALECOLORS.string
 			cell.accessoryType = useGrayscale ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+        case (.displayOptions, 2):
+            cell.textLabel?.text = L10n.SHOWEXPERIMENTALCITIESSETTING.string
+            cell.accessoryType = showExperimentalCities ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
 		// OTHER OPTIONS
 		case (.otherOptions, 0):
@@ -216,7 +220,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 					NSUserDefaults.standardUserDefaults().setBool(true, forKey: Defaults.skipNodataLots)
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
-				Drop.down(L10n.LISTUPDATEONREFRESH.string, blur: .Dark)
+				refreshLotlist()
 			case 1:
 				let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.grayscaleUI)
 				if useGrayscale {
@@ -228,6 +232,24 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 					answersParams = ["section": "displayOptions", "row": "grayscaleEnabled"]
 					tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 				}
+            case 2:
+                let showExperimentalCities = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.showExperimentalCities)
+                if showExperimentalCities {
+                    NSUserDefaults.standardUserDefaults().setBool(false, forKey: Defaults.showExperimentalCities)
+                    tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+                    refreshLotlist()
+                } else {
+                    let alert = UIAlertController(title: L10n.NOTETITLE.string, message: L10n.SHOWEXPERIMENTALCITIESALERT.string, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
+                        
+                    }))
+                    alert.addAction(UIAlertAction(title: L10n.ACTIVATE.string, style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: Defaults.showExperimentalCities)
+                        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
+                        refreshLotlist()
+                    }))
+                    presentViewController(alert, animated: true, completion: nil)
+                }
 			default:
 				break
 			}
@@ -277,4 +299,10 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
+}
+
+func refreshLotlist() -> Void {
+    if let lotlistVC = UIApplication.sharedApplication().keyWindow?.rootViewController?.childViewControllers[0] as? LotlistViewController {
+        lotlistVC.updateData()
+    }
 }

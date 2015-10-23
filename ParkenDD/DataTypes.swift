@@ -37,15 +37,17 @@ struct City: Mappable {
     var coords: Coords?
     var source: NSURL?
     var url: NSURL?
+    var activeSupport: Bool?
     
     init?(_ map: Map) {
         name = map["name"].valueOrFail()
     }
     
     mutating func mapping(map: Map) {
-        coords <- map["coords"]
-        source <- (map["source"], URLTransform())
-        url    <- (map["url"], URLTransform())
+        coords        <- map["coords"]
+        source        <- (map["source"], URLTransform())
+        url           <- (map["url"], URLTransform())
+        activeSupport <- map["active_support"]
     }
 }
 

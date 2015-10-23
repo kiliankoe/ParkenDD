@@ -32,7 +32,15 @@ class CitySelectionTVC: UITableViewController {
         let supportedCities = (UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities
         let citiesList = (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList
         
-		cell.textLabel?.text = citiesList![supportedCities![indexPath.row]]?.name // FIXME: For the love of god, fix this!
+        if let city = citiesList![supportedCities![indexPath.row]] { // FIXME: For the love of god, fix this!
+            if city.activeSupport! {
+                cell.textLabel?.text = city.name
+                cell.textLabel?.font = UIFont.systemFontOfSize(16)
+            } else {
+                cell.textLabel?.text = city.name
+                cell.textLabel?.font = UIFont.italicSystemFontOfSize(16)
+            }
+        }
 
 		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
 		cell.accessoryType = supportedCities![indexPath.row] == selectedCity ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
