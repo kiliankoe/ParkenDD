@@ -16,6 +16,7 @@ class ServerController {
 		case Server
 		case Request
 		case IncompatibleAPI
+        case CityNotFound
 		case Unknown
 	}
 
@@ -66,7 +67,8 @@ class ServerController {
 		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, response, result) -> Void in
 			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 			guard let response = response else { completion(nil, .Request); return }
-			guard response.statusCode == 200 else { completion(nil, .Server); return }
+            if response.statusCode == 404 { completion(nil, .CityNotFound); return }
+            guard response.statusCode == 200 else { completion(nil, .Server); return }
 			guard let data = result.value else { completion(nil, .Server); return }
 
 			let UTCdateFormatter = NSDateFormatter()

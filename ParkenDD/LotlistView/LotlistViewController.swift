@@ -40,8 +40,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		navBar!.tintColor = UIColor.blackColor()
 
 		// Set title to selected city
-        let selectedCityName = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCityName)
-        titleButton.setTitle(selectedCityName, forState: .Normal)
+        updateTitle(withCity: nil)
 
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -96,13 +95,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	*/
 	func updateData() {
 		showActivityIndicator()
+        
         // Set title to selected city
-        let selectedCityName = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCityName)
-        titleButton.setTitle(selectedCityName, forState: .Normal)
+        updateTitle(withCity: nil)
         
         ServerController.updateDataForSavedCity { [unowned self] (result, error) -> Void in
             if let error = error {
-                self.showUpdateError(error)
+                self.handleUpdateError(error)
                 self.stopRefreshUI()
             } else {
                 guard let result = result else { NSLog("Neither got any results from the API or an error. This is odd. Very odd indeed. Houston?"); return }
@@ -185,16 +184,31 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	/**
 	Called by the request to the API in case of failure and handed the error to display to the user.
 	*/
-	func showUpdateError(err: ServerController.SCError) {
+	func handleUpdateError(err: ServerController.SCError) {
 		switch err {
 		case .Server, .IncompatibleAPI:
 			Drop.down(L10n.SERVERERROR.string, state: .Error)
 		case .Request:
 			Drop.down(L10n.REQUESTERROR.string, state: .Error)
+        case .CityNotFound:
+            NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCity)
+            NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCity)
+            NSUserDefaults.standardUserDefaults().synchronize()
+            updateData()
+            updateTitle(withCity: "Dresden")
 		case .Unknown:
 			Drop.down(L10n.UNKNOWNERROR.string, state: .Error)
 		}
 	}
+    
+    func updateTitle(withCity city: String?) {
+        if let city = city {
+            titleButton.setTitle(city, forState: .Normal)
+        } else {
+            let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCityName)
+            titleButton.setTitle(selectedCity, forState: .Normal)
+        }
+    }
 
 	/**
 	Sort the parkingslots array based on what is currently saved for SortingType in NSUserDefaults.
