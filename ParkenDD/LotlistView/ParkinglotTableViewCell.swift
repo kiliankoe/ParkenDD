@@ -32,10 +32,13 @@ class ParkinglotTableViewCell: UITableViewCell {
 	func setParkinglot(lot: Parkinglot) {
 		parkinglot = lot
 		
+		// Quickfix for issue #103
+		let sanitizedLotName = lot.name.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+		
 		if let lotType = lot.lotType {
-			parkinglotNameLabel?.text = "\(lotType) \(lot.name)"
+			parkinglotNameLabel?.text = "\(lotType) \(sanitizedLotName)"
 		} else {
-			parkinglotNameLabel?.text = lot.name
+			parkinglotNameLabel?.text = sanitizedLotName
 		}
 		
 		parkinglotLoadLabel?.text = "\(lot.free)"
