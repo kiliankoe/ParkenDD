@@ -36,17 +36,14 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     }
 
 	func dismiss() {
-		self.dismissViewControllerAnimated(true, completion: nil)
+		dispatch_async(dispatch_get_main_queue()) { () -> Void in
+			self.dismissViewControllerAnimated(true, completion: nil)
+		}
 	}
 
 	override func viewWillAppear(animated: Bool) {
 		tableView.reloadData()
 	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
