@@ -160,7 +160,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
                     
                     if dateDifference.minute >= 60 {
                         attrs = [NSForegroundColorAttributeName: UIColor.redColor()]
-//                        Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
+                        Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
                         NSLog("Data seems to be outdated.")
                     }
                     
