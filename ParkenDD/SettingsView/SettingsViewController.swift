@@ -276,8 +276,9 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 					let mail = MFMailComposeViewController()
 					mail.mailComposeDelegate = self
 
-					let versionNumber: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-					mail.setSubject("[ParkenDD v\(versionNumber)] Feedback")
+					let versionNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+                    let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+					mail.setSubject("[ParkenDD v\(versionNumber) (\(buildNumber))] Feedback")
 					mail.setToRecipients(["parkendd@kilian.io"])
 
 					self.presentViewController(mail, animated: true, completion: nil)
