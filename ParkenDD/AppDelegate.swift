@@ -20,16 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var locationManager: CLLocationManager?
 
-    var supportedCities: [String]?
-    var citiesList = [String: City]() {
-        didSet {
-            supportedCities = []
-            for (id, _) in citiesList {
-                supportedCities?.append(id)
-            }
-            supportedCities?.sortInPlace(<)
-        }
-    }
+	var supportedCities: [String]?
+	var citiesList = [String: City]() {
+		didSet {
+			supportedCities = []
+			for (id, _) in citiesList {
+				supportedCities?.append(id)
+			}
+			supportedCities?.sortInPlace(<)
+		}
+	}
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		Fabric.with([Crashlytics()])
@@ -42,12 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let defaults: [String:AnyObject] = [
 			Defaults.sortingType            : Sorting.standard,
 			Defaults.selectedCity           : "Dresden",
-            Defaults.selectedCityName       : "Dresden",
+			Defaults.selectedCityName       : "Dresden",
 			Defaults.supportedCities        : ["Dresden"],
 			Defaults.skipNodataLots         : false,
 			Defaults.grayscaleUI            : false,
-            Defaults.favoriteLots           : [],
-            Defaults.showExperimentalCities : false
+			Defaults.favoriteLots           : [],
+			Defaults.showExperimentalCities : false
 		]
 		NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
 

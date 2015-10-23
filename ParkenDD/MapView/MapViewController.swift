@@ -16,67 +16,67 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 	var detailParkinglot: Parkinglot!
 	var allParkinglots: [Parkinglot]!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		mapView.showsUserLocation = true
-        
-        if #available(iOS 9, *) {
-            mapView.showsTraffic = true
-        }
+		
+		if #available(iOS 9, *) {
+			mapView.showsTraffic = true
+		}
 
 		// Add annotations for all parking lots to the map
-        for singleLot in allParkinglots {
-            var subtitle = L10n.MAPSUBTITLE("\(singleLot.free)", singleLot.total).string
-            if let state = singleLot.state {
-                switch state {
-                case .closed:
-                    subtitle = L10n.CLOSED.string
-                case .nodata:
-                    subtitle = L10n.MAPSUBTITLE("?", singleLot.total).string
-                case .open, .unknown:
-                    break
-                }
-            }
-            let lotAnnotation = ParkinglotAnnotation(title: singleLot.name, subtitle: subtitle, parkinglot: singleLot)
-            
-            mapView.addAnnotation(lotAnnotation)
-            
-            // Display the callout if this is the previously selected annotation
-            if singleLot.name == detailParkinglot.name {
-                mapView.selectAnnotation(lotAnnotation, animated: true)
-            }
-        }
-        
+		for singleLot in allParkinglots {
+			var subtitle = L10n.MAPSUBTITLE("\(singleLot.free)", singleLot.total).string
+			if let state = singleLot.state {
+				switch state {
+				case .closed:
+					subtitle = L10n.CLOSED.string
+				case .nodata:
+					subtitle = L10n.MAPSUBTITLE("?", singleLot.total).string
+				case .open, .unknown:
+					break
+				}
+			}
+			let lotAnnotation = ParkinglotAnnotation(title: singleLot.name, subtitle: subtitle, parkinglot: singleLot)
+			
+			mapView.addAnnotation(lotAnnotation)
+			
+			// Display the callout if this is the previously selected annotation
+			if singleLot.name == detailParkinglot.name {
+				mapView.selectAnnotation(lotAnnotation, animated: true)
+			}
+		}
+		
 		// Set the map's region to a 1km region around the selected lot
-        if let lat = detailParkinglot.coords?.lat, lng = detailParkinglot.coords?.lng {
-            let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: lat, longitude: lng), 1000, 1000)
-            mapView.setRegion(parkinglotRegion, animated: false)
-        } else {
-            NSLog("Came to map view with a selected lot that has no coordinates. We're now showing Germany. This is probably not ideal.")
-        }
-    }
+		if let lat = detailParkinglot.coords?.lat, lng = detailParkinglot.coords?.lng {
+			let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: lat, longitude: lng), 1000, 1000)
+			mapView.setRegion(parkinglotRegion, animated: false)
+		} else {
+			NSLog("Came to map view with a selected lot that has no coordinates. We're now showing Germany. This is probably not ideal.")
+		}
+	}
 
 	// It's nice to show custom pin colors on the map denoting the current state of the parking lot they're referencing
 	// green: open
 	// red: closed, nodata
 	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        // We don't care about the MKUserLocation here
-        guard annotation.isKindOfClass(ParkinglotAnnotation) else { return nil }
-        
-        let annotation = annotation as! ParkinglotAnnotation
+		// We don't care about the MKUserLocation here
+		guard annotation.isKindOfClass(ParkinglotAnnotation) else { return nil }
+		
+		let annotation = annotation as! ParkinglotAnnotation
 		let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "parkinglotAnnotation")
 
-        if let state = annotation.parkinglot.state {
-            switch state {
-            case .closed:
-                annotationView.pinColor = .Red
-            case .open, .unknown:
-                annotationView.pinColor = annotation.parkinglot.free != 0 ? .Green : .Red
-            case .nodata:
-                annotationView.pinColor = .Purple
-            }
-        }
+		if let state = annotation.parkinglot.state {
+			switch state {
+			case .closed:
+				annotationView.pinColor = .Red
+			case .open, .unknown:
+				annotationView.pinColor = annotation.parkinglot.free != 0 ? .Green : .Red
+			case .nodata:
+				annotationView.pinColor = .Purple
+			}
+		}
 
 		annotationView.canShowCallout = true
 

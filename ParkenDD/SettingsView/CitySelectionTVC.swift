@@ -10,43 +10,43 @@ import UIKit
 
 class CitySelectionTVC: UITableViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+	override func viewDidLoad() {
+		super.viewDidLoad()
+	}
 
-    // MARK: - Table view data source
+	// MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
+	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return 1
+	}
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let citiesCount = (UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities?.count {
-            return citiesCount
-        }
-        return 0
-    }
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if let citiesCount = (UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities?.count {
+			return citiesCount
+		}
+		return 0
+	}
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("citySelectionCell", forIndexPath: indexPath)
-        let supportedCities = (UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities
-        let citiesList = (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList
-        
-        if let city = citiesList![supportedCities![indexPath.row]] { // FIXME: For the love of god, fix this!
-            if city.activeSupport! {
-                cell.textLabel?.text = city.name
-                cell.textLabel?.font = UIFont.systemFontOfSize(16)
-            } else {
-                cell.textLabel?.text = city.name
-                cell.textLabel?.font = UIFont.italicSystemFontOfSize(16)
-            }
-        }
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier("citySelectionCell", forIndexPath: indexPath)
+		let supportedCities = (UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities
+		let citiesList = (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList
+		
+		if let city = citiesList![supportedCities![indexPath.row]] { // FIXME: For the love of god, fix this!
+			if city.activeSupport! {
+				cell.textLabel?.text = city.name
+				cell.textLabel?.font = UIFont.systemFontOfSize(16)
+			} else {
+				cell.textLabel?.text = city.name
+				cell.textLabel?.font = UIFont.italicSystemFontOfSize(16)
+			}
+		}
 
 		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
 		cell.accessoryType = supportedCities![indexPath.row] == selectedCity ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
-        return cell
-    }
+		return cell
+	}
 
 	// MARK: - Table view delegate
 
@@ -58,9 +58,9 @@ class CitySelectionTVC: UITableViewController {
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
 		let selectedCityID = (UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities![indexPath.row] // FIXME: For the love of god, fix this!
-        let selectedCityName = (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList[selectedCityID!]?.name
+		let selectedCityName = (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList[selectedCityID!]?.name
 		NSUserDefaults.standardUserDefaults().setObject(selectedCityID, forKey: Defaults.selectedCity)
-        NSUserDefaults.standardUserDefaults().setObject(selectedCityName!, forKey: Defaults.selectedCityName)
+		NSUserDefaults.standardUserDefaults().setObject(selectedCityName!, forKey: Defaults.selectedCityName)
 		NSUserDefaults.standardUserDefaults().synchronize()
 
 		if let lotlistVC = UIApplication.sharedApplication().keyWindow?.rootViewController?.childViewControllers[0] as? LotlistViewController {

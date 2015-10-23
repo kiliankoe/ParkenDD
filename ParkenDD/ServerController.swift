@@ -16,7 +16,7 @@ class ServerController {
 		case Server
 		case Request
 		case IncompatibleAPI
-        case CityNotFound
+		case CityNotFound
 		case Unknown
 	}
 
@@ -44,15 +44,15 @@ class ServerController {
 			guard let response = response else { completion(nil, .Request); return }
 			guard response.statusCode == 200 else { completion(nil, .Server); return }
 			guard let data = result.value else { completion(nil, .Server); return }
-            
-            let metadata = Mapper<Metadata>().map(data)
-            guard metadata?.apiVersion == SCOptions.supportedAPIVersion else {
-                NSLog("Error: Found API Version \(metadata!.apiVersion). This version of ParkenDD can however only understand \(SCOptions.supportedAPIVersion)")
-                completion(nil, .IncompatibleAPI)
-                return
-            }
-            
-            completion(metadata, nil)
+			
+			let metadata = Mapper<Metadata>().map(data)
+			guard metadata?.apiVersion == SCOptions.supportedAPIVersion else {
+				NSLog("Error: Found API Version \(metadata!.apiVersion). This version of ParkenDD can however only understand \(SCOptions.supportedAPIVersion)")
+				completion(nil, .IncompatibleAPI)
+				return
+			}
+			
+			completion(metadata, nil)
 		}
 	}
 
@@ -67,38 +67,38 @@ class ServerController {
 		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, response, result) -> Void in
 			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 			guard let response = response else { completion(nil, .Request); return }
-            if response.statusCode == 404 { completion(nil, .CityNotFound); return }
-            guard response.statusCode == 200 else { completion(nil, .Server); return }
+			if response.statusCode == 404 { completion(nil, .CityNotFound); return }
+			guard response.statusCode == 200 else { completion(nil, .Server); return }
 			guard let data = result.value else { completion(nil, .Server); return }
 
 			let UTCdateFormatter = NSDateFormatter()
 			UTCdateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
 			UTCdateFormatter.timeZone = NSTimeZone(name: "UTC")
-            
-            let parkinglotData = Mapper<ParkinglotData>().map(data)
-            completion(parkinglotData, nil)
+			
+			let parkinglotData = Mapper<ParkinglotData>().map(data)
+			completion(parkinglotData, nil)
 		}
 	}
-    
-    static func updateDataForSavedCity(completion: (APIResult?, SCError?) -> Void) {
-        sendMetadataRequest { (metaData, metaError) -> Void in
-            if let metaError = metaError {
-                completion(nil, metaError)
-                return
-            }
-            
-            let currentCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
-            sendParkinglotDataRequest(currentCity, completion: { (parkinglotData, parkinglotError) -> Void in
-                if let parkinglotError = parkinglotError {
-                    completion(nil, parkinglotError)
-                    return
-                }
-                
-                let apiResult = APIResult(metadata: metaData!, parkinglotData: parkinglotData!)
-                completion(apiResult, nil)
-            })
-        }
-    }
+	
+	static func updateDataForSavedCity(completion: (APIResult?, SCError?) -> Void) {
+		sendMetadataRequest { (metaData, metaError) -> Void in
+			if let metaError = metaError {
+				completion(nil, metaError)
+				return
+			}
+			
+			let currentCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
+			sendParkinglotDataRequest(currentCity, completion: { (parkinglotData, parkinglotError) -> Void in
+				if let parkinglotError = parkinglotError {
+					completion(nil, parkinglotError)
+					return
+				}
+				
+				let apiResult = APIResult(metadata: metaData!, parkinglotData: parkinglotData!)
+				completion(apiResult, nil)
+			})
+		}
+	}
 
 	/**
 	Get forecast data for a specified parkinglot and date as CSV data
