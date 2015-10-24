@@ -46,6 +46,7 @@ class ServerController {
 			guard let data = result.value else { completion(nil, .Server); return }
 			
 			let metadata = Mapper<Metadata>().map(data)
+			
 			guard metadata?.apiVersion == SCOptions.supportedAPIVersion else {
 				NSLog("Error: Found API Version \(metadata!.apiVersion). This version of ParkenDD can however only understand \(SCOptions.supportedAPIVersion)")
 				completion(nil, .IncompatibleAPI)
@@ -70,10 +71,6 @@ class ServerController {
 			if response.statusCode == 404 { completion(nil, .NotFound); return }
 			guard response.statusCode == 200 else { completion(nil, .Server); return }
 			guard let data = result.value else { completion(nil, .Server); return }
-
-			let UTCdateFormatter = NSDateFormatter()
-			UTCdateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-			UTCdateFormatter.timeZone = NSTimeZone(name: "UTC")
 			
 			let parkinglotData = Mapper<ParkinglotData>().map(data)
 			completion(parkinglotData, nil)
