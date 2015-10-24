@@ -18,7 +18,6 @@
 		3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3946D82C1AD309EB00CB4C41 /* Colors.swift */; };
 		395A15FA1BC2BEB3000510E3 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395A15F91BC2BEB3000510E3 /* DataTypes.swift */; };
 		395A15FC1BC2C430000510E3 /* Decodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395A15FB1BC2C430000510E3 /* Decodable.framework */; };
-		3963A6F11AD47A750026DC51 /* forecast.csv in Resources */ = {isa = PBXBuildFile; fileRef = 3963A6F01AD47A750026DC51 /* forecast.csv */; };
 		396642201BB203DC00DF2E99 /* Loc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966421F1BB203DC00DF2E99 /* Loc.swift */; };
 		3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3977CA271A9CC78C00E20014 /* InfoPlist.strings */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
@@ -80,7 +79,6 @@
 		3946D82C1AD309EB00CB4C41 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		395A15F91BC2BEB3000510E3 /* DataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
 		395A15FB1BC2C430000510E3 /* Decodable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Decodable.framework; path = Carthage/Build/iOS/Decodable.framework; sourceTree = "<group>"; };
-		3963A6F01AD47A750026DC51 /* forecast.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forecast.csv; sourceTree = "<group>"; };
 		3966421F1BB203DC00DF2E99 /* Loc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loc.swift; sourceTree = "<group>"; };
 		3977CA261A9CC78C00E20014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3977CA281A9CC78E00E20014 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -280,7 +278,6 @@
 			children = (
 				39F5CBB21AC9FC2F00A91879 /* CSV.swift */,
 				39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */,
-				3963A6F01AD47A750026DC51 /* forecast.csv */,
 			);
 			path = PrognosisView;
 			sourceTree = "<group>";
@@ -395,7 +392,6 @@
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
 				3986E8D61BD4FC7200B86673 /* Cartfile in Resources */,
 				39AEA1801BBADCCD0029642F /* augustusbruecke.gpx in Resources */,
-				3963A6F11AD47A750026DC51 /* forecast.csv in Resources */,
 				3904EE051B55C61700B2933B /* Settings.storyboard in Resources */,
 				39AEA1811BBADCCD0029642F /* durchDresden.gpx in Resources */,
 				39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */,
