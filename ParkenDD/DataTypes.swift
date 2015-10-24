@@ -188,7 +188,7 @@ struct ParkinglotData: Mappable {
 *  ForecastData - Forecast data and version of the forecast API format
 */
 struct ForecastData: Mappable {
-	var data: [NSDate: Double]?
+	var data: [NSDate: Int]?
 	var version: String?
 	
 	init?(_ map: Map) {

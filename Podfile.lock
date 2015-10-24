@@ -1,16 +1,16 @@
 PODS:
   - Alamofire (2.0.2)
-  - BEMSimpleLineGraph (3.3)
+  - Charts (2.1.4)
   - SwiftyTimer (1.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0.2)
-  - BEMSimpleLineGraph (~> 3.3)
+  - Charts
   - SwiftyTimer (~> 1.1.0)
 
 SPEC CHECKSUMS:
   Alamofire: 8edbab00802a752bb5240cc2abe70e7e881488ad
-  BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
+  Charts: 870589b6b4bf8468baacea8869c28983d71f602c
   SwiftyTimer: 3b1bf42c8b1bb09dff7107b12d3b73cbf700bbce
 
 COCOAPODS: 0.39.0

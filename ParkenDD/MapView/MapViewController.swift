@@ -55,10 +55,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		} else {
 			NSLog("Came to map view with a selected lot that has no coordinates. We're now showing Germany. This is probably not ideal.")
 		}
+		
+		// Display the forecast button if this lot has forecast data
+		if let forecast = detailParkinglot.forecast where forecast {
+			navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Forecast", style: .Plain, target: self, action: "showForecastController")
+		}
+	}
+	
+	/**
+	Transition to forecast controller
+	*/
+	func showForecastController() {
+		let forecastController = ForecastViewController()
+		forecastController.lot = detailParkinglot
+		showViewController(forecastController, sender: self)
 	}
 
 	// It's nice to show custom pin colors on the map denoting the current state of the parking lot they're referencing
-	// green: open
+	// green: open, unknown (if more than 0 free, otherwise red)
 	// red: closed, nodata
 	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
 		// We don't care about the MKUserLocation here

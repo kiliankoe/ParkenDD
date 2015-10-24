@@ -16,7 +16,7 @@ class ServerController {
 		case Server
 		case Request
 		case IncompatibleAPI
-		case CityNotFound
+		case NotFound
 		case Unknown
 	}
 
@@ -67,7 +67,7 @@ class ServerController {
 		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, response, result) -> Void in
 			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 			guard let response = response else { completion(nil, .Request); return }
-			if response.statusCode == 404 { completion(nil, .CityNotFound); return }
+			if response.statusCode == 404 { completion(nil, .NotFound); return }
 			guard response.statusCode == 200 else { completion(nil, .Server); return }
 			guard let data = result.value else { completion(nil, .Server); return }
 
@@ -101,70 +101,51 @@ class ServerController {
 	}
 
 	/**
-	Get forecast data for a specified parkinglot and date as CSV data
+	Get forecast data for a specified parkinglot and date
 
 	- parameter lotID:      id of a parkinglot
 	- parameter fromDate:   date object when the data should start
 	- parameter toDate:     date object when the data should end
 	- parameter completion: handler
 	*/
-//	static func sendForecastRequest(lotID: String, fromDate: NSDate, toDate: NSDate, completion: (SCResult<[NSDate: Int], SCError>) -> Void) {
-//		let dateFormatter = NSDateFormatter()
-//		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//		let fromDateString = dateFormatter.stringFromDate(fromDate)
-//		let toDateString = dateFormatter.stringFromDate(toDate)
-//
-//		let parameters = [
-//			"from": fromDateString,
-//			"to": toDateString
-//		]
-//
-//		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-//		let forecastURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + "/Dresden/\(lotID)/timespan" : URL.apiBaseURL + "/Dresden/\(lotID)/timespan"
-//		Alamofire.request(.GET, forecastURL, parameters: parameters).responseJSON { (_, response, result) -> Void in
-//			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-//			guard let response = response else { completion(.Failure(SCError.Request)); return }
-//			guard response.statusCode == 200 else { completion(.Failure(SCError.Server)); return }
-//			guard let data = result.value else { completion(.Failure(SCError.Server)); return }
-//			let jsonData = JSON(data)["data"].dictionaryValue
-//
-//			var parsedData = [NSDate: Int]()
-//
-//			for (date, load) in jsonData {
-//				if let parsedDate = dateFormatter.dateFromString(date) {
-//					parsedData[parsedDate] = load.intValue
-//				}
-//			}
-//
-//			completion(.Success(parsedData))
-//		}
-//	}
-//
-//	static func sendNominatimSearchRequest(searchString: String, completion: (lat: Double, lng: Double) -> ()) {
-//		let parameters: [String:AnyObject] = [
-//			"q": searchString,
-//			"format": "json",
-//			"accept-language": "de",
-//			"limit": 1,
-//			"addressdetails": 1
-//		]
-//
-//		Alamofire.request(.GET, URL.nominatimURL + "search", parameters: parameters).validate().responseJSON { (_, response, result) -> Void in
-//			print(result.value)
-//		}
-//	}
-//
-//	static func sendNominatimReverseGeocodingRequest(lat: Double, lng: Double, completion: (address: String) -> ()) {
-//		let parameters: [String:AnyObject] = [
-//			"format": "json",
-//			"accept-language": "de",
-//			"lat": lat,
-//			"lon": lng,
-//			"addressdetails": 1
-//		]
-//
-//		Alamofire.request(.GET, URL.nominatimURL + "reverse", parameters: parameters).validate().responseJSON { (_, response, result) -> Void in
-//			print(result.value)
-//		}
-//	}
+	static func sendForecastRequest(lotID: String, fromDate: NSDate, toDate: NSDate, completion: (ForecastData?, SCError?) -> Void) {
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+		let fromDateString = dateFormatter.stringFromDate(fromDate)
+		let toDateString = dateFormatter.stringFromDate(toDate)
+
+		let parameters = [
+			"from": fromDateString,
+			"to": toDateString
+		]
+
+		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+		let forecastURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + "/Dresden/\(lotID)/timespan" : URL.apiBaseURL + "/Dresden/\(lotID)/timespan"
+		Alamofire.request(.GET, forecastURL, parameters: parameters).responseJSON { (_, response, result) -> Void in
+			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+			guard let response = response else { completion(nil, .Request); return }
+			if response.statusCode == 404 { completion(nil, .NotFound); return }
+			guard response.statusCode == 200 else { completion(nil, .Server); return }
+			guard let data = result.value else { completion(nil, .Server); return }
+			
+			print(data)
+			let forecastData = Mapper<ForecastData>().map(data)
+			
+			completion(forecastData, nil)
+		}
+	}
+	
+	/**
+	Get forecast data for a specified parkinglot and one week from a starting date
+	
+	- parameter lotID:      id of a parkinglot
+	- parameter fromDate:   date object when the data should start
+	- parameter completion: handler
+	*/
+	static func forecastWeek(lotID: String, fromDate: NSDate, completion: (ForecastData?, SCError?) -> Void) {
+		let toDate = fromDate.dateByAddingTimeInterval(3600*24*7)
+		sendForecastRequest(lotID, fromDate: fromDate, toDate: toDate) { (forecastData, error) -> Void in
+			completion(forecastData, error)
+		}
+	}
 }

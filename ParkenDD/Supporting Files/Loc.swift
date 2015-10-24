@@ -32,10 +32,7 @@ enum L10n {
     case LOCATIONDATAERROR
     case CANCEL
     case SETTINGS
-    case PROGNOSISCENTRUMGALERIE
-    case EXPERIMENTALPROGNOSIS
-    case CIRCA
-    case SPOTSAVAILABLE
+    case CIRCASPOTSAVAILABLE(String)
     case DISPLAYOPTIONS
     case HIDENODATALOTS
     case NOTETITLE
@@ -57,6 +54,7 @@ enum L10n {
     case SHOWEXPERIMENTALCITIESALERT
     case ACTIVATE
     case SHOWEXPERIMENTALCITIESSETTING
+    case FORECASTTITLE(String)
     case SORTINGTYPEEUKLID
 }
 
@@ -123,14 +121,8 @@ extension L10n : CustomStringConvertible {
                 return L10n.tr("CANCEL")
             case .SETTINGS:
                 return L10n.tr("SETTINGS")
-            case .PROGNOSISCENTRUMGALERIE:
-                return L10n.tr("PROGNOSIS_CENTRUM_GALERIE")
-            case .EXPERIMENTALPROGNOSIS:
-                return L10n.tr("EXPERIMENTAL_PROGNOSIS")
-            case .CIRCA:
-                return L10n.tr("CIRCA")
-            case .SPOTSAVAILABLE:
-                return L10n.tr("SPOTS_AVAILABLE")
+            case .CIRCASPOTSAVAILABLE(let p0):
+                return L10n.tr("CIRCA_SPOTS_AVAILABLE", p0)
             case .DISPLAYOPTIONS:
                 return L10n.tr("DISPLAY_OPTIONS")
             case .HIDENODATALOTS:
@@ -173,6 +165,8 @@ extension L10n : CustomStringConvertible {
                 return L10n.tr("ACTIVATE")
             case .SHOWEXPERIMENTALCITIESSETTING:
                 return L10n.tr("SHOWEXPERIMENTALCITIESSETTING")
+            case .FORECASTTITLE(let p0):
+                return L10n.tr("FORECAST_TITLE", p0)
             case .SORTINGTYPEEUKLID:
                 return L10n.tr("SORTINGTYPE_EUKLID")
         }

@@ -190,7 +190,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			Drop.down(L10n.SERVERERROR.string, state: .Error)
 		case .Request:
 			Drop.down(L10n.REQUESTERROR.string, state: .Error)
-		case .CityNotFound:
+		case .NotFound:
 			NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCity)
 			NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCity)
 			NSUserDefaults.standardUserDefaults().synchronize()

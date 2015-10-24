@@ -62,7 +62,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case .displayOptions:
 			return 3
 		case .otherOptions:
-			return 4
+			return 3
 		}
     }
 
@@ -126,15 +126,12 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
 		// OTHER OPTIONS
 		case (.otherOptions, 0):
-			cell.textLabel?.text = L10n.EXPERIMENTALPROGNOSIS.string
-			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-		case (.otherOptions, 1):
 			cell.textLabel?.text = L10n.ABOUTBUTTON.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-		case (.otherOptions, 2):
+		case (.otherOptions, 1):
 			cell.textLabel?.text = L10n.SHAREONTWITTER.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-		case (.otherOptions, 3):
+		case (.otherOptions, 2):
 			cell.textLabel?.text = L10n.SENDFEEDBACK.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
@@ -256,9 +253,6 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case .otherOptions:
 			switch indexPath.row {
 			case 0:
-				answersParams = ["section": "otherOptions", "row": "showPrognosisView"]
-				performSegueWithIdentifier("showPrognosisView", sender: self)
-			case 1:
 				answersParams = ["section": "otherOptions", "row": "showAboutView"]
 //				performSegueWithIdentifier("showAboutView", sender: self)
 				if #available(iOS 9.0, *) {
@@ -267,14 +261,14 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 				} else {
 					UIApplication.sharedApplication().openURL(NSURL(string: "http://parkendd.kilian.io/about.html")!)
 				}
-			case 2:
+			case 1:
 				answersParams = ["section": "otherOptions", "row": "presentTweetComposer"]
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
 					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
 					tweetsheet.setInitialText(L10n.TWEETTEXT.string)
 					self.presentViewController(tweetsheet, animated: true, completion: nil)
 				}
-			case 3:
+			case 2:
 				answersParams = ["section": "otherOptions", "row": "presentMailComposer"]
 				if MFMailComposeViewController.canSendMail() {
 					let mail = MFMailComposeViewController()

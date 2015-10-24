@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Settings View Controller-->
@@ -270,26 +269,6 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ZfR-I5-Oib" style="IBUITableViewCellStyleDefault" id="bYV-zZ-Ytj">
-                                        <rect key="frame" x="0.0" y="767.5" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bYV-zZ-Ytj" id="OZh-xw-bqd">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Got Feedback?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZfR-I5-Oib">
-                                                    <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -301,7 +280,6 @@
                     <navigationItem key="navigationItem" id="cCd-j9-lRh"/>
                     <connections>
                         <segue destination="iWB-8S-XA0" kind="show" identifier="showCitySelection" id="SYg-fp-qyA"/>
-                        <segue destination="tSH-id-jNS" kind="show" identifier="showPrognosisView" id="bVc-yn-kMi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xa1-Vn-WOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -347,134 +325,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5A-Zc-C49" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1938" y="10"/>
-        </scene>
-        <!--Data Source-->
-        <scene sceneID="Ief-KC-ZKY">
-            <objects>
-                <viewController id="tSH-id-jNS" customClass="PrognosisViewController" customModule="ParkenDD" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sdF-9U-KUN"/>
-                        <viewControllerLayoutGuide type="bottom" id="Kpe-n5-JUK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Yjt-Bs-XRv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bch-0g-3Te">
-                                <rect key="frame" x="0.0" y="438" width="600" height="162"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="162" id="lXx-6i-Xp2"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="452124000.98418701">
-                                    <!--2015-04-30 22:00:00 +0000-->
-                                </date>
-                                <date key="minimumDate" timeIntervalSinceReferenceDate="452124000">
-                                    <!--2015-04-30 22:00:00 +0000-->
-                                </date>
-                                <date key="maximumDate" timeIntervalSinceReferenceDate="473292000">
-                                    <!--2015-12-31 22:00:00 +0000-->
-                                </date>
-                                <connections>
-                                    <action selector="datePickerValueChanged:" destination="tSH-id-jNS" eventType="valueChanged" id="n7b-Jn-qhX"/>
-                                </connections>
-                            </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Prognosis for Centrum Galerie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVy-hF-uYZ">
-                                <rect key="frame" x="16" y="72" width="568" height="37"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="5vw-mU-eL9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.15000000596046448" translatesAutoresizingMaskIntoConstraints="NO" id="6mQ-C2-Add">
-                                <rect key="frame" x="156" y="399" width="288" height="2"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="7IM-8k-ZPi"/>
-                                    <constraint firstAttribute="width" constant="288" id="oLL-U7-aWg"/>
-                                </constraints>
-                            </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="15% occupied" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPG-Fm-FFy">
-                                <rect key="frame" x="16" y="370" width="568" height="21"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="YBx-en-adc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ca. 892/1050 spots available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxM-vz-M6w">
-                                <rect key="frame" x="16" y="409" width="568" height="21"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="HN6-fY-744"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njV-Zk-oKF" customClass="BEMSimpleLineGraphView">
-                                <rect key="frame" x="16" y="117" width="568" height="245"/>
-                                <animations/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="tSH-id-jNS" id="SME-1P-hO4"/>
-                                    <outlet property="delegate" destination="tSH-id-jNS" id="pTb-S0-tgs"/>
-                                </connections>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6e2-X6-AxD">
-                                <rect key="frame" x="562" y="80" width="22" height="22"/>
-                                <animations/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="infoButtonPressed:" destination="tSH-id-jNS" eventType="touchUpInside" id="b0N-fH-bAO"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="SxM-vz-M6w" firstAttribute="leading" secondItem="Yjt-Bs-XRv" secondAttribute="leadingMargin" id="1Le-tS-ZNA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bch-0g-3Te" secondAttribute="trailing" constant="-16" id="2lK-J2-Ajm"/>
-                            <constraint firstItem="nPG-Fm-FFy" firstAttribute="leading" secondItem="Yjt-Bs-XRv" secondAttribute="leadingMargin" id="5t8-nF-d0n"/>
-                            <constraint firstItem="bch-0g-3Te" firstAttribute="top" secondItem="SxM-vz-M6w" secondAttribute="bottom" constant="8" id="648-T8-zko"/>
-                            <constraint firstItem="nPG-Fm-FFy" firstAttribute="top" secondItem="njV-Zk-oKF" secondAttribute="bottom" constant="8" id="A4M-Vd-XXT"/>
-                            <constraint firstItem="gVy-hF-uYZ" firstAttribute="top" secondItem="sdF-9U-KUN" secondAttribute="bottom" constant="8" id="Ce5-Sr-Yv9"/>
-                            <constraint firstItem="Kpe-n5-JUK" firstAttribute="top" secondItem="bch-0g-3Te" secondAttribute="bottom" id="HrB-qG-cve"/>
-                            <constraint firstItem="6e2-X6-AxD" firstAttribute="trailing" secondItem="Yjt-Bs-XRv" secondAttribute="trailingMargin" id="K6Y-T2-sHx"/>
-                            <constraint firstItem="gVy-hF-uYZ" firstAttribute="trailing" secondItem="Yjt-Bs-XRv" secondAttribute="trailingMargin" id="OQU-he-J9M"/>
-                            <constraint firstItem="njV-Zk-oKF" firstAttribute="leading" secondItem="Yjt-Bs-XRv" secondAttribute="leadingMargin" id="Um8-tz-yem"/>
-                            <constraint firstItem="bch-0g-3Te" firstAttribute="leading" secondItem="Yjt-Bs-XRv" secondAttribute="leadingMargin" constant="-16" id="VEk-Hv-dVZ"/>
-                            <constraint firstItem="SxM-vz-M6w" firstAttribute="top" secondItem="6mQ-C2-Add" secondAttribute="bottom" constant="8" id="Y7x-3W-0Zp"/>
-                            <constraint firstItem="njV-Zk-oKF" firstAttribute="trailing" secondItem="Yjt-Bs-XRv" secondAttribute="trailingMargin" id="YHQ-Mh-TYg"/>
-                            <constraint firstItem="SxM-vz-M6w" firstAttribute="trailing" secondItem="Yjt-Bs-XRv" secondAttribute="trailingMargin" id="eNe-NG-VrO"/>
-                            <constraint firstItem="6mQ-C2-Add" firstAttribute="top" secondItem="nPG-Fm-FFy" secondAttribute="bottom" constant="8" id="eYH-Jx-r6S"/>
-                            <constraint firstAttribute="centerX" secondItem="6mQ-C2-Add" secondAttribute="centerX" id="gnH-2t-Sq2"/>
-                            <constraint firstItem="6e2-X6-AxD" firstAttribute="top" secondItem="sdF-9U-KUN" secondAttribute="bottom" constant="16" id="ibF-Ws-WJA"/>
-                            <constraint firstItem="gVy-hF-uYZ" firstAttribute="leading" secondItem="Yjt-Bs-XRv" secondAttribute="leadingMargin" id="phT-Gf-FgA"/>
-                            <constraint firstItem="nPG-Fm-FFy" firstAttribute="trailing" secondItem="Yjt-Bs-XRv" secondAttribute="trailingMargin" id="w0q-Hs-030"/>
-                            <constraint firstItem="njV-Zk-oKF" firstAttribute="top" secondItem="gVy-hF-uYZ" secondAttribute="bottom" constant="8" id="yxl-FH-dEu"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="datePicker" destination="bch-0g-3Te" id="aIj-S2-orE"/>
-                        <outlet property="lineGraph" destination="njV-Zk-oKF" id="yof-xm-uby"/>
-                        <outlet property="percentageLabel" destination="nPG-Fm-FFy" id="v07-Q1-cnY"/>
-                        <outlet property="progressBar" destination="6mQ-C2-Add" id="MO3-vb-u56"/>
-                        <outlet property="spotsAvailableLabel" destination="SxM-vz-M6w" id="K4q-nW-sAT"/>
-                        <outlet property="titleLabel" destination="gVy-hF-uYZ" id="fN4-7I-0AN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vWX-zv-XKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1938" y="748"/>
+            <point key="canvasLocation" x="1988" y="379"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ehl-5I-8wB">
