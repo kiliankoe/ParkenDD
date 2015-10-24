@@ -185,6 +185,24 @@ struct ParkinglotData: Mappable {
 
 
 /**
+*  ForecastData - Forecast data and version of the forecast API format
+*/
+struct ForecastData: Mappable {
+	var data: [NSDate: Double]?
+	var version: String?
+	
+	init?(_ map: Map) {
+		
+	}
+	
+	mutating func mapping(map: Map) {
+		data    <- map["data"] // TODO: This is probably going to need the same UTC transform as above
+		version <- map["version"]
+	}
+}
+
+
+/**
 *  A result type to be returned from the API.
 */
 struct APIResult {
