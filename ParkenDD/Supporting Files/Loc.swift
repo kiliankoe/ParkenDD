@@ -10,7 +10,6 @@ enum L10n {
     case UNKNOWNCOORDINATESTITLE
     case UNKNOWNCOORDINATESERROR
     case LASTUPDATE
-    case NODATA
     case OCCUPIED
     case CLOSED
     case UNKNOWNADDRESS
@@ -77,8 +76,6 @@ extension L10n : CustomStringConvertible {
                 return L10n.tr("UNKNOWN_COORDINATES_ERROR")
             case .LASTUPDATE:
                 return L10n.tr("LAST_UPDATE")
-            case .NODATA:
-                return L10n.tr("NO_DATA")
             case .OCCUPIED:
                 return L10n.tr("OCCUPIED")
             case .CLOSED:
