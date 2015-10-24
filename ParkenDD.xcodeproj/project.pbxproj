@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3904EE051B55C61700B2933B /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3904EE041B55C61700B2933B /* Settings.storyboard */; };
-		3904EEE11AE1A3D80080EE81 /* abouttext.html in Resources */ = {isa = PBXBuildFile; fileRef = 3904EEE31AE1A3D80080EE81 /* abouttext.html */; };
 		3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926FECC1AAC47AA005B2DF9 /* Constants.swift */; };
 		392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */; };
 		39392ECE1B72BDE900C3EDA4 /* SwiftyDrop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */; };
@@ -27,7 +26,6 @@
 		399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */; };
 		39AEA1801BBADCCD0029642F /* augustusbruecke.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */; };
 		39AEA1811BBADCCD0029642F /* durchDresden.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17F1BBADCCD0029642F /* durchDresden.gpx */; };
-		39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B037511A94C73E00C5A273 /* AboutViewController.swift */; };
 		39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD401B1B686500900967 /* Fabric.framework */; };
@@ -68,8 +66,6 @@
 
 /* Begin PBXFileReference section */
 		3904EE041B55C61700B2933B /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		3904EEE21AE1A3D80080EE81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/abouttext.html; sourceTree = "<group>"; };
-		3904EEE41AE1A3DB0080EE81 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/abouttext.html; sourceTree = "<group>"; };
 		3926FECC1AAC47AA005B2DF9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotTableViewCell.swift; sourceTree = "<group>"; };
 		39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyDrop.framework; path = Carthage/Build/iOS/SwiftyDrop.framework; sourceTree = "<group>"; };
@@ -90,7 +86,6 @@
 		399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+MapFilter.swift"; sourceTree = "<group>"; };
 		39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = augustusbruecke.gpx; sourceTree = "<group>"; };
 		39AEA17F1BBADCCD0029642F /* durchDresden.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = durchDresden.gpx; sourceTree = "<group>"; };
-		39B037511A94C73E00C5A273 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		39B953521AA0A59600026EC2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		39BE3FCC1AD3402B009A8B74 /* ParkenDD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ParkenDD-Bridging-Header.h"; path = "../ParkenDD-Bridging-Header.h"; sourceTree = "<group>"; };
 		39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySelectionTVC.swift; sourceTree = "<group>"; };
@@ -190,15 +185,6 @@
 			path = SettingsView;
 			sourceTree = "<group>";
 		};
-		39F16F831AB8EF89006C2CF0 /* AboutView */ = {
-			isa = PBXGroup;
-			children = (
-				39B037511A94C73E00C5A273 /* AboutViewController.swift */,
-				3904EEE31AE1A3D80080EE81 /* abouttext.html */,
-			);
-			path = AboutView;
-			sourceTree = "<group>";
-		};
 		39F4CFD51A6BBC0200ACFECF = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +208,6 @@
 		39F4CFE01A6BBC0200ACFECF /* ParkenDD */ = {
 			isa = PBXGroup;
 			children = (
-				39F16F831AB8EF89006C2CF0 /* AboutView */,
 				399CEE241BB0BB2C005FBA28 /* Extensions */,
 				399C340C1AACCFEA00A2C124 /* LotlistView */,
 				394209B21AADB15900E47539 /* MapView */,
@@ -386,7 +371,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3904EEE11AE1A3D80080EE81 /* abouttext.html in Resources */,
 				397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */,
 				3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */,
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
@@ -558,7 +542,6 @@
 				39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */,
 				399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */,
 				394209B41AADB17600E47539 /* MapViewController.swift in Sources */,
-				39B037521A94C73E00C5A273 /* AboutViewController.swift in Sources */,
 				3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */,
 				39F5CBB31AC9FC2F00A91879 /* CSV.swift in Sources */,
 				39F5CBAE1AC9F9FE00A91879 /* PrognosisViewController.swift in Sources */,
@@ -587,16 +570,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3904EEE31AE1A3D80080EE81 /* abouttext.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3904EEE21AE1A3D80080EE81 /* Base */,
-				3904EEE41AE1A3DB0080EE81 /* de */,
-			);
-			name = abouttext.html;
-			path = .;
-			sourceTree = "<group>";
-		};
 		3977CA271A9CC78C00E20014 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

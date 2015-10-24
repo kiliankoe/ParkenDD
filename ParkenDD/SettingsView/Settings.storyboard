@@ -302,7 +302,6 @@
                     <connections>
                         <segue destination="iWB-8S-XA0" kind="show" identifier="showCitySelection" id="SYg-fp-qyA"/>
                         <segue destination="tSH-id-jNS" kind="show" identifier="showPrognosisView" id="bVc-yn-kMi"/>
-                        <segue destination="yqI-pS-uoT" kind="show" identifier="showAboutView" id="kPX-wK-hsi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xa1-Vn-WOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -476,45 +475,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWX-zv-XKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1968" y="378"/>
-        </scene>
-        <!--About View Controller-->
-        <scene sceneID="Cs8-nI-QKe">
-            <objects>
-                <viewController id="yqI-pS-uoT" customClass="AboutViewController" customModule="ParkenDD" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UJV-Eo-ElF"/>
-                        <viewControllerLayoutGuide type="bottom" id="4zZ-F4-Oq3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7os-A8-Njc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNj-zE-W7H">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <dataDetectorType key="dataDetectorTypes"/>
-                                <connections>
-                                    <outlet property="delegate" destination="yqI-pS-uoT" id="Clm-DH-9sY"/>
-                                </connections>
-                            </webView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="iNj-zE-W7H" firstAttribute="leading" secondItem="7os-A8-Njc" secondAttribute="leadingMargin" constant="-16" id="4UO-g2-AsL"/>
-                            <constraint firstItem="iNj-zE-W7H" firstAttribute="top" secondItem="7os-A8-Njc" secondAttribute="topMargin" id="BQk-fb-AGI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="iNj-zE-W7H" secondAttribute="trailing" constant="-16" id="U6N-fJ-pty"/>
-                            <constraint firstItem="4zZ-F4-Oq3" firstAttribute="top" secondItem="iNj-zE-W7H" secondAttribute="bottom" id="g4v-RS-EG2"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="aboutWebView" destination="iNj-zE-W7H" id="4Ch-hh-LsW"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lfl-NY-Vdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1968" y="1128"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ehl-5I-8wB">

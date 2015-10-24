@@ -12,6 +12,7 @@ import MessageUI
 import SwiftyDrop
 import CoreLocation
 import Crashlytics
+import SafariServices
 
 enum Sections: Int {
 	case cityOptions = 0
@@ -259,7 +260,13 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 				performSegueWithIdentifier("showPrognosisView", sender: self)
 			case 1:
 				answersParams = ["section": "otherOptions", "row": "showAboutView"]
-				performSegueWithIdentifier("showAboutView", sender: self)
+//				performSegueWithIdentifier("showAboutView", sender: self)
+				if #available(iOS 9.0, *) {
+				    let safariVC = SFSafariViewController(URL: NSURL(string: "http://parkendd.kilian.io/about.html")!)
+					presentViewController(safariVC, animated: true, completion: nil)
+				} else {
+					UIApplication.sharedApplication().openURL(NSURL(string: "http://parkendd.kilian.io/about.html")!)
+				}
 			case 2:
 				answersParams = ["section": "otherOptions", "row": "presentTweetComposer"]
 				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
