@@ -103,7 +103,7 @@ class ServerController {
 	/**
 	Get forecast data for a specified parkinglot and date as CSV data
 
-	- parameter lotID:      id of a parkinlgot
+	- parameter lotID:      id of a parkinglot
 	- parameter fromDate:   date object when the data should start
 	- parameter toDate:     date object when the data should end
 	- parameter completion: handler
