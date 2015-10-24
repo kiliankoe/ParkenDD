@@ -105,6 +105,18 @@ struct Parkinglot: Mappable {
 		return userLocation.distanceFromLocation(lotLocation)
 	}
 	
+	func getFree() -> Int {
+		if let state = self.state {
+			switch state {
+			case .closed:
+				return 0
+			default:
+				break
+			}
+		}
+		return self.free
+	}
+	
 	init?(_ map: Map) {
 		free  = map["free"].valueOrFail()
 		id    = map["id"].valueOrFail()

@@ -161,7 +161,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 					if dateDifference.minute >= 60 {
 						attrs = [NSForegroundColorAttributeName: UIColor.redColor()]
 						Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
-						NSLog("Data seems to be outdated.")
+						NSLog("Data in \(selectedCity) seems to be outdated.")
 					}
 					
 					let dateFormatter = NSDateFormatter()
@@ -234,7 +234,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			})
 		case Sorting.free:
 			parkinglots.sortInPlace({
-				$0.free > $1.free
+				$0.getFree() > $1.getFree()
 			})
 		case Sorting.euclid:
 			self.parkinglots.sortInPlace(sortEuclidian)
@@ -251,8 +251,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			}
 			// TODO: Also check if state is either open or unknown, others should not be sorted
 			if lot1.total != 0 && lot2.total != 0 {
-				let occ1 = Double(lot1.total - lot1.free) / Double(lot1.total)
-				let occ2 = Double(lot2.total - lot2.free) / Double(lot2.total)
+				let occ1 = Double(lot1.total - lot1.getFree()) / Double(lot1.total)
+				let occ2 = Double(lot2.total - lot2.getFree()) / Double(lot2.total)
 				
 				// This factor gives a penalty for very crowded parking spaces
 				// so they are ranked down the list, even if they are very close
