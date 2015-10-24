@@ -128,7 +128,6 @@ class ServerController {
 			guard response.statusCode == 200 else { completion(nil, .Server); return }
 			guard let data = result.value else { completion(nil, .Server); return }
 			
-			print(data)
 			let forecastData = Mapper<ForecastData>().map(data)
 			
 			completion(forecastData, nil)
