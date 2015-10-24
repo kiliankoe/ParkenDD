@@ -26,6 +26,7 @@
 		39AEA1811BBADCCD0029642F /* durchDresden.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17F1BBADCCD0029642F /* durchDresden.gpx */; };
 		39D096251BDC304F009544E8 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D096231BDC304F009544E8 /* ForecastViewController.swift */; };
 		39D096261BDC304F009544E8 /* ForecastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39D096241BDC304F009544E8 /* ForecastViewController.xib */; };
+		39D0962A1BDC4B0F009544E8 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D096291BDC4B0F009544E8 /* Drop.swift */; };
 		39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD401B1B686500900967 /* Fabric.framework */; };
@@ -89,6 +90,7 @@
 		39BE3FCC1AD3402B009A8B74 /* ParkenDD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ParkenDD-Bridging-Header.h"; path = "../ParkenDD-Bridging-Header.h"; sourceTree = "<group>"; };
 		39D096231BDC304F009544E8 /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForecastViewController.swift; path = ParkenDD/ForecastView/ForecastViewController.swift; sourceTree = SOURCE_ROOT; };
 		39D096241BDC304F009544E8 /* ForecastViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ForecastViewController.xib; path = ParkenDD/ForecastView/ForecastViewController.xib; sourceTree = SOURCE_ROOT; };
+		39D096291BDC4B0F009544E8 /* Drop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
 		39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySelectionTVC.swift; sourceTree = "<group>"; };
 		39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		39F4BD401B1B686500900967 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */,
+				39D096291BDC4B0F009544E8 /* Drop.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */,
 				394209B41AADB17600E47539 /* MapViewController.swift in Sources */,
 				3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */,
+				39D0962A1BDC4B0F009544E8 /* Drop.swift in Sources */,
 				39F5CBAE1AC9F9FE00A91879 /* PrognosisViewController.swift in Sources */,
 				3986E8DA1BD6541500B86673 /* ParkinglotAnnotation.swift in Sources */,
 				39D096251BDC304F009544E8 /* ForecastViewController.swift in Sources */,

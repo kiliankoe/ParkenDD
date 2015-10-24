@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import SwiftyDrop
 import SwiftyTimer
 import Crashlytics
 
@@ -160,7 +159,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 					
 					if dateDifference.minute >= 60 {
 						attrs = [NSForegroundColorAttributeName: UIColor.redColor()]
-						Drop.down(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
+						drop(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
 						NSLog("Data in \(selectedCity) seems to be outdated.")
 					}
 					
@@ -187,9 +186,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	func handleUpdateError(err: ServerController.SCError) {
 		switch err {
 		case .Server, .IncompatibleAPI:
-			Drop.down(L10n.SERVERERROR.string, state: .Error)
+			drop(L10n.SERVERERROR.string, state: .Error)
 		case .Request:
-			Drop.down(L10n.REQUESTERROR.string, state: .Error)
+			drop(L10n.REQUESTERROR.string, state: .Error)
 		case .NotFound:
 			NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCity)
 			NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCity)
@@ -197,7 +196,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			updateData()
 			updateTitle(withCity: "Dresden")
 		case .Unknown:
-			Drop.down(L10n.UNKNOWNERROR.string, state: .Error)
+			drop(L10n.UNKNOWNERROR.string, state: .Error)
 		}
 	}
 	
@@ -376,7 +375,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 		if let _ = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglot?.coords {
 			performSegueWithIdentifier("showParkinglotMap", sender: self)
 		} else {
-			Drop.down(L10n.NOCOORDSWARNING.string, blur: .Dark)
+			drop(L10n.NOCOORDSWARNING.string, blur: .Dark)
 		}
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
