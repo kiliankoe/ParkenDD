@@ -37,7 +37,6 @@
 		39F4CFEB1A6BBC0200ACFECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */; };
 		39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFEC1A6BBC0200ACFECF /* LaunchScreen.xib */; };
 		39F4CFFA1A6BBC0200ACFECF /* ParkenDDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F4CFF91A6BBC0200ACFECF /* ParkenDDTests.swift */; };
-		39F5CBAE1AC9F9FE00A91879 /* PrognosisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */; };
 		D1EABDD7F03AE773BB7B1EBE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53AC0AE0930F88C064CC653 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,7 +104,6 @@
 		39F4CFF31A6BBC0200ACFECF /* ParkenDDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParkenDDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F4CFF81A6BBC0200ACFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39F4CFF91A6BBC0200ACFECF /* ParkenDDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkenDDTests.swift; sourceTree = "<group>"; };
-		39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrognosisViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
 		43FD77E864836590DC337765 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		651121194DE5DC2C75F9DC65 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D53AC0AE0930F88C064CC653 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,7 +260,6 @@
 		39F5CBAF1AC9FA0300A91879 /* ForecastView */ = {
 			isa = PBXGroup;
 			children = (
-				39F5CBAD1AC9F9FE00A91879 /* PrognosisViewController.swift */,
 				39D096231BDC304F009544E8 /* ForecastViewController.swift */,
 				39D096241BDC304F009544E8 /* ForecastViewController.xib */,
 			);
@@ -546,7 +543,6 @@
 				394209B41AADB17600E47539 /* MapViewController.swift in Sources */,
 				3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */,
 				39D0962A1BDC4B0F009544E8 /* Drop.swift in Sources */,
-				39F5CBAE1AC9F9FE00A91879 /* PrognosisViewController.swift in Sources */,
 				3986E8DA1BD6541500B86673 /* ParkinglotAnnotation.swift in Sources */,
 				39D096251BDC304F009544E8 /* ForecastViewController.swift in Sources */,
 				39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */,
