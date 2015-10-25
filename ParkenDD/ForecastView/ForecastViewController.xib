@@ -88,6 +88,9 @@
                     <date key="maximumDate" timeIntervalSinceReferenceDate="473292000">
                         <!--2015-12-31 22:00:00 +0000-->
                     </date>
+                    <connections>
+                        <action selector="datePickerValueDidChange:" destination="-1" eventType="valueChanged" id="rst-F9-Mx0"/>
+                    </connections>
                 </datePicker>
             </subviews>
             <animations/>

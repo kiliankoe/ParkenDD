@@ -49,5 +49,11 @@ class ForecastViewController: UIViewController {
 		presentViewController(alertController, animated: true, completion: nil)
 	}
 	
+	@IBAction func datePickerValueDidChange(sender: UIDatePicker) {
+		guard let lot = lot else { return }
+		ServerController.forecastWeek(lot.id, fromDate: sender.date) { (forecastData, error) -> Void in
+			
+		}
+	}
 
 }
