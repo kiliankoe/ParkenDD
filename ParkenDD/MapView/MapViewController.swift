@@ -11,7 +11,7 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
 
-	@IBOutlet weak var mapView: MKMapView!
+	@IBOutlet weak var mapView: MKMapView?
 
 	var detailParkinglot: Parkinglot!
 	var allParkinglots: [Parkinglot]!
@@ -19,12 +19,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		mapView.showsUserLocation = true
+		mapView?.showsUserLocation = true
 		
 		if #available(iOS 9, *) {
-			mapView.showsTraffic = true
+			mapView?.showsTraffic = true
 		}
-
+		
 		// Add annotations for all parking lots to the map
 		for singleLot in allParkinglots {
 			var subtitle = L10n.MAPSUBTITLE("\(singleLot.free)", singleLot.total).string
@@ -40,18 +40,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 			}
 			let lotAnnotation = ParkinglotAnnotation(title: singleLot.name, subtitle: subtitle, parkinglot: singleLot)
 			
-			mapView.addAnnotation(lotAnnotation)
+			mapView?.addAnnotation(lotAnnotation)
 			
 			// Display the callout if this is the previously selected annotation
 			if singleLot.name == detailParkinglot.name {
-				mapView.selectAnnotation(lotAnnotation, animated: true)
+				mapView?.selectAnnotation(lotAnnotation, animated: true)
 			}
 		}
 		
 		// Set the map's region to a 1km region around the selected lot
 		if let lat = detailParkinglot.coords?.lat, lng = detailParkinglot.coords?.lng {
 			let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: lat, longitude: lng), 1000, 1000)
-			mapView.setRegion(parkinglotRegion, animated: false)
+			mapView?.setRegion(parkinglotRegion, animated: false)
 		} else {
 			NSLog("Came to map view with a selected lot that has no coordinates. We're now showing Germany. This is probably not ideal.")
 		}
