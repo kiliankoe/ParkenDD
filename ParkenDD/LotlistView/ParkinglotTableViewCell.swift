@@ -77,6 +77,8 @@ class ParkinglotTableViewCell: UITableViewCell {
 		} else {
 			forecastIndicator?.image = nil
 		}
+		forecastIndicator?.alpha = 0.6
+		forecastIndicator?.tintColor = UIColor.whiteColor()
 		
 		// TODO: Do all kinds of things with the cell according to the state of the lot
 		if let lotState = lot.state {
