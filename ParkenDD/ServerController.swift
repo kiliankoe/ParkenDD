@@ -22,7 +22,8 @@ class ServerController {
 
 	struct SCOptions {
 		static let supportedAPIVersion = "1.0"
-		static let useStagingAPI = false
+		static let supportedForecastAPIVersion = "1.0"
+		static let useStagingAPI = true
 	}
 
 	struct URL {
@@ -47,6 +48,7 @@ class ServerController {
 			
 			let metadata = Mapper<Metadata>().map(data)
 			
+			// TODO: I have a feeling that this will die mapping the data before being able to check the version if something substantial changes...
 			guard metadata?.apiVersion == SCOptions.supportedAPIVersion else {
 				NSLog("Error: Found API Version \(metadata!.apiVersion). This version of ParkenDD can however only understand \(SCOptions.supportedAPIVersion)")
 				completion(nil, .IncompatibleAPI)
@@ -126,6 +128,8 @@ class ServerController {
 			guard let data = result.value else { completion(nil, .Server); return }
 			
 			let forecastData = Mapper<ForecastData>().map(data)
+			
+			guard let _ = forecastData?.data else { completion(nil, .Server); return }
 			
 			completion(forecastData, nil)
 		}
