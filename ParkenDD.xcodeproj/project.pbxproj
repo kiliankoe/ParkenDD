@@ -28,6 +28,7 @@
 		39D096261BDC304F009544E8 /* ForecastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39D096241BDC304F009544E8 /* ForecastViewController.xib */; };
 		39D0962A1BDC4B0F009544E8 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D096291BDC4B0F009544E8 /* Drop.swift */; };
 		39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */; };
+		39DDA4071BDE676500EF5E18 /* NSDate+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD401B1B686500900967 /* Fabric.framework */; };
 		39F4BD431B1B686500900967 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD411B1B686500900967 /* Crashlytics.framework */; };
@@ -91,6 +92,7 @@
 		39D096241BDC304F009544E8 /* ForecastViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ForecastViewController.xib; path = ParkenDD/ForecastView/ForecastViewController.xib; sourceTree = SOURCE_ROOT; };
 		39D096291BDC4B0F009544E8 /* Drop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
 		39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySelectionTVC.swift; sourceTree = "<group>"; };
+		39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Comparable.swift"; sourceTree = "<group>"; };
 		39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		39F4BD401B1B686500900967 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		39F4BD411B1B686500900967 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */,
 				39D096291BDC4B0F009544E8 /* Drop.swift */,
+				39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 			files = (
 				392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */,
 				396642201BB203DC00DF2E99 /* Loc.swift in Sources */,
+				39DDA4071BDE676500EF5E18 /* NSDate+Comparable.swift in Sources */,
 				393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */,
 				395A15FA1BC2BEB3000510E3 /* DataTypes.swift in Sources */,
 				39F4CFE61A6BBC0200ACFECF /* LotlistViewController.swift in Sources */,

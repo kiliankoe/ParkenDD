@@ -188,7 +188,7 @@ struct ParkinglotData: Mappable {
 *  ForecastData - Forecast data and version of the forecast API format
 */
 struct ForecastData: Mappable {
-	var data: [NSDate: Int]?
+	var data: [String: String]?
 	var version: String?
 	
 	init?(_ map: Map) {
@@ -196,7 +196,7 @@ struct ForecastData: Mappable {
 	}
 	
 	mutating func mapping(map: Map) {
-		data    <- map["data"] // TODO: This is probably going to need the same UTC transform as above
+		data    <- map["data"]
 		version <- map["version"]
 	}
 }
