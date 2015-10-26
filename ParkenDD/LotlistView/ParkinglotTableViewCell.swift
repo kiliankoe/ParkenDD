@@ -15,6 +15,7 @@ class ParkinglotTableViewCell: UITableViewCell {
 	@IBOutlet weak var parkinglotAddressLabel: UILabel?
 	@IBOutlet weak var parkinglotLoadLabel: UILabel?
 	@IBOutlet weak var parkinglotTendencyLabel: UILabel?
+	@IBOutlet weak var forecastIndicator: UIImageView?
 	@IBOutlet weak var favTriangle: UIImageView?
 
 	var parkinglot: Parkinglot?
@@ -69,6 +70,13 @@ class ParkinglotTableViewCell: UITableViewCell {
 			percentage = 0.99
 		}
 		backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: lot.free)
+		
+		// Show the forecast indicator if that data is available
+		if let forecastAvailable = lot.forecast where forecastAvailable {
+			forecastIndicator?.image = UIImage(named: "graphArrow")
+		} else {
+			forecastIndicator?.image = nil
+		}
 		
 		// TODO: Do all kinds of things with the cell according to the state of the lot
 		if let lotState = lot.state {

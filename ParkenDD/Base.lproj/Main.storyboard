@@ -73,6 +73,15 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graphArrow" translatesAutoresizingMaskIntoConstraints="NO" id="szk-XD-2Z1">
+                                            <rect key="frame" x="525" y="13" width="19" height="12"/>
+                                            <animations/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="19" id="Lc8-5W-P9P"/>
+                                                <constraint firstAttribute="height" constant="12" id="wOZ-Dl-KT1"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <animations/>
                                     <constraints>
@@ -82,12 +91,15 @@
                                         <constraint firstItem="aUh-dH-utI" firstAttribute="leading" secondItem="aeK-tz-Dv3" secondAttribute="leadingMargin" constant="12" id="oML-Xl-TZx"/>
                                         <constraint firstAttribute="topMargin" secondItem="gAX-Mc-DZC" secondAttribute="top" id="tWQ-73-5Rl"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="63L-uQ-iqV" secondAttribute="bottom" constant="0.5" id="v68-sM-v0w"/>
+                                        <constraint firstItem="szk-XD-2Z1" firstAttribute="leading" secondItem="WBR-31-iII" secondAttribute="trailing" constant="-59" id="vLH-Qj-2HF"/>
+                                        <constraint firstItem="szk-XD-2Z1" firstAttribute="top" secondItem="aeK-tz-Dv3" secondAttribute="topMargin" constant="5" id="wpC-pa-3Ya"/>
                                         <constraint firstAttribute="topMargin" secondItem="WBR-31-iII" secondAttribute="top" id="zar-J6-mRH"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="WBR-31-iII" secondAttribute="trailing" constant="8" id="zrX-Bh-8Ne"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
+                                    <outlet property="forecastIndicator" destination="szk-XD-2Z1" id="5C8-XS-idG"/>
                                     <outlet property="parkinglotAddressLabel" destination="aUh-dH-utI" id="97i-IK-5OU"/>
                                     <outlet property="parkinglotLoadLabel" destination="WBR-31-iII" id="CCM-Tr-lcK"/>
                                     <outlet property="parkinglotNameLabel" destination="gAX-Mc-DZC" id="pVt-6k-ppC"/>
@@ -226,6 +238,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="graphArrow" width="32" height="20"/>
         <image name="settingsButton" width="22" height="22"/>
     </resources>
 </document>
