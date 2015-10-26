@@ -436,7 +436,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftgen-l10n $SOURCEROOT/Supporting\\ Files/Base.lproj/Localizable.strings > $SOURCEROOT/Supporting\\ Files/Loc.swift";
+			shellScript = "swiftgen strings $SOURCEROOT/Supporting\\ Files/Base.lproj/Localizable.strings > $SOURCEROOT/Supporting\\ Files/Loc.swift";
 		};
 		39D26D541BBF44B00094A496 /* Set CFBundleVersion */ = {
 			isa = PBXShellScriptBuildPhase;
