@@ -37,9 +37,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     }
 
 	func dismiss() {
-		dispatch_async(dispatch_get_main_queue()) { () -> Void in
-			self.dismissViewControllerAnimated(true, completion: nil)
-		}
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 	override func viewWillAppear(animated: Bool) {

@@ -49,12 +49,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 	}
 
 	override func viewWillAppear(animated: Bool) {
-		sortLots()
 		tableView.reloadData()
 
 		// Start getting location updates if the user wants lots sorted by distance
-		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
-		if sortingType == Sorting.distance || sortingType == Sorting.euclid {
+		if let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType) where sortingType == Sorting.distance || sortingType == Sorting.euclid {
 			if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
@@ -70,11 +68,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			locationManager.stopUpdatingLocation()
 		}
 		
+		sortLots()
+		
 		refreshControl?.endRefreshing()
-	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
 	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
