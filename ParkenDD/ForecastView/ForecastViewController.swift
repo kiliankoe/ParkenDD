@@ -29,8 +29,6 @@ class ForecastViewController: UIViewController {
 	}()
 	
 	@IBOutlet weak var chartView: LineChartView?
-	@IBOutlet weak var percentageLabel: UILabel?
-	@IBOutlet weak var progressView: UIProgressView?
 	@IBOutlet weak var availableLabel: UILabel?
 	@IBOutlet weak var datePicker: UIDatePicker?
 	
@@ -47,35 +45,29 @@ class ForecastViewController: UIViewController {
 		
 		Answers.logCustomEventWithName("View Forecast", customAttributes: ["selected lot": lot.id])
 		
-//		titleLabel?.text = L10n.FORECASTTITLE(lot.name).string
 		navigationItem.title = lot.name
-		percentageLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
 		availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot.total, load: lot.loadPercentage)).string
-		progressView?.progress = Float(lot.loadPercentage) / 100
 		datePicker?.date = NSDate()
 		
 		chartView?.descriptionText = L10n.LOADINPERCENT.string
 		
 		chartView?.backgroundColor = UIColor.whiteColor()
-		chartView?.xAxis.labelPosition = .Bottom
 		chartView?.gridBackgroundColor = UIColor.whiteColor()
-		chartView?.highlightPerDragEnabled = false
-		chartView?.highlightEnabled = false
-		chartView?.rightAxis.enabled = false
+		chartView?.userInteractionEnabled = false
 		chartView?.drawGridBackgroundEnabled = false
 		chartView?.legend.enabled = false
+		chartView?.autoScaleMinMaxEnabled = false
 		chartView?.animate(xAxisDuration: 1.0)
 		
+		chartView?.xAxis.labelPosition = .Bottom
 		chartView?.xAxis.drawGridLinesEnabled = false
 		chartView?.xAxis.drawAxisLineEnabled = false
-//		chartView?.xAxis.drawLabelsEnabled = false
 		
-//		chartView?.leftAxis.drawGridLinesEnabled = false
+		chartView?.rightAxis.enabled = false
+		
 		chartView?.leftAxis.gridColor = UIColor(rgba: "#E4E4E4")
 		chartView?.leftAxis.drawAxisLineEnabled = false
 		chartView?.leftAxis.drawLabelsEnabled = false
-		
-		chartView?.autoScaleMinMaxEnabled = false
 		chartView?.leftAxis.customAxisMax = 100.0
 		chartView?.leftAxis.customAxisMin = 0.0
 		
@@ -106,7 +98,6 @@ class ForecastViewController: UIViewController {
 				chartView?.xAxis.addLimitLine(currentLine!)
 			}
 			currentLine?.limit = Double(limit)
-//			currentLine?.label = labelDateFormatter.stringFromDate(sender.date)
 			currentLine?.label = "\(data[dateString]!)%"
 		}
 		
@@ -146,8 +137,6 @@ class ForecastViewController: UIViewController {
 	
 	func updateLabels(load: String?) {
 		if let load = load {
-			percentageLabel?.text = "\(load)% \(L10n.OCCUPIED.string)"
-			progressView?.progress = Float(load)! / 100
 			availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot!.total, load: Int(load)!)).string
 		}
 	}
