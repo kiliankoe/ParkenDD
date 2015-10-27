@@ -218,7 +218,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
                 if showExperimentalCities {
                     NSUserDefaults.standardUserDefaults().setBool(false, forKey: Defaults.showExperimentalCities)
                     tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
-					Answers.logCustomEventWithName("Settings", customAttributes: ["experimental cities": false])
+					Answers.logCustomEventWithName("Experimental Cities", customAttributes: ["experimental cities": "disable"])
                     refreshLotlist()
                 } else {
                     let alert = UIAlertController(title: L10n.NOTETITLE.string, message: L10n.SHOWEXPERIMENTALCITIESALERT.string, preferredStyle: UIAlertControllerStyle.Alert)
@@ -230,7 +230,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
                         tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
                         refreshLotlist()
 						
-						Answers.logCustomEventWithName("Settings", customAttributes: ["experimental cities": true])
+						Answers.logCustomEventWithName("Experimental Cities", customAttributes: ["experimental cities": "enable"])
                     }))
                     presentViewController(alert, animated: true, completion: nil)
                 }
@@ -242,7 +242,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case .otherOptions:
 			switch indexPath.row {
 			case 0:
-				Answers.logCustomEventWithName("Settings", customAttributes: ["show about view": true])
+				Answers.logCustomEventWithName("About View", customAttributes: ["show about view": "show"])
 				if #available(iOS 9.0, *) {
 				    let safariVC = SFSafariViewController(URL: NSURL(string: "http://parkendd.kilian.io/about.html")!, entersReaderIfAvailable: true)
 					presentViewController(safariVC, animated: true, completion: nil)
