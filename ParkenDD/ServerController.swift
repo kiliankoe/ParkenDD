@@ -23,7 +23,7 @@ class ServerController {
 	struct SCOptions {
 		static let supportedAPIVersion = "1.0"
 		static let supportedForecastAPIVersion = "1.0"
-		static let useStagingAPI = true
+		static let useStagingAPI = false
 	}
 
 	struct URL {
