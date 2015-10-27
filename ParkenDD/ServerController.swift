@@ -148,4 +148,12 @@ class ServerController {
 			completion(forecastData, error)
 		}
 	}
+	
+	static func forecastDay(lotID: String, fromDate: NSDate, completion: (ForecastData?, SCError?) -> Void) {
+		let startOfDay = NSCalendar.currentCalendar().startOfDayForDate(fromDate)
+		let endOfDay = startOfDay.dateByAddingTimeInterval(3600*24)
+		sendForecastRequest(lotID, fromDate: startOfDay, toDate: endOfDay) { (forecastData, error) -> Void in
+			completion(forecastData, error)
+		}
+	}
 }

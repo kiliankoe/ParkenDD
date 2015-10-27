@@ -24,7 +24,7 @@ class ForecastViewController: UIViewController {
 	
 	let labelDateFormatter = { () -> NSDateFormatter in
 		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "dd.MM. HH:mm"
+		dateFormatter.dateFormat = "HH:mm"
 		return dateFormatter
 	}()
 	
@@ -49,7 +49,7 @@ class ForecastViewController: UIViewController {
 		
 		titleLabel?.text = L10n.FORECASTTITLE(lot.name).string
 		percentageLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
-		availableLabel?.text = ""
+		availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot.total, load: lot.loadPercentage)).string
 		progressView?.progress = Float(lot.loadPercentage) / 100
 		datePicker?.date = NSDate()
 		
@@ -80,16 +80,19 @@ class ForecastViewController: UIViewController {
 		if let load = data[dateString] {
 			percentageLabel?.text = "\(load)% \(L10n.OCCUPIED.string)"
 			progressView?.progress = Float(load)! / 100
+			availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot!.total, load: Int(load)!)).string
 		}
 		
-		if data[dateString] == nil {
+		// Only update data from API if the selected date is after the currently selected day
+		let sortedDates = Array(data.keys).sort(<)
+		if dateFormatter.stringFromDate(sender.date) > sortedDates.last! || dateFormatter.stringFromDate(sender.date) < sortedDates.first! {
 			updateData(fromDate: sender.date)
 		}
 	}
 	
 	func updateData(fromDate date: NSDate = NSDate()) {
 		guard let lot = lot else { return }
-		ServerController.forecastWeek(lot.id, fromDate: date) { (forecastData, error) -> Void in
+		ServerController.forecastDay(lot.id, fromDate: date) { (forecastData, error) -> Void in
 			if let _ = error {
 				print(error)
 				let alert = UIAlertController(title: L10n.UNKNOWNERRORTITLE.string, message: L10n.UNKNOWNERROR.string, preferredStyle: .Alert)
@@ -137,5 +140,9 @@ class ForecastViewController: UIViewController {
 		let newDate = dateString.substringToIndex(dateString.endIndex.predecessor().predecessor())
 		return "\(newDate)00"
 	}
-
+	
+	func genAvailability(total: Int, load: Int) -> String {
+		let available = total - Int(Double(total) * (Double(load) / 100))
+		return "\(available)/\(total)"
+	}
 }
