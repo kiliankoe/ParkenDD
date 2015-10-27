@@ -244,7 +244,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			case 0:
 				Answers.logCustomEventWithName("Settings", customAttributes: ["show about view": true])
 				if #available(iOS 9.0, *) {
-				    let safariVC = SFSafariViewController(URL: NSURL(string: "http://parkendd.kilian.io/about.html")!)
+				    let safariVC = SFSafariViewController(URL: NSURL(string: "http://parkendd.kilian.io/about.html")!, entersReaderIfAvailable: true)
 					presentViewController(safariVC, animated: true, completion: nil)
 				} else {
 					UIApplication.sharedApplication().openURL(NSURL(string: "http://parkendd.kilian.io/about.html")!)
