@@ -57,7 +57,7 @@ class ForecastViewController: UIViewController {
 		chartView?.drawGridBackgroundEnabled = false
 		chartView?.legend.enabled = false
 		chartView?.autoScaleMinMaxEnabled = false
-		chartView?.animate(xAxisDuration: 1.0)
+		chartView?.animate(xAxisDuration: 0.5)
 		
 		chartView?.xAxis.labelPosition = .Bottom
 		chartView?.xAxis.drawGridLinesEnabled = false
@@ -128,6 +128,7 @@ class ForecastViewController: UIViewController {
 			
 			self.data = forecastData?.data
 			self.drawGraph()
+			self.datePickerValueDidChange(self.datePicker!) // Am I really doing this? Oh god... See #132
 			
 			if let selectedTime = self.datePicker?.date {
 				self.updateLabels(self.data![self.clearSeconds(fromDate: selectedTime)])
@@ -180,8 +181,8 @@ class ForecastViewController: UIViewController {
 	func clearSeconds(fromDate date: NSDate) -> String {
 		// This is just ridiculous, please don't look at it :(
 		let dateString = dateFormatter.stringFromDate(date)
-		let newDate = dateString.substringToIndex(dateString.endIndex.predecessor().predecessor())
-		return "\(newDate)00"
+		let newDate = dateString.substringToIndex(dateString.endIndex.predecessor().predecessor().predecessor().predecessor())
+		return "\(newDate)0:00"
 	}
 	
 	/**
