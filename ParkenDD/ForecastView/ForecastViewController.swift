@@ -35,6 +35,7 @@ class ForecastViewController: UIViewController {
 	@IBOutlet weak var availableLabel: UILabel?
 	@IBOutlet weak var datePicker: UIDatePicker?
 	
+	var currentLine: ChartLimitLine?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +78,7 @@ class ForecastViewController: UIViewController {
 	@IBAction func datePickerValueDidChange(sender: UIDatePicker) {
 		guard let data = data else { return }
 		
-		let dateString = removeSeconds(fromDate: sender.date)
+		let dateString = clearSeconds(fromDate: sender.date)
 		
 		if let load = data[dateString] {
 			percentageLabel?.text = "\(load)% \(L10n.OCCUPIED.string)"
@@ -85,10 +86,23 @@ class ForecastViewController: UIViewController {
 			availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot!.total, load: Int(load)!)).string
 		}
 		
-		// Only update data from API if the selected date is after the currently selected day
 		let sortedDates = Array(data.keys).sort(<)
+		
+		if let limit = sortedDates.indexOf(dateString) {
+			if currentLine == nil {
+				chartView?.xAxis.removeAllLimitLines()
+				currentLine = ChartLimitLine()
+				chartView?.xAxis.addLimitLine(currentLine!)
+			}
+			currentLine?.limit = Double(limit)
+			currentLine?.label = labelDateFormatter.stringFromDate(sender.date)
+		}
+		
+		// Only update data from API if the selected date is after or before the currently selected day
 		if dateFormatter.stringFromDate(sender.date) > sortedDates.last! || dateFormatter.stringFromDate(sender.date) < sortedDates.first! {
 			updateData(fromDate: sender.date)
+		} else {
+			drawGraph()
 		}
 	}
 	
@@ -136,13 +150,29 @@ class ForecastViewController: UIViewController {
 		chartView?.data = lineChartData
 	}
 	
-	func removeSeconds(fromDate date: NSDate) -> String {
+	/**
+	Working around the idiotic fact, that a UIDatePicker returns a random amount of seconds in its date
+	without giving the user a possiblity of changing these anyways. Why?!
+	
+	- parameter date: a date
+	
+	- returns: a string representation of the date with cleared seconds
+	*/
+	func clearSeconds(fromDate date: NSDate) -> String {
 		// This is just ridiculous, please don't look at it :(
 		let dateString = dateFormatter.stringFromDate(date)
 		let newDate = dateString.substringToIndex(dateString.endIndex.predecessor().predecessor())
 		return "\(newDate)00"
 	}
 	
+	/**
+	Generate an availablity string for a parking lot.
+	
+	- parameter total: total available spaces
+	- parameter load:  load as int percentage between 0 and 100
+	
+	- returns: e.g. "400/1000"
+	*/
 	func genAvailability(total: Int, load: Int) -> String {
 		let available = total - Int(Double(total) * (Double(load) / 100))
 		return "\(available)/\(total)"
