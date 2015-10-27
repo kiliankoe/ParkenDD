@@ -58,6 +58,8 @@ class ForecastViewController: UIViewController {
 		chartView?.backgroundColor = UIColor.whiteColor()
 		chartView?.xAxis.labelPosition = .Bottom
 		chartView?.gridBackgroundColor = UIColor.whiteColor()
+		chartView?.highlightPerDragEnabled = false
+		chartView?.highlightEnabled = false
 		chartView?.rightAxis.enabled = false
 		chartView?.drawGridBackgroundEnabled = false
 		chartView?.legend.enabled = false
