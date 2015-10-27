@@ -191,7 +191,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			NSUserDefaults.standardUserDefaults().synchronize()
 			updateData()
 			updateTitle(withCity: "Dresden")
-		case .Unknown:
+		default:
 			drop(L10n.UNKNOWNERROR.string, state: .Error)
 		}
 	}

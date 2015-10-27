@@ -17,6 +17,7 @@ class ServerController {
 		case Request
 		case IncompatibleAPI
 		case NotFound
+		case NoData
 		case Unknown
 	}
 
@@ -129,7 +130,12 @@ class ServerController {
 			
 			let forecastData = Mapper<ForecastData>().map(data)
 			
-			guard let _ = forecastData?.data else { completion(nil, .Server); return }
+			guard let fData = forecastData?.data else { completion(nil, .Server); return }
+			
+			if fData.isEmpty {
+				completion(nil, .NoData)
+				return
+			}
 			
 			completion(forecastData, nil)
 		}

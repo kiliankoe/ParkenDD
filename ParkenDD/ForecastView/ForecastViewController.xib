@@ -82,12 +82,6 @@
                     <date key="date" timeIntervalSinceReferenceDate="452124000.98418701">
                         <!--2015-04-30 22:00:00 +0000-->
                     </date>
-                    <date key="minimumDate" timeIntervalSinceReferenceDate="452124000">
-                        <!--2015-04-30 22:00:00 +0000-->
-                    </date>
-                    <date key="maximumDate" timeIntervalSinceReferenceDate="473292000">
-                        <!--2015-12-31 22:00:00 +0000-->
-                    </date>
                     <connections>
                         <action selector="datePickerValueDidChange:" destination="-1" eventType="valueChanged" id="rst-F9-Mx0"/>
                     </connections>

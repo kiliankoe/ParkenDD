@@ -54,6 +54,8 @@ enum L10n {
   case ACTIVATE
   case SHOWEXPERIMENTALCITIESSETTING
   case FORECASTTITLE(String)
+  case ENDOFDATATITLE
+  case ENDOFDATA
   case SORTINGTYPEEUKLID
   case FORECAST
   case LOADINPERCENT
@@ -166,6 +168,10 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("SHOWEXPERIMENTALCITIESSETTING")
       case .FORECASTTITLE(let p0):
         return L10n.tr("FORECAST_TITLE", p0)
+      case .ENDOFDATATITLE:
+        return L10n.tr("END_OF_DATA_TITLE")
+      case .ENDOFDATA:
+        return L10n.tr("END_OF_DATA")
       case .SORTINGTYPEEUKLID:
         return L10n.tr("SORTINGTYPE_EUKLID")
       case .FORECAST:

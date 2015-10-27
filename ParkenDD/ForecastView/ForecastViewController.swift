@@ -105,11 +105,17 @@ class ForecastViewController: UIViewController {
 	func updateData(fromDate date: NSDate = NSDate()) {
 		guard let lot = lot else { return }
 		ServerController.forecastDay(lot.id, fromDate: date) { [unowned self] (forecastData, error) -> Void in
-			if let _ = error {
-				print(error)
-				let alert = UIAlertController(title: L10n.UNKNOWNERRORTITLE.string, message: L10n.UNKNOWNERROR.string, preferredStyle: .Alert)
-				alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: .Cancel, handler: nil))
-				self.presentViewController(alert, animated: true, completion: nil)
+			if let error = error {
+				switch error {
+				case .NoData:
+					let alert = UIAlertController(title: L10n.ENDOFDATATITLE.string, message: L10n.ENDOFDATA.string, preferredStyle: .Alert)
+					alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: .Cancel, handler: nil))
+					self.presentViewController(alert, animated: true, completion: nil)
+				default:
+					let alert = UIAlertController(title: L10n.UNKNOWNERRORTITLE.string, message: L10n.UNKNOWNERROR.string, preferredStyle: .Alert)
+					alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: .Cancel, handler: nil))
+					self.presentViewController(alert, animated: true, completion: nil)
+				}
 				return
 			}
 			
