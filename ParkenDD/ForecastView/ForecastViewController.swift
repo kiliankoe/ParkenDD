@@ -28,7 +28,6 @@ class ForecastViewController: UIViewController {
 		return dateFormatter
 	}()
 	
-	@IBOutlet weak var titleLabel: UILabel?
 	@IBOutlet weak var chartView: LineChartView?
 	@IBOutlet weak var percentageLabel: UILabel?
 	@IBOutlet weak var progressView: UIProgressView?
@@ -48,7 +47,8 @@ class ForecastViewController: UIViewController {
 		
 		Answers.logCustomEventWithName("View Forecast", customAttributes: ["selected lot": lot.id])
 		
-		titleLabel?.text = L10n.FORECASTTITLE(lot.name).string
+//		titleLabel?.text = L10n.FORECASTTITLE(lot.name).string
+		navigationItem.title = lot.name
 		percentageLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
 		availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot.total, load: lot.loadPercentage)).string
 		progressView?.progress = Float(lot.loadPercentage) / 100
@@ -65,6 +65,21 @@ class ForecastViewController: UIViewController {
 		chartView?.drawGridBackgroundEnabled = false
 		chartView?.legend.enabled = false
 		chartView?.animate(xAxisDuration: 1.0)
+		
+		chartView?.xAxis.drawGridLinesEnabled = false
+		chartView?.xAxis.drawAxisLineEnabled = false
+//		chartView?.xAxis.drawLabelsEnabled = false
+		
+//		chartView?.leftAxis.drawGridLinesEnabled = false
+		chartView?.leftAxis.gridColor = UIColor(rgba: "#E4E4E4")
+		chartView?.leftAxis.drawAxisLineEnabled = false
+		chartView?.leftAxis.drawLabelsEnabled = false
+		
+		chartView?.autoScaleMinMaxEnabled = false
+		chartView?.leftAxis.customAxisMax = 100.0
+		chartView?.leftAxis.customAxisMin = 0.0
+		
+		chartView?.backgroundColor = UIColor(rgba: "#F6F6F6")
 		
 		updateData()
     }
@@ -91,7 +106,8 @@ class ForecastViewController: UIViewController {
 				chartView?.xAxis.addLimitLine(currentLine!)
 			}
 			currentLine?.limit = Double(limit)
-			currentLine?.label = labelDateFormatter.stringFromDate(sender.date)
+//			currentLine?.label = labelDateFormatter.stringFromDate(sender.date)
+			currentLine?.label = "\(data[dateString]!)%"
 		}
 		
 		// Only update data from API if the selected date is after or before the currently selected day

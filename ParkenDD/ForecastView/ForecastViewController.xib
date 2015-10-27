@@ -12,7 +12,6 @@
                 <outlet property="datePicker" destination="vUY-uB-ZQ6" id="kxf-FU-jpV"/>
                 <outlet property="percentageLabel" destination="67I-FM-mJ9" id="Plw-w7-VI9"/>
                 <outlet property="progressView" destination="eOv-jP-Bjz" id="Ds2-DC-MYo"/>
-                <outlet property="titleLabel" destination="2En-CG-tAf" id="Q9r-LQ-wjr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,16 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast for Centrum Galerie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2En-CG-tAf">
-                    <rect key="frame" x="16" y="8" width="568" height="37"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="37" id="GgW-9p-mQ8"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15% occupied" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67I-FM-mJ9">
                     <rect key="frame" x="16" y="370" width="568" height="21"/>
                     <animations/>
@@ -52,9 +41,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gum-8l-jm7" customClass="LineChartView" customModule="Charts">
-                    <rect key="frame" x="16" y="46" width="568" height="316"/>
+                    <rect key="frame" x="-10" y="0.0" width="620" height="362"/>
                     <animations/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="0.83170813322067261" green="0.8318515419960022" blue="0.83169913291931152" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17j-q4-c1H">
                     <rect key="frame" x="562" y="16" width="22" height="22"/>
@@ -90,29 +79,26 @@
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="2En-CG-tAf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="0t6-Te-mDO"/>
+                <constraint firstAttribute="trailing" secondItem="Gum-8l-jm7" secondAttribute="trailing" constant="-10" id="09t-Ut-g2O"/>
                 <constraint firstAttribute="trailing" secondItem="eOv-jP-Bjz" secondAttribute="trailing" constant="156" id="1Il-ZX-Wee"/>
                 <constraint firstItem="Wvp-1e-EXS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="1Z3-uZ-9wv"/>
-                <constraint firstAttribute="trailing" secondItem="2En-CG-tAf" secondAttribute="trailing" constant="16" id="4k5-OH-Afd"/>
                 <constraint firstItem="17j-q4-c1H" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="7KE-VL-Zaq"/>
                 <constraint firstItem="eOv-jP-Bjz" firstAttribute="top" secondItem="67I-FM-mJ9" secondAttribute="bottom" constant="8" id="8UO-gw-Tcb"/>
                 <constraint firstAttribute="trailing" secondItem="17j-q4-c1H" secondAttribute="trailing" constant="16" id="BDN-eJ-hQr"/>
-                <constraint firstItem="2En-CG-tAf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="FzL-Oy-aaH"/>
-                <constraint firstItem="67I-FM-mJ9" firstAttribute="top" secondItem="Gum-8l-jm7" secondAttribute="bottom" constant="8" id="Okw-Gj-IdO"/>
                 <constraint firstAttribute="trailing" secondItem="Wvp-1e-EXS" secondAttribute="trailing" constant="16" id="PMz-pl-gWp"/>
+                <constraint firstItem="Gum-8l-jm7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-10" id="RIz-tp-H9z"/>
                 <constraint firstAttribute="trailing" secondItem="67I-FM-mJ9" secondAttribute="trailing" constant="16" id="Rwj-6l-WDD"/>
-                <constraint firstAttribute="trailing" secondItem="Gum-8l-jm7" secondAttribute="trailing" constant="16" id="S0s-jz-2x5"/>
                 <constraint firstAttribute="bottom" secondItem="vUY-uB-ZQ6" secondAttribute="bottom" id="UhY-R9-aZ0"/>
+                <constraint firstItem="Gum-8l-jm7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VOP-7r-jGY"/>
                 <constraint firstItem="Gum-8l-jm7" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="cul-vB-Sfh"/>
                 <constraint firstItem="vUY-uB-ZQ6" firstAttribute="top" secondItem="Wvp-1e-EXS" secondAttribute="bottom" constant="8" id="jgN-pQ-4yk"/>
+                <constraint firstItem="67I-FM-mJ9" firstAttribute="top" secondItem="Gum-8l-jm7" secondAttribute="bottom" constant="8" id="jkU-p6-OI9"/>
                 <constraint firstItem="eOv-jP-Bjz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kBn-du-vSw"/>
                 <constraint firstAttribute="trailing" secondItem="vUY-uB-ZQ6" secondAttribute="trailing" id="mBg-wG-JfA"/>
                 <constraint firstItem="67I-FM-mJ9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="niL-0V-uQZ"/>
                 <constraint firstItem="vUY-uB-ZQ6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="q7T-3j-TMo"/>
-                <constraint firstItem="Gum-8l-jm7" firstAttribute="top" secondItem="2En-CG-tAf" secondAttribute="bottom" constant="1" id="r2c-E4-FhP"/>
                 <constraint firstItem="eOv-jP-Bjz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="156" id="usE-PX-1Aw"/>
                 <constraint firstItem="Wvp-1e-EXS" firstAttribute="top" secondItem="eOv-jP-Bjz" secondAttribute="bottom" constant="8" id="vXB-pW-nrs"/>
-                <constraint firstItem="Gum-8l-jm7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="w8T-Dv-hED"/>
                 <constraint firstItem="67I-FM-mJ9" firstAttribute="top" secondItem="Gum-8l-jm7" secondAttribute="bottom" constant="8" id="xUp-8b-wlK"/>
             </constraints>
             <variation key="default">
