@@ -12,6 +12,7 @@ import MessageUI
 import SwiftyDrop
 import CoreLocation
 import SafariServices
+import Crashlytics
 
 enum Sections: Int {
 	case cityOptions = 0
@@ -217,6 +218,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
                 if showExperimentalCities {
                     NSUserDefaults.standardUserDefaults().setBool(false, forKey: Defaults.showExperimentalCities)
                     tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+					Answers.logCustomEventWithName("Settings", customAttributes: ["experimental cities": false])
                     refreshLotlist()
                 } else {
                     let alert = UIAlertController(title: L10n.NOTETITLE.string, message: L10n.SHOWEXPERIMENTALCITIESALERT.string, preferredStyle: UIAlertControllerStyle.Alert)
@@ -227,6 +229,8 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: Defaults.showExperimentalCities)
                         tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
                         refreshLotlist()
+						
+						Answers.logCustomEventWithName("Settings", customAttributes: ["experimental cities": true])
                     }))
                     presentViewController(alert, animated: true, completion: nil)
                 }
@@ -238,6 +242,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case .otherOptions:
 			switch indexPath.row {
 			case 0:
+				Answers.logCustomEventWithName("Settings", customAttributes: ["show about view": true])
 				if #available(iOS 9.0, *) {
 				    let safariVC = SFSafariViewController(URL: NSURL(string: "http://parkendd.kilian.io/about.html")!)
 					presentViewController(safariVC, animated: true, completion: nil)
