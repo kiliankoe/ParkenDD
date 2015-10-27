@@ -80,11 +80,7 @@ class ForecastViewController: UIViewController {
 		
 		let dateString = clearSeconds(fromDate: sender.date)
 		
-		if let load = data[dateString] {
-			percentageLabel?.text = "\(load)% \(L10n.OCCUPIED.string)"
-			progressView?.progress = Float(load)! / 100
-			availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot!.total, load: Int(load)!)).string
-		}
+		updateLabels(data[dateString])
 		
 		let sortedDates = Array(data.keys).sort(<)
 		
@@ -108,7 +104,7 @@ class ForecastViewController: UIViewController {
 	
 	func updateData(fromDate date: NSDate = NSDate()) {
 		guard let lot = lot else { return }
-		ServerController.forecastDay(lot.id, fromDate: date) { (forecastData, error) -> Void in
+		ServerController.forecastDay(lot.id, fromDate: date) { [unowned self] (forecastData, error) -> Void in
 			if let _ = error {
 				print(error)
 				let alert = UIAlertController(title: L10n.UNKNOWNERRORTITLE.string, message: L10n.UNKNOWNERROR.string, preferredStyle: .Alert)
@@ -119,6 +115,18 @@ class ForecastViewController: UIViewController {
 			
 			self.data = forecastData?.data
 			self.drawGraph()
+			
+			if let selectedTime = self.datePicker?.date {
+				self.updateLabels(self.data![self.clearSeconds(fromDate: selectedTime)])
+			}
+		}
+	}
+	
+	func updateLabels(load: String?) {
+		if let load = load {
+			percentageLabel?.text = "\(load)% \(L10n.OCCUPIED.string)"
+			progressView?.progress = Float(load)! / 100
+			availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot!.total, load: Int(load)!)).string
 		}
 	}
 	
