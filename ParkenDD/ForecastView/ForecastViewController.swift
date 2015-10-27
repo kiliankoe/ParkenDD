@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import Crashlytics
 
 class ForecastViewController: UIViewController {
 	
@@ -16,8 +17,14 @@ class ForecastViewController: UIViewController {
 	
 	let dateFormatter = { () -> NSDateFormatter in
 		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "yyyy.MM.dd'T'HH:mm:ss"
+		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
 //		dateFormatter.timeZone = NSTimeZone(name: "UTC")
+		return dateFormatter
+	}()
+	
+	let labelDateFormatter = { () -> NSDateFormatter in
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "dd.MM. HH:mm"
 		return dateFormatter
 	}()
 	
@@ -38,11 +45,23 @@ class ForecastViewController: UIViewController {
 			return
 		}
 		
+		Answers.logCustomEventWithName("View Forecast", customAttributes: ["selected lot": lot.id])
+		
 		titleLabel?.text = L10n.FORECASTTITLE(lot.name).string
 		percentageLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
 		availableLabel?.text = ""
 		progressView?.progress = Float(lot.loadPercentage) / 100
 		datePicker?.date = NSDate()
+		
+		chartView?.descriptionText = L10n.LOADINPERCENT.string
+		
+		chartView?.backgroundColor = UIColor.whiteColor()
+		chartView?.xAxis.labelPosition = .Bottom
+		chartView?.gridBackgroundColor = UIColor.whiteColor()
+		chartView?.rightAxis.enabled = false
+		chartView?.drawGridBackgroundEnabled = false
+		chartView?.legend.enabled = false
+		chartView?.animate(xAxisDuration: 1.0)
 		
 		updateData()
     }
@@ -55,7 +74,14 @@ class ForecastViewController: UIViewController {
 	
 	@IBAction func datePickerValueDidChange(sender: UIDatePicker) {
 		guard let data = data else { return }
-		let dateString = dateFormatter.stringFromDate(sender.date)
+		
+		let dateString = removeSeconds(fromDate: sender.date)
+		
+		if let load = data[dateString] {
+			percentageLabel?.text = "\(load)% \(L10n.OCCUPIED.string)"
+			progressView?.progress = Float(load)! / 100
+		}
+		
 		if data[dateString] == nil {
 			updateData(fromDate: sender.date)
 		}
@@ -81,6 +107,11 @@ class ForecastViewController: UIViewController {
 		guard let data = data else { return }
 		let sortedDates = Array(data.keys).sort(<)
 		
+		let labels = sortedDates.map { (e) -> String in
+			let date = dateFormatter.dateFromString(e)
+			return labelDateFormatter.stringFromDate(date!)
+		}
+		
 		var dataEntries = [ChartDataEntry]()
 		for date in sortedDates {
 			let value = Double(data[date]!)!
@@ -89,9 +120,22 @@ class ForecastViewController: UIViewController {
 			dataEntries.append(dataEntry)
 		}
 		
-		let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "Belegung in %")
-		let lineChartData = LineChartData(xVals: sortedDates, dataSet: lineChartDataSet)
+		let lineChartDataSet = LineChartDataSet(yVals: dataEntries)
+		lineChartDataSet.colors = [UIColor.darkGrayColor()]
+		lineChartDataSet.fillColor = UIColor.grayColor()
+		lineChartDataSet.drawValuesEnabled = false
+		lineChartDataSet.drawCirclesEnabled = false
+		lineChartDataSet.drawFilledEnabled = true
+		lineChartDataSet.drawCubicEnabled = true
+		let lineChartData = LineChartData(xVals: labels, dataSet: lineChartDataSet)
 		chartView?.data = lineChartData
+	}
+	
+	func removeSeconds(fromDate date: NSDate) -> String {
+		// This is just ridiculous, please don't look at it :(
+		let dateString = dateFormatter.stringFromDate(date)
+		let newDate = dateString.substringToIndex(dateString.endIndex.predecessor().predecessor())
+		return "\(newDate)00"
 	}
 
 }
