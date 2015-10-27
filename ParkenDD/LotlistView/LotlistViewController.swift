@@ -170,7 +170,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 				self.sortLots()
 				
 				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
-					self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Fade)
+					self.tableView.reloadData()
 				})
 			}
 		}
