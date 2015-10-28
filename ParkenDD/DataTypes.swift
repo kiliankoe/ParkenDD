@@ -167,15 +167,9 @@ struct ParkinglotData: Mappable {
 		
 		let UTCDateFormatter = NSDateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: NSTimeZone(name: "UTC")!)
 		
-		let UTCTransform = TransformOf<NSDate, String>(fromJSON: {
-			return UTCDateFormatter.dateFromString($0!)
-		}, toJSON: {
-			return UTCDateFormatter.stringFromDate($0!)
-		})
-		
 		lots           <- map["lots"]
-		lastDownloaded <- (map["last_downloaded"], UTCTransform)
-		lastUpdated    <- (map["last_updated"], UTCTransform)
+		lastDownloaded <- (map["last_downloaded"], DateFormatterTransform(dateFormatter: UTCDateFormatter))
+		lastUpdated    <- (map["last_updated"], DateFormatterTransform(dateFormatter: UTCDateFormatter))
 	}
 }
 
