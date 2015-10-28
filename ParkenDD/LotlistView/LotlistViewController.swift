@@ -159,8 +159,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 						NSLog("Data in \(selectedCity) seems to be outdated.")
 					}
 					
-					let dateFormatter = NSDateFormatter()
-					dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+					let dateFormatter = NSDateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
 					
 					self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.LASTUPDATED(dateFormatter.stringFromDate(lastUpdated)))", attributes: attrs)
 				}

@@ -15,18 +15,8 @@ class ForecastViewController: UIViewController {
 	var lot: Parkinglot?
 	var data: [String: String]?
 	
-	let dateFormatter = { () -> NSDateFormatter in
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//		dateFormatter.timeZone = NSTimeZone(name: "UTC")
-		return dateFormatter
-	}()
-	
-	let labelDateFormatter = { () -> NSDateFormatter in
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "HH:mm"
-		return dateFormatter
-	}()
+	let dateFormatter = NSDateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: nil)
+	let labelDateFormatter = NSDateFormatter(dateFormat: "HH:mm", timezone: nil)
 	
 	@IBOutlet weak var chartView: LineChartView?
 	@IBOutlet weak var availableLabel: UILabel?

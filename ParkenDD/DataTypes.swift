@@ -165,15 +165,11 @@ struct ParkinglotData: Mappable {
 	
 	mutating func mapping(map: Map) {
 		
+		let UTCDateFormatter = NSDateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: NSTimeZone(name: "UTC")!)
+		
 		let UTCTransform = TransformOf<NSDate, String>(fromJSON: {
-			let UTCDateFormatter = NSDateFormatter()
-			UTCDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-			UTCDateFormatter.timeZone = NSTimeZone(name: "UTC")
 			return UTCDateFormatter.dateFromString($0!)
 		}, toJSON: {
-			let UTCDateFormatter = NSDateFormatter()
-			UTCDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-			UTCDateFormatter.timeZone = NSTimeZone(name: "UTC")
 			return UTCDateFormatter.stringFromDate($0!)
 		})
 		
