@@ -82,7 +82,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		let sec = Sections(rawValue: indexPath.section)!
 		let cell: UITableViewCell = UITableViewCell()
 
-		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)
+		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCityName)
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)
 		let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.skipNodataLots)
 		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.grayscaleUI)
