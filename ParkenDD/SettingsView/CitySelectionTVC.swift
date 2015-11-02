@@ -35,10 +35,10 @@ class CitySelectionTVC: UITableViewController {
 		if let city = citiesList![supportedCities![indexPath.row]] { // FIXME: For the love of god, fix this!
 			if city.activeSupport! {
 				cell.textLabel?.text = city.name
-				cell.textLabel?.font = UIFont.systemFontOfSize(16)
+				cell.textLabel?.textColor = UIColor.blackColor()
 			} else {
 				cell.textLabel?.text = city.name
-				cell.textLabel?.font = UIFont.italicSystemFontOfSize(16)
+				cell.textLabel?.textColor = UIColor.lightGrayColor()
 			}
 		}
 
