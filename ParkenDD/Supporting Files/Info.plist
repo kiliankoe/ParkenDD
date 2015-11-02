@@ -38,6 +38,33 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This information is used to show your own location.</string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeMarkLocation</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Zürich</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>io.kilian.parkendd.zuerich</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeMarkLocation</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Ingolstadt</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>io.kilian.parkendd.ingolstadt</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeMarkLocation</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Dresden</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>io.kilian.parkendd.dresden</string>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

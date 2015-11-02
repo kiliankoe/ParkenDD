@@ -93,6 +93,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
+	
+	@available(iOS 9.0, *)
+	func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+		var cityName = ""
+		var cityId = ""
+		switch shortcutItem.type {
+		case "io.kilian.parkendd.ingolstadt":
+			cityName = "Ingolstadt"
+			cityId = "Ingolstadt"
+		case "io.kilian.parkendd.zuerich":
+			cityName = "Zürich"
+			cityId = "Zuerich"
+		default:
+			cityName = "Dresden"
+			cityId = "Dresden"
+		}
+		NSUserDefaults.standardUserDefaults().setObject(cityId, forKey: Defaults.selectedCity)
+		NSUserDefaults.standardUserDefaults().setObject(cityName, forKey: Defaults.selectedCityName)
+		NSUserDefaults.standardUserDefaults().synchronize()
+	}
 
 
 }
