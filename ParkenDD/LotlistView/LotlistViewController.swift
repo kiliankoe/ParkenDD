@@ -186,7 +186,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 			drop(L10n.REQUESTERROR.string, state: .Error)
 		case .NotFound:
 			NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCity)
-			NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCity)
+			NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCityName)
 			NSUserDefaults.standardUserDefaults().synchronize()
 			updateData()
 			updateTitle(withCity: "Dresden")
