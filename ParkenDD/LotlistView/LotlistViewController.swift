@@ -11,7 +11,7 @@ import CoreLocation
 import SwiftyTimer
 import Crashlytics
 
-class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
+class LotlistViewController: UITableViewController, CLLocationManagerDelegate, UIViewControllerPreviewingDelegate {
 
 	let locationManager = CLLocationManager()
 
@@ -43,6 +43,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRectZero)
+		
+		if #available(iOS 9.0, *) {
+			registerForPreviewingWithDelegate(self, sourceView: tableView)
+		}
 
 		updateData()
 		NSTimer.every(5.minutes, updateData)
@@ -401,6 +405,28 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate {
 
 	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
 		// TODO: Implement me to hopefully fix #41
+	}
+	
+	// /////////////////////////////////////////////////////////////////////////
+	// MARK: - UIViewControllerPreviewingDelegate
+	// /////////////////////////////////////////////////////////////////////////
+	
+	func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+		showViewController(viewControllerToCommit, sender: nil)
+	}
+	
+	func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+		if let indexPath = tableView.indexPathForRowAtPoint(location) {
+			guard (tableView.cellForRowAtIndexPath(indexPath) as? ParkinglotTableViewCell)!.parkinglot!.forecast! else { return nil }
+			
+			if #available(iOS 9.0, *) {
+			    previewingContext.sourceRect = tableView.rectForRowAtIndexPath(indexPath)
+			}
+			let forecastVC = ForecastViewController()
+			forecastVC.lot = parkinglots[indexPath.row]
+			return forecastVC
+		}
+		return nil
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
