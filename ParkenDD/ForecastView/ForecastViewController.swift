@@ -75,7 +75,7 @@ class ForecastViewController: UIViewController {
 	@IBAction func datePickerValueDidChange(sender: UIDatePicker) {
 		guard let data = data else { return }
 		
-		let dateString = clearSeconds(fromDate: sender.date)
+		let dateString = dateFormatter.stringFromDate(getDatepickerDate())
 		
 		updateLabels(data[dateString])
 		
@@ -120,9 +120,7 @@ class ForecastViewController: UIViewController {
 			self.drawGraph()
 			self.datePickerValueDidChange(self.datePicker!) // Am I really doing this? Oh god... See #132
 			
-			if let selectedTime = self.datePicker?.date {
-				self.updateLabels(self.data![self.clearSeconds(fromDate: selectedTime)])
-			}
+			self.updateLabels(self.data![self.dateFormatter.stringFromDate(self.getDatepickerDate())])
 		}
 	}
 	
@@ -161,18 +159,30 @@ class ForecastViewController: UIViewController {
 	}
 	
 	/**
-	Working around the idiotic fact, that a UIDatePicker returns a random amount of seconds in its date
-	without giving the user a possiblity of changing these anyways. Why?!
+	Get the datepickers date value and round that to the nearest half hour also settings the seconds to 0.
 	
-	- parameter date: a date
-	
-	- returns: a string representation of the date with cleared seconds
+	- returns: date value of datepicker
 	*/
-	func clearSeconds(fromDate date: NSDate) -> String {
-		// This is just ridiculous, please don't look at it :(
-		let dateString = dateFormatter.stringFromDate(date)
-		let newDate = dateString.substringToIndex(dateString.endIndex.predecessor().predecessor().predecessor().predecessor())
-		return "\(newDate)0:00"
+	func getDatepickerDate() -> NSDate {
+		let dpDate = datePicker!.date
+		
+		let calendar = NSCalendar.currentCalendar()
+		let minuteComponent = calendar.components(NSCalendarUnit.Minute, fromDate: dpDate)
+		print("Minutes: \(minuteComponent.minute)")
+		
+		let components = NSDateComponents()
+		
+		if minuteComponent.minute < 30 {
+			components.minute = 60 - minuteComponent.minute
+		} else {
+			components.minute = 30 - minuteComponent.minute
+		}
+		
+		let secondComponent = calendar.components(NSCalendarUnit.Second, fromDate: dpDate)
+		components.second = -secondComponent.second
+		print("Seconds: \(secondComponent.second)")
+		
+		return calendar.dateByAddingComponents(components, toDate: dpDate, options: NSCalendarOptions.WrapComponents)!
 	}
 	
 	/**
