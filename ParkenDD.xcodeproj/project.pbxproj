@@ -85,6 +85,8 @@
 		3986E8D51BD4FC7200B86673 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		3986E8D71BD5084100B86673 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		3986E8D91BD6541500B86673 /* ParkinglotAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotAnnotation.swift; sourceTree = "<group>"; };
+		398E45C81BE8FA9A002E0DA8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		398E45C91BE8FA9A002E0DA8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+MapFilter.swift"; sourceTree = "<group>"; };
 		39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = augustusbruecke.gpx; sourceTree = "<group>"; };
 		39AEA17F1BBADCCD0029642F /* durchDresden.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = durchDresden.gpx; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				en,
 				Base,
 				de,
+				pl,
 			);
 			mainGroup = 39F4CFD51A6BBC0200ACFECF;
 			productRefGroup = 39F4CFDF1A6BBC0200ACFECF /* Products */;
@@ -582,6 +585,7 @@
 			children = (
 				3977CA261A9CC78C00E20014 /* Base */,
 				3977CA281A9CC78E00E20014 /* de */,
+				398E45C81BE8FA9A002E0DA8 /* pl */,
 			);
 			name = InfoPlist.strings;
 			path = .;
@@ -592,6 +596,7 @@
 			children = (
 				397D7B1E1A9A2236001B5874 /* Base */,
 				397D7B201A9A223A001B5874 /* de */,
+				398E45C91BE8FA9A002E0DA8 /* pl */,
 			);
 			name = Localizable.strings;
 			path = .;
