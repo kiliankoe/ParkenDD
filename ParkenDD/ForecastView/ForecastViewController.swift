@@ -168,7 +168,6 @@ class ForecastViewController: UIViewController {
 		
 		let calendar = NSCalendar.currentCalendar()
 		let minuteComponent = calendar.components(NSCalendarUnit.Minute, fromDate: dpDate)
-		print("Minutes: \(minuteComponent.minute)")
 		
 		let components = NSDateComponents()
 		
@@ -180,7 +179,6 @@ class ForecastViewController: UIViewController {
 		
 		let secondComponent = calendar.components(NSCalendarUnit.Second, fromDate: dpDate)
 		components.second = -secondComponent.second
-		print("Seconds: \(secondComponent.second)")
 		
 		return calendar.dateByAddingComponents(components, toDate: dpDate, options: NSCalendarOptions.WrapComponents)!
 	}
