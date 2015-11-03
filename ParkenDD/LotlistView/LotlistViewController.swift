@@ -412,7 +412,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// /////////////////////////////////////////////////////////////////////////
 	
 	func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
-		showViewController(viewControllerToCommit, sender: nil)
+		let fullForecastVC = ForecastViewController()
+		fullForecastVC.lot = (viewControllerToCommit as? MiniForecastViewController)?.lot
+		showViewController(fullForecastVC, sender: nil)
 	}
 	
 	func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
@@ -422,7 +424,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			if #available(iOS 9.0, *) {
 			    previewingContext.sourceRect = tableView.rectForRowAtIndexPath(indexPath)
 			}
-			let forecastVC = ForecastViewController()
+			let forecastVC = MiniForecastViewController()
 			forecastVC.lot = parkinglots[indexPath.row]
 			return forecastVC
 		}
