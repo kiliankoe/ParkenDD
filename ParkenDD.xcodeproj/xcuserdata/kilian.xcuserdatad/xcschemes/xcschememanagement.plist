@@ -9,12 +9,10 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>ParkenDDTests.xcscheme_^#shared#^_</key>
+		<key>ParkenDDUITests.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<true/>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>6</integer>
 		</dict>
 		<key>ParkenDDWidget.xcscheme</key>
 		<dict>
@@ -30,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>39B9534F1AA0A59600026EC2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>39EAB8B61BE96E1E005A7290</key>
 		<dict>
 			<key>primary</key>
 			<true/>

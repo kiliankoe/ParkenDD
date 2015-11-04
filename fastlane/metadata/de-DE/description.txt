@@ -1,0 +1,10 @@
+ParkenDD zeigt eine Liste der verfügbaren öffentlichen Parkplätze in Dresden, Ingolstadt, Zürich und in der Zukunft auch noch von weiteren Städten.
+
+Funktionen der App:
+
+- Abrufen der aktuellen Parksituation verschiedener Städte in Echtzeit
+- Details zu den Parkplätzen, z.B. ob er geöffnet ist, wie viele Parkplätze verfügbar sind oder wo er sich befindet
+- Experimentelle Vorhersagen für vereinzelte Parkplätze
+- Darstellung der Parkplätze in einer Karte
+
+Mehr Infos zum Projekt gibt es auf http://parkendd.de

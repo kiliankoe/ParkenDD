@@ -1,0 +1,9 @@
+Großes großes Update!
+
+Nach etlichen Monaten an Arbeit sind wir sehr stolz auf ein komplett neues Backend für ParkenDD. Dadurch läuft die App nicht nur bedeutend schneller und zuverlässiger, wir haben so auch die Möglichkeit Daten für andere Städte anzubieten. Aktuell werden neben Dresden auch Ingolstadt und Zürich unterstützt. Auszuwählen kann man die Stadt in den Einstellungen oder per Tap auf die Titelleiste. Mehr sind in Arbeit und über Mithilfe freuen wir uns immer. Kontakt kann gerne über den Feedback Button in den Einstellungen aufgenommen werden :)
+
+Abgesehen davon gibt's jetzt auch eine polnische Übersetzung, 3D touch Features für das neue iPhone und super tolle Vorhersagedaten für ein paar Parkplätze in Dresden.
+
+Falls du eine Sprache neben Deutsch und Englisch sprichst und Lust hättest zu helfen, ParkenDD auch in deine Sprache zu übersetzen, nimm bitte Kontakt auf! 
+
+Vielen Dank für's Nutzen von ParkenDD! Über ein Review hier im App Store würden wir uns sehr freuen.

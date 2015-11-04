@@ -1,0 +1,10 @@
+ParkenDD shows a list of available public parking lots in Dresden, Ingolstadt, Zürich and more cities in the future.
+
+Features of the app:
+
+- view the real live parking situation in various cities
+- get details for parking lots, e.g. whether it's open, how many parking spaces are available and where it is located
+- experimental forecast for some parking lots
+- get a overview of the parking lots on the map
+
+More infos are available on http://parkendd.de/en

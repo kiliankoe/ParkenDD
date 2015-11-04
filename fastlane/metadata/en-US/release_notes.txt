@@ -1,0 +1,9 @@
+Big big Update!
+
+After several months of hard work we're proud of our all-new backend for ParkenDD. Thanks to that the entire app is running a lot faster and is generally more reliable. We're also able to offer data for other cities! Currently supported are Dresden, Ingolstadt and Zürich. You can choose which city to display in the settings or by tapping the title bar. We're working on new cities as well and are always happy about others wanting to help. If you're interested in taking part, just tap the feedback button in the settings and get in touch :)
+
+Besides that ParkenDD now also has a polish translation, 3D touch features for the new iPhone and awesome forecast data for several lots in Dresden.
+
+If you happen to speak a language besides English and German and would like to help translating ParkenDD to your language as well, please get in touch!
+
+Thanks for using ParkenDD! We'd love it if you were to find the time for a review here in the App Store.

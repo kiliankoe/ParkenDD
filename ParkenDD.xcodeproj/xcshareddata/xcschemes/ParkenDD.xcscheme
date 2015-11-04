@@ -52,6 +52,16 @@
                ReferencedContainer = "container:ParkenDD.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "39EAB8B61BE96E1E005A7290"
+               BuildableName = "ParkenDDUITests.xctest"
+               BlueprintName = "ParkenDDUITests"
+               ReferencedContainer = "container:ParkenDD.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
