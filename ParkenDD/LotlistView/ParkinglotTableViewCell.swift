@@ -36,7 +36,7 @@ class ParkinglotTableViewCell: UITableViewCell {
 		// Quickfix for issue #103
 		let sanitizedLotName = lot.name.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 		
-		if let lotType = lot.lotType {
+		if let lotType = lot.lotType where lotType != "" {
 			parkinglotNameLabel?.text = "\(lotType) \(sanitizedLotName)"
 		} else {
 			parkinglotNameLabel?.text = sanitizedLotName
