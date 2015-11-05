@@ -37,7 +37,10 @@ class ForecastViewController: UIViewController {
 		
 		navigationItem.title = lot.name
 		availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot.total, load: lot.loadPercentage)).string
-		datePicker?.date = NSDate()
+		
+		let now = NSDate()
+		datePicker?.date = now
+		datePicker?.minimumDate = NSCalendar.currentCalendar().startOfDayForDate(now)
 		
 		chartView?.descriptionText = L10n.LOADINPERCENT.string
 		
