@@ -3,61 +3,117 @@
 import Foundation
 
 enum L10n {
+  /// Connection Error
   case REQUESTERRORTITLE
+  /// Couldn't fetch data. You appear to be disconnected from the internet.
   case REQUESTERROR
+  /// Server Error
   case SERVERERRORTITLE
+  /// Couldn't read data from server. Please try again in a few moments.
   case SERVERERROR
+  /// Error
   case UNKNOWNCOORDINATESTITLE
+  /// Couldn't find coordinates for selected parking lot. 
   case UNKNOWNCOORDINATESERROR
+  /// Last update:
   case LASTUPDATE
+  /// occupied
   case OCCUPIED
+  /// closed
   case CLOSED
+  /// unknown address
   case UNKNOWNADDRESS
+  /// no data available
   case UNKNOWNLOAD
+  /// Other
   case OTHEROPTIONS
+  /// Distance
   case SORTINGTYPELOCATION
+  /// Share on Twitter
   case SHAREONTWITTER
+  /// Free Spots
   case SORTINGTYPEFREESPOTS
+  /// Sort by
   case SORTINGOPTIONS
+  /// Alphabetical
   case SORTINGTYPEALPHABETICAL
+  /// About
   case ABOUTBUTTON
+  /// Default
   case SORTINGTYPEDEFAULT
+  /// Used to show location on map and for sorting parking lots by distance.
   case NSLocationWhenInUseUsageDescription
+  /// No free parking space in sight? -> #ParkenDD http://parkendd.de
   case TWEETTEXT
+  /// waiting for location
   case WAITINGFORLOCATION
+  /// ParkenDD shows you a list of the number of available public parking spots in Dresden, Germany. It shows you whether a public parking lot is open or not, how many spots are available and where it is on a map.\n\nThe information displayed is up-to-date according to what is published officially on dresden.de/freie-parkplaetze.\n\nThe source for this application is available on Github. See https://github.com/kiliankoe/parkendd
   case APPSTOREDESCRIPTION
+  /// dresden, parking, car, driving, navigation, park, public, parkinglot, lot
   case APPSTORETAGS
+  /// Location Data Error
   case LOCATIONDATAERRORTITLE
+  /// ParkenDD is unable to get location data. Please allow it to do so in the system settings.
   case LOCATIONDATAERROR
+  /// Cancel
   case CANCEL
+  /// Settings
   case SETTINGS
+  /// ca. %@ spots available
   case CIRCASPOTSAVAILABLE(String)
+  /// Display
   case DISPLAYOPTIONS
+  /// Hide Lots Without Data
   case HIDENODATALOTS
+  /// Note
   case NOTETITLE
+  /// List will be updated on next refresh.
   case LISTUPDATEONREFRESH
+  /// Use Grayscale Colorscheme
   case USEGRAYSCALECOLORS
+  /// Reset Notifications
   case RESETNOTIFICATIONS
+  /// Feedback / Report Problem
   case SENDFEEDBACK
+  /// Outdated data
   case OUTDATEDDATAWARNINGTITLE
+  /// The data might be outdated. It was last updated more than an hour ago.
   case OUTDATEDDATAWARNING
+  /// Unknown error
   case UNKNOWNERRORTITLE
+  /// An unknown error has occurred.
   case UNKNOWNERROR
+  /// Updated: %@
   case LASTUPDATED(String)
+  /// No coordinates
   case NOCOORDSWARNINGTITLE
+  /// Unfortunately there don't seem to be any coordinates associated with this parking lot.
   case NOCOORDSWARNING
+  /// City
   case CITYOPTIONS
+  /// Forecast Data
   case FORECASTINFOTITLE
+  /// Use this function to view into the future. Pick a date and see how many spaces will presumably be available at that point in time.\n\nThe chart shows the selected day.
   case FORECASTINFOTEXT
+  /// %@ of %d available
   case MAPSUBTITLE(String, Int)
+  /// The newly displayed cities are in an experimental state! Their data will probably be littered with errors and be incomplete. \n\nIf you're willing to join us in our effort of supporting new cities, please tap the feedback button below :)
   case SHOWEXPERIMENTALCITIESALERT
+  /// Activate
   case ACTIVATE
+  /// Show Experimental Cities
   case SHOWEXPERIMENTALCITIESSETTING
+  /// Forecast for %@
   case FORECASTTITLE(String)
+  /// No data
   case ENDOFDATATITLE
+  /// Unfortunately there's no data available for the selected date.
   case ENDOFDATA
+  /// Best first
   case SORTINGTYPEEUKLID
+  /// Forecast
   case FORECAST
+  /// Load in %%
   case LOADINPERCENT
 }
 
