@@ -33,7 +33,7 @@ class ForecastViewController: UIViewController {
 			return
 		}
 		
-		Answers.logCustomEventWithName("View Forecast", customAttributes: ["selected lot": lot.id])
+		Answers.logCustomEventWithName("View Forecast", customAttributes: ["selected lot": lot.lotID])
 		
 		navigationItem.title = lot.name
 		availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot.total, load: lot.loadPercentage)).string
@@ -104,7 +104,7 @@ class ForecastViewController: UIViewController {
 	
 	func updateData(fromDate date: NSDate = NSDate()) {
 		guard let lot = lot else { return }
-		ServerController.forecastDay(lot.id, fromDate: date) { [unowned self] (forecastData, error) -> Void in
+		ServerController.forecastDay(lot.lotID, fromDate: date) { [unowned self] (forecastData, error) -> Void in
 			if let error = error {
 				switch error {
 				case .NoData:
@@ -137,8 +137,8 @@ class ForecastViewController: UIViewController {
 		guard let data = data else { return }
 		let sortedDates = Array(data.keys).sort(<)
 		
-		let labels = sortedDates.map { (e) -> String in
-			let date = dateFormatter.dateFromString(e)
+		let labels = sortedDates.map { (element) -> String in
+			let date = dateFormatter.dateFromString(element)
 			return labelDateFormatter.stringFromDate(date!)
 		}
 		

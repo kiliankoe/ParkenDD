@@ -12,24 +12,20 @@ import XCTest
 var deviceLanguage = ""
 
 @available(iOS 9.0, *)
-func setLanguage(app: XCUIApplication)
-{
+func setLanguage(app: XCUIApplication) {
     Snapshot.setLanguage(app)
 }
 
 @available(iOS 9.0, *)
-func snapshot(name: String, waitForLoadingIndicator: Bool = true)
-{
+func snapshot(name: String, waitForLoadingIndicator: Bool = true) {
     Snapshot.snapshot(name, waitForLoadingIndicator: waitForLoadingIndicator)
 }
 
 
 
 @available(iOS 9.0, *)
-@objc class Snapshot: NSObject
-{
-    class func setLanguage(app: XCUIApplication)
-    {
+@objc class Snapshot: NSObject {
+    class func setLanguage(app: XCUIApplication) {
         let path = "/tmp/language.txt"
         
         do {
@@ -41,10 +37,8 @@ func snapshot(name: String, waitForLoadingIndicator: Bool = true)
         }
     }
     
-    class func snapshot(name: String, waitForLoadingIndicator: Bool = false)
-    {
-        if (waitForLoadingIndicator)
-        {
+    class func snapshot(name: String, waitForLoadingIndicator: Bool = false) {
+        if waitForLoadingIndicator {
             waitForLoadingIndicatorToDisappear()
         }
         print("snapshot: \(name)") // more information about this, check out https://github.com/krausefx/snapshot
@@ -56,11 +50,10 @@ func snapshot(name: String, waitForLoadingIndicator: Bool = true)
         sleep(1)
     }
     
-    class func waitForLoadingIndicatorToDisappear()
-    {
+    class func waitForLoadingIndicatorToDisappear() {
         let query = XCUIApplication().statusBars.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other)
         
-        while (query.count > 4) {
+        while query.count > 4 {
             sleep(1)
             print("Number of Elements in Status Bar: \(query.count)... waiting for status bar to disappear")
         }

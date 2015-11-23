@@ -83,18 +83,18 @@ class ParkinglotTableViewCell: UITableViewCell {
 		// TODO: Do all kinds of things with the cell according to the state of the lot
 		if let lotState = lot.state {
 			switch lotState {
-			case .closed:
+			case .Closed:
 				parkinglotTendencyLabel?.text = L10n.CLOSED.string
 				backgroundColor = UIColor.grayColor()
 				parkinglotLoadLabel?.text = "X"
 //                parkinglotLoadLabel?.attributedText = NSAttributedString(string: "\(lot.free)", attributes: [NSStrikethroughStyleAttributeName: 1])
-			case .nodata:
+			case .Nodata:
 				parkinglotLoadLabel?.text = "?"
 				parkinglotTendencyLabel?.text = L10n.UNKNOWNLOAD.string
 				backgroundColor = UIColor.lightGrayColor()
-			case .open:
+			case .Open:
 				parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
-			case .unknown:
+			case .Unknown:
 				parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
 			}
 		}

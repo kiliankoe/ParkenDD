@@ -15,10 +15,10 @@ import SafariServices
 import Crashlytics
 
 enum Sections: Int {
-	case cityOptions = 0
-	case sortingOptions
-	case displayOptions
-	case otherOptions
+	case CityOptions = 0
+	case SortingOptions
+	case DisplayOptions
+	case OtherOptions
 }
 
 class SettingsViewController: UITableViewController, MFMailComposeViewControllerDelegate {
@@ -53,13 +53,13 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let sec = Sections(rawValue: section)!
 		switch sec {
-		case .cityOptions:
+		case .CityOptions:
 			return 1
-		case .sortingOptions:
+		case .SortingOptions:
 			return 5
-		case .displayOptions:
+		case .DisplayOptions:
 			return 3
-		case .otherOptions:
+		case .OtherOptions:
 			return 3
 		}
     }
@@ -67,13 +67,13 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let sec = Sections(rawValue: section)!
 		switch sec {
-		case .cityOptions:
+		case .CityOptions:
 			return L10n.CITYOPTIONS.string
-		case .sortingOptions:
+		case .SortingOptions:
 			return L10n.SORTINGOPTIONS.string
-		case .displayOptions:
+		case .DisplayOptions:
 			return L10n.DISPLAYOPTIONS.string
-		case .otherOptions:
+		case .OtherOptions:
 			return L10n.OTHEROPTIONS.string
 		}
 	}
@@ -90,46 +90,46 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
 		switch (sec, indexPath.row) {
 		// CITY OPTIONS
-		case (.cityOptions, 0):
+		case (.CityOptions, 0):
 			cell.textLabel!.text = selectedCity
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
 		// SORTING OPTIONS
-		case (.sortingOptions, 0):
+		case (.SortingOptions, 0):
 			cell.textLabel?.text = L10n.SORTINGTYPEDEFAULT.string
 			cell.accessoryType = sortingType == Sorting.standard ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
-		case (.sortingOptions, 1):
+		case (.SortingOptions, 1):
 			cell.textLabel?.text = L10n.SORTINGTYPELOCATION.string
 			cell.accessoryType = sortingType == Sorting.distance ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
-		case (.sortingOptions, 2):
+		case (.SortingOptions, 2):
 			cell.textLabel?.text = L10n.SORTINGTYPEALPHABETICAL.string
 			cell.accessoryType = sortingType == Sorting.alphabetical ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
-		case (.sortingOptions, 3):
+		case (.SortingOptions, 3):
 			cell.textLabel?.text = L10n.SORTINGTYPEFREESPOTS.string
 			cell.accessoryType = sortingType == Sorting.free ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
-		case (.sortingOptions, 4):
+		case (.SortingOptions, 4):
 			cell.textLabel!.text = L10n.SORTINGTYPEEUKLID.string
 			cell.accessoryType = sortingType == Sorting.euclid ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
 		// DISPLAY OPTIONS
-		case (.displayOptions, 0):
+		case (.DisplayOptions, 0):
 			cell.textLabel?.text = L10n.HIDENODATALOTS.string
 			cell.accessoryType = doHideLots ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
-		case (.displayOptions, 1):
+		case (.DisplayOptions, 1):
 			cell.textLabel?.text = L10n.USEGRAYSCALECOLORS.string
 			cell.accessoryType = useGrayscale ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
-        case (.displayOptions, 2):
+        case (.DisplayOptions, 2):
             cell.textLabel?.text = L10n.SHOWEXPERIMENTALCITIESSETTING.string
             cell.accessoryType = showExperimentalCities ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
 
 		// OTHER OPTIONS
-		case (.otherOptions, 0):
+		case (.OtherOptions, 0):
 			cell.textLabel?.text = L10n.ABOUTBUTTON.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-		case (.otherOptions, 1):
+		case (.OtherOptions, 1):
 			cell.textLabel?.text = L10n.SHAREONTWITTER.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-		case (.otherOptions, 2):
+		case (.OtherOptions, 2):
 			cell.textLabel?.text = L10n.SENDFEEDBACK.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
@@ -149,11 +149,11 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
 		switch sec {
 		// CITY OPTIONS
-		case .cityOptions:
+		case .CityOptions:
 			performSegueWithIdentifier("showCitySelection", sender: self)
 
 		// SORTING OPTIONS
-		case .sortingOptions:
+		case .SortingOptions:
 
 			// Don't let the user select a location based sorting option if the required authorization is missing
 			if indexPath.row == 1 || indexPath.row == 4 {
@@ -172,7 +172,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			}
 
 			for row in 0...4 {
-				tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: Sections.sortingOptions.rawValue))?.accessoryType = UITableViewCellAccessoryType.None
+				tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: Sections.SortingOptions.rawValue))?.accessoryType = UITableViewCellAccessoryType.None
 			}
 			tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
 
@@ -192,7 +192,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			NSUserDefaults.standardUserDefaults().setValue(defaultsValue, forKey: Defaults.sortingType)
 
 		// DISPLAY OPTIONS
-		case .displayOptions:
+		case .DisplayOptions:
 			switch indexPath.row {
 			case 0:
 				let doHideLots = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.skipNodataLots)
@@ -223,13 +223,13 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
                 } else {
                     let alert = UIAlertController(title: L10n.NOTETITLE.string, message: L10n.SHOWEXPERIMENTALCITIESALERT.string, preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
-                        
+
                     }))
                     alert.addAction(UIAlertAction(title: L10n.ACTIVATE.string, style: UIAlertActionStyle.Default, handler: { (action) -> Void in
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: Defaults.showExperimentalCities)
                         tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
                         refreshLotlist()
-						
+
 						Answers.logCustomEventWithName("Experimental Cities", customAttributes: ["experimental cities": "enable"])
                     }))
                     presentViewController(alert, animated: true, completion: nil)
@@ -239,7 +239,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			}
 
 		// OTHER OPTIONS
-		case .otherOptions:
+		case .OtherOptions:
 			switch indexPath.row {
 			case 0:
 				Answers.logCustomEventWithName("About View", customAttributes: ["show about view": "show"])
@@ -260,9 +260,9 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 					let mail = MFMailComposeViewController()
 					mail.mailComposeDelegate = self
 
-					let versionNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-                    let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
-					mail.setSubject("[ParkenDD v\(versionNumber) (\(buildNumber))] Feedback")
+					let versionNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String
+                    let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as? String
+					mail.setSubject("[ParkenDD v\(versionNumber!) (\(buildNumber!))] Feedback")
 					mail.setToRecipients(["parkendd@kilian.io"])
 
 					self.presentViewController(mail, animated: true, completion: nil)

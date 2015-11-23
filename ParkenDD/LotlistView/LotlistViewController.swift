@@ -21,7 +21,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	var timeUpdated: NSDate?
 	var timeDownloaded: NSDate?
 	var dataURL: String?
-	
+
 	@IBOutlet weak var titleButton: UIButton!
 
 	override func viewDidLoad() {
@@ -43,7 +43,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 		// Set a table footer view so that separators aren't shown when no data is yet present
 		self.tableView.tableFooterView = UIView(frame: CGRectZero)
-		
+
 		if #available(iOS 9.0, *) {
 			registerForPreviewingWithDelegate(self, sourceView: tableView)
 		}
@@ -71,9 +71,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		} else {
 			locationManager.stopUpdatingLocation()
 		}
-		
+
 		sortLots()
-		
+
 		refreshControl?.endRefreshing()
 	}
 
@@ -94,24 +94,24 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	*/
 	func updateData() {
 		showActivityIndicator()
-		
+
 		// Set title to selected city
 		updateTitle(withCity: nil)
-		
+
 		ServerController.updateDataForSavedCity { [unowned self] (result, error) -> Void in
 			if let error = error {
 				self.handleUpdateError(error)
 				self.stopRefreshUI()
 			} else {
 				guard let result = result else { NSLog("Neither got any results from the API or an error. This is odd. Very odd indeed. Houston?"); return }
-				
+
 				// Let's gather some statistics about which cities and sorting types users actually care about.
 				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
 				let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
 				Answers.logCustomEventWithName("View City", customAttributes: ["selected city": selectedCity, "sorting type": sortingType])
-				
+
 				self.stopRefreshUI()
-				
+
 				var citiesList = [String: City]()
 				if NSUserDefaults.standardUserDefaults().boolForKey(Defaults.showExperimentalCities) {
 					citiesList = result.metadata.cities!
@@ -132,7 +132,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 					if NSUserDefaults.standardUserDefaults().boolForKey(Defaults.skipNodataLots) {
 						filteredLots = lots.filter({ (lot) -> Bool in
 							if let state = lot.state {
-								return state != .nodata
+								return state != .Nodata
 							}
 							return true
 						})

@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
-	
+
 	@available(iOS 9.0, *)
 	func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
 		var cityName = ""
@@ -116,4 +116,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

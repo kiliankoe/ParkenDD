@@ -27,7 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 		
 		if let lot = detailParkinglot {
-			Answers.logCustomEventWithName("View Map", customAttributes: ["selected lot": lot.id])
+			Answers.logCustomEventWithName("View Map", customAttributes: ["selected lot": lot.lotID])
 		}
 		
 		// Add annotations for all parking lots to the map
@@ -35,11 +35,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 			var subtitle = L10n.MAPSUBTITLE("\(singleLot.free)", singleLot.total).string
 			if let state = singleLot.state {
 				switch state {
-				case .closed:
+				case .Closed:
 					subtitle = L10n.CLOSED.string
-				case .nodata:
+				case .Nodata:
 					subtitle = L10n.MAPSUBTITLE("?", singleLot.total).string
-				case .open, .unknown:
+				case .Open, .Unknown:
 					break
 				}
 			}
@@ -83,16 +83,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		// We don't care about the MKUserLocation here
 		guard annotation.isKindOfClass(ParkinglotAnnotation) else { return nil }
 		
-		let annotation = annotation as! ParkinglotAnnotation
+		let annotation = annotation as? ParkinglotAnnotation
 		let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "parkinglotAnnotation")
 
-		if let state = annotation.parkinglot.state {
+		if let state = annotation?.parkinglot.state {
 			switch state {
-			case .closed:
+			case .Closed:
 				annotationView.pinColor = .Red
-			case .open, .unknown:
-				annotationView.pinColor = annotation.parkinglot.free != 0 ? .Green : .Red
-			case .nodata:
+			case .Open, .Unknown:
+				annotationView.pinColor = annotation?.parkinglot.free != 0 ? .Green : .Red
+			case .Nodata:
 				annotationView.pinColor = .Purple
 			}
 		}

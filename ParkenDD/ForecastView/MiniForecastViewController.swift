@@ -54,7 +54,7 @@ class MiniForecastViewController: UIViewController {
 		
 		chartView?.backgroundColor = UIColor(rgba: "#F6F6F6")
 		
-		ServerController.forecastDay(lot.id, fromDate: NSDate()) { [unowned self] (forecastData, error) -> Void in
+		ServerController.forecastDay(lot.lotID, fromDate: NSDate()) { [unowned self] (forecastData, error) -> Void in
 			if let _ = error {
 				return
 			}
@@ -68,8 +68,8 @@ class MiniForecastViewController: UIViewController {
 		guard let data = data else { return }
 		let sortedDates = Array(data.keys).sort(<)
 		
-		let labels = sortedDates.map { (e) -> String in
-			let date = dateFormatter.dateFromString(e)
+		let labels = sortedDates.map { (element) -> String in
+			let date = dateFormatter.dateFromString(element)
 			return labelDateFormatter.stringFromDate(date!)
 		}
 		

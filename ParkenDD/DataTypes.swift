@@ -81,7 +81,7 @@ struct Parkinglot: Mappable {
 	var coords: Coords?
 	var forecast: Bool?
 	var free: Int
-	var id: String
+	var lotID: String
 	var lotType: String?
 	var name: String
 	var region: String?
@@ -108,7 +108,7 @@ struct Parkinglot: Mappable {
 	func getFree() -> Int {
 		if let state = self.state {
 			switch state {
-			case .closed:
+			case .Closed:
 				return 0
 			default:
 				break
@@ -119,7 +119,7 @@ struct Parkinglot: Mappable {
 	
 	init?(_ map: Map) {
 		free  = map["free"].valueOrFail()
-		id    = map["id"].valueOrFail()
+		lotID    = map["id"].valueOrFail()
 		name  = map["name"].valueOrFail()
 		total = map["total"].valueOrFail()
 	}
@@ -144,10 +144,10 @@ Lotstate enum
 - unknown: lot state is explicitly unknown
 */
 enum Lotstate: String {
-	case open = "open"
-	case closed = "closed"
-	case nodata = "nodata"
-	case unknown = "unknown"
+	case Open = "open"
+	case Closed = "closed"
+	case Nodata = "nodata"
+	case Unknown = "unknown"
 }
 
 
