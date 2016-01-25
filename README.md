@@ -15,6 +15,7 @@ Currently supported are:
 
  - Dresden, Germany
  - Ingolstadt, Germany
+ - Hamburg, Germany
  - Zürich, Switzerland
  - with more coming soon (see [ParkAPI](https://github.com/offenesdresden/ParkAPI))
 
