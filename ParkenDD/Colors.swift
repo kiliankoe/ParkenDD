@@ -39,8 +39,15 @@ struct Colors {
 	}
 }
 
-// Props to github.com/yeahdongcn/UIColor-Hex-Swift
 extension UIColor {
+	/**
+	Initializes and returns a color object from a given hex string.
+	Props to github.com/yeahdongcn/UIColor-Hex-Swift
+
+	- parameter rgba: hex string
+
+	- returns: color object
+	*/
 	convenience init(rgba: String) {
 		var red:   CGFloat = 0.0
 		var green: CGFloat = 0.0
@@ -73,13 +80,13 @@ extension UIColor {
 					blue  = CGFloat((hexValue & 0x0000FF00) >> 8)  / 255.0
 					alpha = CGFloat(hexValue & 0x000000FF)         / 255.0
 				default:
-					print("Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8", terminator: "")
+					preconditionFailure("Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8")
 				}
 			} else {
-				print("Scan hex error")
+				preconditionFailure("Scan hex error")
 			}
 		} else {
-			print("Invalid RGB string, missing '#' as prefix", terminator: "")
+			preconditionFailure("Invalid RGB string, missing '#' as prefix")
 		}
 		self.init(red:red, green:green, blue:blue, alpha:alpha)
 	}
