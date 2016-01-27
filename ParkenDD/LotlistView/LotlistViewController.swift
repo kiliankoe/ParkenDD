@@ -340,19 +340,22 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	}
 
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell: ParkinglotTableViewCell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as! ParkinglotTableViewCell
+		var cell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as? ParkinglotTableViewCell
+		if cell == nil {
+			cell = ParkinglotTableViewCell()
+		}
 		
 		let thisLot = parkinglots[indexPath.row]
-		cell.setParkinglot(thisLot)
+		cell?.setParkinglot(thisLot)
 		
 		// Since we've got the locationManager available here it's kinda tricky telling the cell what the current distance
 		// from the lot is, so we're passing that along and setting the label in the cell class to keep it separate.
 		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
 		if sortingType == Sorting.distance || sortingType == Sorting.euclid {
 			if let userLocation = locationManager.location {
-				cell.distance = thisLot.distance(from: userLocation)
+				cell?.distance = thisLot.distance(from: userLocation)
 			} else {
-				cell.distance = Const.dummyDistance
+				cell?.distance = Const.dummyDistance
 			}
 		}
 
@@ -363,7 +366,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
 		}
 
-		return cell
+		return cell!
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
@@ -371,7 +374,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// /////////////////////////////////////////////////////////////////////////
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		if let _ = (tableView.cellForRowAtIndexPath(indexPath) as! ParkinglotTableViewCell).parkinglot?.coords {
+		if let _ = (tableView.cellForRowAtIndexPath(indexPath) as? ParkinglotTableViewCell)?.parkinglot?.coords {
 			performSegueWithIdentifier("showParkinglotMap", sender: self)
 		} else {
 			drop(L10n.NOCOORDSWARNING.string, blur: .Dark)
