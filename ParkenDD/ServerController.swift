@@ -28,7 +28,7 @@ class ServerController {
 	}
 
 	struct URL {
-		static let apiBaseURL = "https://park-api.higgsboson.tk/"
+		static let apiBaseURL = "http://api.parkendd.de/"
 		static let apiBaseURLStaging = "https://staging-park-api.higgsboson.tk/"
 		static let nominatimURL = "https://nominatim.openstreetmap.org/"
 	}
