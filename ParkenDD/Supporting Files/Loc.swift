@@ -109,6 +109,8 @@ enum L10n {
   case ENDOFDATATITLE
   /// Unfortunately there's no data available for the selected date.
   case ENDOFDATA
+  /// Suggest a new city
+  case REQUESTNEWCITY
   /// Best first
   case SORTINGTYPEEUKLID
   /// Forecast
@@ -228,6 +230,8 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("END_OF_DATA_TITLE")
       case .ENDOFDATA:
         return L10n.tr("END_OF_DATA")
+      case .REQUESTNEWCITY:
+        return L10n.tr("REQUEST_NEW_CITY")
       case .SORTINGTYPEEUKLID:
         return L10n.tr("SORTINGTYPE_EUKLID")
       case .FORECAST:

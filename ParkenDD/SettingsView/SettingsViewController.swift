@@ -60,7 +60,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case .DisplayOptions:
 			return 3
 		case .OtherOptions:
-			return 3
+			return 4
 		}
     }
 
@@ -131,6 +131,9 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 		case (.OtherOptions, 2):
 			cell.textLabel?.text = L10n.SENDFEEDBACK.string
+			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+		case (.OtherOptions, 3):
+			cell.textLabel?.text = L10n.REQUESTNEWCITY.string
 			cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
 		default:
@@ -266,6 +269,13 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 					mail.setToRecipients(["parkendd@kilian.io"])
 
 					self.presentViewController(mail, animated: true, completion: nil)
+				}
+			case 3:
+				if #available(iOS 9.0, *) {
+					let safariVC = SFSafariViewController(URL: NSURL(string: "http://goo.gl/forms/F8mmjAJxw4")!)
+					presentViewController(safariVC, animated: true, completion: nil)
+				} else {
+					UIApplication.sharedApplication().openURL(NSURL(string: "http://goo.gl/forms/F8mmjAJxw4")!)
 				}
 			default:
 				break
