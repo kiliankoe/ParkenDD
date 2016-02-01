@@ -14,9 +14,3 @@ func drop(message: String, state: DropState) {
 		Drop.down(message, state: state)
 	}
 }
-
-func drop(message: String, blur: DropBlur) {
-	dispatch_async(dispatch_get_main_queue()) { () -> Void in
-		Drop.down(message, blur: blur)
-	}
-}

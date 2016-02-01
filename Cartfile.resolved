@@ -1,3 +1,2 @@
-github "Hearst-DD/ObjectMapper" "0.19"
-github "morizotter/SwiftyDrop" "2.0.0"
-github "danielgindi/ios-charts" "v2.1.5"
+github "Hearst-DD/ObjectMapper" "1.1.1"
+github "morizotter/SwiftyDrop" "2.3.0"

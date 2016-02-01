@@ -159,7 +159,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 					
 					if dateDifference.minute >= 60 {
 						attrs = [NSForegroundColorAttributeName: UIColor.redColor()]
-						drop(L10n.OUTDATEDDATAWARNING.string, blur: .Dark)
+						drop(L10n.OUTDATEDDATAWARNING.string, state: .Blur(.Dark))
 						NSLog("Data in \(selectedCity) seems to be outdated.")
 					}
 					
@@ -377,7 +377,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		if let _ = (tableView.cellForRowAtIndexPath(indexPath) as? ParkinglotTableViewCell)?.parkinglot?.coords {
 			performSegueWithIdentifier("showParkinglotMap", sender: self)
 		} else {
-			drop(L10n.NOCOORDSWARNING.string, blur: .Dark)
+			drop(L10n.NOCOORDSWARNING.string, state: .Blur(.Dark))
 		}
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
