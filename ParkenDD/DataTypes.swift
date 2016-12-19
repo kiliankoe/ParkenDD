@@ -15,16 +15,17 @@ import ObjectMapper
 *  Coords - Stores a latitude and longitude coordinate
 */
 struct Coords: Mappable {
-	var lat: Double
-	var lng: Double
+	var lat: Double!
+	var lng: Double!
 	
-	init?(_ map: Map) {
-		lat = map["lat"].valueOrFail()
-		lng = map["lng"].valueOrFail()
+	init?(map: Map) {
+//		lat = map["lat"].valueOrFail()
+//		lng = map["lng"].valueOrFail()
 	}
 	
-	mutating func mapping(_ map: Map) {
-		
+	mutating func mapping(map: Map) {
+        lat <- map["lat"]
+        lng <- map["lng"]
 	}
 }
 
@@ -33,17 +34,18 @@ struct Coords: Mappable {
 *  City - Stores name, coords, source URL and data URL.
 */
 struct City: Mappable {
-	var name: String
+	var name: String!
 	var coords: Coords?
 	var source: URL?
 	var url: URL?
 	var activeSupport: Bool?
 	
-	init?(_ map: Map) {
-		name = map["name"].valueOrFail()
+	init?(map: Map) {
+//		name = map["name"].valueOrFail()
 	}
 	
-	mutating func mapping(_ map: Map) {
+	mutating func mapping(map: Map) {
+        name          <- map["name"]
 		coords        <- map["coords"]
 		source        <- (map["source"], URLTransform())
 		url           <- (map["url"], URLTransform())
@@ -56,16 +58,17 @@ struct City: Mappable {
 *  Metadata - Stores cities list, version of API and server software and reference URL.
 */
 struct Metadata: Mappable {
-	var apiVersion: String
+	var apiVersion: String!
 	var serverVersion: String?
 	var reference: URL?
 	var cities: [String: City]?
 	
-	init?(_ map: Map) {
-		apiVersion = map["api_version"].valueOrFail()
+	init?(map: Map) {
+//		apiVersion = map["api_version"].valueOrFail()
 	}
 	
-	mutating func mapping(_ map: Map) {
+	mutating func mapping(map: Map) {
+        apiVersion    <- map["api_version"]
 		serverVersion <- map["server_version"]
 		reference     <- (map["reference"], URLTransform())
 		cities        <- map["cities"]
@@ -80,13 +83,13 @@ struct Parkinglot: Mappable {
 	var address: String?
 	var coords: Coords?
 	var forecast: Bool?
-	var free: Int
-	var lotID: String
+	var free: Int!
+	var lotID: String!
 	var lotType: String?
-	var name: String
+	var name: String!
 	var region: String?
 	var state: Lotstate?
-	var total: Int
+	var total: Int!
 	
 	var loadPercentage: Int {
 		get {
@@ -117,14 +120,19 @@ struct Parkinglot: Mappable {
 		return self.free
 	}
 	
-	init?(_ map: Map) {
-		free  = map["free"].valueOrFail()
-		lotID    = map["id"].valueOrFail()
-		name  = map["name"].valueOrFail()
-		total = map["total"].valueOrFail()
+	init?(map: Map) {
+//		free  = map["free"].valueOrFail()
+//		lotID    = map["id"].valueOrFail()
+//		name  = map["name"].valueOrFail()
+//		total = map["total"].valueOrFail()
 	}
 	
-	mutating func mapping(_ map: Map) {
+	mutating func mapping(map: Map) {
+        free     <- map["free"]
+        lotID    <- map["id"]
+        name     <- map["name"]
+        total    <- map["total"]
+
 		address  <- map["address"]
 		coords   <- map["coords"]
 		forecast <- map["forecast"]
@@ -159,11 +167,11 @@ struct ParkinglotData: Mappable {
 	var lastDownloaded: Date?
 	var lastUpdated: Date?
 	
-	init?(_ map: Map) {
+	init?(map: Map) {
 		
 	}
 	
-	mutating func mapping(_ map: Map) {
+	mutating func mapping(map: Map) {
 		
 		let UTCDateFormatter = DateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: TimeZone(identifier: "UTC")!)
 		
@@ -181,11 +189,11 @@ struct ForecastData: Mappable {
 	var data: [String: String]?
 	var version: String?
 	
-	init?(_ map: Map) {
+	init?(map: Map) {
 		
 	}
 	
-	mutating func mapping(_ map: Map) {
+	mutating func mapping(map: Map) {
 		data    <- map["data"]
 		version <- map["version"]
 	}
