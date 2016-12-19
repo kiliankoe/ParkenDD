@@ -42,7 +42,7 @@ class ForecastViewController: UIViewController {
 		datePicker?.date = now
 		datePicker?.minimumDate = Calendar.current.startOfDay(for: now)
 		
-		chartView?.descriptionText = L10n.LOADINPERCENT.string
+		chartView?.chartDescription?.text = L10n.LOADINPERCENT.string
 		
 		chartView?.backgroundColor = UIColor.white
 		chartView?.gridBackgroundColor = UIColor.white
@@ -61,8 +61,8 @@ class ForecastViewController: UIViewController {
 		chartView?.leftAxis.gridColor = UIColor(rgba: "#E4E4E4")
 		chartView?.leftAxis.drawAxisLineEnabled = false
 		chartView?.leftAxis.drawLabelsEnabled = false
-		chartView?.leftAxis.customAxisMax = 100.0
-		chartView?.leftAxis.customAxisMin = 0.0
+		chartView?.leftAxis.axisMaximum = 100.0
+		chartView?.leftAxis.axisMinimum = 0.0
 		
 		chartView?.backgroundColor = UIColor(rgba: "#F6F6F6")
 		
@@ -146,7 +146,7 @@ class ForecastViewController: UIViewController {
 		for date in sortedDates {
 			let value = Double(data[date]!)!
 			let xIndex = sortedDates.index(of: date)!
-			let dataEntry = ChartDataEntry(value: value, xIndex: xIndex)
+			let dataEntry = ChartDataEntry(x: value, y: Double(xIndex))
 			dataEntries.append(dataEntry)
 		}
 		
