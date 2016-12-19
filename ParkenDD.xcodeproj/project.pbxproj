@@ -18,7 +18,6 @@
 		396642201BB203DC00DF2E99 /* Loc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966421F1BB203DC00DF2E99 /* Loc.swift */; };
 		3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3977CA271A9CC78C00E20014 /* InfoPlist.strings */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
-		3986E8D61BD4FC7200B86673 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3986E8D51BD4FC7200B86673 /* Cartfile */; };
 		3986E8DA1BD6541500B86673 /* ParkinglotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3986E8D91BD6541500B86673 /* ParkinglotAnnotation.swift */; };
 		399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */; };
 		39AEA1801BBADCCD0029642F /* augustusbruecke.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */; };
@@ -81,7 +80,6 @@
 		3977CA281A9CC78E00E20014 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		397D7B1E1A9A2236001B5874 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		397D7B201A9A223A001B5874 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		3986E8D51BD4FC7200B86673 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		3986E8D91BD6541500B86673 /* ParkinglotAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotAnnotation.swift; sourceTree = "<group>"; };
 		398E45C81BE8FA9A002E0DA8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		398E45C91BE8FA9A002E0DA8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 		39F4CFE11A6BBC0200ACFECF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3986E8D51BD4FC7200B86673 /* Cartfile */,
 				39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */,
 				39AEA17F1BBADCCD0029642F /* durchDresden.gpx */,
 				39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */,
@@ -383,7 +380,6 @@
 				3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */,
 				39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */,
 				39D096261BDC304F009544E8 /* ForecastViewController.xib in Resources */,
-				3986E8D61BD4FC7200B86673 /* Cartfile in Resources */,
 				39AEA1801BBADCCD0029642F /* augustusbruecke.gpx in Resources */,
 				3904EE051B55C61700B2933B /* Settings.storyboard in Resources */,
 				39AEA1811BBADCCD0029642F /* durchDresden.gpx in Resources */,
