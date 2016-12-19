@@ -150,14 +150,16 @@ class ForecastViewController: UIViewController {
 			dataEntries.append(dataEntry)
 		}
 		
-		let lineChartDataSet = LineChartDataSet(yVals: dataEntries)
-		lineChartDataSet.colors = [UIColor.darkGrayColor()]
-		lineChartDataSet.fillColor = UIColor.grayColor()
+        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: nil)
+		lineChartDataSet.colors = [UIColor.darkGray]
+		lineChartDataSet.fillColor = UIColor.gray
 		lineChartDataSet.drawValuesEnabled = false
 		lineChartDataSet.drawCirclesEnabled = false
 		lineChartDataSet.drawFilledEnabled = true
-		lineChartDataSet.drawCubicEnabled = true
-		let lineChartData = LineChartData(xVals: labels, dataSet: lineChartDataSet)
+        lineChartDataSet.mode = .cubicBezier
+//		lineChartDataSet.drawCubicEnabled = true
+//		let lineChartData = LineChartData(xVals: labels, dataSet: lineChartDataSet)
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
 		chartView?.data = lineChartData
 	}
 	
