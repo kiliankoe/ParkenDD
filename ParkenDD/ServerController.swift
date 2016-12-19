@@ -28,7 +28,7 @@ class ServerController {
 	}
 
 	struct URL {
-		static let apiBaseURL = "http://api.parkendd.de/"
+		static let apiBaseURL = "https://api.parkendd.de/"
 		static let apiBaseURLLocalhost = "http://localhost:5000"
 		static let nominatimURL = "https://nominatim.openstreetmap.org/"
 	}
