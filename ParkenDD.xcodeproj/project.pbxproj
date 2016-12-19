@@ -298,6 +298,7 @@
 			buildConfigurationList = 39F4CFFD1A6BBC0200ACFECF /* Build configuration list for PBXNativeTarget "ParkenDD" */;
 			buildPhases = (
 				166FDF5D89BEB26AB02D61B5 /* [CP] Check Pods Manifest.lock */,
+				395CC1821B4AB62600F81721 /* Highlight TODO/FIXME/ERROR */,
 				39D26D541BBF44B00094A496 /* Set CFBundleVersion */,
 				39B6259A1C0393D700A94F2F /* Swiftlint */,
 				396642211BB203EF00DF2E99 /* Generate Localization Enum */,
@@ -305,7 +306,6 @@
 				39F4CFDB1A6BBC0200ACFECF /* Frameworks */,
 				39F4CFDC1A6BBC0200ACFECF /* Resources */,
 				390CD0581AEE6602003EB8F4 /* Embed App Extensions */,
-				395CC1821B4AB62600F81721 /* Highlight TODO/FIXME/ERROR */,
 				39F4BD3F1B1B683A00900967 /* Authenticate Fabric */,
 				39D26D551BBF45060094A496 /* Change CFBundleVersion back */,
 				9FF542CA008B477801E3DD40 /* [CP] Embed Pods Frameworks */,
