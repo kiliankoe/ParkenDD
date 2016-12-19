@@ -27,6 +27,7 @@
 		39D096251BDC304F009544E8 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D096231BDC304F009544E8 /* ForecastViewController.swift */; };
 		39D096261BDC304F009544E8 /* ForecastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39D096241BDC304F009544E8 /* ForecastViewController.xib */; };
 		39D0962A1BDC4B0F009544E8 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D096291BDC4B0F009544E8 /* Drop.swift */; };
+		39D1F89B1E08936800827D8E /* ForecastChartDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D1F89A1E08936800827D8E /* ForecastChartDataSource.swift */; };
 		39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */; };
 		39DDA4071BDE676500EF5E18 /* NSDate+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */; };
 		39E7E2241BE91EB500478847 /* MiniForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E7E2221BE91EB500478847 /* MiniForecastViewController.swift */; };
@@ -94,6 +95,7 @@
 		39D096231BDC304F009544E8 /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForecastViewController.swift; path = ParkenDD/ForecastView/ForecastViewController.swift; sourceTree = SOURCE_ROOT; };
 		39D096241BDC304F009544E8 /* ForecastViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ForecastViewController.xib; path = ParkenDD/ForecastView/ForecastViewController.xib; sourceTree = SOURCE_ROOT; };
 		39D096291BDC4B0F009544E8 /* Drop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
+		39D1F89A1E08936800827D8E /* ForecastChartDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForecastChartDataSource.swift; path = ParkenDD/ForecastView/ForecastChartDataSource.swift; sourceTree = SOURCE_ROOT; };
 		39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySelectionTVC.swift; sourceTree = "<group>"; };
 		39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Comparable.swift"; sourceTree = "<group>"; };
 		39E7E2221BE91EB500478847 /* MiniForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MiniForecastViewController.swift; path = ParkenDD/ForecastView/MiniForecastViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -260,6 +262,7 @@
 				39D096241BDC304F009544E8 /* ForecastViewController.xib */,
 				39E7E2221BE91EB500478847 /* MiniForecastViewController.swift */,
 				39E7E2231BE91EB500478847 /* MiniForecastViewController.xib */,
+				39D1F89A1E08936800827D8E /* ForecastChartDataSource.swift */,
 			);
 			name = ForecastView;
 			path = PrognosisView;
@@ -557,6 +560,7 @@
 				3986E8DA1BD6541500B86673 /* ParkinglotAnnotation.swift in Sources */,
 				39D096251BDC304F009544E8 /* ForecastViewController.swift in Sources */,
 				39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */,
+				39D1F89B1E08936800827D8E /* ForecastChartDataSource.swift in Sources */,
 				3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
