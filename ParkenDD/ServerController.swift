@@ -41,13 +41,14 @@ class ServerController {
 	static func sendMetadataRequest(_ completion: @escaping (Metadata?, SCError?) -> Void) {
 		let metadataURL = SCOptions.useLocalhost ? URL.apiBaseURLLocalhost : URL.apiBaseURL
 		UIApplication.shared.isNetworkActivityIndicatorVisible = true
-		Alamofire.request(metadataURL).responseJSON { response in
+		Alamofire.request(metadataURL).response { response in
 			UIApplication.shared.isNetworkActivityIndicatorVisible = false
 //			guard let response = response.response else { completion(nil, .request); return }
 			guard response.response?.statusCode == 200 else { completion(nil, .server); return }
-			guard let data = response.result.value as? String else { completion(nil, .server); return }
+			guard let data = response.data else { completion(nil, .server); return }
+            guard let jsonString = String(data: data, encoding: .utf8) else { completion(nil, .server); return }
 			
-            let metadata = Mapper<Metadata>().map(JSONString: data)
+            let metadata = Mapper<Metadata>().map(JSONString: jsonString)
 			
 			// TODO: I have a feeling that this will die mapping the data before being able to check the version if something substantial changes...
 			guard metadata?.apiVersion == SCOptions.supportedAPIVersion else {
@@ -68,14 +69,15 @@ class ServerController {
 	static func sendParkinglotDataRequest(_ city: String, completion: @escaping (ParkinglotData?, SCError?) -> Void) {
 		let parkinglotURL = SCOptions.useLocalhost ? URL.apiBaseURLLocalhost + city : URL.apiBaseURL + city
 		UIApplication.shared.isNetworkActivityIndicatorVisible = true
-		Alamofire.request(parkinglotURL).responseJSON { response in
+		Alamofire.request(parkinglotURL).response { response in
 			UIApplication.shared.isNetworkActivityIndicatorVisible = false
 //			guard let response = response else { completion(nil, .Request); return }
 			if response.response?.statusCode == 404 { completion(nil, .notFound); return }
 			guard response.response?.statusCode == 200 else { completion(nil, .server); return }
-			guard let data = response.result.value as? String else { completion(nil, .server); return }
+			guard let data = response.data else { completion(nil, .server); return }
+            guard let jsonString = String(data: data, encoding: .utf8) else { completion(nil, .server); return }
 			
-            let parkinglotData = Mapper<ParkinglotData>().map(JSONString: data)
+            let parkinglotData = Mapper<ParkinglotData>().map(JSONString: jsonString)
 			completion(parkinglotData, nil)
 		}
 	}
@@ -126,9 +128,10 @@ class ServerController {
 //			guard let response = response else { completion(nil, .Request); return }
 			if response.response?.statusCode == 404 { completion(nil, .notFound); return }
 			guard response.response?.statusCode == 200 else { completion(nil, .server); return }
-			guard let data = response.result.value as? String else { completion(nil, .server); return }
+			guard let data = response.data else { completion(nil, .server); return }
+            guard let jsonString = String(data: data, encoding: .utf8) else { completion(nil, .server); return }
 			
-            let forecastData = Mapper<ForecastData>().map(JSONString: data)
+            let forecastData = Mapper<ForecastData>().map(JSONString: jsonString)
 			
 			guard let fData = forecastData?.data else { completion(nil, .server); return }
 			
