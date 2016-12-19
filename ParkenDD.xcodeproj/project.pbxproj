@@ -10,7 +10,6 @@
 		3904EE051B55C61700B2933B /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3904EE041B55C61700B2933B /* Settings.storyboard */; };
 		3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926FECC1AAC47AA005B2DF9 /* Constants.swift */; };
 		392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */; };
-		39392ECE1B72BDE900C3EDA4 /* SwiftyDrop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */; };
 		393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D391A97BDBB00B25B74 /* ServerController.swift */; };
 		394209B41AADB17600E47539 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394209B31AADB17600E47539 /* MapViewController.swift */; };
 		394464D91BE0B90C008CE615 /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394464D81BE0B90C008CE615 /* NSDateFormatter.swift */; };
@@ -20,7 +19,6 @@
 		3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3977CA271A9CC78C00E20014 /* InfoPlist.strings */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
 		3986E8D61BD4FC7200B86673 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 3986E8D51BD4FC7200B86673 /* Cartfile */; };
-		3986E8D81BD5084100B86673 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3986E8D71BD5084100B86673 /* ObjectMapper.framework */; };
 		3986E8DA1BD6541500B86673 /* ParkinglotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3986E8D91BD6541500B86673 /* ParkinglotAnnotation.swift */; };
 		399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */; };
 		39AEA1801BBADCCD0029642F /* augustusbruecke.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */; };
@@ -42,6 +40,7 @@
 		39F4CFE91A6BBC0200ACFECF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFE71A6BBC0200ACFECF /* Main.storyboard */; };
 		39F4CFEB1A6BBC0200ACFECF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */; };
 		39F4CFEE1A6BBC0200ACFECF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F4CFEC1A6BBC0200ACFECF /* LaunchScreen.xib */; };
+		8BC30D140F25BA33CDB32F5D /* Pods_ParkenDD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126B02BC31AC3082DEF3E5D9 /* Pods_ParkenDD.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,24 +67,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		126B02BC31AC3082DEF3E5D9 /* Pods_ParkenDD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParkenDD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3904EE041B55C61700B2933B /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		3926FECC1AAC47AA005B2DF9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotTableViewCell.swift; sourceTree = "<group>"; };
-		39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyDrop.framework; path = Carthage/Build/iOS/SwiftyDrop.framework; sourceTree = "<group>"; };
 		393F0D391A97BDBB00B25B74 /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
-		3941FACE1BD8C36900E8DE89 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 		394209B31AADB17600E47539 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		394464D81BE0B90C008CE615 /* NSDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatter.swift; sourceTree = "<group>"; };
 		3946D82C1AD309EB00CB4C41 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		395A15F91BC2BEB3000510E3 /* DataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
-		395A15FB1BC2C430000510E3 /* Decodable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Decodable.framework; path = Carthage/Build/iOS/Decodable.framework; sourceTree = "<group>"; };
 		3966421F1BB203DC00DF2E99 /* Loc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loc.swift; sourceTree = "<group>"; };
 		3977CA261A9CC78C00E20014 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3977CA281A9CC78E00E20014 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		397D7B1E1A9A2236001B5874 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		397D7B201A9A223A001B5874 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3986E8D51BD4FC7200B86673 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
-		3986E8D71BD5084100B86673 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		3986E8D91BD6541500B86673 /* ParkinglotAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotAnnotation.swift; sourceTree = "<group>"; };
 		398E45C81BE8FA9A002E0DA8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		398E45C91BE8FA9A002E0DA8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -115,6 +111,8 @@
 		39F4CFE81A6BBC0200ACFECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39F4CFEA1A6BBC0200ACFECF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		39F4CFED1A6BBC0200ACFECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		3BB249A19DB2C164F42946F6 /* Pods-ParkenDD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkenDD.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParkenDD/Pods-ParkenDD.release.xcconfig"; sourceTree = "<group>"; };
+		9579584D689CDE7A239FCEBB /* Pods-ParkenDD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParkenDD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParkenDD/Pods-ParkenDD.debug.xcconfig"; sourceTree = "<group>"; };
 		D53AC0AE0930F88C064CC653 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -132,8 +130,7 @@
 			files = (
 				39F4BD431B1B686500900967 /* Crashlytics.framework in Frameworks */,
 				39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */,
-				39392ECE1B72BDE900C3EDA4 /* SwiftyDrop.framework in Frameworks */,
-				3986E8D81BD5084100B86673 /* ObjectMapper.framework in Frameworks */,
+				8BC30D140F25BA33CDB32F5D /* Pods_ParkenDD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,14 +169,11 @@
 		39B953511AA0A59600026EC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3941FACE1BD8C36900E8DE89 /* Charts.framework */,
-				3986E8D71BD5084100B86673 /* ObjectMapper.framework */,
-				395A15FB1BC2C430000510E3 /* Decodable.framework */,
-				39392ECD1B72BDE900C3EDA4 /* SwiftyDrop.framework */,
 				39F4BD401B1B686500900967 /* Fabric.framework */,
 				39F4BD411B1B686500900967 /* Crashlytics.framework */,
 				39B953521AA0A59600026EC2 /* NotificationCenter.framework */,
 				D53AC0AE0930F88C064CC653 /* Pods.framework */,
+				126B02BC31AC3082DEF3E5D9 /* Pods_ParkenDD.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,6 +205,7 @@
 				39F4CFE01A6BBC0200ACFECF /* ParkenDD */,
 				39EAB8B81BE96E1E005A7290 /* ParkenDDUITests */,
 				39F4CFDF1A6BBC0200ACFECF /* Products */,
+				8CB2F39BFD80F08AEF69A94A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -271,6 +266,15 @@
 			path = PrognosisView;
 			sourceTree = "<group>";
 		};
+		8CB2F39BFD80F08AEF69A94A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9579584D689CDE7A239FCEBB /* Pods-ParkenDD.debug.xcconfig */,
+				3BB249A19DB2C164F42946F6 /* Pods-ParkenDD.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -296,7 +300,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39F4CFFD1A6BBC0200ACFECF /* Build configuration list for PBXNativeTarget "ParkenDD" */;
 			buildPhases = (
+				166FDF5D89BEB26AB02D61B5 /* [CP] Check Pods Manifest.lock */,
 				39D26D541BBF44B00094A496 /* Set CFBundleVersion */,
+				39B6259A1C0393D700A94F2F /* Swiftlint */,
 				396642211BB203EF00DF2E99 /* Generate Localization Enum */,
 				39F4CFDA1A6BBC0200ACFECF /* Sources */,
 				39F4CFDB1A6BBC0200ACFECF /* Frameworks */,
@@ -304,9 +310,9 @@
 				390CD0581AEE6602003EB8F4 /* Embed App Extensions */,
 				395CC1821B4AB62600F81721 /* Highlight TODO/FIXME/ERROR */,
 				39F4BD3F1B1B683A00900967 /* Authenticate Fabric */,
-				39392ECF1B72BE0500C3EDA4 /* Carthage */,
 				39D26D551BBF45060094A496 /* Change CFBundleVersion back */,
-				39B6259A1C0393D700A94F2F /* Swiftlint */,
+				9FF542CA008B477801E3DD40 /* [CP] Embed Pods Frameworks */,
+				3F63C3C2AEE3BC4181F0C6F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -390,21 +396,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		39392ECF1B72BE0500C3EDA4 /* Carthage */ = {
+		166FDF5D89BEB26AB02D61B5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftyDrop.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 			);
-			name = Carthage;
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 		395CC1821B4AB62600F81721 /* Highlight TODO/FIXME/ERROR */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -446,7 +451,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n#swiftlint\n    echo \"warning: Not running swiftlint\"\nelse\n    echo \"warning: SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		39D26D541BBF44B00094A496 /* Set CFBundleVersion */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -489,6 +494,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run a73c412e3cdf6638dff0bb09b90292655ab3eecd 7899bb8bd32e08f690b8d3b6bb215ea4010ad734af9516ad408a25025c942313";
+		};
+		3F63C3C2AEE3BC4181F0C6F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkenDD/Pods-ParkenDD-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FF542CA008B477801E3DD40 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkenDD/Pods-ParkenDD-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -707,6 +742,7 @@
 		};
 		39F4CFFE1A6BBC0200ACFECF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9579584D689CDE7A239FCEBB /* Pods-ParkenDD.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -735,6 +771,7 @@
 		};
 		39F4CFFF1A6BBC0200ACFECF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BB249A19DB2C164F42946F6 /* Pods-ParkenDD.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
