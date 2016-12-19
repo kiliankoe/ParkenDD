@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension NSDateFormatter {
-	convenience init(dateFormat: String, timezone: NSTimeZone?) {
+extension DateFormatter {
+	convenience init(dateFormat: String, timezone: TimeZone?) {
 		self.init()
 		self.dateFormat = dateFormat
 		if let timezone = timezone {

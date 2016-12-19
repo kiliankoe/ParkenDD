@@ -23,7 +23,7 @@ struct Coords: Mappable {
 		lng = map["lng"].valueOrFail()
 	}
 	
-	mutating func mapping(map: Map) {
+	mutating func mapping(_ map: Map) {
 		
 	}
 }
@@ -35,15 +35,15 @@ struct Coords: Mappable {
 struct City: Mappable {
 	var name: String
 	var coords: Coords?
-	var source: NSURL?
-	var url: NSURL?
+	var source: URL?
+	var url: URL?
 	var activeSupport: Bool?
 	
 	init?(_ map: Map) {
 		name = map["name"].valueOrFail()
 	}
 	
-	mutating func mapping(map: Map) {
+	mutating func mapping(_ map: Map) {
 		coords        <- map["coords"]
 		source        <- (map["source"], URLTransform())
 		url           <- (map["url"], URLTransform())
@@ -58,14 +58,14 @@ struct City: Mappable {
 struct Metadata: Mappable {
 	var apiVersion: String
 	var serverVersion: String?
-	var reference: NSURL?
+	var reference: URL?
 	var cities: [String: City]?
 	
 	init?(_ map: Map) {
 		apiVersion = map["api_version"].valueOrFail()
 	}
 	
-	mutating func mapping(map: Map) {
+	mutating func mapping(_ map: Map) {
 		serverVersion <- map["server_version"]
 		reference     <- (map["reference"], URLTransform())
 		cities        <- map["cities"]
@@ -100,9 +100,9 @@ struct Parkinglot: Mappable {
 	}
 	
 	func distance(from userLocation: CLLocation) -> Double {
-		guard let lat = coords?.lat, lng = coords?.lng else { return Const.dummyDistance }
+		guard let lat = coords?.lat, let lng = coords?.lng else { return Const.dummyDistance }
 		let lotLocation = CLLocation(latitude: lat, longitude: lng)
-		return userLocation.distanceFromLocation(lotLocation)
+		return userLocation.distance(from: lotLocation)
 	}
 	
 	func getFree() -> Int {
@@ -124,7 +124,7 @@ struct Parkinglot: Mappable {
 		total = map["total"].valueOrFail()
 	}
 	
-	mutating func mapping(map: Map) {
+	mutating func mapping(_ map: Map) {
 		address  <- map["address"]
 		coords   <- map["coords"]
 		forecast <- map["forecast"]
@@ -156,16 +156,16 @@ enum Lotstate: String {
 */
 struct ParkinglotData: Mappable {
 	var lots: [Parkinglot]?
-	var lastDownloaded: NSDate?
-	var lastUpdated: NSDate?
+	var lastDownloaded: Date?
+	var lastUpdated: Date?
 	
 	init?(_ map: Map) {
 		
 	}
 	
-	mutating func mapping(map: Map) {
+	mutating func mapping(_ map: Map) {
 		
-		let UTCDateFormatter = NSDateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: NSTimeZone(name: "UTC")!)
+		let UTCDateFormatter = DateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: TimeZone(identifier: "UTC")!)
 		
 		lots           <- map["lots"]
 		lastDownloaded <- (map["last_downloaded"], DateFormatterTransform(dateFormatter: UTCDateFormatter))
@@ -185,7 +185,7 @@ struct ForecastData: Mappable {
 		
 	}
 	
-	mutating func mapping(map: Map) {
+	mutating func mapping(_ map: Map) {
 		data    <- map["data"]
 		version <- map["version"]
 	}

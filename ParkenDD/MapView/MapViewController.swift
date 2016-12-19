@@ -27,18 +27,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 		
 		if let lot = detailParkinglot {
-			Answers.logCustomEventWithName("View Map", customAttributes: ["selected lot": lot.lotID])
+			Answers.logCustomEvent(withName: "View Map", customAttributes: ["selected lot": lot.lotID])
 		}
 		
 		// Add annotations for all parking lots to the map
 		for singleLot in allParkinglots {
-			var subtitle = L10n.MAPSUBTITLE("\(singleLot.free)", singleLot.total).string
+			var subtitle = L10n.mapsubtitle("\(singleLot.free)", singleLot.total).string
 			if let state = singleLot.state {
 				switch state {
 				case .Closed:
-					subtitle = L10n.CLOSED.string
+					subtitle = L10n.closed.string
 				case .Nodata:
-					subtitle = L10n.MAPSUBTITLE("?", singleLot.total).string
+					subtitle = L10n.mapsubtitle("?", singleLot.total).string
 				case .Open, .Unknown:
 					break
 				}
@@ -54,7 +54,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 		
 		// Set the map's region to a 1km region around the selected lot
-		if let lat = detailParkinglot.coords?.lat, lng = detailParkinglot.coords?.lng {
+		if let lat = detailParkinglot.coords?.lat, let lng = detailParkinglot.coords?.lng {
 			let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: lat, longitude: lng), 1000, 1000)
 			mapView?.setRegion(parkinglotRegion, animated: false)
 		} else {
@@ -62,8 +62,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 		
 		// Display the forecast button if this lot has forecast data
-		if let forecast = detailParkinglot.forecast where forecast {
-			navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.FORECAST.string, style: .Plain, target: self, action: "showForecastController")
+		if let forecast = detailParkinglot.forecast, forecast {
+			navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.forecast.string, style: .plain, target: self, action: "showForecastController")
 		}
 	}
 	
@@ -73,15 +73,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 	func showForecastController() {
 		let forecastController = ForecastViewController()
 		forecastController.lot = detailParkinglot
-		showViewController(forecastController, sender: self)
+		show(forecastController, sender: self)
 	}
 
 	// It's nice to show custom pin colors on the map denoting the current state of the parking lot they're referencing
 	// green: open, unknown (if more than 0 free, otherwise red)
 	// red: closed, nodata
-	func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 		// We don't care about the MKUserLocation here
-		guard annotation.isKindOfClass(ParkinglotAnnotation) else { return nil }
+		guard annotation.isKind(of: ParkinglotAnnotation.self) else { return nil }
 		
 		let annotation = annotation as? ParkinglotAnnotation
 		let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "parkinglotAnnotation")
@@ -89,11 +89,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		if let state = annotation?.parkinglot.state {
 			switch state {
 			case .Closed:
-				annotationView.pinColor = .Red
+				annotationView.pinColor = .red
 			case .Open, .Unknown:
-				annotationView.pinColor = annotation?.parkinglot.free != 0 ? .Green : .Red
+				annotationView.pinColor = annotation?.parkinglot.free != 0 ? .green : .red
 			case .Nodata:
-				annotationView.pinColor = .Purple
+				annotationView.pinColor = .purple
 			}
 		}
 

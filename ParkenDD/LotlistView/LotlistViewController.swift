@@ -18,8 +18,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	var parkinglots: [Parkinglot] = []
 	var defaultSortedParkinglots: [Parkinglot] = []
 
-	var timeUpdated: NSDate?
-	var timeDownloaded: NSDate?
+	var timeUpdated: Date?
+	var timeDownloaded: Date?
 	var dataURL: String?
 
 	@IBOutlet weak var titleButton: UIButton!
@@ -35,38 +35,38 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 		// pretty navbar with black buttons
 		let navBar = self.navigationController?.navigationBar
-		navBar!.translucent = false
-		navBar!.tintColor = UIColor.blackColor()
+		navBar!.isTranslucent = false
+		navBar!.tintColor = UIColor.black
 
 		// Set title to selected city
 		updateTitle(withCity: nil)
 
 		// Set a table footer view so that separators aren't shown when no data is yet present
-		self.tableView.tableFooterView = UIView(frame: CGRectZero)
+		self.tableView.tableFooterView = UIView(frame: CGRect.zero)
 
 		if #available(iOS 9.0, *) {
-			registerForPreviewingWithDelegate(self, sourceView: tableView)
+			registerForPreviewing(with: self, sourceView: tableView)
 		}
 
 		updateData()
-		NSTimer.every(5.minutes, updateData)
+		Timer.every(5.minutes, updateData)
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		tableView.reloadData()
 
 		// Start getting location updates if the user wants lots sorted by distance
-		if let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType) where sortingType == Sorting.distance || sortingType == Sorting.euclid {
-			if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+		if let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType), sortingType == Sorting.distance || sortingType == Sorting.euclid {
+			if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
-				let alertController = UIAlertController(title: L10n.LOCATIONDATAERRORTITLE.string, message: L10n.LOCATIONDATAERROR.string, preferredStyle: UIAlertControllerStyle.Alert)
-				alertController.addAction(UIAlertAction(title: L10n.CANCEL.string, style: UIAlertActionStyle.Cancel, handler: nil))
-				alertController.addAction(UIAlertAction(title: L10n.SETTINGS.string, style: UIAlertActionStyle.Default, handler: {
+				let alertController = UIAlertController(title: L10n.locationdataerrortitle.string, message: L10n.locationdataerror.string, preferredStyle: UIAlertControllerStyle.alert)
+				alertController.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: nil))
+				alertController.addAction(UIAlertAction(title: L10n.settings.string, style: UIAlertActionStyle.default, handler: {
 					(action) in
-					UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+					UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 				}))
-				presentViewController(alertController, animated: true, completion: nil)
+				present(alertController, animated: true, completion: nil)
 			}
 		} else {
 			locationManager.stopUpdatingLocation()
@@ -77,13 +77,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		refreshControl?.endRefreshing()
 	}
 
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showParkinglotMap" {
 			let indexPath = tableView.indexPathForSelectedRow
 
 			let selectedParkinglot = parkinglots[indexPath!.row]
 
-			let mapVC = segue.destinationViewController as? MapViewController
+			let mapVC = segue.destination as? MapViewController
 			mapVC?.detailParkinglot = selectedParkinglot
 			mapVC?.allParkinglots = parkinglots
 		}
@@ -106,30 +106,30 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 				guard let result = result else { NSLog("Neither got any results from the API or an error. This is odd. Very odd indeed. Houston?"); return }
 
 				// Let's gather some statistics about which cities and sorting types users actually care about.
-				let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
-				let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
-				Answers.logCustomEventWithName("View City", customAttributes: ["selected city": selectedCity, "sorting type": sortingType])
+				let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity)!
+				let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
+				Answers.logCustomEvent(withName: "View City", customAttributes: ["selected city": selectedCity, "sorting type": sortingType])
 
 				self.stopRefreshUI()
 
 				var citiesList = [String: City]()
-				if NSUserDefaults.standardUserDefaults().boolForKey(Defaults.showExperimentalCities) {
+				if UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities) {
 					citiesList = result.metadata.cities!
 				} else {
 					for (id, city) in result.metadata.cities! {
-						if let supported = city.activeSupport where supported == true {
+						if let supported = city.activeSupport, supported == true {
 							citiesList[id] = city
 						}
 					}
 				}
 				
-				(UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList = citiesList
+				(UIApplication.shared.delegate as? AppDelegate)?.citiesList = citiesList
 				
 				if let lots = result.parkinglotData.lots {
 					
 					// Filter out nodata lots if the user has the setting enabled
 					let filteredLots: [Parkinglot]
-					if NSUserDefaults.standardUserDefaults().boolForKey(Defaults.skipNodataLots) {
+					if UserDefaults.standard.bool(forKey: Defaults.skipNodataLots) {
 						filteredLots = lots.filter({ (lot) -> Bool in
 							if let state = lot.state {
 								return state != .Nodata
@@ -144,35 +144,35 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 					self.defaultSortedParkinglots = filteredLots
 				}
 				
-				if let lastUpdated = result.parkinglotData.lastUpdated, lastDownloaded = result.parkinglotData.lastDownloaded {
-					self.timeUpdated = lastUpdated
-					self.timeDownloaded = lastDownloaded
+				if let lastUpdated = result.parkinglotData.lastUpdated, let lastDownloaded = result.parkinglotData.lastDownloaded {
+					self.timeUpdated = lastUpdated as Date
+					self.timeDownloaded = lastDownloaded as Date
 					
 					// While we're at it we're also going to check if the current data is older than an hour and tell the user if it is.
-					let currentDate = NSDate()
+					let currentDate = Date()
 //                    print("Current: \(currentDate)")
 //                    print("Last:    \(lastUpdated)")
-					let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-					let dateDifference = calendar.components(NSCalendarUnit.Minute, fromDate: lastUpdated, toDate: currentDate, options: NSCalendarOptions.WrapComponents)
+					let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+					let dateDifference = (calendar as NSCalendar).components(Calendar.Unit.minute, from: lastUpdated as Date, to: currentDate, options: Calendar.Options.wrapComponents)
 					
 					var attrs = [String: AnyObject]()
 					
-					if dateDifference.minute >= 60 {
-						attrs = [NSForegroundColorAttributeName: UIColor.redColor()]
+					if dateDifference.minute! >= 60 {
+						attrs = [NSForegroundColorAttributeName: UIColor.red]
 						drop(L10n.OUTDATEDDATAWARNING.string, state: .Blur(.Dark))
 						NSLog("Data in \(selectedCity) seems to be outdated.")
 					}
 					
-					let dateFormatter = NSDateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
+					let dateFormatter = DateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
 					
-					self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.LASTUPDATED(dateFormatter.stringFromDate(lastUpdated)))", attributes: attrs)
+					self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.lastupdated(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
 				}
 				
 				// TODO: I want a way to get the data url for the currently selected city to give that to the user somehow...
 				
 				self.sortLots()
 				
-				dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
+				DispatchQueue.main.async(execute: { [unowned self] () -> Void in
 					self.tableView.reloadData()
 				})
 			}
@@ -182,16 +182,16 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	/**
 	Called by the request to the API in case of failure and handed the error to display to the user.
 	*/
-	func handleUpdateError(err: ServerController.SCError) {
+	func handleUpdateError(_ err: ServerController.SCError) {
 		switch err {
-		case .Server, .IncompatibleAPI:
+		case .server, .incompatibleAPI:
 			drop(L10n.SERVERERROR.string, state: .Error)
-		case .Request:
+		case .request:
 			drop(L10n.REQUESTERROR.string, state: .Error)
-		case .NotFound:
-			NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCity)
-			NSUserDefaults.standardUserDefaults().setObject("Dresden", forKey: Defaults.selectedCityName)
-			NSUserDefaults.standardUserDefaults().synchronize()
+		case .notFound:
+			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
+			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
+			UserDefaults.standard.synchronize()
 			updateData()
 			updateTitle(withCity: "Dresden")
 		default:
@@ -201,10 +201,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	
 	func updateTitle(withCity city: String?) {
 		if let city = city {
-			titleButton.setTitle(city, forState: .Normal)
+			titleButton.setTitle(city, for: UIControlState())
 		} else {
-			let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCityName)
-			titleButton.setTitle(selectedCity, forState: .Normal)
+			let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCityName)
+			titleButton.setTitle(selectedCity, for: UIControlState())
 		}
 	}
 
@@ -212,10 +212,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	Sort the parkingslots array based on what is currently saved for SortingType in NSUserDefaults.
 	*/
 	func sortLots() {
-		guard let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType) else { return }
+		guard let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType) else { return }
 		switch sortingType {
 		case Sorting.distance:
-			parkinglots.sortInPlace({
+			parkinglots.sort(by: {
 				(lot1: Parkinglot, lot2: Parkinglot) -> Bool in
 				if let currentUserLocation = locationManager.location {
 					if lot1.name == "Parkhaus Mitte" && lot1.distance(from: currentUserLocation) <= 2000 {
@@ -227,21 +227,21 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 				return lot1.name < lot2.name
 			})
 		case Sorting.alphabetical:
-			parkinglots.sortInPlace({
+			parkinglots.sort(by: {
 				$0.name < $1.name
 			})
 		case Sorting.free:
-			parkinglots.sortInPlace({
+			parkinglots.sort(by: {
 				$0.getFree() > $1.getFree()
 			})
 		case Sorting.euclid:
-			self.parkinglots.sortInPlace(sortEuclidian)
+			self.parkinglots.sort(by: sortEuclidian)
 		default:
 			parkinglots = defaultSortedParkinglots
 		}
 	}
 
-	func sortEuclidian(lot1: Parkinglot, lot2: Parkinglot) -> Bool {
+	func sortEuclidian(_ lot1: Parkinglot, lot2: Parkinglot) -> Bool {
 		if let currentUserLocation = locationManager.location {
 			if lot1.name == "Parkhaus Mitte" && lot1.distance(from: currentUserLocation) <= 2000 {
 				// FIXME: This is only temporary ಠ_ಠ
@@ -270,16 +270,16 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// MARK: - IBActions
 	// /////////////////////////////////////////////////////////////////////////
 
-	@IBAction func titleButtonTapped(sender: UIButton) {
-		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: NSBundle.mainBundle())
-		let citySelectionVC = settingsStoryBoard.instantiateViewControllerWithIdentifier("City SelectionTVC")
-		showViewController(citySelectionVC, sender: self)
+	@IBAction func titleButtonTapped(_ sender: UIButton) {
+		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: Bundle.main)
+		let citySelectionVC = settingsStoryBoard.instantiateViewController(withIdentifier: "City SelectionTVC")
+		show(citySelectionVC, sender: self)
 	}
 	
-	@IBAction func settingsButtonTapped(sender: UIBarButtonItem) {
-		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: NSBundle.mainBundle())
+	@IBAction func settingsButtonTapped(_ sender: UIBarButtonItem) {
+		let settingsStoryBoard = UIStoryboard(name: "Settings", bundle: Bundle.main)
 		let settingsVC = settingsStoryBoard.instantiateInitialViewController()!
-		navigationController?.presentViewController(settingsVC, animated: true, completion: nil)
+		navigationController?.present(settingsVC, animated: true, completion: nil)
 	}
 	
 	// /////////////////////////////////////////////////////////////////////////
@@ -290,7 +290,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	Remove all UI that has to do with refreshing data.
 	*/
 	func stopRefreshUI() {
-		dispatch_async(dispatch_get_main_queue(), { [unowned self] () -> Void in
+		DispatchQueue.main.async(execute: { [unowned self] () -> Void in
 			self.showReloadButton()
 			self.refreshControl?.beginRefreshing() // leaving this here to fix a slight offset bug with the refresh control's attributed title
 			self.refreshControl?.endRefreshing()
@@ -301,7 +301,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	Replace the right UIBarButtonItem with the reload button.
 	*/
 	func showReloadButton() {
-		let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "updateData")
+		let refreshButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(LotlistViewController.updateData))
 		navigationItem.rightBarButtonItem = refreshButton
 	}
 
@@ -309,14 +309,14 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	Replace the right UIBarButtonItem with a UIActivityIndicatorView.
 	*/
 	func showActivityIndicator() {
-		let activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 20, 20))
-		activityIndicator.color = UIColor.blackColor()
+		let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+		activityIndicator.color = UIColor.black
 		activityIndicator.startAnimating()
 		let activityItem = UIBarButtonItem(customView: activityIndicator)
 		navigationItem.rightBarButtonItem = activityItem
 	}
 
-	@IBAction func refreshControlValueChanged(sender: UIRefreshControl) {
+	@IBAction func refreshControlValueChanged(_ sender: UIRefreshControl) {
 		updateData()
 	}
 
@@ -324,23 +324,23 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// MARK: - UITableViewDataSource
 	// /////////////////////////////////////////////////////////////////////////
 
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return parkinglots.count
 	}
 
-	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		if indexPath.row < parkinglots.count {
 			return 60
 		}
 		return 30
 	}
 
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell = tableView.dequeueReusableCellWithIdentifier("parkinglotCell") as? ParkinglotTableViewCell
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		var cell = tableView.dequeueReusableCell(withIdentifier: "parkinglotCell") as? ParkinglotTableViewCell
 		if cell == nil {
 			cell = ParkinglotTableViewCell()
 		}
@@ -350,7 +350,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		
 		// Since we've got the locationManager available here it's kinda tricky telling the cell what the current distance
 		// from the lot is, so we're passing that along and setting the label in the cell class to keep it separate.
-		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
+		let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
 		if sortingType == Sorting.distance || sortingType == Sorting.euclid {
 			if let userLocation = locationManager.location {
 				cell?.distance = thisLot.distance(from: userLocation)
@@ -361,9 +361,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 		// Don't display any separators if the list is still empty
 		if parkinglots.count == 0 {
-			tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+			tableView.separatorStyle = UITableViewCellSeparatorStyle.none
 		} else {
-			tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+			tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
 		}
 
 		return cell!
@@ -373,27 +373,27 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// MARK: - UITableViewDelegate
 	// /////////////////////////////////////////////////////////////////////////
 
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		if let _ = (tableView.cellForRowAtIndexPath(indexPath) as? ParkinglotTableViewCell)?.parkinglot?.coords {
-			performSegueWithIdentifier("showParkinglotMap", sender: self)
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if let _ = (tableView.cellForRow(at: indexPath) as? ParkinglotTableViewCell)?.parkinglot?.coords {
+			performSegue(withIdentifier: "showParkinglotMap", sender: self)
 		} else {
 			drop(L10n.NOCOORDSWARNING.string, state: .Blur(.Dark))
 		}
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		tableView.deselectRow(at: indexPath, animated: true)
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - CLLocationManagerDelegate
 	// /////////////////////////////////////////////////////////////////////////
 	var lastLocation: CLLocation?
-	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let currentUserLocation = locationManager.location
 
 		// The idea here is to check the location on each update from the locationManager and only re-sort
 		// the lots and update the tableView if the user has moved more than 100 meters. Doing both every
 		// second is aggravating and really not necessary.
 		if let lastLoc = lastLocation {
-			let distance = currentUserLocation!.distanceFromLocation(lastLoc)
+			let distance = currentUserLocation!.distance(from: lastLoc)
 			if distance > 100 {
 				sortLots()
 				tableView.reloadData()
@@ -406,7 +406,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		}
 	}
 
-	func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 		// TODO: Implement me to hopefully fix #41
 	}
 	
@@ -414,18 +414,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// MARK: - UIViewControllerPreviewingDelegate
 	// /////////////////////////////////////////////////////////////////////////
 	
-	func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+	func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
 		let fullForecastVC = ForecastViewController()
 		fullForecastVC.lot = (viewControllerToCommit as? MiniForecastViewController)?.lot
-		showViewController(fullForecastVC, sender: nil)
+		show(fullForecastVC, sender: nil)
 	}
 	
-	func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-		if let indexPath = tableView.indexPathForRowAtPoint(location) {
-			guard (tableView.cellForRowAtIndexPath(indexPath) as? ParkinglotTableViewCell)!.parkinglot!.forecast! else { return nil }
+	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+		if let indexPath = tableView.indexPathForRow(at: location) {
+			guard (tableView.cellForRow(at: indexPath) as? ParkinglotTableViewCell)!.parkinglot!.forecast! else { return nil }
 			
 			if #available(iOS 9.0, *) {
-			    previewingContext.sourceRect = tableView.rectForRowAtIndexPath(indexPath)
+			    previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
 			}
 			let forecastVC = MiniForecastViewController()
 			forecastVC.lot = parkinglots[indexPath.row]
@@ -438,10 +438,10 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// MARK: - Helpers
 	// /////////////////////////////////////////////////////////////////////////
 
-	func viewWithImageName(imageName: String) -> UIImageView {
+	func viewWithImageName(_ imageName: String) -> UIImageView {
 		let image = UIImage(named: imageName)
 		let imageView = UIImageView(image: image)
-		imageView.contentMode = UIViewContentMode.Center
+		imageView.contentMode = UIViewContentMode.center
 		return imageView
 	}
 }

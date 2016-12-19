@@ -20,11 +20,11 @@ struct Colors {
 
 	- returns: UIColor
 	*/
-	static func colorBasedOnPercentage(percentage: Double, emptyLots: Int) -> UIColor {
+	static func colorBasedOnPercentage(_ percentage: Double, emptyLots: Int) -> UIColor {
 
 		let hue = 1 - (percentage * 0.3 + 0.7) // I want to limit this to the colors between 0 and 0.3
 
-		let useGrayscale = NSUserDefaults.standardUserDefaults().boolForKey(Defaults.grayscaleUI)
+		let useGrayscale = UserDefaults.standard.bool(forKey: Defaults.grayscaleUI)
 		if useGrayscale {
 			if emptyLots <= 0 {
 				return UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
@@ -55,11 +55,11 @@ extension UIColor {
 		var alpha: CGFloat = 1.0
 
 		if rgba.hasPrefix("#") {
-			let index   = rgba.startIndex.advancedBy(1)
-			let hex     = rgba.substringFromIndex(index)
-			let scanner = NSScanner(string: hex)
+			let index   = rgba.characters.index(rgba.startIndex, offsetBy: 1)
+			let hex     = rgba.substring(from: index)
+			let scanner = Scanner(string: hex)
 			var hexValue: CUnsignedLongLong = 0
-			if scanner.scanHexLongLong(&hexValue) {
+			if scanner.scanHexInt64(&hexValue) {
 				switch hex.characters.count {
 				case 3:
 					red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0

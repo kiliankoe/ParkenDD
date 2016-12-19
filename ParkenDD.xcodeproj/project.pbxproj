@@ -347,11 +347,13 @@
 				TargetAttributes = {
 					39EAB8B61BE96E1E005A7290 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 39F4CFDD1A6BBC0200ACFECF;
 					};
 					39F4CFDD1A6BBC0200ACFECF = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = HU85FER47E;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -651,6 +653,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.kilian.ParkenDDUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = ParkenDD;
 				USES_XCTRUNNER = YES;
 			};
@@ -668,6 +671,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.kilian.ParkenDDUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = ParkenDD;
 				USES_XCTRUNNER = YES;
 			};
@@ -778,6 +782,7 @@
 				SOURCEROOT = ParkenDD/;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParkenDD/ParkenDD-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -805,6 +810,7 @@
 				PROVISIONING_PROFILE = "";
 				SOURCEROOT = ParkenDD/;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParkenDD/ParkenDD-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

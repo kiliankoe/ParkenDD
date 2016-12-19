@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSDate: Comparable {
+extension Date: Comparable {
 	
 }
 
@@ -16,11 +16,11 @@ extension NSDate: Comparable {
 //	return lhs === rhs || lhs.compare(rhs) == .OrderedSame
 //}
 
-public func ==(lhs: NSDate, rhs: NSDate) -> Bool {
-	let interval = lhs.timeIntervalSinceDate(rhs)
+public func ==(lhs: Date, rhs: Date) -> Bool {
+	let interval = lhs.timeIntervalSince(rhs)
 	return abs(interval) < 60.0
 }
 
-public func <(lhs: NSDate, rhs: NSDate) -> Bool {
-	return lhs.compare(rhs) == .OrderedAscending
+public func <(lhs: Date, rhs: Date) -> Bool {
+	return lhs.compare(rhs) == .orderedAscending
 }

@@ -16,58 +16,58 @@ class CitySelectionTVC: UITableViewController {
 
 	// MARK: - Table view data source
 
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let citiesCount = (UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities?.count {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if let citiesCount = (UIApplication.shared.delegate as? AppDelegate)?.supportedCities?.count {
 			return citiesCount
 		}
 		return 0
 	}
 
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("citySelectionCell", forIndexPath: indexPath)
-		let supportedCities = (UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities
-		let citiesList = (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "citySelectionCell", for: indexPath)
+		let supportedCities = (UIApplication.shared.delegate as? AppDelegate)?.supportedCities
+		let citiesList = (UIApplication.shared.delegate as? AppDelegate)?.citiesList
 		
 		if let city = citiesList![supportedCities![indexPath.row]] { // FIXME: For the love of god, fix this!
 			if city.activeSupport! {
 				cell.textLabel?.text = city.name
-				cell.textLabel?.textColor = UIColor.blackColor()
+				cell.textLabel?.textColor = UIColor.black
 			} else {
 				cell.textLabel?.text = city.name
-				cell.textLabel?.textColor = UIColor.lightGrayColor()
+				cell.textLabel?.textColor = UIColor.lightGray
 			}
 		}
 
-		let selectedCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
-		cell.accessoryType = supportedCities![indexPath.row] == selectedCity ? UITableViewCellAccessoryType.Checkmark : UITableViewCellAccessoryType.None
+		let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity)!
+		cell.accessoryType = supportedCities![indexPath.row] == selectedCity ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
 
 		return cell
 	}
 
 	// MARK: - Table view delegate
 
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		for row in 0..<tableView.numberOfRowsInSection(0) {
-			tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0))?.accessoryType = UITableViewCellAccessoryType.None
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		for row in 0..<tableView.numberOfRows(inSection: 0) {
+			tableView.cellForRow(at: IndexPath(row: row, section: 0))?.accessoryType = UITableViewCellAccessoryType.none
 		}
-		tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+		tableView.deselectRow(at: indexPath, animated: true)
 
-		let selectedCityID = (UIApplication.sharedApplication().delegate as? AppDelegate)?.supportedCities![indexPath.row] // FIXME: For the love of god, fix this!
-		let selectedCityName = (UIApplication.sharedApplication().delegate as? AppDelegate)?.citiesList[selectedCityID!]?.name
-		NSUserDefaults.standardUserDefaults().setObject(selectedCityID, forKey: Defaults.selectedCity)
-		NSUserDefaults.standardUserDefaults().setObject(selectedCityName!, forKey: Defaults.selectedCityName)
-		NSUserDefaults.standardUserDefaults().synchronize()
+		let selectedCityID = (UIApplication.shared.delegate as? AppDelegate)?.supportedCities![indexPath.row] // FIXME: For the love of god, fix this!
+		let selectedCityName = (UIApplication.shared.delegate as? AppDelegate)?.citiesList[selectedCityID!]?.name
+		UserDefaults.standard.set(selectedCityID, forKey: Defaults.selectedCity)
+		UserDefaults.standard.set(selectedCityName!, forKey: Defaults.selectedCityName)
+		UserDefaults.standard.synchronize()
 
-		if let lotlistVC = UIApplication.sharedApplication().keyWindow?.rootViewController?.childViewControllers[0] as? LotlistViewController {
+		if let lotlistVC = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0] as? LotlistViewController {
 			lotlistVC.updateData()
 		}
 
-		navigationController?.popToRootViewControllerAnimated(true)
+		navigationController?.popToRootViewController(animated: true)
 	}
 
 }

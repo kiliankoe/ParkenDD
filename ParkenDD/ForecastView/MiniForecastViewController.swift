@@ -18,15 +18,15 @@ class MiniForecastViewController: UIViewController {
 	var lot: Parkinglot?
 	var data: [String: String]?
 	
-	let dateFormatter = NSDateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: nil)
-	let labelDateFormatter = NSDateFormatter(dateFormat: "HH:mm", timezone: nil)
+	let dateFormatter = DateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: nil)
+	let labelDateFormatter = DateFormatter(dateFormat: "HH:mm", timezone: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		guard let lot = lot else {
 			NSLog("Initialized MiniForecastVC without a lot. Wat?")
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.dismiss(animated: true, completion: nil)
 			return
 		}
 		
@@ -54,7 +54,7 @@ class MiniForecastViewController: UIViewController {
 		
 		chartView?.backgroundColor = UIColor(rgba: "#F6F6F6")
 		
-		ServerController.forecastDay(lot.lotID, fromDate: NSDate()) { [unowned self] (forecastData, error) -> Void in
+		ServerController.forecastDay(lot.lotID, fromDate: Date()) { [unowned self] (forecastData, error) -> Void in
 			if let _ = error {
 				return
 			}
@@ -66,17 +66,17 @@ class MiniForecastViewController: UIViewController {
 	
 	func drawGraph() {
 		guard let data = data else { return }
-		let sortedDates = Array(data.keys).sort(<)
+		let sortedDates = Array(data.keys).sorted(by: <)
 		
 		let labels = sortedDates.map { (element) -> String in
-			let date = dateFormatter.dateFromString(element)
-			return labelDateFormatter.stringFromDate(date!)
+			let date = dateFormatter.date(from: element)
+			return labelDateFormatter.string(from: date!)
 		}
 		
 		var dataEntries = [ChartDataEntry]()
 		for date in sortedDates {
 			let value = Double(data[date]!)!
-			let xIndex = sortedDates.indexOf(date)!
+			let xIndex = sortedDates.index(of: date)!
 			let dataEntry = ChartDataEntry(value: value, xIndex: xIndex)
 			dataEntries.append(dataEntry)
 		}
@@ -91,8 +91,8 @@ class MiniForecastViewController: UIViewController {
 		let lineChartData = LineChartData(xVals: labels, dataSet: lineChartDataSet)
 		chartView?.data = lineChartData
 		
-		let dateString = dateFormatter.stringFromDate(getDate())
-		if let limit = sortedDates.indexOf(dateString) {
+		let dateString = dateFormatter.string(from: getDate())
+		if let limit = sortedDates.index(of: dateString) {
 			if currentLine == nil {
 				chartView?.xAxis.removeAllLimitLines()
 				currentLine = ChartLimitLine()
@@ -103,24 +103,24 @@ class MiniForecastViewController: UIViewController {
 		}
 	}
 	
-	func getDate() -> NSDate {
-		let dpDate = NSDate()
+	func getDate() -> Date {
+		let dpDate = Date()
 		
-		let calendar = NSCalendar.currentCalendar()
-		let minuteComponent = calendar.components(NSCalendarUnit.Minute, fromDate: dpDate)
+		let calendar = Calendar.current
+		let minuteComponent = (calendar as NSCalendar).components(Calendar.Unit.minute, from: dpDate)
 		
-		let components = NSDateComponents()
+		var components = DateComponents()
 		
-		if minuteComponent.minute < 30 {
-			components.minute = 60 - minuteComponent.minute
+		if minuteComponent.minute! < 30 {
+			components.minute = 60 - minuteComponent.minute!
 		} else {
-			components.minute = 30 - minuteComponent.minute
+			components.minute = 30 - minuteComponent.minute!
 		}
 		
-		let secondComponent = calendar.components(NSCalendarUnit.Second, fromDate: dpDate)
+		let secondComponent = (calendar as NSCalendar).components(Calendar.Unit.second, from: dpDate)
 		components.second = -secondComponent.second
 		
-		return calendar.dateByAddingComponents(components, toDate: dpDate, options: NSCalendarOptions.WrapComponents)!
+		return (calendar as NSCalendar).date(byAdding: components, to: dpDate, options: NSCalendar.Options.wrapComponents)!
 	}
 
 }

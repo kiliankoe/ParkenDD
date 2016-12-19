@@ -23,20 +23,20 @@ class ParkinglotTableViewCell: UITableViewCell {
 	var distance: Double = 0.0 {
 		didSet {
 			guard distance != Const.dummyDistance else {
-				parkinglotAddressLabel?.text = L10n.UNKNOWNADDRESS.string
+				parkinglotAddressLabel?.text = L10n.unknownaddress.string
 				return
 			}
 			parkinglotAddressLabel?.text = "\((round(distance/100))/10)km"
 		}
 	}
 	
-	func setParkinglot(lot: Parkinglot) {
+	func setParkinglot(_ lot: Parkinglot) {
 		parkinglot = lot
 		
 		// Quickfix for issue #103
-		let sanitizedLotName = lot.name.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+		let sanitizedLotName = lot.name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 		
-		if let lotType = lot.lotType where lotType != "" {
+		if let lotType = lot.lotType, lotType != "" {
 			parkinglotNameLabel?.text = "\(lotType) \(sanitizedLotName)"
 		} else {
 			parkinglotNameLabel?.text = sanitizedLotName
@@ -45,22 +45,22 @@ class ParkinglotTableViewCell: UITableViewCell {
 		parkinglotLoadLabel?.text = "\(lot.free)"
 		
 		// check if location sorting is enabled, then we're displaying distance instead of address
-		let sortingType = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.sortingType)!
+		let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
 		if sortingType == Sorting.standard || sortingType == Sorting.alphabetical || sortingType == Sorting.free {
 			if lot.address == "" {
-				parkinglotAddressLabel?.text = L10n.UNKNOWNADDRESS.string
+				parkinglotAddressLabel?.text = L10n.unknownaddress.string
 			} else {
 				parkinglotAddressLabel?.text = lot.address
 			}
 		} else {
-			parkinglotAddressLabel?.text = L10n.WAITINGFORLOCATION.string
+			parkinglotAddressLabel?.text = L10n.waitingforlocation.string
 		}
 		
 		// Set all labels to be white, 'cause it looks awesome
-		parkinglotNameLabel?.textColor = UIColor.whiteColor()
-		parkinglotAddressLabel?.textColor = UIColor.whiteColor()
-		parkinglotLoadLabel?.textColor = UIColor.whiteColor()
-		parkinglotTendencyLabel?.textColor = UIColor.whiteColor()
+		parkinglotNameLabel?.textColor = UIColor.white
+		parkinglotAddressLabel?.textColor = UIColor.white
+		parkinglotLoadLabel?.textColor = UIColor.white
+		parkinglotTendencyLabel?.textColor = UIColor.white
 		
 		// Set the cell's bg color dynamically based on the load percentage.
 		var percentage = lot.total > 0 ? 1 - (Double(lot.free) / Double(lot.total)) : 0.99
@@ -72,30 +72,30 @@ class ParkinglotTableViewCell: UITableViewCell {
 		backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: lot.free)
 		
 		// Show the forecast indicator if that data is available
-		if let forecastAvailable = lot.forecast where forecastAvailable {
+		if let forecastAvailable = lot.forecast, forecastAvailable {
 			forecastIndicator?.image = UIImage(named: "graphArrow")
 		} else {
 			forecastIndicator?.image = nil
 		}
 		forecastIndicator?.alpha = 0.6
-		forecastIndicator?.tintColor = UIColor.whiteColor()
+		forecastIndicator?.tintColor = UIColor.white
 		
 		// TODO: Do all kinds of things with the cell according to the state of the lot
 		if let lotState = lot.state {
 			switch lotState {
 			case .Closed:
-				parkinglotTendencyLabel?.text = L10n.CLOSED.string
-				backgroundColor = UIColor.grayColor()
+				parkinglotTendencyLabel?.text = L10n.closed.string
+				backgroundColor = UIColor.gray
 				parkinglotLoadLabel?.text = "X"
 //                parkinglotLoadLabel?.attributedText = NSAttributedString(string: "\(lot.free)", attributes: [NSStrikethroughStyleAttributeName: 1])
 			case .Nodata:
 				parkinglotLoadLabel?.text = "?"
-				parkinglotTendencyLabel?.text = L10n.UNKNOWNLOAD.string
-				backgroundColor = UIColor.lightGrayColor()
+				parkinglotTendencyLabel?.text = L10n.unknownload.string
+				backgroundColor = UIColor.lightGray
 			case .Open:
-				parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
+				parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.occupied.string)"
 			case .Unknown:
-				parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.OCCUPIED.string)"
+				parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.occupied.string)"
 			}
 		}
 	}
@@ -104,7 +104,7 @@ class ParkinglotTableViewCell: UITableViewCell {
 		super.awakeFromNib()
 	}
 
-	override func setSelected(selected: Bool, animated: Bool) {
+	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
 	}
 }

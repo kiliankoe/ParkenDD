@@ -16,11 +16,11 @@ extension Dictionary {
 		}
 	}
 
-	func mapPairs<OutKey: Hashable, OutValue>(@noescape transform: Element throws -> (OutKey, OutValue)) rethrows -> [OutKey: OutValue] {
+	func mapPairs<OutKey: Hashable, OutValue>(_ transform: (Element) throws -> (OutKey, OutValue)) rethrows -> [OutKey: OutValue] {
 		return Dictionary<OutKey, OutValue>(try map(transform))
 	}
 
-	func filterPairs(@noescape includeElement: Element throws -> Bool) rethrows -> [Key: Value] {
+	func filterPairs(_ includeElement: (Element) throws -> Bool) rethrows -> [Key: Value] {
 		return Dictionary(try filter(includeElement))
 	}
 }

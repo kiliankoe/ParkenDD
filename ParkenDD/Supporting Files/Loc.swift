@@ -2,6 +2,8 @@
 
 import Foundation
 
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
 enum L10n {
   /// Connection Error
   case REQUESTERRORTITLE
@@ -118,11 +120,12 @@ enum L10n {
   /// Load in %%
   case LOADINPERCENT
 }
+// swiftlint:enable type_body_length
 
-extension L10n : CustomStringConvertible {
-  var description : String { return self.string }
+extension L10n: CustomStringConvertible {
+  var description: String { return self.string }
 
-  var string : String {
+  var string: String {
     switch self {
       case .REQUESTERRORTITLE:
         return L10n.tr("REQUEST_ERROR_TITLE")
@@ -243,7 +246,7 @@ extension L10n : CustomStringConvertible {
 
   private static func tr(key: String, _ args: CVarArgType...) -> String {
     let format = NSLocalizedString(key, comment: "")
-    return String(format: format, arguments: args)
+    return String(format: format, locale: NSLocale.currentLocale(), arguments: args)
   }
 }
 

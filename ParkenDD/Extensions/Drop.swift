@@ -9,8 +9,8 @@
 import Foundation
 import SwiftyDrop
 
-func drop(message: String, state: DropState) {
-	dispatch_async(dispatch_get_main_queue()) { () -> Void in
+func drop(_ message: String, state: DropState) {
+	DispatchQueue.main.async { () -> Void in
 		Drop.down(message, state: state)
 	}
 }

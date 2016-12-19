@@ -15,8 +15,8 @@ class ForecastViewController: UIViewController {
 	var lot: Parkinglot?
 	var data: [String: String]?
 	
-	let dateFormatter = NSDateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: nil)
-	let labelDateFormatter = NSDateFormatter(dateFormat: "HH:mm", timezone: nil)
+	let dateFormatter = DateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: nil)
+	let labelDateFormatter = DateFormatter(dateFormat: "HH:mm", timezone: nil)
 	
 	@IBOutlet weak var chartView: LineChartView?
 	@IBOutlet weak var availableLabel: UILabel?
@@ -29,18 +29,18 @@ class ForecastViewController: UIViewController {
 		
 		guard let lot = lot else {
 			NSLog("Initialized ForecastVC without a lot. Wat?")
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.dismiss(animated: true, completion: nil)
 			return
 		}
 		
-		Answers.logCustomEventWithName("View Forecast", customAttributes: ["selected lot": lot.lotID])
+		Answers.logCustomEvent(withName: "View Forecast", customAttributes: ["selected lot": lot.lotID])
 		
 		navigationItem.title = lot.name
-		availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot.total, load: lot.loadPercentage)).string
+		availableLabel?.text = L10n.circaspotsavailable(genAvailability(lot.total, load: lot.loadPercentage)).string
 		
-		let now = NSDate()
+		let now = Date()
 		datePicker?.date = now
-		datePicker?.minimumDate = NSCalendar.currentCalendar().startOfDayForDate(now)
+		datePicker?.minimumDate = Calendar.current.startOfDay(for: now)
 		
 		chartView?.descriptionText = L10n.LOADINPERCENT.string
 		
@@ -69,22 +69,22 @@ class ForecastViewController: UIViewController {
 		updateData()
     }
 	
-	@IBAction func infoButtonTapped(sender: UIButton) {
-		let alertController = UIAlertController(title: L10n.FORECASTINFOTITLE.string, message: L10n.FORECASTINFOTEXT.string, preferredStyle: UIAlertControllerStyle.Alert)
-		alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-		presentViewController(alertController, animated: true, completion: nil)
+	@IBAction func infoButtonTapped(_ sender: UIButton) {
+		let alertController = UIAlertController(title: L10n.forecastinfotitle.string, message: L10n.forecastinfotext.string, preferredStyle: UIAlertControllerStyle.alert)
+		alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
+		present(alertController, animated: true, completion: nil)
 	}
 	
-	@IBAction func datePickerValueDidChange(sender: UIDatePicker) {
+	@IBAction func datePickerValueDidChange(_ sender: UIDatePicker) {
 		guard let data = data else { return }
 		
-		let dateString = dateFormatter.stringFromDate(getDatepickerDate())
+		let dateString = dateFormatter.string(from: getDatepickerDate())
 		
 		updateLabels(data[dateString])
 		
-		let sortedDates = Array(data.keys).sort(<)
+		let sortedDates = Array(data.keys).sorted(by: <)
 		
-		if let limit = sortedDates.indexOf(dateString) {
+		if let limit = sortedDates.index(of: dateString) {
 			if currentLine == nil {
 				chartView?.xAxis.removeAllLimitLines()
 				currentLine = ChartLimitLine()
@@ -95,26 +95,26 @@ class ForecastViewController: UIViewController {
 		}
 		
 		// Only update data from API if the selected date is after or before the currently selected day
-		if dateFormatter.stringFromDate(sender.date) > sortedDates.last! || dateFormatter.stringFromDate(sender.date) < sortedDates.first! {
+		if dateFormatter.string(from: sender.date) > sortedDates.last! || dateFormatter.string(from: sender.date) < sortedDates.first! {
 			updateData(fromDate: sender.date)
 		} else {
 			drawGraph()
 		}
 	}
 	
-	func updateData(fromDate date: NSDate = NSDate()) {
+	func updateData(fromDate date: Date = Date()) {
 		guard let lot = lot else { return }
 		ServerController.forecastDay(lot.lotID, fromDate: date) { [unowned self] (forecastData, error) -> Void in
 			if let error = error {
 				switch error {
-				case .NoData:
-					let alert = UIAlertController(title: L10n.ENDOFDATATITLE.string, message: L10n.ENDOFDATA.string, preferredStyle: .Alert)
-					alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: .Cancel, handler: nil))
-					self.presentViewController(alert, animated: true, completion: nil)
+				case .noData:
+					let alert = UIAlertController(title: L10n.endofdatatitle.string, message: L10n.endofdata.string, preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
+					self.present(alert, animated: true, completion: nil)
 				default:
-					let alert = UIAlertController(title: L10n.UNKNOWNERRORTITLE.string, message: L10n.UNKNOWNERROR.string, preferredStyle: .Alert)
-					alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: .Cancel, handler: nil))
-					self.presentViewController(alert, animated: true, completion: nil)
+					let alert = UIAlertController(title: L10n.unknownerrortitle.string, message: L10n.unknownerror.string, preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
+					self.present(alert, animated: true, completion: nil)
 				}
 				return
 			}
@@ -123,29 +123,29 @@ class ForecastViewController: UIViewController {
 			self.drawGraph()
 			self.datePickerValueDidChange(self.datePicker!) // Am I really doing this? Oh god... See #132
 			
-			self.updateLabels(self.data![self.dateFormatter.stringFromDate(self.getDatepickerDate())])
+			self.updateLabels(self.data![self.dateFormatter.string(from: self.getDatepickerDate())])
 		}
 	}
 	
-	func updateLabels(load: String?) {
+	func updateLabels(_ load: String?) {
 		if let load = load {
-			availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot!.total, load: Int(load)!)).string
+			availableLabel?.text = L10n.circaspotsavailable(genAvailability(lot!.total, load: Int(load)!)).string
 		}
 	}
 	
 	func drawGraph() {
 		guard let data = data else { return }
-		let sortedDates = Array(data.keys).sort(<)
+		let sortedDates = Array(data.keys).sorted(by: <)
 		
 		let labels = sortedDates.map { (element) -> String in
-			let date = dateFormatter.dateFromString(element)
-			return labelDateFormatter.stringFromDate(date!)
+			let date = dateFormatter.date(from: element)
+			return labelDateFormatter.string(from: date!)
 		}
 		
 		var dataEntries = [ChartDataEntry]()
 		for date in sortedDates {
 			let value = Double(data[date]!)!
-			let xIndex = sortedDates.indexOf(date)!
+			let xIndex = sortedDates.index(of: date)!
 			let dataEntry = ChartDataEntry(value: value, xIndex: xIndex)
 			dataEntries.append(dataEntry)
 		}
@@ -166,24 +166,24 @@ class ForecastViewController: UIViewController {
 	
 	- returns: date value of datepicker
 	*/
-	func getDatepickerDate() -> NSDate {
+	func getDatepickerDate() -> Date {
 		let dpDate = datePicker!.date
 		
-		let calendar = NSCalendar.currentCalendar()
-		let minuteComponent = calendar.components(NSCalendarUnit.Minute, fromDate: dpDate)
+		let calendar = Calendar.current
+		let minuteComponent = (calendar as NSCalendar).components(Calendar.Unit.minute, from: dpDate)
 		
-		let components = NSDateComponents()
+		var components = DateComponents()
 		
-		if minuteComponent.minute < 30 {
-			components.minute = 60 - minuteComponent.minute
+		if minuteComponent.minute! < 30 {
+			components.minute = 60 - minuteComponent.minute!
 		} else {
-			components.minute = 30 - minuteComponent.minute
+			components.minute = 30 - minuteComponent.minute!
 		}
 		
-		let secondComponent = calendar.components(NSCalendarUnit.Second, fromDate: dpDate)
+		let secondComponent = (calendar as NSCalendar).components(Calendar.Unit.second, from: dpDate)
 		components.second = -secondComponent.second
 		
-		return calendar.dateByAddingComponents(components, toDate: dpDate, options: NSCalendarOptions.WrapComponents)!
+		return (calendar as NSCalendar).date(byAdding: components, to: dpDate, options: NSCalendar.Options.wrapComponents)!
 	}
 	
 	/**
@@ -194,7 +194,7 @@ class ForecastViewController: UIViewController {
 	
 	- returns: e.g. "400/1000"
 	*/
-	func genAvailability(total: Int, load: Int) -> String {
+	func genAvailability(_ total: Int, load: Int) -> String {
 		let available = total - Int(Double(total) * (Double(load) / 100))
 		return "\(available)/\(total)"
 	}

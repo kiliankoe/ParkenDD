@@ -13,12 +13,12 @@ import ObjectMapper
 class ServerController {
 
 	enum SCError {
-		case Server
-		case Request
-		case IncompatibleAPI
-		case NotFound
-		case NoData
-		case Unknown
+		case server
+		case request
+		case incompatibleAPI
+		case notFound
+		case noData
+		case unknown
 	}
 
 	struct SCOptions {
@@ -38,9 +38,9 @@ class ServerController {
 
 	- parameter completion: handler that is provided with a list of supported cities or an error wrapped in an SCResult
 	*/
-	static func sendMetadataRequest(completion: (Metadata?, SCError?) -> Void) {
+	static func sendMetadataRequest(_ completion: @escaping (Metadata?, SCError?) -> Void) {
 		let metadataURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging : URL.apiBaseURL
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+		UIApplication.shared.isNetworkActivityIndicatorVisible = true
 		Alamofire.request(.GET, metadataURL).responseJSON { (_, response, result) -> Void in
 			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 			guard let response = response else { completion(nil, .Request); return }
@@ -65,9 +65,9 @@ class ServerController {
 
 	- parameter completion: handler that is provided with a list of parkinglots or an error wrapped in an SCResult
 	*/
-	static func sendParkinglotDataRequest(city: String, completion: (ParkinglotData?, SCError?) -> Void) {
+	static func sendParkinglotDataRequest(_ city: String, completion: @escaping (ParkinglotData?, SCError?) -> Void) {
 		let parkinglotURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + city : URL.apiBaseURL + city
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+		UIApplication.shared.isNetworkActivityIndicatorVisible = true
 		Alamofire.request(.GET, parkinglotURL).responseJSON { (_, response, result) -> Void in
 			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 			guard let response = response else { completion(nil, .Request); return }
@@ -80,14 +80,14 @@ class ServerController {
 		}
 	}
 	
-	static func updateDataForSavedCity(completion: (APIResult?, SCError?) -> Void) {
+	static func updateDataForSavedCity(_ completion: @escaping (APIResult?, SCError?) -> Void) {
 		sendMetadataRequest { (metaData, metaError) -> Void in
 			if let metaError = metaError {
 				completion(nil, metaError)
 				return
 			}
 			
-			let currentCity = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.selectedCity)!
+			let currentCity = UserDefaults.standard.string(forKey: Defaults.selectedCity)!
 			sendParkinglotDataRequest(currentCity, completion: { (parkinglotData, parkinglotError) -> Void in
 				if let parkinglotError = parkinglotError {
 					completion(nil, parkinglotError)
@@ -108,18 +108,18 @@ class ServerController {
 	- parameter toDate:     date object when the data should end
 	- parameter completion: handler
 	*/
-	static func sendForecastRequest(lotID: String, fromDate: NSDate, toDate: NSDate, completion: (ForecastData?, SCError?) -> Void) {
-		let dateFormatter = NSDateFormatter()
+	static func sendForecastRequest(_ lotID: String, fromDate: Date, toDate: Date, completion: @escaping (ForecastData?, SCError?) -> Void) {
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-		let fromDateString = dateFormatter.stringFromDate(fromDate)
-		let toDateString = dateFormatter.stringFromDate(toDate)
+		let fromDateString = dateFormatter.string(from: fromDate)
+		let toDateString = dateFormatter.string(from: toDate)
 
 		let parameters = [
 			"from": fromDateString,
 			"to": toDateString
 		]
 
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+		UIApplication.shared.isNetworkActivityIndicatorVisible = true
 		let forecastURL = SCOptions.useStagingAPI ? URL.apiBaseURLStaging + "/Dresden/\(lotID)/timespan" : URL.apiBaseURL + "/Dresden/\(lotID)/timespan"
 		Alamofire.request(.GET, forecastURL, parameters: parameters).responseJSON { (_, response, result) -> Void in
 			UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -148,16 +148,16 @@ class ServerController {
 	- parameter fromDate:   date object when the data should start
 	- parameter completion: handler
 	*/
-	static func forecastWeek(lotID: String, fromDate: NSDate, completion: (ForecastData?, SCError?) -> Void) {
-		let toDate = fromDate.dateByAddingTimeInterval(3600*24*7)
+	static func forecastWeek(_ lotID: String, fromDate: Date, completion: @escaping (ForecastData?, SCError?) -> Void) {
+		let toDate = fromDate.addingTimeInterval(3600*24*7)
 		sendForecastRequest(lotID, fromDate: fromDate, toDate: toDate) { (forecastData, error) -> Void in
 			completion(forecastData, error)
 		}
 	}
 	
-	static func forecastDay(lotID: String, fromDate: NSDate, completion: (ForecastData?, SCError?) -> Void) {
-		let startOfDay = NSCalendar.currentCalendar().startOfDayForDate(fromDate)
-		let endOfDay = startOfDay.dateByAddingTimeInterval(3600*24)
+	static func forecastDay(_ lotID: String, fromDate: Date, completion: @escaping (ForecastData?, SCError?) -> Void) {
+		let startOfDay = Calendar.current.startOfDay(for: fromDate)
+		let endOfDay = startOfDay.addingTimeInterval(3600*24)
 		sendForecastRequest(lotID, fromDate: startOfDay, toDate: endOfDay) { (forecastData, error) -> Void in
 			completion(forecastData, error)
 		}

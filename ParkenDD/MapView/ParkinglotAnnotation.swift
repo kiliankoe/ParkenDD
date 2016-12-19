@@ -17,7 +17,7 @@ class ParkinglotAnnotation: NSObject, MKAnnotation {
 	
 	var coordinate: CLLocationCoordinate2D {
 		get {
-			if let lat = parkinglot.coords?.lat, lng = parkinglot.coords?.lng {
+			if let lat = parkinglot.coords?.lat, let lng = parkinglot.coords?.lng {
 				return CLLocationCoordinate2D(latitude: lat, longitude: lng)
 			}
 			return CLLocationCoordinate2D()
