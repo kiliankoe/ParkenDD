@@ -433,7 +433,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#swiftgen strings $SOURCEROOT/Supporting\\ Files/Base.lproj/Localizable.strings -o $SOURCEROOT/Supporting\\ Files/Loc.swift\necho \"warning: Not running swiftgen\"";
+			shellScript = "swiftgen strings $SOURCEROOT/Supporting\\ Files/Base.lproj/Localizable.strings -o $SOURCEROOT/Supporting\\ Files/Loc.swift -t swift3";
 		};
 		39B6259A1C0393D700A94F2F /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;

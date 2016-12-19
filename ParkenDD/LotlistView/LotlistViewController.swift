@@ -60,9 +60,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
-				let alertController = UIAlertController(title: L10n.LOCATIONDATAERRORTITLE.string, message: L10n.LOCATIONDATAERROR.string, preferredStyle: UIAlertControllerStyle.alert)
-				alertController.addAction(UIAlertAction(title: L10n.CANCEL.string, style: UIAlertActionStyle.cancel, handler: nil))
-				alertController.addAction(UIAlertAction(title: L10n.SETTINGS.string, style: UIAlertActionStyle.default, handler: {
+				let alertController = UIAlertController(title: L10n.locationdataerrortitle.string, message: L10n.locationdataerror.string, preferredStyle: UIAlertControllerStyle.alert)
+				alertController.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: nil))
+				alertController.addAction(UIAlertAction(title: L10n.settings.string, style: UIAlertActionStyle.default, handler: {
 					(action) in
 					UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 				}))
@@ -159,13 +159,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 					
 					if dateDifference.minute! >= 60 {
 						attrs = [NSForegroundColorAttributeName: UIColor.red]
-						drop(L10n.OUTDATEDDATAWARNING.string, state: .blur(.dark))
+						drop(L10n.outdateddatawarning.string, state: .blur(.dark))
 						NSLog("Data in \(selectedCity) seems to be outdated.")
 					}
 					
 					let dateFormatter = DateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
 					
-					self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.LASTUPDATED(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
+					self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.lastupdated(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
 				}
 				
 				// TODO: I want a way to get the data url for the currently selected city to give that to the user somehow...
@@ -185,9 +185,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	func handleUpdateError(_ err: ServerController.SCError) {
 		switch err {
 		case .server, .incompatibleAPI:
-			drop(L10n.SERVERERROR.string, state: .error)
+			drop(L10n.servererror.string, state: .error)
 		case .request:
-			drop(L10n.REQUESTERROR.string, state: .error)
+			drop(L10n.requesterror.string, state: .error)
 		case .notFound:
 			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
 			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
@@ -195,7 +195,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			updateData()
 			updateTitle(withCity: "Dresden")
 		default:
-			drop(L10n.UNKNOWNERROR.string, state: .error)
+			drop(L10n.unknownerror.string, state: .error)
 		}
 	}
 	
@@ -377,7 +377,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		if let _ = (tableView.cellForRow(at: indexPath) as? ParkinglotTableViewCell)?.parkinglot?.coords {
 			performSegue(withIdentifier: "showParkinglotMap", sender: self)
 		} else {
-			drop(L10n.NOCOORDSWARNING.string, state: .blur(.dark))
+			drop(L10n.nocoordswarning.string, state: .blur(.dark))
 		}
 		tableView.deselectRow(at: indexPath, animated: true)
 	}

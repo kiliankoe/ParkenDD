@@ -36,13 +36,13 @@ class ForecastViewController: UIViewController {
 		Answers.logCustomEvent(withName: "View Forecast", customAttributes: ["selected lot": lot.lotID])
 		
 		navigationItem.title = lot.name
-		availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot.total, load: lot.loadPercentage)).string
+		availableLabel?.text = L10n.circaspotsavailable(genAvailability(lot.total, load: lot.loadPercentage)).string
 		
 		let now = Date()
 		datePicker?.date = now
 		datePicker?.minimumDate = Calendar.current.startOfDay(for: now)
 		
-		chartView?.chartDescription?.text = L10n.LOADINPERCENT.string
+		chartView?.chartDescription?.text = L10n.loadinpercent.string
 		
 		chartView?.backgroundColor = UIColor.white
 		chartView?.gridBackgroundColor = UIColor.white
@@ -70,7 +70,7 @@ class ForecastViewController: UIViewController {
     }
 	
 	@IBAction func infoButtonTapped(_ sender: UIButton) {
-		let alertController = UIAlertController(title: L10n.FORECASTINFOTITLE.string, message: L10n.FORECASTINFOTEXT.string, preferredStyle: UIAlertControllerStyle.alert)
+		let alertController = UIAlertController(title: L10n.forecastinfotitle.string, message: L10n.forecastinfotext.string, preferredStyle: UIAlertControllerStyle.alert)
 		alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
 		present(alertController, animated: true, completion: nil)
 	}
@@ -108,12 +108,12 @@ class ForecastViewController: UIViewController {
 			if let error = error {
 				switch error {
 				case .noData:
-					let alert = UIAlertController(title: L10n.ENDOFDATATITLE.string, message: L10n.ENDOFDATA.string, preferredStyle: .alert)
-					alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: .cancel, handler: nil))
+					let alert = UIAlertController(title: L10n.endofdatatitle.string, message: L10n.endofdata.string, preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
 					self.present(alert, animated: true, completion: nil)
 				default:
-					let alert = UIAlertController(title: L10n.UNKNOWNERRORTITLE.string, message: L10n.UNKNOWNERROR.string, preferredStyle: .alert)
-					alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: .cancel, handler: nil))
+					let alert = UIAlertController(title: L10n.unknownerrortitle.string, message: L10n.unknownerror.string, preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
 					self.present(alert, animated: true, completion: nil)
 				}
 				return
@@ -129,7 +129,7 @@ class ForecastViewController: UIViewController {
 	
 	func updateLabels(_ load: String?) {
 		if let load = load {
-			availableLabel?.text = L10n.CIRCASPOTSAVAILABLE(genAvailability(lot!.total, load: Int(load)!)).string
+			availableLabel?.text = L10n.circaspotsavailable(genAvailability(lot!.total, load: Int(load)!)).string
 		}
 	}
 	

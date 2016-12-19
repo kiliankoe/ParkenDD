@@ -29,7 +29,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SettingsViewController.dismiss as (SettingsViewController) -> () -> ()))
 		self.navigationItem.rightBarButtonItem = doneButton
 
-		self.navigationItem.title = L10n.SETTINGS.string
+		self.navigationItem.title = L10n.settings.string
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
 		var attrsDict = [String: AnyObject]()
 		attrsDict[NSFontAttributeName] = font
@@ -68,13 +68,13 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		let sec = Sections(rawValue: section)!
 		switch sec {
 		case .cityOptions:
-			return L10n.CITYOPTIONS.string
+			return L10n.cityoptions.string
 		case .sortingOptions:
-			return L10n.SORTINGOPTIONS.string
+			return L10n.sortingoptions.string
 		case .displayOptions:
-			return L10n.DISPLAYOPTIONS.string
+			return L10n.displayoptions.string
 		case .otherOptions:
-			return L10n.OTHEROPTIONS.string
+			return L10n.otheroptions.string
 		}
 	}
 
@@ -96,44 +96,44 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
 		// SORTING OPTIONS
 		case (.sortingOptions, 0):
-			cell.textLabel?.text = L10n.SORTINGTYPEDEFAULT.string
+			cell.textLabel?.text = L10n.sortingtypedefault.string
 			cell.accessoryType = sortingType == Sorting.standard ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
 		case (.sortingOptions, 1):
-			cell.textLabel?.text = L10n.SORTINGTYPELOCATION.string
+			cell.textLabel?.text = L10n.sortingtypelocation.string
 			cell.accessoryType = sortingType == Sorting.distance ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
 		case (.sortingOptions, 2):
-			cell.textLabel?.text = L10n.SORTINGTYPEALPHABETICAL.string
+			cell.textLabel?.text = L10n.sortingtypealphabetical.string
 			cell.accessoryType = sortingType == Sorting.alphabetical ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
 		case (.sortingOptions, 3):
-			cell.textLabel?.text = L10n.SORTINGTYPEFREESPOTS.string
+			cell.textLabel?.text = L10n.sortingtypefreespots.string
 			cell.accessoryType = sortingType == Sorting.free ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
 		case (.sortingOptions, 4):
-			cell.textLabel!.text = L10n.SORTINGTYPEEUKLID.string
+			cell.textLabel!.text = L10n.sortingtypeeuklid.string
 			cell.accessoryType = sortingType == Sorting.euclid ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
 
 		// DISPLAY OPTIONS
 		case (.displayOptions, 0):
-			cell.textLabel?.text = L10n.HIDENODATALOTS.string
+			cell.textLabel?.text = L10n.hidenodatalots.string
 			cell.accessoryType = doHideLots ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
 		case (.displayOptions, 1):
-			cell.textLabel?.text = L10n.USEGRAYSCALECOLORS.string
+			cell.textLabel?.text = L10n.usegrayscalecolors.string
 			cell.accessoryType = useGrayscale ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
         case (.displayOptions, 2):
-            cell.textLabel?.text = L10n.SHOWEXPERIMENTALCITIESSETTING.string
+            cell.textLabel?.text = L10n.showexperimentalcitiessetting.string
             cell.accessoryType = showExperimentalCities ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
 
 		// OTHER OPTIONS
 		case (.otherOptions, 0):
-			cell.textLabel?.text = L10n.ABOUTBUTTON.string
+			cell.textLabel?.text = L10n.aboutbutton.string
 			cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
 		case (.otherOptions, 1):
-			cell.textLabel?.text = L10n.SHAREONTWITTER.string
+			cell.textLabel?.text = L10n.shareontwitter.string
 			cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
 		case (.otherOptions, 2):
-			cell.textLabel?.text = L10n.SENDFEEDBACK.string
+			cell.textLabel?.text = L10n.sendfeedback.string
 			cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
 		case (.otherOptions, 3):
-			cell.textLabel?.text = L10n.REQUESTNEWCITY.string
+			cell.textLabel?.text = L10n.requestnewcity.string
 			cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
 
 		default:
@@ -161,9 +161,9 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			// Don't let the user select a location based sorting option if the required authorization is missing
 			if indexPath.row == 1 || indexPath.row == 4 {
 				if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
-					let alertController = UIAlertController(title: L10n.LOCATIONDATAERRORTITLE.string, message: L10n.LOCATIONDATAERROR.string, preferredStyle: UIAlertControllerStyle.alert)
-					alertController.addAction(UIAlertAction(title: L10n.CANCEL.string, style: UIAlertActionStyle.cancel, handler: nil))
-					alertController.addAction(UIAlertAction(title: L10n.SETTINGS.string, style: UIAlertActionStyle.default, handler: {
+					let alertController = UIAlertController(title: L10n.locationdataerrortitle.string, message: L10n.locationdataerror.string, preferredStyle: UIAlertControllerStyle.alert)
+					alertController.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: nil))
+					alertController.addAction(UIAlertAction(title: L10n.settings.string, style: UIAlertActionStyle.default, handler: {
 						(action) in
 						UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 					}))
@@ -224,11 +224,11 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 					Answers.logCustomEvent(withName: "Experimental Cities", customAttributes: ["experimental cities": "disable"])
                     refreshLotlist()
                 } else {
-                    let alert = UIAlertController(title: L10n.NOTETITLE.string, message: L10n.SHOWEXPERIMENTALCITIESALERT.string, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: L10n.CANCEL.string, style: UIAlertActionStyle.cancel, handler: { (action) -> Void in
+                    let alert = UIAlertController(title: L10n.notetitle.string, message: L10n.showexperimentalcitiesalert.string, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: { (action) -> Void in
 
                     }))
-                    alert.addAction(UIAlertAction(title: L10n.ACTIVATE.string, style: UIAlertActionStyle.default, handler: { (action) -> Void in
+                    alert.addAction(UIAlertAction(title: L10n.activate.string, style: UIAlertActionStyle.default, handler: { (action) -> Void in
                         UserDefaults.standard.set(true, forKey: Defaults.showExperimentalCities)
                         tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
                         refreshLotlist()
@@ -255,7 +255,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 			case 1:
 				if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
 					let tweetsheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-					tweetsheet?.setInitialText(L10n.TWEETTEXT.string)
+					tweetsheet?.setInitialText(L10n.tweettext.string)
 					self.present(tweetsheet!, animated: true, completion: nil)
 				}
 			case 2:
