@@ -11,8 +11,6 @@ enum L10n {
   case aboutbutton
   /// Activate
   case activate
-  /// ParkenDD shows you a list of the number of available public parking spots in Dresden, Germany. It shows you whether a public parking lot is open or not, how many spots are available and where it is on a map.\n\nThe information displayed is up-to-date according to what is published officially on dresden.de/freie-parkplaetze.\n\nThe source for this application is available on Github. See https://github.com/kiliankoe/parkendd
-  case appstoredescription
   /// dresden, parking, car, driving, navigation, park, public, parkinglot, lot
   case appstoretags
   /// Cancel
@@ -103,7 +101,7 @@ enum L10n {
   case sortingtypefreespots
   /// Distance
   case sortingtypelocation
-  /// No free parking space in sight? -> #ParkenDD http://parkendd.de
+  /// No free parking space in sight? → #ParkenDD http://parkendd.de
   case tweettext
   /// unknown address
   case unknownaddress
@@ -133,8 +131,6 @@ extension L10n: CustomStringConvertible {
         return L10n.tr(key: "ABOUT_BUTTON")
       case .activate:
         return L10n.tr(key: "ACTIVATE")
-      case .appstoredescription:
-        return L10n.tr(key: "APPSTORE_DESCRIPTION")
       case .appstoretags:
         return L10n.tr(key: "APPSTORE_TAGS")
       case .cancel:
