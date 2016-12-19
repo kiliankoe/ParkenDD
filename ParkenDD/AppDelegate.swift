@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		locationManager?.requestWhenInUseAuthorization()
 
 		// Initialize User Defaults
-		let defaults: [String:AnyObject] = [
+		let defaults: [String:Any] = [
 			Defaults.sortingType            : Sorting.standard as AnyObject,
 			Defaults.selectedCity           : "Dresden" as AnyObject,
 			Defaults.selectedCityName       : "Dresden" as AnyObject,
