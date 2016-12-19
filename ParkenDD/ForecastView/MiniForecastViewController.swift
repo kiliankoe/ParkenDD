@@ -32,15 +32,15 @@ class MiniForecastViewController: UIViewController {
 		
 		chartView?.descriptionText = L10n.LOADINPERCENT.string
 		
-		chartView?.backgroundColor = UIColor.whiteColor()
-		chartView?.gridBackgroundColor = UIColor.whiteColor()
-		chartView?.userInteractionEnabled = false
+		chartView?.backgroundColor = UIColor.white
+		chartView?.gridBackgroundColor = UIColor.white
+		chartView?.isUserInteractionEnabled = false
 		chartView?.drawGridBackgroundEnabled = false
 		chartView?.legend.enabled = false
 		chartView?.autoScaleMinMaxEnabled = false
 		chartView?.animate(xAxisDuration: 0.5)
 		
-		chartView?.xAxis.labelPosition = .Bottom
+		chartView?.xAxis.labelPosition = .bottom
 		chartView?.xAxis.drawGridLinesEnabled = false
 		chartView?.xAxis.drawAxisLineEnabled = false
 		

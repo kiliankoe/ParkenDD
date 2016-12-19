@@ -159,7 +159,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 					
 					if dateDifference.minute! >= 60 {
 						attrs = [NSForegroundColorAttributeName: UIColor.red]
-						drop(L10n.OUTDATEDDATAWARNING.string, state: .Blur(.Dark))
+						drop(L10n.OUTDATEDDATAWARNING.string, state: .blur(.dark))
 						NSLog("Data in \(selectedCity) seems to be outdated.")
 					}
 					
@@ -185,9 +185,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	func handleUpdateError(_ err: ServerController.SCError) {
 		switch err {
 		case .server, .incompatibleAPI:
-			drop(L10n.SERVERERROR.string, state: .Error)
+			drop(L10n.SERVERERROR.string, state: .error)
 		case .request:
-			drop(L10n.REQUESTERROR.string, state: .Error)
+			drop(L10n.REQUESTERROR.string, state: .error)
 		case .notFound:
 			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
 			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
@@ -195,7 +195,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			updateData()
 			updateTitle(withCity: "Dresden")
 		default:
-			drop(L10n.UNKNOWNERROR.string, state: .Error)
+			drop(L10n.UNKNOWNERROR.string, state: .error)
 		}
 	}
 	
@@ -377,7 +377,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		if let _ = (tableView.cellForRow(at: indexPath) as? ParkinglotTableViewCell)?.parkinglot?.coords {
 			performSegue(withIdentifier: "showParkinglotMap", sender: self)
 		} else {
-			drop(L10n.NOCOORDSWARNING.string, state: .Blur(.Dark))
+			drop(L10n.NOCOORDSWARNING.string, state: .blur(.dark))
 		}
 		tableView.deselectRow(at: indexPath, animated: true)
 	}

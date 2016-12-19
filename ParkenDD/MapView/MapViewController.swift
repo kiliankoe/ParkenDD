@@ -63,7 +63,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		
 		// Display the forecast button if this lot has forecast data
 		if let forecast = detailParkinglot.forecast, forecast {
-			navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.FORECAST.string, style: .plain, target: self, action: "showForecastController")
+			navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.FORECAST.string, style: .plain, target: self, action: #selector(MapViewController.showForecastController))
 		}
 	}
 	
