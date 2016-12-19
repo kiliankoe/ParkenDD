@@ -87,6 +87,8 @@
 		39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = augustusbruecke.gpx; sourceTree = "<group>"; };
 		39AEA17F1BBADCCD0029642F /* durchDresden.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = durchDresden.gpx; sourceTree = "<group>"; };
 		39AED6F61BE9731D00BEBC15 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		39B8D9B71E084DD600659F0F /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		39B8D9B81E084DD600659F0F /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		39B953521AA0A59600026EC2 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		39BE3FCC1AD3402B009A8B74 /* ParkenDD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ParkenDD-Bridging-Header.h"; path = "../ParkenDD-Bridging-Header.h"; sourceTree = "<group>"; };
 		39D096231BDC304F009544E8 /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForecastViewController.swift; path = ParkenDD/ForecastView/ForecastViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -352,6 +354,7 @@
 				Base,
 				de,
 				pl,
+				cs,
 			);
 			mainGroup = 39F4CFD51A6BBC0200ACFECF;
 			productRefGroup = 39F4CFDF1A6BBC0200ACFECF /* Products */;
@@ -575,6 +578,7 @@
 				3977CA261A9CC78C00E20014 /* Base */,
 				3977CA281A9CC78E00E20014 /* de */,
 				398E45C81BE8FA9A002E0DA8 /* pl */,
+				39B8D9B71E084DD600659F0F /* cs */,
 			);
 			name = InfoPlist.strings;
 			path = .;
@@ -586,6 +590,7 @@
 				397D7B1E1A9A2236001B5874 /* Base */,
 				397D7B201A9A223A001B5874 /* de */,
 				398E45C91BE8FA9A002E0DA8 /* pl */,
+				39B8D9B81E084DD600659F0F /* cs */,
 			);
 			name = Localizable.strings;
 			path = .;
