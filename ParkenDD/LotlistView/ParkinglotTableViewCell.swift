@@ -41,8 +41,12 @@ class ParkinglotTableViewCell: UITableViewCell {
 		} else {
 			parkinglotNameLabel?.text = sanitizedLotName
 		}
-		
-		parkinglotLoadLabel?.text = "\(lot.free)"
+
+        if let free = lot.free {
+            parkinglotLoadLabel?.text = "\(free)"
+        } else {
+            parkinglotLoadLabel?.text = "?"
+        }
 		
 		// check if location sorting is enabled, then we're displaying distance instead of address
 		let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
