@@ -77,7 +77,7 @@ class MiniForecastViewController: UIViewController {
 		for date in sortedDates {
 			let value = Double(data[date]!)!
 			let xIndex = sortedDates.index(of: date)!
-			let dataEntry = ChartDataEntry(x: value, y: Double(xIndex))
+			let dataEntry = ChartDataEntry(x: Double(xIndex), y: value)
 			dataEntries.append(dataEntry)
 		}
 		
@@ -87,7 +87,6 @@ class MiniForecastViewController: UIViewController {
 		lineChartDataSet.drawValuesEnabled = false
 		lineChartDataSet.drawCirclesEnabled = false
 		lineChartDataSet.drawFilledEnabled = true
-//		lineChartDataSet.drawCubicEnabled = true
         lineChartDataSet.mode = .cubicBezier
 //		let lineChartData = LineChartData(xVals: labels, dataSet: lineChartDataSet)
         let lineChartData = LineChartData(dataSet: lineChartDataSet)
