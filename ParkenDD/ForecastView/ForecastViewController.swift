@@ -170,20 +170,20 @@ class ForecastViewController: UIViewController {
 		let dpDate = datePicker!.date
 		
 		let calendar = Calendar.current
-		let minuteComponent = (calendar as NSCalendar).components(Calendar.Unit.minute, from: dpDate)
+		let minuteComponent = calendar.component(.minute, from: dpDate)
 		
 		var components = DateComponents()
 		
-		if minuteComponent.minute! < 30 {
-			components.minute = 60 - minuteComponent.minute!
+		if minuteComponent < 30 {
+			components.minute = 60 - minuteComponent
 		} else {
-			components.minute = 30 - minuteComponent.minute!
+			components.minute = 30 - minuteComponent
 		}
 		
-		let secondComponent = (calendar as NSCalendar).components(Calendar.Unit.second, from: dpDate)
-		components.second = -secondComponent.second
-		
-		return (calendar as NSCalendar).date(byAdding: components, to: dpDate, options: NSCalendar.Options.wrapComponents)!
+		let secondComponent = calendar.component(.second, from: dpDate)
+		components.second = -secondComponent
+
+        return calendar.date(byAdding: components, to: dpDate, wrappingComponents: true)!
 	}
 	
 	/**

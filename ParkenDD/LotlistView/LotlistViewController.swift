@@ -153,8 +153,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 //                    print("Current: \(currentDate)")
 //                    print("Last:    \(lastUpdated)")
 					let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-					let dateDifference = (calendar as NSCalendar).components(Calendar.Unit.minute, from: lastUpdated as Date, to: currentDate, options: Calendar.Options.wrapComponents)
-					
+                    let dateDifference = calendar.dateComponents(Set([.minute]), from: lastUpdated, to: currentDate)
+
 					var attrs = [String: AnyObject]()
 					
 					if dateDifference.minute! >= 60 {
