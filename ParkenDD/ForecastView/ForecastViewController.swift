@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import Crashlytics
+import ResearchKit
 
 class ForecastViewController: UIViewController {
 	
