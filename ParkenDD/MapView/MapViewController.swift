@@ -32,13 +32,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		
 		// Add annotations for all parking lots to the map
 		for singleLot in allParkinglots {
-			var subtitle = L10n.mapsubtitle("\(singleLot.free)", singleLot.total).string
+			var subtitle = L10n.MAPSUBTITLE("\(singleLot.free)", singleLot.total).string
 			if let state = singleLot.state {
 				switch state {
 				case .Closed:
-					subtitle = L10n.closed.string
+					subtitle = L10n.CLOSED.string
 				case .Nodata:
-					subtitle = L10n.mapsubtitle("?", singleLot.total).string
+					subtitle = L10n.MAPSUBTITLE("?", singleLot.total).string
 				case .Open, .Unknown:
 					break
 				}
@@ -63,7 +63,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		
 		// Display the forecast button if this lot has forecast data
 		if let forecast = detailParkinglot.forecast, forecast {
-			navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.forecast.string, style: .plain, target: self, action: "showForecastController")
+			navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.FORECAST.string, style: .plain, target: self, action: "showForecastController")
 		}
 	}
 	

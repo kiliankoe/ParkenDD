@@ -60,9 +60,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
-				let alertController = UIAlertController(title: L10n.locationdataerrortitle.string, message: L10n.locationdataerror.string, preferredStyle: UIAlertControllerStyle.alert)
-				alertController.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: nil))
-				alertController.addAction(UIAlertAction(title: L10n.settings.string, style: UIAlertActionStyle.default, handler: {
+				let alertController = UIAlertController(title: L10n.LOCATIONDATAERRORTITLE.string, message: L10n.LOCATIONDATAERROR.string, preferredStyle: UIAlertControllerStyle.alert)
+				alertController.addAction(UIAlertAction(title: L10n.CANCEL.string, style: UIAlertActionStyle.cancel, handler: nil))
+				alertController.addAction(UIAlertAction(title: L10n.SETTINGS.string, style: UIAlertActionStyle.default, handler: {
 					(action) in
 					UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 				}))
@@ -165,7 +165,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 					
 					let dateFormatter = DateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
 					
-					self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.lastupdated(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
+					self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.LASTUPDATED(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
 				}
 				
 				// TODO: I want a way to get the data url for the currently selected city to give that to the user somehow...
