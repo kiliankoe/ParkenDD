@@ -11,10 +11,11 @@ import ResearchKit
 
 class ForecastViewDataSource: NSObject, ORKGraphChartViewDataSource {
     func graphChartView(_ graphChartView: ORKGraphChartView, numberOfPointsForPlotIndex plotIndex: Int) -> Int {
-        return 0
+        return 5
     }
 
     func graphChartView(_ graphChartView: ORKGraphChartView, pointForPointIndex pointIndex: Int, plotIndex: Int) -> ORKRangedPoint {
-        return ORKRangedPoint()
+        let point = ORKRangedPoint(value: 3)
+        return point
     }
 }

@@ -31,7 +31,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gum-8l-jm7" customClass="ORKLineGraphChartView" customModule="Charts">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gum-8l-jm7" customClass="ORKGraphChartView" customModule="Charts">
                     <rect key="frame" x="-10" y="0.0" width="395" height="468"/>
                     <color key="tintColor" red="0.79318666458129883" green="0.79333889484405518" blue="0.79316127300262451" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>

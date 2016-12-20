@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Charts
 import Crashlytics
 import ResearchKit
 
@@ -19,11 +18,11 @@ class ForecastViewController: UIViewController {
 	let dateFormatter = DateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: nil)
 	let labelDateFormatter = DateFormatter(dateFormat: "HH:mm", timezone: nil)
 	
-	@IBOutlet weak var chartView: LineChartView?
+	@IBOutlet weak var chartView: ORKLineGraphChartView?
 	@IBOutlet weak var availableLabel: UILabel?
 	@IBOutlet weak var datePicker: UIDatePicker?
 	
-	var currentLine: ChartLimitLine?
+//	var currentLine: ChartLimitLine?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +34,8 @@ class ForecastViewController: UIViewController {
 		}
 		
 		Answers.logCustomEvent(withName: "View Forecast", customAttributes: ["selected lot": lot.lotID])
+
+        chartView?.dataSource = ForecastViewDataSource()
 		
 		navigationItem.title = lot.name
 		availableLabel?.text = L10n.circaspotsavailable(genAvailability(lot.total, load: lot.loadPercentage)).string
@@ -43,28 +44,28 @@ class ForecastViewController: UIViewController {
 		datePicker?.date = now
 		datePicker?.minimumDate = Calendar.current.startOfDay(for: now)
 		
-		chartView?.chartDescription?.text = L10n.loadinpercent.string
-		
-		chartView?.backgroundColor = UIColor.white
-		chartView?.gridBackgroundColor = UIColor.white
-		chartView?.isUserInteractionEnabled = false
-		chartView?.drawGridBackgroundEnabled = false
-		chartView?.legend.enabled = false
-		chartView?.autoScaleMinMaxEnabled = false
-		chartView?.animate(xAxisDuration: 0.5)
-		
-		chartView?.xAxis.labelPosition = .bottom
-		chartView?.xAxis.drawGridLinesEnabled = false
-		chartView?.xAxis.drawAxisLineEnabled = false
-		
-		chartView?.rightAxis.enabled = false
-		
-		chartView?.leftAxis.gridColor = UIColor(rgba: "#E4E4E4")
-		chartView?.leftAxis.drawAxisLineEnabled = false
-		chartView?.leftAxis.drawLabelsEnabled = false
-		chartView?.leftAxis.axisMaximum = 100.0
-		chartView?.leftAxis.axisMinimum = 0.0
-		
+//		chartView?.chartDescription?.text = L10n.loadinpercent.string
+//		
+//		chartView?.backgroundColor = UIColor.white
+//		chartView?.gridBackgroundColor = UIColor.white
+//		chartView?.isUserInteractionEnabled = false
+//		chartView?.drawGridBackgroundEnabled = false
+//		chartView?.legend.enabled = false
+//		chartView?.autoScaleMinMaxEnabled = false
+//		chartView?.animate(xAxisDuration: 0.5)
+//		
+//		chartView?.xAxis.labelPosition = .bottom
+//		chartView?.xAxis.drawGridLinesEnabled = false
+//		chartView?.xAxis.drawAxisLineEnabled = false
+//		
+//		chartView?.rightAxis.enabled = false
+//		
+//		chartView?.leftAxis.gridColor = UIColor(rgba: "#E4E4E4")
+//		chartView?.leftAxis.drawAxisLineEnabled = false
+//		chartView?.leftAxis.drawLabelsEnabled = false
+//		chartView?.leftAxis.axisMaximum = 100.0
+//		chartView?.leftAxis.axisMinimum = 0.0
+
 		chartView?.backgroundColor = UIColor(rgba: "#F6F6F6")
 		
 		updateData()
@@ -86,13 +87,13 @@ class ForecastViewController: UIViewController {
 		let sortedDates = Array(data.keys).sorted(by: <)
 		
 		if let limit = sortedDates.index(of: dateString) {
-			if currentLine == nil {
-				chartView?.xAxis.removeAllLimitLines()
-				currentLine = ChartLimitLine()
-				chartView?.xAxis.addLimitLine(currentLine!)
-			}
-			currentLine?.limit = Double(limit)
-			currentLine?.label = "\(data[dateString]!)%"
+//			if currentLine == nil {
+//				chartView?.xAxis.removeAllLimitLines()
+//				currentLine = ChartLimitLine()
+//				chartView?.xAxis.addLimitLine(currentLine!)
+//			}
+//			currentLine?.limit = Double(limit)
+//			currentLine?.label = "\(data[dateString]!)%"
 		}
 		
 		// Only update data from API if the selected date is after or before the currently selected day
@@ -143,24 +144,24 @@ class ForecastViewController: UIViewController {
 			return labelDateFormatter.string(from: date!)
 		}
 		
-		var dataEntries = [ChartDataEntry]()
-		for date in sortedDates {
-			let value = Double(data[date]!)!
-			let xIndex = sortedDates.index(of: date)!
-			let dataEntry = ChartDataEntry(x: Double(xIndex), y: value)
-			dataEntries.append(dataEntry)
-		}
-		
-        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: nil)
-		lineChartDataSet.colors = [UIColor.darkGray]
-		lineChartDataSet.fillColor = UIColor.gray
-		lineChartDataSet.drawValuesEnabled = false
-		lineChartDataSet.drawCirclesEnabled = false
-		lineChartDataSet.drawFilledEnabled = true
-        lineChartDataSet.mode = .cubicBezier
-//		let lineChartData = LineChartData(xVals: labels, dataSet: lineChartDataSet)
-        let lineChartData = LineChartData(dataSet: lineChartDataSet)
-		chartView?.data = lineChartData
+//		var dataEntries = [ChartDataEntry]()
+//		for date in sortedDates {
+//			let value = Double(data[date]!)!
+//			let xIndex = sortedDates.index(of: date)!
+//			let dataEntry = ChartDataEntry(x: Double(xIndex), y: value)
+//			dataEntries.append(dataEntry)
+//		}
+//		
+//        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: nil)
+//		lineChartDataSet.colors = [UIColor.darkGray]
+//		lineChartDataSet.fillColor = UIColor.gray
+//		lineChartDataSet.drawValuesEnabled = false
+//		lineChartDataSet.drawCirclesEnabled = false
+//		lineChartDataSet.drawFilledEnabled = true
+//        lineChartDataSet.mode = .cubicBezier
+////		let lineChartData = LineChartData(xVals: labels, dataSet: lineChartDataSet)
+//        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+//		chartView?.data = lineChartData
 	}
 	
 	/**
