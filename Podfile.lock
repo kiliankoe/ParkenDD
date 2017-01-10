@@ -1,26 +1,29 @@
 PODS:
-  - Alamofire (4.2.0)
   - Charts (3.0.1):
     - Charts/Core (= 3.0.1)
   - Charts/Core (3.0.1)
+  - ModelMapper (6.0.0)
   - ObjectMapper (2.2.2)
+  - ParkKit (0.2.0):
+    - ModelMapper (= 6.0.0)
   - SwiftyDrop (3.0.3)
   - SwiftyTimer (2.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.2)
   - Charts (~> 3.0)
   - ObjectMapper (~> 2.2)
+  - ParkKit (~> 0.2)
   - SwiftyDrop (~> 3.0)
   - SwiftyTimer (~> 2.0)
 
 SPEC CHECKSUMS:
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
+  ModelMapper: 3596a82f26c43491f6a8d3a00bcdba6ba0e62a93
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
+  ParkKit: 58f588b030dda9ee739da76f81ba6fb18715d574
   SwiftyDrop: 785f95aabc26c4d832576bb78dc4ba7d0594a95b
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: 9997381f0d116a426f305dc6e29202773f771dba
+PODFILE CHECKSUM: dc506c54c75da715a8ac1e82e965c63aa419431b
 
 COCOAPODS: 1.1.1
