@@ -26,7 +26,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		// set CLLocationManager delegate
+        tableView.dataSource = LotListDataSource()
+
 		locationManager.delegate = self
 
 		// display the standard reload button
@@ -103,30 +104,13 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
         }
         Answers.logCustomEvent(withName: "View City", customAttributes: ["selected city": selectedCity, "sorting type": sortingType])
 
-        ParkKit().fetchCities(onFailure: { [weak self] error in
-            self?.handleUpdateError(error)
+        park.fetchLots(forCity: selectedCity, onFailure: { [weak self] error in
             self?.stopRefreshUI()
+            self?.handleUpdateError(error)
         }) { [weak self] response in
             self?.stopRefreshUI()
-
-            let showExperimentalCities = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities) 
-            let citiesList = showExperimentalCities ? response.cities : response.cities.filter { $0.hasActiveSupport }
-            (UIApplication.shared.delegate as? AppDelegate)?.citiesList = citiesList
-
-            ParkKit().fetchLots(forCity: selectedCity, onFailure: { [weak self] error in
-                self?.handleUpdateError(error)
-                self?.stopRefreshUI()
-            }) { [weak self] response in
-                self?.stopRefreshUI()
-
-                let skipNodataLots = UserDefaults.standard.bool(forKey: Defaults.skipNodataLots)
-                let lots = skipNodataLots ? response.lots.filter { $0.state != .nodata } : response.lots
-
-                self?.parkinglots = lots
-                self?.defaultSortedParkinglots = lots
-
-                self?.showOutdatedDataWarning(lastUpdated: response.lastUpdated, lastDownloaded: response.lastDownloaded)
-            }
+            self?.showOutdatedDataWarning(lastUpdated: response.lastUpdated, lastDownloaded: response.lastDownloaded)
+            (self?.tableView.dataSource as? LotlistDataSource)?.parkingLots = response.lots
         }
 	}
 
@@ -278,14 +262,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// /////////////////////////////////////////////////////////////////////////
 	// MARK: - UITableViewDataSource
 	// /////////////////////////////////////////////////////////////////////////
-
-	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
-	}
-
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return parkinglots.count
-	}
 
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60

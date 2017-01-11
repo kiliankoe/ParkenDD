@@ -29,7 +29,7 @@
 		39D0962A1BDC4B0F009544E8 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D096291BDC4B0F009544E8 /* Drop.swift */; };
 		39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */; };
 		39DDA4071BDE676500EF5E18 /* NSDate+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */; };
-		39E5F1C11E26BBFE002D8C9C /* LotListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5F1C01E26BBFE002D8C9C /* LotListDataSource.swift */; };
+		39E5F1C11E26BBFE002D8C9C /* LotlistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5F1C01E26BBFE002D8C9C /* LotlistDataSource.swift */; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD401B1B686500900967 /* Fabric.framework */; };
 		39F4BD431B1B686500900967 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD411B1B686500900967 /* Crashlytics.framework */; };
@@ -95,7 +95,7 @@
 		39D096291BDC4B0F009544E8 /* Drop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
 		39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySelectionTVC.swift; sourceTree = "<group>"; };
 		39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Comparable.swift"; sourceTree = "<group>"; };
-		39E5F1C01E26BBFE002D8C9C /* LotListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotListDataSource.swift; sourceTree = "<group>"; };
+		39E5F1C01E26BBFE002D8C9C /* LotlistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotlistDataSource.swift; sourceTree = "<group>"; };
 		39EAB8B71BE96E1E005A7290 /* ParkenDDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParkenDDUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39EAB8B91BE96E1E005A7290 /* ParkenDDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkenDDUITests.swift; sourceTree = "<group>"; };
 		39EAB8BB1BE96E1E005A7290 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */,
-				39E5F1C01E26BBFE002D8C9C /* LotListDataSource.swift */,
+				39E5F1C01E26BBFE002D8C9C /* LotlistDataSource.swift */,
 				392E9B461A6D3143006C6869 /* LotCell.swift */,
 			);
 			path = LotlistView;
@@ -546,7 +546,7 @@
 				394464D91BE0B90C008CE615 /* NSDateFormatter.swift in Sources */,
 				399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */,
 				397DA7701E26DD5F00643829 /* Default.swift in Sources */,
-				39E5F1C11E26BBFE002D8C9C /* LotListDataSource.swift in Sources */,
+				39E5F1C11E26BBFE002D8C9C /* LotlistDataSource.swift in Sources */,
 				394209B41AADB17600E47539 /* MapViewController.swift in Sources */,
 				3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */,
 				39D0962A1BDC4B0F009544E8 /* Drop.swift in Sources */,
