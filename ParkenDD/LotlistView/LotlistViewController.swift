@@ -363,22 +363,22 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// /////////////////////////////////////////////////////////////////////////
 	
 	func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-		let fullForecastVC = ForecastViewController()
-		fullForecastVC.lot = (viewControllerToCommit as? MiniForecastViewController)?.lot
-		show(fullForecastVC, sender: nil)
+//		let fullForecastVC = ForecastViewController()
+//		fullForecastVC.lot = (viewControllerToCommit as? MiniForecastViewController)?.lot
+//		show(fullForecastVC, sender: nil)
 	}
 	
 	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-		if let indexPath = tableView.indexPathForRow(at: location) {
-			guard let hasForecast = (tableView.cellForRow(at: indexPath) as? LotCell)?.parkinglot?.hasForecast, hasForecast else { return nil }
-			
-			if #available(iOS 9.0, *) {
-			    previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
-			}
-			let forecastVC = MiniForecastViewController()
-			forecastVC.lot = parkinglots[indexPath.row]
-			return forecastVC
-		}
+//		if let indexPath = tableView.indexPathForRow(at: location) {
+//			guard let hasForecast = (tableView.cellForRow(at: indexPath) as? LotCell)?.parkinglot?.hasForecast, hasForecast else { return nil }
+//			
+//			if #available(iOS 9.0, *) {
+//			    previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+//			}
+//			let forecastVC = MiniForecastViewController()
+//			forecastVC.lot = parkinglots[indexPath.row]
+//			return forecastVC
+//		}
 		return nil
 	}
 
