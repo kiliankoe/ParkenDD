@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import ParkKit
 import Fabric
 import Crashlytics
 
@@ -21,13 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var locationManager: CLLocationManager?
 
 	var supportedCities: [String]?
-	var citiesList = [String: City]() {
+	var citiesList = [City]() {
 		didSet {
-			supportedCities = []
-			for (id, _) in citiesList {
-				supportedCities?.append(id)
-			}
-			supportedCities?.sort(by: <)
+            supportedCities = citiesList.map{ $0.name }.sorted()
 		}
 	}
 
