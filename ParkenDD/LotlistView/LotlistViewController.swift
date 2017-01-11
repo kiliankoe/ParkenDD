@@ -287,10 +287,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	}
 
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if indexPath.row < parkinglots.count {
-			return 60
-		}
-		return 30
+        return 60
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
