@@ -12,6 +12,8 @@ import ParkKit
 import Fabric
 import Crashlytics
 
+let park = ParkKit()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
