@@ -152,16 +152,17 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	*/
 	func handleUpdateError(_ err: ParkError) {
 		switch err {
-		case .server, .incompatibleAPI:
+		case .server(_), .decoding:
 			drop(L10n.serverError.string, state: .error)
 		case .request:
 			drop(L10n.requestError.string, state: .error)
-		case .notFound:
-			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
-			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
-			UserDefaults.standard.synchronize()
-			updateData()
-			updateTitle(withCity: "Dresden")
+            // TODO: Is this really a good idea?
+//		case .notFound:
+//			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
+//			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
+//			UserDefaults.standard.synchronize()
+//			updateData()
+//			updateTitle(withCity: "Dresden")
 		default:
 			drop(L10n.unknownError.string, state: .error)
 		}
