@@ -81,26 +81,26 @@ class ForecastViewController: UIViewController {
 		
 		let dateString = dateFormatter.string(from: getDatepickerDate())
 		
-		updateLabels(data[dateString])
-		
-		let sortedDates = Array(data.keys).sorted(by: <)
-		
-		if let limit = sortedDates.index(of: dateString) {
-			if currentLine == nil {
-				chartView?.xAxis.removeAllLimitLines()
-				currentLine = ChartLimitLine()
-				chartView?.xAxis.addLimitLine(currentLine!)
-			}
-			currentLine?.limit = Double(limit)
-			currentLine?.label = "\(data[dateString]!)%"
-		}
-		
+//		updateLabels(data[dateString])
+
+//		let sortedDates = Array(data.keys).sorted(by: <)
+//		
+//		if let limit = sortedDates.index(of: dateString) {
+//			if currentLine == nil {
+//				chartView?.xAxis.removeAllLimitLines()
+//				currentLine = ChartLimitLine()
+//				chartView?.xAxis.addLimitLine(currentLine!)
+//			}
+//			currentLine?.limit = Double(limit)
+////			currentLine?.label = "\(data[dateString]!)%"
+//		}
+
 		// Only update data from API if the selected date is after or before the currently selected day
-		if dateFormatter.string(from: sender.date) > sortedDates.last! || dateFormatter.string(from: sender.date) < sortedDates.first! {
-			updateData(fromDate: sender.date)
-		} else {
-			drawGraph()
-		}
+//		if dateFormatter.string(from: sender.date) > sortedDates.last! || dateFormatter.string(from: sender.date) < sortedDates.first! {
+//			updateData(fromDate: sender.date)
+//		} else {
+//			drawGraph()
+//		}
 	}
 	
 	func updateData(fromDate date: Date = Date()) {
@@ -130,7 +130,7 @@ class ForecastViewController: UIViewController {
             self?.drawGraph()
             self?.datePickerValueDidChange((self?.datePicker!)!) // Am I really doing this? Oh god... See #132
 
-            self?.updateLabels(self?.data![(self?.dateFormatter.string(from: self.getDatepickerDate()))!])
+//            self?.updateLabels(self?.data![(self?.dateFormatter.string(from: (self?.getDatepickerDate())!))!])
         }
 	}
 	
@@ -141,32 +141,32 @@ class ForecastViewController: UIViewController {
 	}
 	
 	func drawGraph() {
-		guard let data = data else { return }
-		let sortedDates = Array(data.keys).sorted(by: <)
-		
-		let labels = sortedDates.map { (element) -> String in
-			let date = dateFormatter.date(from: element)
-			return labelDateFormatter.string(from: date!)
-		}
-		
-		var dataEntries = [ChartDataEntry]()
-		for date in sortedDates {
-			let value = Double(data[date]!)!
-			let xIndex = sortedDates.index(of: date)!
-			let dataEntry = ChartDataEntry(x: Double(xIndex), y: value)
-			dataEntries.append(dataEntry)
-		}
-		
-        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: nil)
-		lineChartDataSet.colors = [UIColor.darkGray]
-		lineChartDataSet.fillColor = UIColor.gray
-		lineChartDataSet.drawValuesEnabled = false
-		lineChartDataSet.drawCirclesEnabled = false
-		lineChartDataSet.drawFilledEnabled = true
-        lineChartDataSet.mode = .cubicBezier
-//		let lineChartData = LineChartData(xVals: labels, dataSet: lineChartDataSet)
-        let lineChartData = LineChartData(dataSet: lineChartDataSet)
-		chartView?.data = lineChartData
+//		guard let data = data else { return }
+//		let sortedDates = Array(data.keys).sorted(by: <)
+//		
+//		let labels = sortedDates.map { (element) -> String in
+//			let date = dateFormatter.date(from: element)
+//			return labelDateFormatter.string(from: date!)
+//		}
+//		
+//		var dataEntries = [ChartDataEntry]()
+//		for date in sortedDates {
+//			let value = Double(data[date]!)!
+//			let xIndex = sortedDates.index(of: date)!
+//			let dataEntry = ChartDataEntry(x: Double(xIndex), y: value)
+//			dataEntries.append(dataEntry)
+//		}
+//		
+//        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: nil)
+//		lineChartDataSet.colors = [UIColor.darkGray]
+//		lineChartDataSet.fillColor = UIColor.gray
+//		lineChartDataSet.drawValuesEnabled = false
+//		lineChartDataSet.drawCirclesEnabled = false
+//		lineChartDataSet.drawFilledEnabled = true
+//        lineChartDataSet.mode = .cubicBezier
+////		let lineChartData = LineChartData(xVals: labels, dataSet: lineChartDataSet)
+//        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+//		chartView?.data = lineChartData
 	}
 	
 	/**
