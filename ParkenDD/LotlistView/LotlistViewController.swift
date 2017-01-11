@@ -307,7 +307,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
 		if sortingType == Sorting.distance || sortingType == Sorting.euclid {
 			if let userLocation = locationManager.location {
-				cell?.distance = thisLot.distance(from: userLocation)
+				cell?.distance = thisLot.distance(from: userLocation) ?? Const.dummyDistance
 			} else {
 				cell?.distance = Const.dummyDistance
 			}
