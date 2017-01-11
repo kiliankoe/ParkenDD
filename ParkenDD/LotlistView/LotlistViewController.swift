@@ -19,8 +19,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	var parkinglots = [Lot]()
 	var defaultSortedParkinglots = [Lot]()
 
-	var timeUpdated: Date?
-	var timeDownloaded: Date?
 	var dataURL: String?
 
 	@IBOutlet weak var titleButton: UIButton!
@@ -126,9 +124,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
                 self?.parkinglots = lots
                 self?.defaultSortedParkinglots = lots
-
-                self?.timeUpdated = response.lastUpdated
-                self?.timeDownloaded = response.lastDownloaded
 
                 self?.showOutdatedDataWarning(lastUpdated: response.lastUpdated, lastDownloaded: response.lastDownloaded)
             }
