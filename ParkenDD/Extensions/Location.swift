@@ -16,16 +16,26 @@ class Location: NSObject {
     }
 
     static let shared = Location()
-
     static let manager = CLLocationManager()
+
+    var lastLocation: CLLocation?
+
+    // This is really weird o.O
+    var didMove = [(CLLocation) -> Void]()
+    func onMove(_ block: @escaping (CLLocation) -> Void) {
+        didMove.append(block)
+    }
 }
 
 extension Location: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else { return }
+        guard let lastLocation = lastLocation else { self.lastLocation = currentLocation; return }
 
-    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-
+        let distance = currentLocation.distance(from: lastLocation)
+        if distance > 100 {
+            self.lastLocation = currentLocation
+            didMove.forEach { $0(currentLocation) }
+        }
     }
 }

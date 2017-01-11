@@ -13,6 +13,14 @@ class LotlistDataSource: NSObject, UITableViewDataSource {
     var parkingLots = [Lot]()
     var defaultSortedLots = [Lot]()
 
+    override init() {
+        super.init()
+
+        Location.shared.onMove { [weak self] location in
+            self?.sortLots()
+        }
+    }
+
     func set(lots: [Lot]) {
         defaultSortedLots = lots
         parkingLots = UserDefaults.bool(for: .skipNodataLots) ? lots.filter { $0.state != .nodata } : lots

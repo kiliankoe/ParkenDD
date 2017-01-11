@@ -7,14 +7,11 @@
 //
 
 import UIKit
-import CoreLocation
 import ParkKit
 import SwiftyTimer
 import Crashlytics
 
-class LotlistViewController: UITableViewController, CLLocationManagerDelegate, UIViewControllerPreviewingDelegate {
-
-	let locationManager = CLLocationManager()
+class LotlistViewController: UITableViewController, UIViewControllerPreviewingDelegate {
 
 	var parkinglots = [Lot]()
 	var defaultSortedParkinglots = [Lot]()
@@ -28,7 +25,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
         tableView.dataSource = LotlistDataSource()
 
-		locationManager.delegate = self
+        Location.shared.onMove { [weak self] location in
+            self?.tableView.reloadData()
+        }
 
 		// display the standard reload button
 		showReloadButton()
@@ -261,34 +260,6 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			drop(L10n.noCoordsWarning.string, state: .blur(.dark))
 		}
 		tableView.deselectRow(at: indexPath, animated: true)
-	}
-
-	// /////////////////////////////////////////////////////////////////////////
-	// MARK: - CLLocationManagerDelegate
-	// /////////////////////////////////////////////////////////////////////////
-	var lastLocation: CLLocation?
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		let currentUserLocation = locationManager.location
-
-		// The idea here is to check the location on each update from the locationManager and only re-sort
-		// the lots and update the tableView if the user has moved more than 100 meters. Doing both every
-		// second is aggravating and really not necessary.
-		if let lastLoc = lastLocation {
-			let distance = currentUserLocation!.distance(from: lastLoc)
-			if distance > 100 {
-				sortLots()
-				tableView.reloadData()
-				lastLocation = locations.last
-			}
-		} else {
-			// we need to set lastLocation at least once somewhere
-			lastLocation = locations.last
-			tableView.reloadData()
-		}
-	}
-
-	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		// TODO: Implement me to hopefully fix #41
 	}
 	
 	// /////////////////////////////////////////////////////////////////////////
