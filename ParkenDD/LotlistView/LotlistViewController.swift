@@ -291,33 +291,30 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var cell = tableView.dequeueReusableCell(withIdentifier: "parkinglotCell") as? ParkinglotTableViewCell
-		if cell == nil {
-			cell = ParkinglotTableViewCell()
-		}
+        let cell = (tableView.dequeueReusableCell(withIdentifier: String(describing: LotCell.self)) as? LotCell) ?? LotCell()
 		
 		let thisLot = parkinglots[indexPath.row]
-		cell?.setParkinglot(thisLot)
+		cell.setParkinglot(thisLot)
 		
 		// Since we've got the locationManager available here it's kinda tricky telling the cell what the current distance
 		// from the lot is, so we're passing that along and setting the label in the cell class to keep it separate.
 		let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
 		if sortingType == Sorting.distance || sortingType == Sorting.euclid {
 			if let userLocation = locationManager.location {
-				cell?.distance = thisLot.distance(from: userLocation) ?? Const.dummyDistance
+				cell.distance = thisLot.distance(from: userLocation) ?? Const.dummyDistance
 			} else {
-				cell?.distance = Const.dummyDistance
+				cell.distance = Const.dummyDistance
 			}
 		}
 
 		// Don't display any separators if the list is still empty
 		if parkinglots.count == 0 {
-			tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+			tableView.separatorStyle = .none
 		} else {
-			tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+			tableView.separatorStyle = .singleLine
 		}
 
-		return cell!
+		return cell
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
@@ -325,7 +322,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	// /////////////////////////////////////////////////////////////////////////
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if let _ = (tableView.cellForRow(at: indexPath) as? ParkinglotTableViewCell)?.parkinglot?.coords {
+		if let _ = (tableView.cellForRow(at: indexPath) as? LotCell)?.parkinglot?.coordinate {
 			performSegue(withIdentifier: "showParkinglotMap", sender: self)
 		} else {
 			drop(L10n.noCoordsWarning.string, state: .blur(.dark))
@@ -373,7 +370,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	
 	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
 		if let indexPath = tableView.indexPathForRow(at: location) {
-			guard (tableView.cellForRow(at: indexPath) as? ParkinglotTableViewCell)!.parkinglot!.forecast! else { return nil }
+			guard let hasForecast = (tableView.cellForRow(at: indexPath) as? LotCell)?.parkinglot?.hasForecast, hasForecast else { return nil }
 			
 			if #available(iOS 9.0, *) {
 			    previewingContext.sourceRect = tableView.rectForRow(at: indexPath)

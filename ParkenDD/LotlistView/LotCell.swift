@@ -1,5 +1,5 @@
 //
-//  ParkplatzTableViewCell.swift
+//  LotCell.swift
 //  ParkenDD
 //
 //  Created by Kilian Koeltzsch on 19/01/15.
@@ -10,7 +10,7 @@ import UIKit
 import ParkKit
 
 //class ParkinglotTableViewCell: MCSwipeTableViewCell {
-class ParkinglotTableViewCell: UITableViewCell {
+class LotCell: UITableViewCell {
 
 	@IBOutlet weak var parkinglotNameLabel: UILabel?
 	@IBOutlet weak var parkinglotAddressLabel: UILabel?

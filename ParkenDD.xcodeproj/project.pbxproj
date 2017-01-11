@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3904EE051B55C61700B2933B /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3904EE041B55C61700B2933B /* Settings.storyboard */; };
 		3926FECD1AAC47AA005B2DF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3926FECC1AAC47AA005B2DF9 /* Constants.swift */; };
-		392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */; };
+		392E9B471A6D3143006C6869 /* LotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392E9B461A6D3143006C6869 /* LotCell.swift */; };
 		393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393F0D391A97BDBB00B25B74 /* ServerController.swift */; };
 		394209B41AADB17600E47539 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394209B31AADB17600E47539 /* MapViewController.swift */; };
 		394464D91BE0B90C008CE615 /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394464D81BE0B90C008CE615 /* NSDateFormatter.swift */; };
@@ -68,7 +68,7 @@
 		126B02BC31AC3082DEF3E5D9 /* Pods_ParkenDD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParkenDD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3904EE041B55C61700B2933B /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		3926FECC1AAC47AA005B2DF9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotTableViewCell.swift; sourceTree = "<group>"; };
+		392E9B461A6D3143006C6869 /* LotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotCell.swift; sourceTree = "<group>"; };
 		393F0D391A97BDBB00B25B74 /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
 		394209B31AADB17600E47539 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		394464D81BE0B90C008CE615 /* NSDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatter.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */,
-				392E9B461A6D3143006C6869 /* ParkinglotTableViewCell.swift */,
+				392E9B461A6D3143006C6869 /* LotCell.swift */,
 			);
 			path = LotlistView;
 			sourceTree = "<group>";
@@ -537,7 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				392E9B471A6D3143006C6869 /* ParkinglotTableViewCell.swift in Sources */,
+				392E9B471A6D3143006C6869 /* LotCell.swift in Sources */,
 				396642201BB203DC00DF2E99 /* Loc.swift in Sources */,
 				39DDA4071BDE676500EF5E18 /* NSDate+Comparable.swift in Sources */,
 				393F0D3A1A97BDBB00B25B74 /* ServerController.swift in Sources */,
