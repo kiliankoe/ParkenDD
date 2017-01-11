@@ -7,11 +7,24 @@
 //
 
 import UIKit
+import ParkKit
 
 class CitySelectionTVC: UITableViewController {
 
+    var availableCities = [City]()
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+        ParkKit().fetchCities(onFailure: { error in
+            print(error)
+        }) { [weak self] response in
+            self?.availableCities = response.cities
+
+            OperationQueue.main.addOperation {
+                self?.tableView.reloadData()
+            }
+        }
 	}
 
 	// MARK: - Table view data source
@@ -21,29 +34,18 @@ class CitySelectionTVC: UITableViewController {
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let citiesCount = (UIApplication.shared.delegate as? AppDelegate)?.supportedCities?.count {
-			return citiesCount
-		}
-		return 0
+        return availableCities.count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "citySelectionCell", for: indexPath)
-		let supportedCities = (UIApplication.shared.delegate as? AppDelegate)?.supportedCities
-		let citiesList = (UIApplication.shared.delegate as? AppDelegate)?.citiesList
-		
-		if let city = citiesList![supportedCities![indexPath.row]] { // FIXME: For the love of god, fix this!
-			if city.activeSupport! {
-				cell.textLabel?.text = city.name
-				cell.textLabel?.textColor = UIColor.black
-			} else {
-				cell.textLabel?.text = city.name
-				cell.textLabel?.textColor = UIColor.lightGray
-			}
-		}
+        let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity) ?? ""
 
-		let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity)!
-		cell.accessoryType = supportedCities![indexPath.row] == selectedCity ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
+        let city = availableCities[indexPath.row]
+
+        cell.textLabel?.text = city.name
+        cell.textLabel?.textColor = city.hasActiveSupport ? .black : .lightGray
+		cell.accessoryType = city.name == selectedCity ? .checkmark : .none
 
 		return cell
 	}
@@ -57,17 +59,17 @@ class CitySelectionTVC: UITableViewController {
 		tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
 		tableView.deselectRow(at: indexPath, animated: true)
 
-		let selectedCityID = (UIApplication.shared.delegate as? AppDelegate)?.supportedCities![indexPath.row] // FIXME: For the love of god, fix this!
-		let selectedCityName = (UIApplication.shared.delegate as? AppDelegate)?.citiesList[selectedCityID!]?.name
-		UserDefaults.standard.set(selectedCityID, forKey: Defaults.selectedCity)
-		UserDefaults.standard.set(selectedCityName!, forKey: Defaults.selectedCityName)
+        let selectedCity = availableCities[indexPath.row]
+
+        UserDefaults.standard.set(selectedCity.name, forKey: Defaults.selectedCity)
+        UserDefaults.standard.set(selectedCity.name, forKey: Defaults.selectedCityName)
 		UserDefaults.standard.synchronize()
 
 		if let lotlistVC = UIApplication.shared.keyWindow?.rootViewController?.childViewControllers[0] as? LotlistViewController {
 			lotlistVC.updateData()
 		}
 
-		navigationController?.popToRootViewController(animated: true)
+		let _ = navigationController?.popToRootViewController(animated: true)
 	}
 
 }
