@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 import ParkKit
 import Fabric
 import Crashlytics
@@ -21,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var inBackground = false
 
-	var locationManager: CLLocationManager?
-
 	var supportedCities: [String]?
 	var citiesList = [City]() {
 		didSet {
@@ -33,9 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		Fabric.with([Crashlytics()])
 
-		// Request permission to get the user's location
-		locationManager = CLLocationManager()
-		locationManager?.requestWhenInUseAuthorization()
+        Location.manager.requestWhenInUseAuthorization()
 
         UserDefaults.register(Default.default())
 
