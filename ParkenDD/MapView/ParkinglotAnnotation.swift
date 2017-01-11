@@ -8,25 +8,21 @@
 
 import UIKit
 import MapKit
+import ParkKit
 
 class ParkinglotAnnotation: NSObject, MKAnnotation {
 	
 	var title: String?
 	var subtitle: String?
-	var parkinglot: Parkinglot
+	var lot: Lot
 	
 	var coordinate: CLLocationCoordinate2D {
-		get {
-			if let lat = parkinglot.coords?.lat, let lng = parkinglot.coords?.lng {
-				return CLLocationCoordinate2D(latitude: lat, longitude: lng)
-			}
-			return CLLocationCoordinate2D()
-		}
+        return lot.coordinate ?? CLLocationCoordinate2D()
 	}
 	
-	init(title: String, subtitle: String?, parkinglot: Parkinglot) {
+	init(title: String, subtitle: String?, lot: Lot) {
 		self.title = title
 		self.subtitle = subtitle
-		self.parkinglot = parkinglot
+		self.lot = lot
 	}
 }
