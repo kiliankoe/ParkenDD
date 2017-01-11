@@ -8,14 +8,15 @@
 
 import UIKit
 import MapKit
+import ParkKit
 import Crashlytics
 
 class MapViewController: UIViewController, MKMapViewDelegate {
 
 	@IBOutlet weak var mapView: MKMapView?
 
-	var detailParkinglot: Parkinglot!
-	var allParkinglots: [Parkinglot]!
+	var detailParkinglot: Lot!
+	var allParkinglots: [Lot]!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -27,23 +28,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 		
 		if let lot = detailParkinglot {
-			Answers.logCustomEvent(withName: "View Map", customAttributes: ["selected lot": lot.lotID])
+			Answers.logCustomEvent(withName: "View Map", customAttributes: ["selected lot": lot.id])
 		}
 		
 		// Add annotations for all parking lots to the map
 		for singleLot in allParkinglots {
-            var subtitle = L10n.mapsubtitle("\(singleLot.free ?? -1)", singleLot.total).string
-			if let state = singleLot.state {
-				switch state {
-				case .Closed:
-					subtitle = L10n.closed.string
-				case .Nodata:
-					subtitle = L10n.mapsubtitle("?", singleLot.total).string
-				case .Open, .Unknown:
-					break
-				}
-			}
-			let lotAnnotation = ParkinglotAnnotation(title: singleLot.name, subtitle: subtitle, parkinglot: singleLot)
+            var subtitle = L10n.mapsubtitle("\(singleLot.free)", singleLot.total).string
+            switch singleLot.state {
+            case .closed:
+                subtitle = L10n.closed.string
+            case .nodata:
+                subtitle = L10n.mapsubtitle("?", singleLot.total).string
+            case .open, .unknown:
+                break
+            }
+			let lotAnnotation = ParkinglotAnnotation(title: singleLot.name, subtitle: subtitle, lot: singleLot)
 			
 			mapView?.addAnnotation(lotAnnotation)
 			
@@ -54,7 +53,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 		
 		// Set the map's region to a 1km region around the selected lot
-		if let lat = detailParkinglot.coords?.lat, let lng = detailParkinglot.coords?.lng {
+		if let lat = detailParkinglot.coordinate?.latitude, let lng = detailParkinglot.coordinate?.longitude {
 			let parkinglotRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: lat, longitude: lng), 1000, 1000)
 			mapView?.setRegion(parkinglotRegion, animated: false)
 		} else {
@@ -62,7 +61,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		}
 		
 		// Display the forecast button if this lot has forecast data
-		if let forecast = detailParkinglot.forecast, forecast {
+		if detailParkinglot.hasForecast {
 			navigationItem.rightBarButtonItem = UIBarButtonItem(title: L10n.forecast.string, style: .plain, target: self, action: #selector(MapViewController.showForecastController))
 		}
 	}
@@ -86,13 +85,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		let annotation = annotation as? ParkinglotAnnotation
 		let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "parkinglotAnnotation")
 
-		if let state = annotation?.parkinglot.state {
+		if let state = annotation?.lot.state {
 			switch state {
-			case .Closed:
+			case .closed:
 				annotationView.pinColor = .red
-			case .Open, .Unknown:
-				annotationView.pinColor = annotation?.parkinglot.free != 0 ? .green : .red
-			case .Nodata:
+			case .open, .unknown:
+				annotationView.pinColor = annotation?.lot.free != 0 ? .green : .red
+			case .nodata:
 				annotationView.pinColor = .purple
 			}
 		}
