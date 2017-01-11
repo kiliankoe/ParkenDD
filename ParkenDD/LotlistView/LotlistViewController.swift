@@ -214,6 +214,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
                     
                     return sqrt1 < sqrt2
                 }
+                return $0.free > $1.free
             }
 		default:
 			parkinglots = defaultSortedParkinglots
