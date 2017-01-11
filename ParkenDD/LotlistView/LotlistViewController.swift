@@ -183,21 +183,18 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		guard let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType) else { return }
 		switch sortingType {
 		case Sorting.distance:
-			parkinglots.sort(by: {
-				(lot1: Parkinglot, lot2: Parkinglot) -> Bool in
-				if let currentUserLocation = locationManager.location {
-					return lot1.distance(from: currentUserLocation) < lot2.distance(from: currentUserLocation)
+			parkinglots.sort {
+				if let currentUserLocation = locationManager.location,
+                    let dist1 = $0.distance(from: currentUserLocation),
+                    let dist2 = $1.distance(from: currentUserLocation) {
+					return dist1 < dist2
 				}
-				return lot1.name < lot2.name
-			})
+				return $0.name < $1.name
+			}
 		case Sorting.alphabetical:
-			parkinglots.sort(by: {
-				$0.name < $1.name
-			})
+            parkinglots.sort { $0.name < $1.name }
 		case Sorting.free:
-			parkinglots.sort(by: {
-				$0.getFree() > $1.getFree()
-			})
+            parkinglots.sort { $0.freeRegardingClosed > $1.freeRegardingClosed }
 		case Sorting.euclid:
 			self.parkinglots.sort(by: sortEuclidian)
 		default:
