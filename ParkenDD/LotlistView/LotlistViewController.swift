@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import ParkKit
 import SwiftyTimer
 import Crashlytics
 
@@ -15,8 +16,8 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 
 	let locationManager = CLLocationManager()
 
-	var parkinglots: [Parkinglot] = []
-	var defaultSortedParkinglots: [Parkinglot] = []
+	var parkinglots = [Lot]()
+	var defaultSortedParkinglots = [Lot]()
 
 	var timeUpdated: Date?
 	var timeDownloaded: Date?
@@ -98,91 +99,63 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		// Set title to selected city
 		updateTitle(withCity: nil)
 
-		ServerController.updateDataForSavedCity { [unowned self] (result, error) -> Void in
-			if let error = error {
-				self.handleUpdateError(error)
-				self.stopRefreshUI()
-			} else {
-				guard let result = result else { NSLog("Neither got any results from the API or an error. This is odd. Very odd indeed. Houston?"); return }
+        guard let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity),
+            let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType) else {
+            return
+        }
+        Answers.logCustomEvent(withName: "View City", customAttributes: ["selected city": selectedCity, "sorting type": sortingType])
 
-				// Let's gather some statistics about which cities and sorting types users actually care about.
-				let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity)!
-				let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
-				Answers.logCustomEvent(withName: "View City", customAttributes: ["selected city": selectedCity, "sorting type": sortingType])
+        ParkKit().fetchCities(onFailure: { [weak self] error in
+            self?.handleUpdateError(error)
+            self?.stopRefreshUI()
+        }) { [weak self] response in
+            self?.stopRefreshUI()
 
-				self.stopRefreshUI()
+            let showExperimentalCities = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities) 
+            let citiesList = showExperimentalCities ? response.cities : response.cities.filter { $0.hasActiveSupport }
+            (UIApplication.shared.delegate as? AppDelegate)?.citiesList = citiesList
 
-				var citiesList = [String: City]()
-				if UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities) {
-					citiesList = result.metadata.cities!
-				} else {
-					for (id, city) in result.metadata.cities! {
-						if let supported = city.activeSupport, supported == true {
-							citiesList[id] = city
-						}
-					}
-				}
-				
-				(UIApplication.shared.delegate as? AppDelegate)?.citiesList = citiesList
-				
-				if let lots = result.parkinglotData.lots {
-					
-					// Filter out nodata lots if the user has the setting enabled
-					let filteredLots: [Parkinglot]
-					if UserDefaults.standard.bool(forKey: Defaults.skipNodataLots) {
-						filteredLots = lots.filter({ (lot) -> Bool in
-							if let state = lot.state {
-								return state != .Nodata
-							}
-							return true
-						})
-					} else {
-						filteredLots = lots
-					}
-					
-					self.parkinglots = filteredLots
-					self.defaultSortedParkinglots = filteredLots
-				}
-				
-				if let lastUpdated = result.parkinglotData.lastUpdated, let lastDownloaded = result.parkinglotData.lastDownloaded {
-					self.timeUpdated = lastUpdated as Date
-					self.timeDownloaded = lastDownloaded as Date
-					
-					// While we're at it we're also going to check if the current data is older than an hour and tell the user if it is.
-					let currentDate = Date()
-//                    print("Current: \(currentDate)")
-//                    print("Last:    \(lastUpdated)")
-					let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-                    let dateDifference = calendar.dateComponents(Set([.minute]), from: lastUpdated, to: currentDate)
+            ParkKit().fetchLots(forCity: selectedCity, onFailure: { [weak self] error in
+                self?.handleUpdateError(error)
+                self?.stopRefreshUI()
+            }) { [weak self] response in
+                self?.stopRefreshUI()
 
-					var attrs = [String: AnyObject]()
-					
-					if dateDifference.minute! >= 60 {
-						attrs = [NSForegroundColorAttributeName: UIColor.red]
-						drop(L10n.outdateddatawarning.string, state: .blur(.dark))
-						NSLog("Data in \(selectedCity) seems to be outdated.")
-					}
-					
-					let dateFormatter = DateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
-					
-					self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.lastupdated(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
-				}
-				
-				// TODO: I want a way to get the data url for the currently selected city to give that to the user somehow...
-				
-				self.sortLots()
-				
-				DispatchQueue.main.async(execute: { [unowned self] () -> Void in
-					self.tableView.reloadData()
-				})
-			}
-		}
+                let skipNodataLots = UserDefaults.standard.bool(forKey: Defaults.skipNodataLots)
+                let lots = skipNodataLots ? response.lots.filter { $0.state != .nodata } : response.lots
+
+                self?.parkinglots = lots
+                self?.defaultSortedParkinglots = lots
+
+                self?.timeUpdated = response.lastUpdated
+                self?.timeDownloaded = response.lastDownloaded
+
+                self?.showOutdatedDataWarning(lastUpdated: response.lastUpdated, lastDownloaded: response.lastDownloaded)
+            }
+        }
 	}
+
+    func showOutdatedDataWarning(lastUpdated: Date, lastDownloaded: Date) {
+        // TODO: Use both dates to give a diff to the user or show that the server seems to be broken.
+        let now = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        let dateDiff = calendar.dateComponents(Set([.minute]), from: lastUpdated, to: now)
+
+        var attrs = [String: Any]()
+
+        if let diff = dateDiff.minute, diff >= 60 {
+            attrs = [NSForegroundColorAttributeName: UIColor.red]
+            drop(L10n.outdatedDataWarning.string, state: .blur(.dark))
+        }
+
+        let dateFormatter = DateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.lastUpdated(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
+    }
 
 	/**
 	Called by the request to the API in case of failure and handed the error to display to the user.
 	*/
-	func handleUpdateError(_ err: ServerController.SCError) {
+	func handleUpdateError(_ err: ParkError) {
 		switch err {
 		case .server, .incompatibleAPI:
 			drop(L10n.servererror.string, state: .error)
