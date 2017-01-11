@@ -4,7 +4,7 @@ PODS:
   - Charts/Core (3.0.1)
   - ModelMapper (6.0.0)
   - ObjectMapper (2.2.2)
-  - ParkKit (0.2.0):
+  - ParkKit (0.2.1):
     - ModelMapper (= 6.0.0)
   - SwiftyDrop (3.0.3)
   - SwiftyTimer (2.0.0)
@@ -20,7 +20,7 @@ SPEC CHECKSUMS:
   Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
   ModelMapper: 3596a82f26c43491f6a8d3a00bcdba6ba0e62a93
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
-  ParkKit: 58f588b030dda9ee739da76f81ba6fb18715d574
+  ParkKit: 1ddd771307bc9e6f03540a22056eb2e66409e9e4
   SwiftyDrop: 785f95aabc26c4d832576bb78dc4ba7d0594a95b
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
