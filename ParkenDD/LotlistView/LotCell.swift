@@ -82,23 +82,21 @@ class LotCell: UITableViewCell {
 		forecastIndicator?.tintColor = UIColor.white
 		
 		// TODO: Do all kinds of things with the cell according to the state of the lot
-		if let lotState = lot.state {
-			switch lotState {
-			case .Closed:
-				parkinglotTendencyLabel?.text = L10n.closed.string
-				backgroundColor = UIColor.gray
-				parkinglotLoadLabel?.text = "X"
-//                parkinglotLoadLabel?.attributedText = NSAttributedString(string: "\(lot.free)", attributes: [NSStrikethroughStyleAttributeName: 1])
-			case .Nodata:
-				parkinglotLoadLabel?.text = "?"
-				parkinglotTendencyLabel?.text = L10n.unknownLoad.string
-				backgroundColor = UIColor.lightGray
-			case .Open:
-				parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.occupied.string)"
-			case .Unknown:
-				parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.occupied.string)"
-			}
-		}
+        switch lot.state {
+        case .closed:
+            parkinglotTendencyLabel?.text = L10n.closed.string
+            backgroundColor = UIColor.gray
+            parkinglotLoadLabel?.text = "X"
+//            parkinglotLoadLabel?.attributedText = NSAttributedString(string: "\(lot.free)", attributes: [NSStrikethroughStyleAttributeName: 1])
+        case .nodata:
+            parkinglotLoadLabel?.text = "?"
+            parkinglotTendencyLabel?.text = L10n.unknownLoad.string
+            backgroundColor = UIColor.lightGray
+        case .open:
+            parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.occupied.string)"
+        case .unknown:
+            parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.occupied.string)"
+        }
 	}
 
 	override func awakeFromNib() {
