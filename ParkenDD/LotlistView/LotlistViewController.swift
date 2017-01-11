@@ -177,7 +177,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	}
 
 	/**
-	Sort the parkingslots array based on what is currently saved for SortingType in NSUserDefaults.
+	Sort the parkingslots array based on what is currently saved for SortingType in UserDefaults.
 	*/
 	func sortLots() {
 		guard let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType) else { return }
@@ -196,31 +196,27 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		case Sorting.free:
             parkinglots.sort { $0.freeRegardingClosed > $1.freeRegardingClosed }
 		case Sorting.euclid:
-			self.parkinglots.sort(by: sortEuclidian)
+            self.parkinglots.sort {
+                guard let currentUserLocation = locationManager.location else { return $0.free > $1.free }
+                // TODO: Also check if state is either open or unknown, others should not be sorted
+                if $0.total != 0 && $1.total != 0 {
+                    let occ1 = Double($0.total - $0.free) / Double($0.total)
+                    let occ2 = Double($1.total - $1.free) / Double($1.total)
+
+                    // This factor gives a penalty for very crowded parking spaces
+                    // so they are ranked down the list, even if they are very close
+                    let smoothingfactor1 = 1.0 / Double(2.0*(1.0-occ1))
+                    let smoothingfactor2 = 1.0 / Double(2.0*(1.0-occ2))
+
+                    let sqrt1 = sqrt(pow($0.distance(from: currentUserLocation) ?? 0, 2.0) + smoothingfactor1 * pow(Double(occ1*1000), 2.0))
+                    let sqrt2 = sqrt(pow($1.distance(from: currentUserLocation) ?? 0, 2.0) + smoothingfactor2 * pow(Double(occ2*1000), 2.0))
+                    
+                    return sqrt1 < sqrt2
+                }
+            }
 		default:
 			parkinglots = defaultSortedParkinglots
 		}
-	}
-
-	func sortEuclidian(_ lot1: Parkinglot, lot2: Parkinglot) -> Bool {
-		if let currentUserLocation = locationManager.location {
-			// TODO: Also check if state is either open or unknown, others should not be sorted
-			if lot1.total != 0 && lot2.total != 0 {
-				let occ1 = Double(lot1.total - lot1.getFree()) / Double(lot1.total)
-				let occ2 = Double(lot2.total - lot2.getFree()) / Double(lot2.total)
-				
-				// This factor gives a penalty for very crowded parking spaces
-				// so they are ranked down the list, even if they are very close
-				let smoothingfactor1 = 1.0 / Double(2.0*(1.0-occ1))
-				let smoothingfactor2 = 1.0 / Double(2.0*(1.0-occ2))
-				
-				let sqrt1 = sqrt(pow(lot1.distance(from: currentUserLocation), 2.0) + smoothingfactor1 * pow(Double(occ1*1000), 2.0))
-				let sqrt2 = sqrt(pow(lot2.distance(from: currentUserLocation), 2.0) + smoothingfactor2 * pow(Double(occ2*1000), 2.0))
-
-				return sqrt1 < sqrt2
-			}
-		}
-		return lot1.free > lot2.free
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
