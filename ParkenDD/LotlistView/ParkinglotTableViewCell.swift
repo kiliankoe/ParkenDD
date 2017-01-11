@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ParkKit
 
 //class ParkinglotTableViewCell: MCSwipeTableViewCell {
 class ParkinglotTableViewCell: UITableViewCell {
@@ -18,7 +19,7 @@ class ParkinglotTableViewCell: UITableViewCell {
 	@IBOutlet weak var forecastIndicator: UIImageView?
 	@IBOutlet weak var favTriangle: UIImageView?
 
-	var parkinglot: Parkinglot?
+	var parkinglot: Lot?
 	
 	var distance: Double = 0.0 {
 		didSet {
@@ -30,24 +31,20 @@ class ParkinglotTableViewCell: UITableViewCell {
 		}
 	}
 	
-	func setParkinglot(_ lot: Parkinglot) {
+	func setParkinglot(_ lot: Lot) {
 		parkinglot = lot
 		
 		// Quickfix for issue #103
 		let sanitizedLotName = lot.name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 		
-		if let lotType = lot.lotType, lotType != "" {
+		if let lotType = lot.type, lotType != "" {
 			parkinglotNameLabel?.text = "\(lotType) \(sanitizedLotName)"
 		} else {
 			parkinglotNameLabel?.text = sanitizedLotName
 		}
 
-        if let free = lot.free {
-            parkinglotLoadLabel?.text = "\(free)"
-        } else {
-            parkinglotLoadLabel?.text = "?"
-        }
-		
+        parkinglotLoadLabel?.text = "\(lot.free)"
+
 		// check if location sorting is enabled, then we're displaying distance instead of address
 		let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
 		if sortingType == Sorting.standard || sortingType == Sorting.alphabetical || sortingType == Sorting.free {
@@ -76,7 +73,7 @@ class ParkinglotTableViewCell: UITableViewCell {
 		backgroundColor = Colors.colorBasedOnPercentage(percentage, emptyLots: lot.free)
 		
 		// Show the forecast indicator if that data is available
-		if let forecastAvailable = lot.forecast, forecastAvailable {
+		if lot.hasForecast {
 			forecastIndicator?.image = UIImage(named: "graphArrow")
 		} else {
 			forecastIndicator?.image = nil
