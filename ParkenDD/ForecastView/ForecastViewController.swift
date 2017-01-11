@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import ParkKit
 import Charts
 import Crashlytics
 
 class ForecastViewController: UIViewController {
 	
-	var lot: Parkinglot?
-	var data: [String: String]?
+	var lot: Lot?
+    var data: [(Date, Int)]?
 	
 	let dateFormatter = DateFormatter(dateFormat: "yyyy-MM-dd'T'HH:mm:ss", timezone: nil)
 	let labelDateFormatter = DateFormatter(dateFormat: "HH:mm", timezone: nil)
@@ -33,10 +34,10 @@ class ForecastViewController: UIViewController {
 			return
 		}
 		
-		Answers.logCustomEvent(withName: "View Forecast", customAttributes: ["selected lot": lot.lotID])
+		Answers.logCustomEvent(withName: "View Forecast", customAttributes: ["selected lot": lot.id])
 		
 		navigationItem.title = lot.name
-		availableLabel?.text = L10n.circaspotsavailable(genAvailability(lot.total, load: lot.loadPercentage)).string
+		availableLabel?.text = L10n.circaSpotsAvailable(genAvailability(lot.total, load: Int(lot.loadPercentage))).string
 		
 		let now = Date()
 		datePicker?.date = now
@@ -104,27 +105,33 @@ class ForecastViewController: UIViewController {
 	
 	func updateData(fromDate date: Date = Date()) {
 		guard let lot = lot else { return }
-		ServerController.forecastDay(lot.lotID, fromDate: date) { [unowned self] (forecastData, error) -> Void in
-			if let error = error {
-				switch error {
-				case .noData:
-					let alert = UIAlertController(title: L10n.endofdatatitle.string, message: L10n.endofdata.string, preferredStyle: .alert)
-					alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
-					self.present(alert, animated: true, completion: nil)
-				default:
-					let alert = UIAlertController(title: L10n.unknownerrortitle.string, message: L10n.unknownerror.string, preferredStyle: .alert)
-					alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
-					self.present(alert, animated: true, completion: nil)
-				}
-				return
-			}
-			
-			self.data = forecastData?.data
-			self.drawGraph()
-			self.datePickerValueDidChange(self.datePicker!) // Am I really doing this? Oh god... See #132
-			
-			self.updateLabels(self.data![self.dateFormatter.string(from: self.getDatepickerDate())])
-		}
+        guard let selectedCity = UserDefaults.standard.string(forKey: Defaults.selectedCity) else { return }
+
+        let endDate = date.addingTimeInterval(60 * 60 * 24)
+
+        ParkKit().fetchForecast(forLot: lot.id, inCity: selectedCity, startingAt: date, endingAt: endDate, onFailure: { [weak self] error in
+            switch error {
+//            case .noData:
+//                let alert = UIAlertController(title: L10n.endofdatatitle.string, message: L10n.endofdata.string, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            default:
+//                let alert = UIAlertController(title: L10n.unknownerrortitle.string, message: L10n.unknownerror.string, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
+            default:
+                let alert = UIAlertController(title: L10n.unknownErrorTitle.string, message: L10n.unknownError.string, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            }
+        }) { [weak self] response in
+            self?.data = response.forecast
+            self?.drawGraph()
+            self?.datePickerValueDidChange((self?.datePicker!)!) // Am I really doing this? Oh god... See #132
+
+            self?.updateLabels(self?.data![(self?.dateFormatter.string(from: self.getDatepickerDate()))!])
+        }
 	}
 	
 	func updateLabels(_ load: String?) {
