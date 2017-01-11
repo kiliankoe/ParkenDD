@@ -8,117 +8,117 @@ import Foundation
 // swiftlint:disable type_body_length
 enum L10n {
   /// About
-  case aboutbutton
+  case aboutButton
   /// Activate
   case activate
   /// dresden, parking, car, driving, navigation, park, public, parkinglot, lot
-  case appstoretags
+  case appstoreTags
   /// Cancel
   case cancel
   /// ca. %@ spots available
-  case circaspotsavailable(String)
+  case circaSpotsAvailable(String)
   /// City
-  case cityoptions
+  case cityOptions
   /// closed
   case closed
   /// Display
-  case displayoptions
+  case displayOptions
   /// Unfortunately there's no data available for the selected date.
-  case endofdata
+  case endOfData
   /// No data
-  case endofdatatitle
+  case endOfDataTitle
   /// Forecast
   case forecast
   /// Use this function to view into the future. Pick a date and see how many spaces will presumably be available at that point in time.\n\nThe chart shows the selected day.
-  case forecastinfotext
+  case forecastInfoText
   /// Forecast Data
-  case forecastinfotitle
+  case forecastInfoTitle
   /// Forecast for %@
-  case forecasttitle(String)
+  case forecastTitle(String)
   /// Hide Lots Without Data
-  case hidenodatalots
+  case hideNodataLots
   /// Last update:
-  case lastupdate
+  case lastUpdate
   /// Updated: %@
-  case lastupdated(String)
+  case lastUpdated(String)
   /// List will be updated on next refresh.
-  case listupdateonrefresh
+  case listUpdateOnRefresh
   /// Load in %%
-  case loadinpercent
+  case loadInPercent
   /// ParkenDD is unable to get location data. Please allow it to do so in the system settings.
-  case locationdataerror
+  case locationDataError
   /// Location Data Error
-  case locationdataerrortitle
+  case locationDataErrorTitle
   /// %@ of %d available
   case mapsubtitle(String, Int)
   /// Unfortunately there don't seem to be any coordinates associated with this parking lot.
-  case nocoordswarning
+  case noCoordsWarning
   /// No coordinates
-  case nocoordswarningtitle
+  case noCoordsWarningTitle
   /// Note
-  case notetitle
+  case noteTitle
   /// Used to show location on map and for sorting parking lots by distance.
   case nsLocationWhenInUseUsageDescription
   /// occupied
   case occupied
   /// Other
-  case otheroptions
+  case otherOptions
   /// The data might be outdated. It was last updated more than an hour ago.
-  case outdateddatawarning
+  case outdatedDataWarning
   /// Outdated data
-  case outdateddatawarningtitle
+  case outdatedDataWarningTitle
   /// Couldn't fetch data. You appear to be disconnected from the internet.
-  case requesterror
+  case requestError
   /// Connection Error
-  case requesterrortitle
+  case requestErrorTitle
   /// Suggest a new city
-  case requestnewcity
+  case requestNewCity
   /// Reset Notifications
-  case resetnotifications
+  case resetNotifications
   /// Feedback / Report Problem
-  case sendfeedback
+  case sendFeedback
   /// Couldn't read data from server. Please try again in a few moments.
-  case servererror
+  case serverError
   /// Server Error
-  case servererrortitle
+  case serverErrorTitle
   /// Settings
   case settings
   /// Share on Twitter
-  case shareontwitter
+  case shareOnTwitter
   /// The newly displayed cities are in an experimental state! Their data will probably be littered with errors and be incomplete. \n\nIf you're willing to join us in our effort of supporting new cities, please tap the feedback button below :)
   case showexperimentalcitiesalert
   /// Show Experimental Cities
   case showexperimentalcitiessetting
   /// Sort by
-  case sortingoptions
+  case sortingOptions
   /// Alphabetical
-  case sortingtypealphabetical
+  case sortingtypeAlphabetical
   /// Default
-  case sortingtypedefault
+  case sortingtypeDefault
   /// Best first
-  case sortingtypeeuklid
+  case sortingtypeEuklid
   /// Free Spots
-  case sortingtypefreespots
+  case sortingtypeFreespots
   /// Distance
-  case sortingtypelocation
+  case sortingtypeLocation
   /// No free parking space in sight? → #ParkenDD http://parkendd.de
-  case tweettext
+  case tweetText
   /// unknown address
-  case unknownaddress
+  case unknownAddress
   /// Couldn't find coordinates for selected parking lot. 
-  case unknowncoordinateserror
+  case unknownCoordinatesError
   /// Error
-  case unknowncoordinatestitle
+  case unknownCoordinatesTitle
   /// An unknown error has occurred.
-  case unknownerror
+  case unknownError
   /// Unknown error
-  case unknownerrortitle
+  case unknownErrorTitle
   /// no data available
-  case unknownload
+  case unknownLoad
   /// Use Grayscale Colorscheme
-  case usegrayscalecolors
+  case useGrayscaleColors
   /// waiting for location
-  case waitingforlocation
+  case waitingForLocation
 }
 // swiftlint:enable type_body_length
 
@@ -127,117 +127,117 @@ extension L10n: CustomStringConvertible {
 
   var string: String {
     switch self {
-      case .aboutbutton:
+      case .aboutButton:
         return L10n.tr(key: "ABOUT_BUTTON")
       case .activate:
         return L10n.tr(key: "ACTIVATE")
-      case .appstoretags:
+      case .appstoreTags:
         return L10n.tr(key: "APPSTORE_TAGS")
       case .cancel:
         return L10n.tr(key: "CANCEL")
-      case .circaspotsavailable(let p0):
+      case .circaSpotsAvailable(let p0):
         return L10n.tr(key: "CIRCA_SPOTS_AVAILABLE", p0)
-      case .cityoptions:
+      case .cityOptions:
         return L10n.tr(key: "CITY_OPTIONS")
       case .closed:
         return L10n.tr(key: "CLOSED")
-      case .displayoptions:
+      case .displayOptions:
         return L10n.tr(key: "DISPLAY_OPTIONS")
-      case .endofdata:
+      case .endOfData:
         return L10n.tr(key: "END_OF_DATA")
-      case .endofdatatitle:
+      case .endOfDataTitle:
         return L10n.tr(key: "END_OF_DATA_TITLE")
       case .forecast:
         return L10n.tr(key: "FORECAST")
-      case .forecastinfotext:
+      case .forecastInfoText:
         return L10n.tr(key: "FORECAST_INFO_TEXT")
-      case .forecastinfotitle:
+      case .forecastInfoTitle:
         return L10n.tr(key: "FORECAST_INFO_TITLE")
-      case .forecasttitle(let p0):
+      case .forecastTitle(let p0):
         return L10n.tr(key: "FORECAST_TITLE", p0)
-      case .hidenodatalots:
+      case .hideNodataLots:
         return L10n.tr(key: "HIDE_NODATA_LOTS")
-      case .lastupdate:
+      case .lastUpdate:
         return L10n.tr(key: "LAST_UPDATE")
-      case .lastupdated(let p0):
+      case .lastUpdated(let p0):
         return L10n.tr(key: "LAST_UPDATED", p0)
-      case .listupdateonrefresh:
+      case .listUpdateOnRefresh:
         return L10n.tr(key: "LIST_UPDATE_ON_REFRESH")
-      case .loadinpercent:
+      case .loadInPercent:
         return L10n.tr(key: "LOAD_IN_PERCENT")
-      case .locationdataerror:
+      case .locationDataError:
         return L10n.tr(key: "LOCATION_DATA_ERROR")
-      case .locationdataerrortitle:
+      case .locationDataErrorTitle:
         return L10n.tr(key: "LOCATION_DATA_ERROR_TITLE")
       case .mapsubtitle(let p0, let p1):
         return L10n.tr(key: "MAPSUBTITLE", p0, p1)
-      case .nocoordswarning:
+      case .noCoordsWarning:
         return L10n.tr(key: "NO_COORDS_WARNING")
-      case .nocoordswarningtitle:
+      case .noCoordsWarningTitle:
         return L10n.tr(key: "NO_COORDS_WARNING_TITLE")
-      case .notetitle:
+      case .noteTitle:
         return L10n.tr(key: "NOTE_TITLE")
       case .nsLocationWhenInUseUsageDescription:
         return L10n.tr(key: "NSLocationWhenInUseUsageDescription")
       case .occupied:
         return L10n.tr(key: "OCCUPIED")
-      case .otheroptions:
+      case .otherOptions:
         return L10n.tr(key: "OTHER_OPTIONS")
-      case .outdateddatawarning:
+      case .outdatedDataWarning:
         return L10n.tr(key: "OUTDATED_DATA_WARNING")
-      case .outdateddatawarningtitle:
+      case .outdatedDataWarningTitle:
         return L10n.tr(key: "OUTDATED_DATA_WARNING_TITLE")
-      case .requesterror:
+      case .requestError:
         return L10n.tr(key: "REQUEST_ERROR")
-      case .requesterrortitle:
+      case .requestErrorTitle:
         return L10n.tr(key: "REQUEST_ERROR_TITLE")
-      case .requestnewcity:
+      case .requestNewCity:
         return L10n.tr(key: "REQUEST_NEW_CITY")
-      case .resetnotifications:
+      case .resetNotifications:
         return L10n.tr(key: "RESET_NOTIFICATIONS")
-      case .sendfeedback:
+      case .sendFeedback:
         return L10n.tr(key: "SEND_FEEDBACK")
-      case .servererror:
+      case .serverError:
         return L10n.tr(key: "SERVER_ERROR")
-      case .servererrortitle:
+      case .serverErrorTitle:
         return L10n.tr(key: "SERVER_ERROR_TITLE")
       case .settings:
         return L10n.tr(key: "SETTINGS")
-      case .shareontwitter:
+      case .shareOnTwitter:
         return L10n.tr(key: "SHARE_ON_TWITTER")
       case .showexperimentalcitiesalert:
         return L10n.tr(key: "SHOWEXPERIMENTALCITIESALERT")
       case .showexperimentalcitiessetting:
         return L10n.tr(key: "SHOWEXPERIMENTALCITIESSETTING")
-      case .sortingoptions:
+      case .sortingOptions:
         return L10n.tr(key: "SORTING_OPTIONS")
-      case .sortingtypealphabetical:
+      case .sortingtypeAlphabetical:
         return L10n.tr(key: "SORTINGTYPE_ALPHABETICAL")
-      case .sortingtypedefault:
+      case .sortingtypeDefault:
         return L10n.tr(key: "SORTINGTYPE_DEFAULT")
-      case .sortingtypeeuklid:
+      case .sortingtypeEuklid:
         return L10n.tr(key: "SORTINGTYPE_EUKLID")
-      case .sortingtypefreespots:
+      case .sortingtypeFreespots:
         return L10n.tr(key: "SORTINGTYPE_FREESPOTS")
-      case .sortingtypelocation:
+      case .sortingtypeLocation:
         return L10n.tr(key: "SORTINGTYPE_LOCATION")
-      case .tweettext:
+      case .tweetText:
         return L10n.tr(key: "TWEET_TEXT")
-      case .unknownaddress:
+      case .unknownAddress:
         return L10n.tr(key: "UNKNOWN_ADDRESS")
-      case .unknowncoordinateserror:
+      case .unknownCoordinatesError:
         return L10n.tr(key: "UNKNOWN_COORDINATES_ERROR")
-      case .unknowncoordinatestitle:
+      case .unknownCoordinatesTitle:
         return L10n.tr(key: "UNKNOWN_COORDINATES_TITLE")
-      case .unknownerror:
+      case .unknownError:
         return L10n.tr(key: "UNKNOWN_ERROR")
-      case .unknownerrortitle:
+      case .unknownErrorTitle:
         return L10n.tr(key: "UNKNOWN_ERROR_TITLE")
-      case .unknownload:
+      case .unknownLoad:
         return L10n.tr(key: "UNKNOWN_LOAD")
-      case .usegrayscalecolors:
+      case .useGrayscaleColors:
         return L10n.tr(key: "USE_GRAYSCALE_COLORS")
-      case .waitingforlocation:
+      case .waitingForLocation:
         return L10n.tr(key: "WAITING_FOR_LOCATION")
     }
   }

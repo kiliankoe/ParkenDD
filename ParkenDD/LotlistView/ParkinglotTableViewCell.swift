@@ -23,7 +23,7 @@ class ParkinglotTableViewCell: UITableViewCell {
 	var distance: Double = 0.0 {
 		didSet {
 			guard distance != Const.dummyDistance else {
-				parkinglotAddressLabel?.text = L10n.unknownaddress.string
+				parkinglotAddressLabel?.text = L10n.unknownAddress.string
 				return
 			}
 			parkinglotAddressLabel?.text = "\((round(distance/100))/10)km"
@@ -52,12 +52,12 @@ class ParkinglotTableViewCell: UITableViewCell {
 		let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
 		if sortingType == Sorting.standard || sortingType == Sorting.alphabetical || sortingType == Sorting.free {
 			if lot.address == "" {
-				parkinglotAddressLabel?.text = L10n.unknownaddress.string
+				parkinglotAddressLabel?.text = L10n.unknownAddress.string
 			} else {
 				parkinglotAddressLabel?.text = lot.address
 			}
 		} else {
-			parkinglotAddressLabel?.text = L10n.waitingforlocation.string
+			parkinglotAddressLabel?.text = L10n.waitingForLocation.string
 		}
 		
 		// Set all labels to be white, 'cause it looks awesome
@@ -94,7 +94,7 @@ class ParkinglotTableViewCell: UITableViewCell {
 //                parkinglotLoadLabel?.attributedText = NSAttributedString(string: "\(lot.free)", attributes: [NSStrikethroughStyleAttributeName: 1])
 			case .Nodata:
 				parkinglotLoadLabel?.text = "?"
-				parkinglotTendencyLabel?.text = L10n.unknownload.string
+				parkinglotTendencyLabel?.text = L10n.unknownLoad.string
 				backgroundColor = UIColor.lightGray
 			case .Open:
 				parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.occupied.string)"

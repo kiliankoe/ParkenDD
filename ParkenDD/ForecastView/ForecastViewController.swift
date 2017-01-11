@@ -42,7 +42,7 @@ class ForecastViewController: UIViewController {
 		datePicker?.date = now
 		datePicker?.minimumDate = Calendar.current.startOfDay(for: now)
 		
-		chartView?.chartDescription?.text = L10n.loadinpercent.string
+		chartView?.chartDescription?.text = L10n.loadInPercent.string
 		
 		chartView?.backgroundColor = UIColor.white
 		chartView?.gridBackgroundColor = UIColor.white
@@ -70,7 +70,7 @@ class ForecastViewController: UIViewController {
     }
 	
 	@IBAction func infoButtonTapped(_ sender: UIButton) {
-		let alertController = UIAlertController(title: L10n.forecastinfotitle.string, message: L10n.forecastinfotext.string, preferredStyle: UIAlertControllerStyle.alert)
+		let alertController = UIAlertController(title: L10n.forecastInfoTitle.string, message: L10n.forecastInfoText.string, preferredStyle: UIAlertControllerStyle.alert)
 		alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
 		present(alertController, animated: true, completion: nil)
 	}
@@ -129,7 +129,7 @@ class ForecastViewController: UIViewController {
 	
 	func updateLabels(_ load: String?) {
 		if let load = load {
-			availableLabel?.text = L10n.circaspotsavailable(genAvailability(lot!.total, load: Int(load)!)).string
+			availableLabel?.text = L10n.circaSpotsAvailable(genAvailability(lot!.total, load: Int(load)!)).string
 		}
 	}
 	

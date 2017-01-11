@@ -59,7 +59,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
 				locationManager.startUpdatingLocation()
 			} else {
-				let alertController = UIAlertController(title: L10n.locationdataerrortitle.string, message: L10n.locationdataerror.string, preferredStyle: UIAlertControllerStyle.alert)
+				let alertController = UIAlertController(title: L10n.locationDataErrorTitle.string, message: L10n.locationDataError.string, preferredStyle: UIAlertControllerStyle.alert)
 				alertController.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: nil))
 				alertController.addAction(UIAlertAction(title: L10n.settings.string, style: UIAlertActionStyle.default, handler: {
 					(action) in
@@ -153,9 +153,9 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 	func handleUpdateError(_ err: ParkError) {
 		switch err {
 		case .server, .incompatibleAPI:
-			drop(L10n.servererror.string, state: .error)
+			drop(L10n.serverError.string, state: .error)
 		case .request:
-			drop(L10n.requesterror.string, state: .error)
+			drop(L10n.requestError.string, state: .error)
 		case .notFound:
 			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
 			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
@@ -163,7 +163,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 			updateData()
 			updateTitle(withCity: "Dresden")
 		default:
-			drop(L10n.unknownerror.string, state: .error)
+			drop(L10n.unknownError.string, state: .error)
 		}
 	}
 	
@@ -345,7 +345,7 @@ class LotlistViewController: UITableViewController, CLLocationManagerDelegate, U
 		if let _ = (tableView.cellForRow(at: indexPath) as? ParkinglotTableViewCell)?.parkinglot?.coords {
 			performSegue(withIdentifier: "showParkinglotMap", sender: self)
 		} else {
-			drop(L10n.nocoordswarning.string, state: .blur(.dark))
+			drop(L10n.noCoordsWarning.string, state: .blur(.dark))
 		}
 		tableView.deselectRow(at: indexPath, animated: true)
 	}

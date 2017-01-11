@@ -30,8 +30,8 @@ class MiniForecastViewController: UIViewController {
 			return
 		}
 		
-		chartView?.chartDescription?.text = L10n.loadinpercent.string
-		
+		chartView?.chartDescription?.text = L10n.loadInPercent.string
+
 		chartView?.backgroundColor = UIColor.white
 		chartView?.gridBackgroundColor = UIColor.white
 		chartView?.isUserInteractionEnabled = false
