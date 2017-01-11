@@ -19,7 +19,9 @@ class CitySelectionTVC: UITableViewController {
         ParkKit().fetchCities(onFailure: { error in
             print(error)
         }) { [weak self] response in
-            self?.availableCities = response.cities
+
+            let showExperimental = UserDefaults.standard.bool(forKey: Defaults.showExperimentalCities)
+            self?.availableCities = showExperimental ? response.cities : response.cities.filter { $0.hasActiveSupport }
 
             OperationQueue.main.addOperation {
                 self?.tableView.reloadData()
