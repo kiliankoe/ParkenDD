@@ -16,6 +16,8 @@
 		396642201BB203DC00DF2E99 /* Loc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966421F1BB203DC00DF2E99 /* Loc.swift */; };
 		3977CA251A9CC78C00E20014 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3977CA271A9CC78C00E20014 /* InfoPlist.strings */; };
 		397D7B1D1A9A2236001B5874 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 397D7B1F1A9A2236001B5874 /* Localizable.strings */; };
+		397DA76E1E26D8CB00643829 /* UserDefaults+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397DA76D1E26D8CB00643829 /* UserDefaults+Default.swift */; };
+		397DA7701E26DD5F00643829 /* Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397DA76F1E26DD5F00643829 /* Default.swift */; };
 		3986E8DA1BD6541500B86673 /* ParkinglotAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3986E8D91BD6541500B86673 /* ParkinglotAnnotation.swift */; };
 		399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399CEE251BB0BB3F005FBA28 /* Dictionary+MapFilter.swift */; };
 		39AEA1801BBADCCD0029642F /* augustusbruecke.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 39AEA17E1BBADCCD0029642F /* augustusbruecke.gpx */; };
@@ -27,6 +29,7 @@
 		39D0962A1BDC4B0F009544E8 /* Drop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D096291BDC4B0F009544E8 /* Drop.swift */; };
 		39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */; };
 		39DDA4071BDE676500EF5E18 /* NSDate+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */; };
+		39E5F1C11E26BBFE002D8C9C /* LotListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E5F1C01E26BBFE002D8C9C /* LotListDataSource.swift */; };
 		39F16F7E1AB82899006C2CF0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F16F7D1AB82899006C2CF0 /* SettingsViewController.swift */; };
 		39F4BD421B1B686500900967 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD401B1B686500900967 /* Fabric.framework */; };
 		39F4BD431B1B686500900967 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F4BD411B1B686500900967 /* Crashlytics.framework */; };
@@ -74,6 +77,8 @@
 		3977CA281A9CC78E00E20014 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		397D7B1E1A9A2236001B5874 /* Base */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		397D7B201A9A223A001B5874 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		397DA76D1E26D8CB00643829 /* UserDefaults+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Default.swift"; sourceTree = "<group>"; };
+		397DA76F1E26DD5F00643829 /* Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Default.swift; sourceTree = "<group>"; };
 		3986E8D91BD6541500B86673 /* ParkinglotAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParkinglotAnnotation.swift; sourceTree = "<group>"; };
 		398E45C81BE8FA9A002E0DA8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		398E45C91BE8FA9A002E0DA8 /* pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -90,6 +95,7 @@
 		39D096291BDC4B0F009544E8 /* Drop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drop.swift; sourceTree = "<group>"; };
 		39D529051B42C1D60094BF84 /* CitySelectionTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySelectionTVC.swift; sourceTree = "<group>"; };
 		39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Comparable.swift"; sourceTree = "<group>"; };
+		39E5F1C01E26BBFE002D8C9C /* LotListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotListDataSource.swift; sourceTree = "<group>"; };
 		39EAB8B71BE96E1E005A7290 /* ParkenDDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParkenDDUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39EAB8B91BE96E1E005A7290 /* ParkenDDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkenDDUITests.swift; sourceTree = "<group>"; };
 		39EAB8BB1BE96E1E005A7290 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				39F4CFE51A6BBC0200ACFECF /* LotlistViewController.swift */,
+				39E5F1C01E26BBFE002D8C9C /* LotListDataSource.swift */,
 				392E9B461A6D3143006C6869 /* LotCell.swift */,
 			);
 			path = LotlistView;
@@ -154,6 +161,7 @@
 				39D096291BDC4B0F009544E8 /* Drop.swift */,
 				39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */,
 				394464D81BE0B90C008CE615 /* NSDateFormatter.swift */,
+				397DA76D1E26D8CB00643829 /* UserDefaults+Default.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +230,7 @@
 				39F4CFE31A6BBC0200ACFECF /* AppDelegate.swift */,
 				3946D82C1AD309EB00CB4C41 /* Colors.swift */,
 				3926FECC1AAC47AA005B2DF9 /* Constants.swift */,
+				397DA76F1E26DD5F00643829 /* Default.swift */,
 				39F4CFE71A6BBC0200ACFECF /* Main.storyboard */,
 			);
 			path = ParkenDD;
@@ -532,9 +541,12 @@
 				39DDA4071BDE676500EF5E18 /* NSDate+Comparable.swift in Sources */,
 				39F4CFE61A6BBC0200ACFECF /* LotlistViewController.swift in Sources */,
 				39D529061B42C1D60094BF84 /* CitySelectionTVC.swift in Sources */,
+				397DA76E1E26D8CB00643829 /* UserDefaults+Default.swift in Sources */,
 				39F4CFE41A6BBC0200ACFECF /* AppDelegate.swift in Sources */,
 				394464D91BE0B90C008CE615 /* NSDateFormatter.swift in Sources */,
 				399CEE261BB0BB3F005FBA28 /* Dictionary+MapFilter.swift in Sources */,
+				397DA7701E26DD5F00643829 /* Default.swift in Sources */,
+				39E5F1C11E26BBFE002D8C9C /* LotListDataSource.swift in Sources */,
 				394209B41AADB17600E47539 /* MapViewController.swift in Sources */,
 				3946D82D1AD309EB00CB4C41 /* Colors.swift in Sources */,
 				39D0962A1BDC4B0F009544E8 /* Drop.swift in Sources */,

@@ -35,18 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		locationManager = CLLocationManager()
 		locationManager?.requestWhenInUseAuthorization()
 
-		// Initialize User Defaults
-		let defaults: [String:Any] = [
-			Defaults.sortingType            : Sorting.standard as AnyObject,
-			Defaults.selectedCity           : "Dresden" as AnyObject,
-			Defaults.selectedCityName       : "Dresden" as AnyObject,
-			Defaults.supportedCities        : ["Dresden"],
-			Defaults.skipNodataLots         : false,
-			Defaults.grayscaleUI            : false,
-			Defaults.favoriteLots           : [],
-			Defaults.showExperimentalCities : false
-		]
-		UserDefaults.standard.register(defaults: defaults)
+        UserDefaults.register(Default.default())
 
 		supportedCities = UserDefaults.standard.array(forKey: Defaults.supportedCities) as? [String]
 
