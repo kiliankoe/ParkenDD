@@ -109,7 +109,7 @@ class ForecastViewController: UIViewController {
 
         let endDate = date.addingTimeInterval(60 * 60 * 24)
 
-        ParkKit().fetchForecast(forLot: lot.id, inCity: selectedCity, startingAt: date, endingAt: endDate, onFailure: { [weak self] error in
+        park.fetchForecast(forLot: lot.id, inCity: selectedCity, startingAt: date, endingAt: endDate, onFailure: { [weak self] error in
             switch error {
 //            case .noData:
 //                let alert = UIAlertController(title: L10n.endofdatatitle.string, message: L10n.endofdata.string, preferredStyle: .alert)

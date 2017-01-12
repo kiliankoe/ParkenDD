@@ -16,7 +16,7 @@ class CitySelectionTVC: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        ParkKit().fetchCities(onFailure: { error in
+        park.fetchCities(onFailure: { error in
             print(error)
         }) { [weak self] response in
 
