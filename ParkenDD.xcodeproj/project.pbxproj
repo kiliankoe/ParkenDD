@@ -164,7 +164,6 @@
 				39DDA4061BDE676500EF5E18 /* NSDate+Comparable.swift */,
 				394464D81BE0B90C008CE615 /* NSDateFormatter.swift */,
 				397DA76D1E26D8CB00643829 /* UserDefaults+Default.swift */,
-				39D295C91E26F91C003BAF6C /* Location.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -234,6 +233,7 @@
 				3946D82C1AD309EB00CB4C41 /* Colors.swift */,
 				3926FECC1AAC47AA005B2DF9 /* Constants.swift */,
 				397DA76F1E26DD5F00643829 /* Default.swift */,
+				39D295C91E26F91C003BAF6C /* Location.swift */,
 				39F4CFE71A6BBC0200ACFECF /* Main.storyboard */,
 			);
 			path = ParkenDD;
