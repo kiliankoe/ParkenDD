@@ -10,7 +10,6 @@ import UIKit
 import Social
 import MessageUI
 import SwiftyDrop
-import CoreLocation
 import SafariServices
 import Crashlytics
 
@@ -160,7 +159,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
 			// Don't let the user select a location based sorting option if the required authorization is missing
 			if indexPath.row == 1 || indexPath.row == 4 {
-				if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
+				if Location.authState != .authorizedWhenInUse {
 					let alertController = UIAlertController(title: L10n.locationDataErrorTitle.string, message: L10n.locationDataError.string, preferredStyle: UIAlertControllerStyle.alert)
 					alertController.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: nil))
 					alertController.addAction(UIAlertAction(title: L10n.settings.string, style: UIAlertActionStyle.default, handler: {

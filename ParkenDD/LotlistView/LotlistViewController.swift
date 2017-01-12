@@ -56,8 +56,8 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 
 		// Start getting location updates if the user wants lots sorted by distance
 		if let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType), sortingType == Sorting.distance || sortingType == Sorting.euclid {
-			if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-				locationManager.startUpdatingLocation()
+			if Location.authState == .authorizedWhenInUse {
+                Location.manager.startUpdatingLocation()
 			} else {
 				let alertController = UIAlertController(title: L10n.locationDataErrorTitle.string, message: L10n.locationDataError.string, preferredStyle: UIAlertControllerStyle.alert)
 				alertController.addAction(UIAlertAction(title: L10n.cancel.string, style: UIAlertActionStyle.cancel, handler: nil))
@@ -68,7 +68,7 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 				present(alertController, animated: true, completion: nil)
 			}
 		} else {
-			locationManager.stopUpdatingLocation()
+			Location.manager.stopUpdatingLocation()
 		}
 
 		sortLots()
