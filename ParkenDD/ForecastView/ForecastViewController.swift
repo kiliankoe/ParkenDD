@@ -9,7 +9,6 @@
 import UIKit
 import ParkKit
 import Charts
-import Crashlytics
 
 class ForecastViewController: UIViewController {
 	
@@ -33,8 +32,6 @@ class ForecastViewController: UIViewController {
 			self.dismiss(animated: true, completion: nil)
 			return
 		}
-		
-		Answers.logCustomEvent(withName: "View Forecast", customAttributes: ["selected lot": lot.id])
 		
 		navigationItem.title = lot.name
 		availableLabel?.text = L10n.circaSpotsAvailable(genAvailability(lot.total, load: Int(lot.loadPercentage))).string

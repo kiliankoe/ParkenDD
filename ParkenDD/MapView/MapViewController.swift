@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 import ParkKit
-import Crashlytics
 
 class MapViewController: UIViewController, MKMapViewDelegate {
 
@@ -25,10 +24,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 		
 		if #available(iOS 9, *) {
 			mapView?.showsTraffic = true
-		}
-		
-		if let lot = detailParkinglot {
-			Answers.logCustomEvent(withName: "View Map", customAttributes: ["selected lot": lot.id])
 		}
 		
 		// Add annotations for all parking lots to the map

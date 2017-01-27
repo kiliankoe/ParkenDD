@@ -8,8 +8,6 @@
 
 import UIKit
 import ParkKit
-import Fabric
-import Crashlytics
 
 let park = ParkKit()
 
@@ -28,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		Fabric.with([Crashlytics()])
-
         Location.manager.requestWhenInUseAuthorization()
 
         UserDefaults.register(Default.default())

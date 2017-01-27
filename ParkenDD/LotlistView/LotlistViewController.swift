@@ -9,7 +9,6 @@
 import UIKit
 import ParkKit
 import SwiftyTimer
-import Crashlytics
 
 class LotlistViewController: UITableViewController, UIViewControllerPreviewingDelegate {
 
@@ -101,7 +100,6 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
             let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType) else {
             return
         }
-        Answers.logCustomEvent(withName: "View City", customAttributes: ["selected city": selectedCity, "sorting type": sortingType])
 
         park.fetchLots(forCity: selectedCity, onFailure: { [weak self] error in
             self?.stopRefreshUI()

@@ -11,7 +11,6 @@ import Social
 import MessageUI
 import SwiftyDrop
 import SafariServices
-import Crashlytics
 
 enum Sections: Int {
 	case cityOptions = 0
@@ -220,7 +219,6 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
                 if showExperimentalCities {
                     UserDefaults.standard.set(false, forKey: Defaults.showExperimentalCities)
                     tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-					Answers.logCustomEvent(withName: "Experimental Cities", customAttributes: ["experimental cities": "disable"])
                     refreshLotlist()
                 } else {
                     let alert = UIAlertController(title: L10n.noteTitle.string, message: L10n.showexperimentalcitiesalert.string, preferredStyle: UIAlertControllerStyle.alert)
@@ -231,8 +229,6 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
                         UserDefaults.standard.set(true, forKey: Defaults.showExperimentalCities)
                         tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
                         refreshLotlist()
-
-						Answers.logCustomEvent(withName: "Experimental Cities", customAttributes: ["experimental cities": "enable"])
                     }))
                     present(alert, animated: true, completion: nil)
                 }
@@ -244,7 +240,6 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 		case .otherOptions:
 			switch indexPath.row {
 			case 0:
-				Answers.logCustomEvent(withName: "About View", customAttributes: ["show about view": "show"])
 				if #available(iOS 9.0, *) {
 				    let safariVC = SFSafariViewController(url: URL(string: "http://parkendd.kilian.io/about.html")!, entersReaderIfAvailable: true)
 					present(safariVC, animated: true, completion: nil)
