@@ -11,13 +11,7 @@
 
 ParkenDD shows you a list of the number of available public parking spots from a few different cities. This information is taken directly from the official pages and processed by our open source backend [ParkAPI](https://github.com/offenesdresden/ParkAPI).
 
-Currently supported are:
-
- - Dresden, Germany
- - Ingolstadt, Germany
- - Hamburg, Germany
- - Zürich, Switzerland
- - with more coming soon (see [ParkAPI](https://github.com/offenesdresden/ParkAPI))
+For a list of supported cities, check [here](https://github.com/offenesdresden/ParkAPI/tree/master/park_api/cities).
 
 ParkenDD also exists for **Android** and **Windows**, have a look at the [project page](http://parkendd.de) if you're interested.
 
