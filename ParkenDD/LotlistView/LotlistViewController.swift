@@ -70,7 +70,7 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 			Location.manager.stopUpdatingLocation()
 		}
 
-		sortLots()
+        (tableView.dataSource as? LotlistDataSource)?.sortLots()
 
 		refreshControl?.endRefreshing()
 	}
