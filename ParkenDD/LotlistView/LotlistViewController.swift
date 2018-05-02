@@ -230,8 +230,9 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 		// from the lot is, so we're passing that along and setting the label in the cell class to keep it separate.
 		let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
 		if sortingType == Sorting.distance || sortingType == Sorting.euclid {
-			if let userLocation = locationManager.location {
-				cell.distance = thisLot.distance(from: userLocation) ?? Const.dummyDistance
+//            if let userLocation = locationManager.location {
+            if false { // FIXME
+//                cell.distance = thisLot.distance(from: userLocation) ?? Const.dummyDistance
 			} else {
 				cell.distance = Const.dummyDistance
 			}
