@@ -90,7 +90,7 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 	/**
 	Call ServerController to update all local data, catch possible errors and handle the UI based on the refresh (e.g. UIRefreshControl and the UIBarButtonItem).
 	*/
-	func updateData() {
+	@objc func updateData() {
 		showActivityIndicator()
 
 		// Set title to selected city
@@ -117,10 +117,10 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
         let calendar = Calendar(identifier: .gregorian)
         let dateDiff = calendar.dateComponents(Set([.minute]), from: lastUpdated, to: now)
 
-        var attrs = [String: Any]()
+        var attrs = [NSAttributedStringKey: Any]()
 
         if let diff = dateDiff.minute, diff >= 60 {
-            attrs = [NSForegroundColorAttributeName: UIColor.red]
+            attrs = [NSAttributedStringKey.foregroundColor: UIColor.red]
             drop(L10n.outdatedDataWarning.string, state: .blur(.dark))
         }
 

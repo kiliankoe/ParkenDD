@@ -29,12 +29,12 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
 		self.navigationItem.title = L10n.settings.string
 		let font = UIFont(name: "AvenirNext-Medium", size: 18.0)
-		var attrsDict = [String: AnyObject]()
-		attrsDict[NSFontAttributeName] = font
+		var attrsDict = [NSAttributedStringKey: Any]()
+		attrsDict[NSAttributedStringKey.font] = font
 		self.navigationController?.navigationBar.titleTextAttributes = attrsDict
     }
 
-	func dismiss() {
+	@objc func dismiss() {
 		self.dismiss(animated: true, completion: nil)
 	}
 

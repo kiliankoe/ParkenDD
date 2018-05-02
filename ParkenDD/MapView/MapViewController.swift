@@ -64,7 +64,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 	/**
 	Transition to forecast controller
 	*/
-	func showForecastController() {
+	@objc func showForecastController() {
 		let forecastController = ForecastViewController()
 		forecastController.lot = detailParkinglot
 		show(forecastController, sender: self)
