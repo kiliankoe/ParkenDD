@@ -106,28 +106,21 @@ class ForecastViewController: UIViewController {
 
         let endDate = date.addingTimeInterval(60 * 60 * 24)
 
-        park.fetchForecast(forLot: lot.id, inCity: selectedCity, startingAt: date, endingAt: endDate, onFailure: { [weak self] error in
-            switch error {
-//            case .noData:
-//                let alert = UIAlertController(title: L10n.endofdatatitle.string, message: L10n.endofdata.string, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            default:
-//                let alert = UIAlertController(title: L10n.unknownerrortitle.string, message: L10n.unknownerror.string, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            }
-            default:
+        park.fetchForecast(forLot: lot.id,
+                           inCity: selectedCity,
+                           startingAt: date,
+                           endingAt: endDate) {
+            [weak self] result in
+            switch result {
+            case .failure(let error):
                 let alert = UIAlertController(title: L10n.unknownErrorTitle.string, message: L10n.unknownError.string, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: L10n.cancel.string, style: .cancel, handler: nil))
                 self?.present(alert, animated: true, completion: nil)
+            case .success(let response):
+                self?.data = response.forecast
+                self?.drawGraph()
+                self?.datePickerValueDidChange((self?.datePicker!)!) // Am I really doing this? Oh god... See #132
             }
-        }) { [weak self] response in
-            self?.data = response.forecast
-            self?.drawGraph()
-            self?.datePickerValueDidChange((self?.datePicker!)!) // Am I really doing this? Oh god... See #132
-
-//            self?.updateLabels(self?.data![(self?.dateFormatter.string(from: (self?.getDatepickerDate())!))!])
         }
 	}
 	

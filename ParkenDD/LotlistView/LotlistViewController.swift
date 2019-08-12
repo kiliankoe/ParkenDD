@@ -101,13 +101,18 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
             return
         }
 
-        park.fetchLots(forCity: selectedCity, onFailure: { [weak self] error in
-            self?.stopRefreshUI()
-            self?.handleUpdateError(error)
-        }) { [weak self] response in
-            self?.stopRefreshUI()
-            self?.showOutdatedDataWarning(lastUpdated: response.lastUpdated, lastDownloaded: response.lastDownloaded)
-            (self?.tableView.dataSource as? LotlistDataSource)?.set(lots: response.lots)
+        park.fetchLots(forCity: selectedCity) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.stopRefreshUI()
+                self?.handleUpdateError(error)
+            case .success(let response):
+                self?.stopRefreshUI()
+                self?.showOutdatedDataWarning(lastUpdated: response.lastUpdated, lastDownloaded: response.lastDownloaded)
+                DispatchQueue.main.async {
+                    (self?.tableView.dataSource as? LotlistDataSource)?.set(lots: response.lots)
+                }
+            }
         }
 	}
 
@@ -125,28 +130,32 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
         }
 
         let dateFormatter = DateFormatter(dateFormat: "dd.MM.yyyy HH:mm", timezone: nil)
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.lastUpdated(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
+        DispatchQueue.main.async {
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "\(L10n.lastUpdated(dateFormatter.string(from: lastUpdated)))", attributes: attrs)
+        }
     }
 
 	/**
 	Called by the request to the API in case of failure and handed the error to display to the user.
 	*/
-	func handleUpdateError(_ err: ParkError) {
-		switch err {
-		case .server(_), .decoding:
-			drop(L10n.serverError.string, state: .error)
-		case .request:
-			drop(L10n.requestError.string, state: .error)
-            // TODO: Is this really a good idea?
-//		case .notFound:
-//			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
-//			UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
-//			UserDefaults.standard.synchronize()
-//			updateData()
-//			updateTitle(withCity: "Dresden")
-		default:
-			drop(L10n.unknownError.string, state: .error)
-		}
+	func handleUpdateError(_ err: Error) {
+        let description = err.localizedDescription
+        drop(description, state: .error)
+//        switch err {
+//        case .server(_), .decoding:
+//            drop(L10n.serverError.string, state: .error)
+//        case .request:
+//            drop(L10n.requestError.string, state: .error)
+//            // TODO: Is this really a good idea?
+////        case .notFound:
+////            UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCity)
+////            UserDefaults.standard.set("Dresden", forKey: Defaults.selectedCityName)
+////            UserDefaults.standard.synchronize()
+////            updateData()
+////            updateTitle(withCity: "Dresden")
+//        default:
+//            drop(L10n.unknownError.string, state: .error)
+//        }
 	}
 	
 	func updateTitle(withCity city: String?) {
