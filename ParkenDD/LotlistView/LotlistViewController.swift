@@ -17,12 +17,14 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
 
 	var dataURL: String?
 
+    var dataSource = LotlistDataSource()
+
 	@IBOutlet weak var titleButton: UIButton!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        tableView.dataSource = LotlistDataSource()
+        tableView.dataSource = dataSource
 
         Location.shared.onMove { [weak self] location in
             self?.tableView.reloadData()
