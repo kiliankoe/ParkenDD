@@ -17,9 +17,8 @@ let park = ParkKit() // uses the default server at parkendd.de
 ```
 
 ```swift
-park.fetchCities(onFailure: { error in
-	print(error)
-}) { response in
+park.fetchCities { result in
+	guard let response = result.success else { return }
 	print(response.cities)
 }
 
@@ -33,9 +32,8 @@ park.fetchCities(onFailure: { error in
 ```
 
 ```swift
-park.fetchLots(forCity: "Dresden", onFailure: { error in
-	print(error)
-}) { response in
+park.fetchLots(forCity: "Dresden") { result in
+	guard let response = result.success else { return }
 	print(response.lots)
 }
 
@@ -49,10 +47,9 @@ park.fetchLots(forCity: "Dresden", onFailure: { error in
 let startingDate = Date()
 let endingDate = startingDate.addingTimeInterval(60 * 60 * 24) // 24 hours later
 
-park.fetchForecast(forLot: "dresdencentrumgalerie", inCity: "Dresden", startingAt: startingDate, endingAt: endingDate, onFailure: { error in
-    print(error)
-}) { response in
-    print(response.forecast)
+park.fetchForecast(forLot: "dresdencentrumgalerie", inCity: "Dresden", startingAt: startingDate, endingAt: endingDate) { result in
+	guard let response = result.success else { return }
+	print(response.forecast)
 }
 
 // ▿ 97 elements
@@ -73,19 +70,25 @@ Using your own server is definitely recommended should you be planning on execut
 
 ## Installation
 
-ParkKit is available through Cocoapods. To install it, simply add the following line to your Podfile:
+ParkKit is available through Cocoapods, Carthage/Punic and Swift Package Manager, take your pick.
+
+Copypasta for your Podfile:
 
 ```ruby
 pod "ParkKit"
 ```
 
-You can also use Swift Package Manager. For that, add the following to your dependencies in your Package.swift:
+Cartfile:
+
+```
+github "kiliankoe/ParkKit"
+```
+
+Package.swift:
 
 ```swift
 .Package(url: "https://github.com/kiliankoe/ParkKit", majorVersion: 0)
 ```
-
-It should also be available via Carthage, although I have not been able to verify this.
 
 ## Contributors
 

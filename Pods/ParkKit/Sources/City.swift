@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Mapper
+import Marshal
 import CoreLocation
 
 /// Slightly bigger than a town, you get the idea.
@@ -36,21 +36,21 @@ public struct City {
     }
 }
 
-extension City: Mappable {
-    public init(map: Mapper) throws {
-        try name = map.from("name")
-        try coordinate = map.from("coords")
-        try source = map.from("source")
-        try url = map.from("url")
-        attribution = map.optionalFrom("attribution")
-        try hasActiveSupport = map.from("active_support")
+extension City: Unmarshaling {
+    public init(object: MarshaledObject) throws {
+        name = try object <| "name"
+        coordinate = try object <| "coords"
+        source = try object <| "source"
+        url = try object <| "url"
+        attribution = try object <| "attribution"
+        hasActiveSupport = try object <| "active_support"
     }
 }
 
-extension City.Attribution: Mappable {
-    public init(map: Mapper) throws {
-        try contributor = map.from("contributor")
-        try license = map.from("license")
-        try url = map.from("url")
+extension City.Attribution: Unmarshaling {
+    public init(object: MarshaledObject) throws {
+        contributor = try object <| "contributor"
+        license = try object <| "license"
+        url = try object <| "url"
     }
 }

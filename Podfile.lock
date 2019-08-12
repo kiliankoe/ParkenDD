@@ -2,10 +2,10 @@ PODS:
   - Charts (3.3.0):
     - Charts/Core (= 3.3.0)
   - Charts/Core (3.3.0)
-  - ModelMapper (6.0.0)
-  - ObjectMapper (3.4.2)
-  - ParkKit (0.2.2):
-    - ModelMapper (= 6.0.0)
+  - Marshal (1.2.4)
+  - ObjectMapper (3.5.1)
+  - ParkKit (0.3.0):
+    - Marshal (= 1.2.4)
   - SwiftyDrop (4.2.0)
   - SwiftyTimer (2.1.0)
 
@@ -19,17 +19,17 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Charts
-    - ModelMapper
+    - Marshal
     - ObjectMapper
     - ParkKit
     - SwiftyDrop
     - SwiftyTimer
 
 SPEC CHECKSUMS:
-  Charts: ec1f57f9340054155691e84d4544a1d239d382c5
-  ModelMapper: 3596a82f26c43491f6a8d3a00bcdba6ba0e62a93
-  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
-  ParkKit: 809ee38e4d83d42bc16e9e77aae28e000a5cfd4a
+  Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
+  Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  ParkKit: e4973c562e3cfb23c4c3cba6e26ef7d81b1b7951
   SwiftyDrop: c5b306082dfbd7d6b9c1e569dcdd2ab13306e552
   SwiftyTimer: 02dd6cf10cbc71cbf67cec494f6e5eb782102543
 

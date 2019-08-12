@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Mapper
+import Marshal
 import CoreLocation
 
 /// A parking lot, e.g. 🚗 🅿️ 🚙
@@ -73,17 +73,17 @@ public struct Lot {
     }
 }
 
-extension Lot: Mappable {
-    public init(map: Mapper) throws {
-        address = map.optionalFrom("address")
-        coordinate = map.optionalFrom("coords")
-        try hasForecast = map.from("forecast")
-        try free = map.from("free")
-        try total = map.from("total")
-        try id = map.from("id")
-        type = map.optionalFrom("lot_type")
-        try name = map.from("name")
-        region = map.optionalFrom("region")
-        try state = map.from("state")
+extension Lot: Unmarshaling {
+    public init(object: MarshaledObject) throws {
+        address = try object <| "address"
+        coordinate = try object <| "coords"
+        hasForecast = try object <| "forecast"
+        free = try object <| "free"
+        total = try object <| "total"
+        id = try object <| "id"
+        type = try object <| "lot_type"
+        name = try object <| "name"
+        region = try object <| "region"
+        state = try object <| "state"
     }
 }

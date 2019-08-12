@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double MapperVersionNumber;
-FOUNDATION_EXPORT const unsigned char MapperVersionString[];
+FOUNDATION_EXPORT double MarshalVersionNumber;
+FOUNDATION_EXPORT const unsigned char MarshalVersionString[];
 

@@ -162,7 +162,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Charts/Charts.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ModelMapper/Mapper.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ParkKit/ParkKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyDrop/SwiftyDrop.framework"
@@ -170,7 +170,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Charts/Charts.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ModelMapper/Mapper.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ParkKit/ParkKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyDrop/SwiftyDrop.framework"

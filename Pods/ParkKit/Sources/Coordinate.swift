@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import Mapper
+import Marshal
 import CoreLocation
 
-extension CLLocationCoordinate2D: Mappable {
-    public init(map: Mapper) throws {
-        try latitude = map.from("lat")
-        try longitude = map.from("lng")
+extension CLLocationCoordinate2D: Unmarshaling {
+    public init(object: MarshaledObject) throws {
+        latitude = try object <| "lat"
+        longitude = try object <| "lng"
     }
 }
