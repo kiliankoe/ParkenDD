@@ -93,7 +93,18 @@ class LotlistDataSource: NSObject, UITableViewDataSource {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LotCell.self), for: indexPath) as! LotCell
 
-        cell.setParkinglot(parkingLots[indexPath.row])
+        let lot = parkingLots[indexPath.row]
+
+        cell.setParkinglot(lot)
+
+        let sortingType = UserDefaults.standard.string(forKey: Defaults.sortingType)!
+        if sortingType == Sorting.distance || sortingType == Sorting.euclid {
+            if let userLocation = Location.manager.location {
+                cell.distance = lot.distance(from: userLocation) ?? Const.dummyDistance
+            } else {
+                cell.distance = Const.dummyDistance
+            }
+        }
 
         return cell
     }
