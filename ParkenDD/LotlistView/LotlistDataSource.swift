@@ -91,7 +91,7 @@ class LotlistDataSource: NSObject, UITableViewDataSource {
         // Don't display separators if the list is still empty.
         tableView.separatorStyle = parkingLots.count > 0 ? .singleLine : .none
 
-        let cell = (tableView.dequeueReusableCell(withIdentifier: String(describing: LotCell.self)) as? LotCell) ?? LotCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LotCell.self), for: indexPath) as! LotCell
 
         cell.setParkinglot(parkingLots[indexPath.row])
 
