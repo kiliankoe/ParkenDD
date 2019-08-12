@@ -80,7 +80,9 @@ class LotCell: UITableViewCell {
 		}
 		forecastIndicator?.alpha = 0.6
 		forecastIndicator?.tintColor = UIColor.white
-		
+
+        let formattedPercentage = String(format: "%.0f", percentage * 100)
+
 		// TODO: Do all kinds of things with the cell according to the state of the lot
         switch lot.state {
         case .closed:
@@ -93,9 +95,9 @@ class LotCell: UITableViewCell {
             parkinglotTendencyLabel?.text = L10n.unknownLoad.string
             backgroundColor = UIColor.lightGray
         case .open:
-            parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.occupied.string)"
+            parkinglotTendencyLabel?.text = "\(formattedPercentage)% \(L10n.occupied.string)"
         case .unknown:
-            parkinglotTendencyLabel?.text = "\(lot.loadPercentage)% \(L10n.occupied.string)"
+            parkinglotTendencyLabel?.text = "\(formattedPercentage)% \(L10n.occupied.string)"
         }
 	}
 }
