@@ -113,6 +113,7 @@ class LotlistViewController: UITableViewController, UIViewControllerPreviewingDe
                 self?.showOutdatedDataWarning(lastUpdated: response.lastUpdated, lastDownloaded: response.lastDownloaded)
                 DispatchQueue.main.async {
                     (self?.tableView.dataSource as? LotlistDataSource)?.set(lots: response.lots)
+                    self?.parkinglots = response.lots
                     self?.tableView.reloadData()
                 }
             }
