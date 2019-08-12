@@ -1,0 +1,6 @@
+framework module ParkKit {
+  umbrella header "ParkKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

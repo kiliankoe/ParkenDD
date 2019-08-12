@@ -300,7 +300,6 @@
 				39F4BD3F1B1B683A00900967 /* Authenticate Fabric */,
 				39D26D551BBF45060094A496 /* Change CFBundleVersion back */,
 				9FF542CA008B477801E3DD40 /* [CP] Embed Pods Frameworks */,
-				3F63C3C2AEE3BC4181F0C6F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -485,28 +484,13 @@
 			shellPath = /bin/sh;
 			shellScript = "#./Fabric.framework/run a73c412e3cdf6638dff0bb09b90292655ab3eecd 7899bb8bd32e08f690b8d3b6bb215ea4010ad734af9516ad408a25025c942313";
 		};
-		3F63C3C2AEE3BC4181F0C6F5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkenDD/Pods-ParkenDD-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9FF542CA008B477801E3DD40 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ParkenDD/Pods-ParkenDD-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ParkenDD/Pods-ParkenDD-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -525,7 +509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ParkenDD/Pods-ParkenDD-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ParkenDD/Pods-ParkenDD-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

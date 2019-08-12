@@ -1,0 +1,6 @@
+framework module SwiftyDrop {
+  umbrella header "SwiftyDrop-umbrella.h"
+
+  export *
+  module * { export * }
+}

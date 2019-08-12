@@ -5,8 +5,8 @@ use_frameworks!
 
 target "ParkenDD" do
   pod 'ParkKit', '~> 0.2'
-  pod 'SwiftyTimer', '~> 2.0'
-  pod 'ObjectMapper', '~> 2.2'
-  pod 'SwiftyDrop', '~> 3.0'
-  pod 'Charts', '~> 3.0'
+  pod 'SwiftyTimer', '~> 2.1'
+  pod 'ObjectMapper', '~> 3.0'
+  pod 'SwiftyDrop', '~> 4.0'
+  pod 'Charts', '~> 3.1'
 end
