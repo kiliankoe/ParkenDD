@@ -1,11 +1,7 @@
 disabled_rules:
   - line_length
   - todo
-  - trailing_whitespace
-  - function_body_length # Put this back in at some point
-  - type_body_length # Put this back in at some point
 
 excluded:
   - Carthage
   - Pods
-  - ParkenDDUITests

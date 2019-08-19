@@ -1,9 +1,0 @@
-/* 
-  InfoPlist.strings
-  ParkenDD
-
-  Created by Kilian Költzsch on 24/02/15.
-  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
-*/
-
-NSLocationWhenInUseUsageDescription = "Used to show location on map and for sorting parking lots by distance.";

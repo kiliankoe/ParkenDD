@@ -9,44 +9,6 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>ParkenDDUITests.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
-		</dict>
-		<key>ParkenDDWidget.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-	</dict>
-	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>390CD0481AEE6602003EB8F4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>39B9534F1AA0A59600026EC2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>39EAB8B61BE96E1E005A7290</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>39F4CFDD1A6BBC0200ACFECF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>39F4CFF21A6BBC0200ACFECF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 	</dict>
 </dict>
 </plist>
