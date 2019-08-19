@@ -3,25 +3,37 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3950E46E230B2F8E0046A71C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E46D230B2F8E0046A71C /* AppDelegate.swift */; };
-		3950E470230B2F8E0046A71C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E46F230B2F8E0046A71C /* ViewController.swift */; };
-		3950E473230B2F8E0046A71C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3950E471230B2F8E0046A71C /* Main.storyboard */; };
+		3950E470230B2F8E0046A71C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E46F230B2F8E0046A71C /* RootViewController.swift */; };
 		3950E475230B2F8F0046A71C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3950E474230B2F8F0046A71C /* Assets.xcassets */; };
 		3950E478230B2F8F0046A71C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3950E476230B2F8F0046A71C /* LaunchScreen.storyboard */; };
+		398DB7F2230B314B00C75883 /* Pulley in Frameworks */ = {isa = PBXBuildFile; productRef = 398DB7F1230B314B00C75883 /* Pulley */; };
+		398DB7F7230B32EC00C75883 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DB7F5230B32EC00C75883 /* MapViewController.swift */; };
+		398DB7F8230B32EC00C75883 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 398DB7F6230B32EC00C75883 /* MapViewController.xib */; };
+		398DB7FA230B362000C75883 /* LotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DB7F9230B362000C75883 /* LotViewController.swift */; };
+		398DB7FE230B39E000C75883 /* LotDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DB7FD230B39E000C75883 /* LotDataSource.swift */; };
+		398DB804230B3EF500C75883 /* ParkKit in Frameworks */ = {isa = PBXBuildFile; productRef = 398DB803230B3EF500C75883 /* ParkKit */; };
+		398DB807230B47A800C75883 /* LotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DB805230B47A800C75883 /* LotTableViewCell.swift */; };
+		398DB808230B47A800C75883 /* LotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 398DB806230B47A800C75883 /* LotTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3950E46A230B2F8E0046A71C /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3950E46D230B2F8E0046A71C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3950E46F230B2F8E0046A71C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3950E472230B2F8E0046A71C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3950E46F230B2F8E0046A71C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		3950E474230B2F8F0046A71C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3950E477230B2F8F0046A71C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3950E479230B2F8F0046A71C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		398DB7F5230B32EC00C75883 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		398DB7F6230B32EC00C75883 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		398DB7F9230B362000C75883 /* LotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotViewController.swift; sourceTree = "<group>"; };
+		398DB7FD230B39E000C75883 /* LotDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotDataSource.swift; sourceTree = "<group>"; };
+		398DB805230B47A800C75883 /* LotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotTableViewCell.swift; sourceTree = "<group>"; };
+		398DB806230B47A800C75883 /* LotTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				398DB7F2230B314B00C75883 /* Pulley in Frameworks */,
+				398DB804230B3EF500C75883 /* ParkKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,13 +69,34 @@
 			isa = PBXGroup;
 			children = (
 				3950E46D230B2F8E0046A71C /* AppDelegate.swift */,
-				3950E46F230B2F8E0046A71C /* ViewController.swift */,
-				3950E471230B2F8E0046A71C /* Main.storyboard */,
+				3950E46F230B2F8E0046A71C /* RootViewController.swift */,
+				398DB7FC230B39CA00C75883 /* Lots */,
+				398DB7FB230B39C300C75883 /* Map */,
 				3950E474230B2F8F0046A71C /* Assets.xcassets */,
 				3950E476230B2F8F0046A71C /* LaunchScreen.storyboard */,
 				3950E479230B2F8F0046A71C /* Info.plist */,
 			);
 			path = ParkenDD;
+			sourceTree = "<group>";
+		};
+		398DB7FB230B39C300C75883 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				398DB7F5230B32EC00C75883 /* MapViewController.swift */,
+				398DB7F6230B32EC00C75883 /* MapViewController.xib */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		398DB7FC230B39CA00C75883 /* Lots */ = {
+			isa = PBXGroup;
+			children = (
+				398DB7F9230B362000C75883 /* LotViewController.swift */,
+				398DB7FD230B39E000C75883 /* LotDataSource.swift */,
+				398DB805230B47A800C75883 /* LotTableViewCell.swift */,
+				398DB806230B47A800C75883 /* LotTableViewCell.xib */,
+			);
+			path = Lots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +115,10 @@
 			dependencies = (
 			);
 			name = ParkenDD;
+			packageProductDependencies = (
+				398DB7F1230B314B00C75883 /* Pulley */,
+				398DB803230B3EF500C75883 /* ParkKit */,
+			);
 			productName = ParkenDD;
 			productReference = 3950E46A230B2F8E0046A71C /* ParkenDD.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +147,10 @@
 				Base,
 			);
 			mainGroup = 3950E461230B2F8E0046A71C;
+			packageReferences = (
+				398DB7F0230B314B00C75883 /* XCRemoteSwiftPackageReference "Pulley" */,
+				398DB802230B3EF500C75883 /* XCRemoteSwiftPackageReference "ParkKit" */,
+			);
 			productRefGroup = 3950E46B230B2F8E0046A71C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -124,7 +167,8 @@
 			files = (
 				3950E478230B2F8F0046A71C /* LaunchScreen.storyboard in Resources */,
 				3950E475230B2F8F0046A71C /* Assets.xcassets in Resources */,
-				3950E473230B2F8E0046A71C /* Main.storyboard in Resources */,
+				398DB7F8230B32EC00C75883 /* MapViewController.xib in Resources */,
+				398DB808230B47A800C75883 /* LotTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +179,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3950E470230B2F8E0046A71C /* ViewController.swift in Sources */,
+				398DB7FA230B362000C75883 /* LotViewController.swift in Sources */,
+				3950E470230B2F8E0046A71C /* RootViewController.swift in Sources */,
+				398DB7FE230B39E000C75883 /* LotDataSource.swift in Sources */,
+				398DB7F7230B32EC00C75883 /* MapViewController.swift in Sources */,
 				3950E46E230B2F8E0046A71C /* AppDelegate.swift in Sources */,
+				398DB807230B47A800C75883 /* LotTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3950E471230B2F8E0046A71C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3950E472230B2F8E0046A71C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3950E476230B2F8F0046A71C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -293,7 +333,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.kilian.ParkenDD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -312,7 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.kilian.ParkenDD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -338,6 +378,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		398DB7F0230B314B00C75883 /* XCRemoteSwiftPackageReference "Pulley" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/52inc/Pulley";
+			requirement = {
+				branch = xcode11;
+				kind = branch;
+			};
+		};
+		398DB802230B3EF500C75883 /* XCRemoteSwiftPackageReference "ParkKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kiliankoe/ParkKit.git";
+			requirement = {
+				branch = "refactor-api";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		398DB7F1230B314B00C75883 /* Pulley */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 398DB7F0230B314B00C75883 /* XCRemoteSwiftPackageReference "Pulley" */;
+			productName = Pulley;
+		};
+		398DB803230B3EF500C75883 /* ParkKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 398DB802230B3EF500C75883 /* XCRemoteSwiftPackageReference "ParkKit" */;
+			productName = ParkKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3950E462230B2F8E0046A71C /* Project object */;
 }

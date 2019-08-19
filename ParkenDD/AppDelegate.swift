@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  ParkenDD
-//
-//  Created by Kilian Koeltzsch on 19.08.19.
-//  Copyright © 2019 Kilian Koeltzsch. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -16,6 +8,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+        let mapVC = MapViewController()
+        let lotVC = LotViewController()
+
+        let pulleyVC = RootViewController(contentViewController: mapVC, drawerViewController: lotVC)
+        self.window?.rootViewController = pulleyVC
+        self.window?.makeKeyAndVisible()
+
         return true
     }
 

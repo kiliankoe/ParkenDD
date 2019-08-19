@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ParkKit",
+        "repositoryURL": "https://github.com/kiliankoe/ParkKit.git",
+        "state": {
+          "branch": "refactor-api",
+          "revision": "96bbf361f55ff6ddd45ec46c8ff7ebf4b93b3bce",
+          "version": null
+        }
+      },
+      {
+        "package": "Pulley",
+        "repositoryURL": "https://github.com/52inc/Pulley",
+        "state": {
+          "branch": "xcode11",
+          "revision": "9820c88c60b3f31cda23bb56b21f4dec3f024a28",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
