@@ -40,9 +40,8 @@ extension LotDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LotTableViewCell.self), for: indexPath)
-        guard let lotCell = cell as? LotTableViewCell else { return UITableViewCell() }
-        lotCell.lot = lots[indexPath.row]
-        return lotCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LotTableViewCell.self), for: indexPath) as! LotTableViewCell
+        cell.lot = lots[indexPath.row]
+        return cell
     }
 }
