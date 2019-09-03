@@ -27,6 +27,7 @@ class MapViewController: UIViewController {
         floatingPanel.delegate = lotVC
         lotVC.floatingPanel = floatingPanel
         lotVC.delegate = self
+
         floatingPanel.set(contentViewController: lotVC)
         floatingPanel.track(scrollView: lotVC.tableView)
         floatingPanel.addPanel(toParent: self)
@@ -42,6 +43,10 @@ class MapViewController: UIViewController {
 extension MapViewController: LotViewControllerDelegate {
     func didSelect(lot: Lot) {
         guard let coordinate = lot.coordinate?.coordinate2D else { return }
+
+        if floatingPanel.position == .full {
+            floatingPanel.move(to: .half, animated: true)
+        }
         let camera = MKMapCamera(lookingAtCenter: coordinate, fromEyeCoordinate: coordinate, eyeAltitude: 2_000)
         self.mapView.setCamera(camera, animated: true)
     }
