@@ -1,5 +1,10 @@
 import UIKit
+import ParkKit
 import FloatingPanel
+
+protocol LotViewControllerDelegate {
+    func didSelect(lot: Lot)
+}
 
 class LotViewController: UIViewController {
 
@@ -9,6 +14,7 @@ class LotViewController: UIViewController {
     let dataSource = LotDataSource()
 
     weak var floatingPanel: FloatingPanelController?
+    var delegate: LotViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +43,9 @@ class LotViewController: UIViewController {
 extension LotViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+
+        guard let lot = (tableView.cellForRow(at: indexPath) as? LotTableViewCell)?.lot else { return }
+        delegate?.didSelect(lot: lot)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

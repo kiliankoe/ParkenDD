@@ -1,5 +1,7 @@
 import UIKit
 import MapKit
+
+import ParkKit
 import FloatingPanel
 
 class MapViewController: UIViewController {
@@ -24,6 +26,7 @@ class MapViewController: UIViewController {
         let lotVC = LotViewController()
         floatingPanel.delegate = lotVC
         lotVC.floatingPanel = floatingPanel
+        lotVC.delegate = self
         floatingPanel.set(contentViewController: lotVC)
         floatingPanel.track(scrollView: lotVC.tableView)
         floatingPanel.addPanel(toParent: self)
@@ -34,5 +37,12 @@ class MapViewController: UIViewController {
 
         floatingPanel.removePanelFromParent(animated: animated)
     }
+}
 
+extension MapViewController: LotViewControllerDelegate {
+    func didSelect(lot: Lot) {
+        guard let coordinate = lot.coordinate?.coordinate2D else { return }
+        let camera = MKMapCamera(lookingAtCenter: coordinate, fromEyeCoordinate: coordinate, eyeAltitude: 2_000)
+        self.mapView.setCamera(camera, animated: true)
+    }
 }
