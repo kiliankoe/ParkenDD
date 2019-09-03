@@ -21,11 +21,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QfV-19-RBe">
-                    <rect key="frame" x="0.0" y="108" width="414" height="754"/>
+                    <rect key="frame" x="0.0" y="103" width="414" height="793"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
-                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="9vU-EE-qF6">
-                    <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Suche nach einem Parkplatz" translatesAutoresizingMaskIntoConstraints="NO" id="9vU-EE-qF6">
+                    <rect key="frame" x="8" y="59" width="398" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="FHi-ug-Orn"/>
                     </constraints>
@@ -34,10 +34,10 @@
             </subviews>
             <constraints>
                 <constraint firstItem="QfV-19-RBe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BlA-nf-WZU"/>
-                <constraint firstItem="9vU-EE-qF6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Spn-oy-8ks"/>
-                <constraint firstItem="9vU-EE-qF6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="ZwR-td-UwJ"/>
-                <constraint firstItem="9vU-EE-qF6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="b5s-eL-oye"/>
-                <constraint firstItem="QfV-19-RBe" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="iFt-kQ-iXU"/>
+                <constraint firstAttribute="bottom" secondItem="QfV-19-RBe" secondAttribute="bottom" id="RRc-vR-RXK"/>
+                <constraint firstItem="9vU-EE-qF6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="Spn-oy-8ks"/>
+                <constraint firstItem="9vU-EE-qF6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="ZwR-td-UwJ"/>
+                <constraint firstItem="9vU-EE-qF6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-8" id="b5s-eL-oye"/>
                 <constraint firstItem="QfV-19-RBe" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="lX2-Ck-hKX"/>
                 <constraint firstItem="QfV-19-RBe" firstAttribute="top" secondItem="9vU-EE-qF6" secondAttribute="bottom" id="zD8-TS-Afn"/>
             </constraints>
