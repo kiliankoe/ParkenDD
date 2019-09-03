@@ -13,10 +13,13 @@ class MapViewController: UIViewController {
 
         floatingPanel = FloatingPanelController()
         floatingPanel.delegate = self
-        let lotVC = LotViewController()
+        let lotVC = LotsViewController()
+        lotVC.floatingPanel = floatingPanel
         floatingPanel.set(contentViewController: lotVC)
         floatingPanel.track(scrollView: lotVC.tableView)
         floatingPanel.addPanel(toParent: self)
+
+        floatingPanel.view.backgroundColor = .clear
     }
 
     override func viewWillDisappear(_ animated: Bool) {
