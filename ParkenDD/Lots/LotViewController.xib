@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QfV-19-RBe">
-                    <rect key="frame" x="0.0" y="103" width="414" height="793"/>
+                    <rect key="frame" x="0.0" y="113" width="414" height="783"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Suche nach einem Parkplatz" translatesAutoresizingMaskIntoConstraints="NO" id="9vU-EE-qF6">
@@ -39,7 +39,7 @@
                 <constraint firstItem="9vU-EE-qF6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="ZwR-td-UwJ"/>
                 <constraint firstItem="9vU-EE-qF6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-8" id="b5s-eL-oye"/>
                 <constraint firstItem="QfV-19-RBe" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="lX2-Ck-hKX"/>
-                <constraint firstItem="QfV-19-RBe" firstAttribute="top" secondItem="9vU-EE-qF6" secondAttribute="bottom" id="zD8-TS-Afn"/>
+                <constraint firstItem="QfV-19-RBe" firstAttribute="top" secondItem="9vU-EE-qF6" secondAttribute="bottom" constant="10" id="zD8-TS-Afn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,15 +18,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiefgarage Altmarkt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiX-XF-rgh">
-                        <rect key="frame" x="16" y="12" width="223" height="21"/>
+                        <rect key="frame" x="63" y="12" width="173" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="312" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MG8-na-aVg">
-                        <rect key="frame" x="247" y="12" width="57" height="21"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rJ-lT-PeQ" customClass="LotGauge" customModule="ParkenDD" customModuleProvider="target">
+                        <rect key="frame" x="10" y="10" width="40" height="40"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="57" id="BdE-z7-qsm"/>
+                            <constraint firstAttribute="width" constant="40" id="uQ0-yw-jj9"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="312/500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hif-sS-EMq">
+                        <rect key="frame" x="63" y="33" width="173" height="16"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.5km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MG8-na-aVg">
+                        <rect key="frame" x="244" y="20" width="60" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="ZMc-hE-cPi"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -34,17 +47,27 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="MG8-na-aVg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="PEH-LO-zas"/>
-                    <constraint firstItem="xiX-XF-rgh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="RG8-9d-RTH"/>
+                    <constraint firstItem="MG8-na-aVg" firstAttribute="leading" secondItem="xiX-XF-rgh" secondAttribute="trailing" constant="8" id="6z7-H2-pGq"/>
+                    <constraint firstItem="6rJ-lT-PeQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="B6I-dP-UbK"/>
+                    <constraint firstItem="Hif-sS-EMq" firstAttribute="leading" secondItem="6rJ-lT-PeQ" secondAttribute="trailing" constant="13" id="GaB-Gy-28T"/>
+                    <constraint firstAttribute="trailing" secondItem="MG8-na-aVg" secondAttribute="trailing" constant="16" id="K3l-do-6KS"/>
+                    <constraint firstAttribute="bottom" secondItem="6rJ-lT-PeQ" secondAttribute="bottom" constant="10" id="N2o-Vd-U93"/>
+                    <constraint firstItem="MG8-na-aVg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Rfx-Hl-MrB"/>
+                    <constraint firstAttribute="bottom" secondItem="MG8-na-aVg" secondAttribute="bottom" constant="19" id="SPy-yj-EA0"/>
+                    <constraint firstItem="6rJ-lT-PeQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WOE-4R-b66"/>
+                    <constraint firstItem="xiX-XF-rgh" firstAttribute="leading" secondItem="6rJ-lT-PeQ" secondAttribute="trailing" constant="13" id="Yh9-7b-XBa"/>
+                    <constraint firstAttribute="bottom" secondItem="Hif-sS-EMq" secondAttribute="bottom" constant="11" id="ZB0-gW-Vbk"/>
                     <constraint firstItem="xiX-XF-rgh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="cKm-B0-hCQ"/>
-                    <constraint firstAttribute="trailing" secondItem="MG8-na-aVg" secondAttribute="trailing" constant="16" id="gTe-Tw-wYO"/>
-                    <constraint firstItem="xiX-XF-rgh" firstAttribute="trailing" secondItem="MG8-na-aVg" secondAttribute="trailing" constant="-65" id="xt7-ev-ZD5"/>
+                    <constraint firstItem="Hif-sS-EMq" firstAttribute="top" secondItem="xiX-XF-rgh" secondAttribute="bottom" id="qmE-HD-sLg"/>
+                    <constraint firstItem="Hif-sS-EMq" firstAttribute="width" secondItem="xiX-XF-rgh" secondAttribute="width" id="zik-tm-1a3"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="freeLabel" destination="MG8-na-aVg" id="eeS-ib-dpq"/>
+                <outlet property="freeLabel" destination="Hif-sS-EMq" id="N2l-qR-BZC"/>
+                <outlet property="infoLabel" destination="MG8-na-aVg" id="VJY-32-Cqm"/>
+                <outlet property="lotGauge" destination="6rJ-lT-PeQ" id="bZg-rv-AQn"/>
                 <outlet property="nameLabel" destination="xiX-XF-rgh" id="Jeo-dy-dJv"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
