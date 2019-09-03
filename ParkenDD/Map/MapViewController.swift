@@ -11,15 +11,22 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureView()
+    }
+
+    private func configureView() {
+        // Map View
+        mapView.showsTraffic = true
+        mapView.showsUserLocation = true
+
+        // Floating Panel
         floatingPanel = FloatingPanelController()
-        floatingPanel.delegate = self
         let lotVC = LotViewController()
+        floatingPanel.delegate = lotVC
         lotVC.floatingPanel = floatingPanel
         floatingPanel.set(contentViewController: lotVC)
         floatingPanel.track(scrollView: lotVC.tableView)
         floatingPanel.addPanel(toParent: self)
-
-        floatingPanel.view.backgroundColor = .clear
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -27,8 +34,5 @@ class MapViewController: UIViewController {
 
         floatingPanel.removePanelFromParent(animated: animated)
     }
-}
-
-extension MapViewController: FloatingPanelControllerDelegate {
 
 }

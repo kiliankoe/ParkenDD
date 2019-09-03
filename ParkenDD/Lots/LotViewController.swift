@@ -57,3 +57,12 @@ extension LotViewController: UISearchBarDelegate {
         print("Filtering for \(searchText)")
     }
 }
+
+extension LotViewController: FloatingPanelControllerDelegate {
+    func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
+        if vc.position == .full {
+            searchBar.showsCancelButton = false
+            searchBar.resignFirstResponder()
+        }
+    }
+}
