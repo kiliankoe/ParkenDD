@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3937A67D231E3F6900DFC02B /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 3937A67C231E3F6900DFC02B /* FloatingPanel */; };
-		3937A684231E42EC00DFC02B /* LotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937A682231E42EC00DFC02B /* LotsViewController.swift */; };
-		3937A685231E42EC00DFC02B /* LotsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3937A683231E42EC00DFC02B /* LotsViewController.xib */; };
+		3937A684231E42EC00DFC02B /* LotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3937A682231E42EC00DFC02B /* LotViewController.swift */; };
+		3937A685231E42EC00DFC02B /* LotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3937A683231E42EC00DFC02B /* LotViewController.xib */; };
 		3950E46E230B2F8E0046A71C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E46D230B2F8E0046A71C /* AppDelegate.swift */; };
 		3950E475230B2F8F0046A71C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3950E474230B2F8F0046A71C /* Assets.xcassets */; };
 		3950E478230B2F8F0046A71C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3950E476230B2F8F0046A71C /* LaunchScreen.storyboard */; };
@@ -22,8 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3937A682231E42EC00DFC02B /* LotsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotsViewController.swift; sourceTree = "<group>"; };
-		3937A683231E42EC00DFC02B /* LotsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotsViewController.xib; sourceTree = "<group>"; };
+		3937A682231E42EC00DFC02B /* LotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotViewController.swift; sourceTree = "<group>"; };
+		3937A683231E42EC00DFC02B /* LotViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotViewController.xib; sourceTree = "<group>"; };
 		3950E46A230B2F8E0046A71C /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3950E46D230B2F8E0046A71C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3950E474230B2F8F0046A71C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,8 +90,8 @@
 		398DB7FC230B39CA00C75883 /* Lots */ = {
 			isa = PBXGroup;
 			children = (
-				3937A682231E42EC00DFC02B /* LotsViewController.swift */,
-				3937A683231E42EC00DFC02B /* LotsViewController.xib */,
+				3937A682231E42EC00DFC02B /* LotViewController.swift */,
+				3937A683231E42EC00DFC02B /* LotViewController.xib */,
 				398DB7FD230B39E000C75883 /* LotDataSource.swift */,
 				398DB805230B47A800C75883 /* LotTableViewCell.swift */,
 				398DB806230B47A800C75883 /* LotTableViewCell.xib */,
@@ -167,7 +167,7 @@
 			files = (
 				3950E478230B2F8F0046A71C /* LaunchScreen.storyboard in Resources */,
 				3950E475230B2F8F0046A71C /* Assets.xcassets in Resources */,
-				3937A685231E42EC00DFC02B /* LotsViewController.xib in Resources */,
+				3937A685231E42EC00DFC02B /* LotViewController.xib in Resources */,
 				398DB7F8230B32EC00C75883 /* MapViewController.xib in Resources */,
 				398DB808230B47A800C75883 /* LotTableViewCell.xib in Resources */,
 			);
@@ -180,7 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3937A684231E42EC00DFC02B /* LotsViewController.swift in Sources */,
+				3937A684231E42EC00DFC02B /* LotViewController.swift in Sources */,
 				398DB7FE230B39E000C75883 /* LotDataSource.swift in Sources */,
 				398DB7F7230B32EC00C75883 /* MapViewController.swift in Sources */,
 				3950E46E230B2F8E0046A71C /* AppDelegate.swift in Sources */,

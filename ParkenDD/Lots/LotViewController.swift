@@ -1,7 +1,7 @@
 import UIKit
 import FloatingPanel
 
-class LotsViewController: UIViewController {
+class LotViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -34,7 +34,7 @@ class LotsViewController: UIViewController {
     }
 }
 
-extension LotsViewController: UITableViewDelegate {
+extension LotViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -44,7 +44,7 @@ extension LotsViewController: UITableViewDelegate {
     }
 }
 
-extension LotsViewController: UISearchBarDelegate {
+extension LotViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         floatingPanel?.move(to: .full, animated: true)
     }

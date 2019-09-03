@@ -13,7 +13,7 @@ class MapViewController: UIViewController {
 
         floatingPanel = FloatingPanelController()
         floatingPanel.delegate = self
-        let lotVC = LotsViewController()
+        let lotVC = LotViewController()
         lotVC.floatingPanel = floatingPanel
         floatingPanel.set(contentViewController: lotVC)
         floatingPanel.track(scrollView: lotVC.tableView)
