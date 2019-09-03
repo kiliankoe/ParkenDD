@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3937A67D231E3F6900DFC02B /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 3937A67C231E3F6900DFC02B /* FloatingPanel */; };
 		3950E46E230B2F8E0046A71C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E46D230B2F8E0046A71C /* AppDelegate.swift */; };
-		3950E470230B2F8E0046A71C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E46F230B2F8E0046A71C /* RootViewController.swift */; };
 		3950E475230B2F8F0046A71C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3950E474230B2F8F0046A71C /* Assets.xcassets */; };
 		3950E478230B2F8F0046A71C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3950E476230B2F8F0046A71C /* LaunchScreen.storyboard */; };
-		398DB7F2230B314B00C75883 /* Pulley in Frameworks */ = {isa = PBXBuildFile; productRef = 398DB7F1230B314B00C75883 /* Pulley */; };
 		398DB7F7230B32EC00C75883 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DB7F5230B32EC00C75883 /* MapViewController.swift */; };
 		398DB7F8230B32EC00C75883 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 398DB7F6230B32EC00C75883 /* MapViewController.xib */; };
 		398DB7FA230B362000C75883 /* LotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398DB7F9230B362000C75883 /* LotViewController.swift */; };
@@ -24,7 +23,6 @@
 /* Begin PBXFileReference section */
 		3950E46A230B2F8E0046A71C /* ParkenDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkenDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3950E46D230B2F8E0046A71C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3950E46F230B2F8E0046A71C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		3950E474230B2F8F0046A71C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3950E477230B2F8F0046A71C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3950E479230B2F8F0046A71C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				398DB7F2230B314B00C75883 /* Pulley in Frameworks */,
+				3937A67D231E3F6900DFC02B /* FloatingPanel in Frameworks */,
 				398DB804230B3EF500C75883 /* ParkKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				3950E46D230B2F8E0046A71C /* AppDelegate.swift */,
-				3950E46F230B2F8E0046A71C /* RootViewController.swift */,
 				398DB7FC230B39CA00C75883 /* Lots */,
 				398DB7FB230B39C300C75883 /* Map */,
 				3950E474230B2F8F0046A71C /* Assets.xcassets */,
@@ -116,8 +113,8 @@
 			);
 			name = ParkenDD;
 			packageProductDependencies = (
-				398DB7F1230B314B00C75883 /* Pulley */,
 				398DB803230B3EF500C75883 /* ParkKit */,
+				3937A67C231E3F6900DFC02B /* FloatingPanel */,
 			);
 			productName = ParkenDD;
 			productReference = 3950E46A230B2F8E0046A71C /* ParkenDD.app */;
@@ -148,8 +145,8 @@
 			);
 			mainGroup = 3950E461230B2F8E0046A71C;
 			packageReferences = (
-				398DB7F0230B314B00C75883 /* XCRemoteSwiftPackageReference "Pulley" */,
 				398DB802230B3EF500C75883 /* XCRemoteSwiftPackageReference "ParkKit" */,
+				3937A67B231E3F6900DFC02B /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = 3950E46B230B2F8E0046A71C /* Products */;
 			projectDirPath = "";
@@ -180,7 +177,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				398DB7FA230B362000C75883 /* LotViewController.swift in Sources */,
-				3950E470230B2F8E0046A71C /* RootViewController.swift in Sources */,
 				398DB7FE230B39E000C75883 /* LotDataSource.swift in Sources */,
 				398DB7F7230B32EC00C75883 /* MapViewController.swift in Sources */,
 				3950E46E230B2F8E0046A71C /* AppDelegate.swift in Sources */,
@@ -380,12 +376,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		398DB7F0230B314B00C75883 /* XCRemoteSwiftPackageReference "Pulley" */ = {
+		3937A67B231E3F6900DFC02B /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/52inc/Pulley";
+			repositoryURL = "https://github.com/SCENEE/FloatingPanel";
 			requirement = {
-				branch = xcode11;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.5;
 			};
 		};
 		398DB802230B3EF500C75883 /* XCRemoteSwiftPackageReference "ParkKit" */ = {
@@ -399,10 +395,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		398DB7F1230B314B00C75883 /* Pulley */ = {
+		3937A67C231E3F6900DFC02B /* FloatingPanel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 398DB7F0230B314B00C75883 /* XCRemoteSwiftPackageReference "Pulley" */;
-			productName = Pulley;
+			package = 3937A67B231E3F6900DFC02B /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 		398DB803230B3EF500C75883 /* ParkKit */ = {
 			isa = XCSwiftPackageProductDependency;

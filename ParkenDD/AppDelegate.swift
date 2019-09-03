@@ -11,10 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
         let mapVC = MapViewController()
-        let lotVC = LotViewController()
 
-        let pulleyVC = RootViewController(contentViewController: mapVC, drawerViewController: lotVC)
-        self.window?.rootViewController = pulleyVC
+        self.window?.rootViewController = mapVC
         self.window?.makeKeyAndVisible()
 
         return true

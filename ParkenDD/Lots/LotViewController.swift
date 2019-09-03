@@ -1,5 +1,4 @@
 import UIKit
-import Pulley
 
 class LotViewController: UITableViewController {
 
@@ -39,17 +38,5 @@ extension LotViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
-    }
-}
-
-extension LotViewController: PulleyDelegate {
-    func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
-        tableView.isUserInteractionEnabled = drawer.drawerPosition != .collapsed
-    }
-}
-
-extension LotViewController: PulleyDrawerViewControllerDelegate {
-    func supportedDrawerPositions() -> [PulleyPosition] {
-        [.collapsed, .partiallyRevealed, .open]
     }
 }
