@@ -49,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3937A68C231E5ED000DFC02B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3950E476230B2F8F0046A71C /* LaunchScreen.storyboard */,
+				3950E479230B2F8F0046A71C /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3950E461230B2F8E0046A71C = {
 			isa = PBXGroup;
 			children = (
@@ -72,8 +81,7 @@
 				398DB7FC230B39CA00C75883 /* Lots */,
 				398DB7FB230B39C300C75883 /* Map */,
 				3950E474230B2F8F0046A71C /* Assets.xcassets */,
-				3950E476230B2F8F0046A71C /* LaunchScreen.storyboard */,
-				3950E479230B2F8F0046A71C /* Info.plist */,
+				3937A68C231E5ED000DFC02B /* Supporting Files */,
 			);
 			path = ParkenDD;
 			sourceTree = "<group>";
@@ -324,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HU85FER47E;
-				INFOPLIST_FILE = ParkenDD/Info.plist;
+				INFOPLIST_FILE = "ParkenDD/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -343,7 +351,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HU85FER47E;
-				INFOPLIST_FILE = ParkenDD/Info.plist;
+				INFOPLIST_FILE = "ParkenDD/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
