@@ -5,6 +5,7 @@ final class LotGauge: UIView {
         didSet {
             DispatchQueue.main.async {
                 self.draw(self.frame)
+                self.setNeedsDisplay()
             }
         }
     }
