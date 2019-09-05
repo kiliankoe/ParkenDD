@@ -14,7 +14,7 @@ class LotTableViewCell: UITableViewCell {
         didSet {
             guard let lot = lot else { return }
             self.nameLabel.text = lot.name
-            self.freeLabel.text = "\(lot.free) / \(lot.total)"
+            self.freeLabel.text = L10n.Lots.Cell.freeLabel(lot.free, lot.total)
 
             let randomDistance = Int.random(in: 0...5)
             self.infoLabel.text = "\(randomDistance)km"

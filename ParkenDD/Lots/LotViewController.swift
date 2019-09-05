@@ -32,6 +32,7 @@ class LotViewController: UIViewController {
 
     func configureView() {
         self.searchBar.delegate = self
+        self.searchBar.placeholder = L10n.Lots.Search.placeholder
 
         self.tableView.backgroundColor = .clear
         self.tableView.dataSource = dataSource

@@ -1,0 +1,6 @@
+strings:
+  inputs: ParkenDD/Supporting Files/en.lproj
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift4
+      output: ./ParkenDD/Generated/L10n.swift
