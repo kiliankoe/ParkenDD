@@ -17,7 +17,7 @@ class LotTableViewCell: UITableViewCell {
             self.freeLabel.text = L10n.Lots.Cell.freeLabel(lot.free, lot.total)
 
             let randomDistance = Int.random(in: 0...5)
-            self.infoLabel.text = "\(randomDistance)km"
+            self.infoLabel.text = L10n.Lots.Cell.infoLabel(randomDistance)
 
             self.lotGauge.percentage = lot.loadPercentage
         }

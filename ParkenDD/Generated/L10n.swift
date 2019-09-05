@@ -18,6 +18,10 @@ internal enum L10n {
       internal static func freeLabel(_ p1: Int, _ p2: Int) -> String {
         return L10n.tr("Localizable", "lots.cell.free-label", p1, p2)
       }
+      /// %dkm
+      internal static func infoLabel(_ p1: Int) -> String {
+        return L10n.tr("Localizable", "lots.cell.info-label", p1)
+      }
     }
     internal enum Search {
       /// Search for a parking lot
