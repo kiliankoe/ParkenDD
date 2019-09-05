@@ -1,4 +1,3 @@
 // MARK: - Lot View
 "lots.search.placeholder" = "Search for a parking lot";
 "lots.cell.free-label" = "%d of %d spots available";
-"lots.cell.info-label" = "%dkm";
