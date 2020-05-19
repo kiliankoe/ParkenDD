@@ -1,9 +1,0 @@
-/* 
-  InfoPlist.strings
-  ParkenDD
-
-  Created by Kilian Költzsch on 24/02/15.
-  Copyright (c) 2015 Kilian Koeltzsch. All rights reserved.
-*/
-
-NSLocationWhenInUseUsageDescription = "Slouží k zobrazení vaší aktuální polohy na mapě a řazení parkovacích míst podle vzdálenosti.";

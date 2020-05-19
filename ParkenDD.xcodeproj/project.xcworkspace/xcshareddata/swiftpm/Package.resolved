@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FloatingPanel",
+        "repositoryURL": "https://github.com/SCENEE/FloatingPanel",
+        "state": {
+          "branch": null,
+          "revision": "5325e707e6e49ac44af581481b4bfedab8bba5b7",
+          "version": "1.6.5"
+        }
+      },
+      {
+        "package": "ParkKit",
+        "repositoryURL": "https://github.com/kiliankoe/ParkKit.git",
+        "state": {
+          "branch": "refactor-api",
+          "revision": "ebcf38e5bbfd689f21cb18a5e2c0a2606615e007",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
